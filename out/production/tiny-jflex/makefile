@@ -1,0 +1,2 @@
+tinyc:
+	jflex tinyc.jflex
