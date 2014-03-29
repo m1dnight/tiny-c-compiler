@@ -15,11 +15,11 @@ import java.io.InputStream;
   StringBuffer string = new StringBuffer();
 
   private Symbol symbol(int type) {
-    return symbol(type, yyline, yycolumn);
+    return new Symbol(type, yyline, yycolumn);
   }
 
   private Symbol symbol(int type, Object val) {
-    return symbol(type, yyline, yycolumn, val);
+    return new Symbol(type, yyline, yycolumn, val);
   }
 
 %}
@@ -55,8 +55,8 @@ commment    =  {sl_comment} | {ml_comment}
 "/"						{ return symbol(sym.DIVIDE); }
 "("						{ return symbol(sym.LPAR); }
 ")"						{ return symbol(sym.RPAR); }
-"["						{ return symbol(sym.LRBACK); }
-"]"						{ return symbol(sym.RBACK); }
+"["						{ return symbol(sym.LBRACK); }
+"]"						{ return symbol(sym.RBRACK); }
 "{"						{ return symbol(sym.LBRACE); }
 "}"						{ return symbol(sym.RBRACE); }
 
@@ -72,7 +72,7 @@ commment    =  {sl_comment} | {ml_comment}
 {identifier}			{ return symbol(sym.NAME, yytext()); 	}
 {digit}+				{ return symbol(sym.NUMBER, new Integer(Integer.parseInt(yytext()))); }
 
-{commment}				{ yyline += countLines(yytext()); }
+{commment}				{ /* yyline += countLines(yytext()); */}
 
 [\n]					{ ++yyline; }
 [\r\t\f\ ]+				{  }
