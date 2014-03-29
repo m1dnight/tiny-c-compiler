@@ -24,7 +24,7 @@ parser code {:
             if (s.left >= 0) {                
                 /* Add to the end of the StringBuffer error message
                    the line number of the error in the input. */
-                m.append(" in line "+(s.left+1));   
+                m.append(" in line "+(s.left+1));
                 /* Check if the column number in the input is greater
                    or equal to zero. */
                 if (s.right >= 0)                    
@@ -123,7 +123,7 @@ formal_par				::= type NAME
 block				    ::= LBRACE var_declarations statements RBRACE
 						  ;
 
-var_declaration		    ::= type NAME SEMICOLON
+var_declaration		    ::= type NAME SEMICOLON {: System.out.println("Found a name!"); :}
 						  ;
 
 var_declarations	    ::= var_declaration var_declarations
