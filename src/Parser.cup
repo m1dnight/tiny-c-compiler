@@ -106,7 +106,8 @@ declaration             ::=  fun_declaration
                           |  var_declaration
                           ;
 
-fun_declaration	        ::=  type NAME LPAR formal_pars RPAR block
+fun_declaration	        ::=  type NAME:n LPAR formal_pars RPAR block
+                             {: System.out.println("Function declaration. \n * Name: " + n + "\n * Params: "); :}
 						  ;
 
 formal_pars			    ::=  formal_params_non_empty
