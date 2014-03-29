@@ -2,6 +2,7 @@
   <library name="JFlex">
     <CLASSES>
       <root url="jar:///usr/share/java/JFlex.jar!/" />
+      <root url="jar:///usr/share/java/cup-0.11a.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

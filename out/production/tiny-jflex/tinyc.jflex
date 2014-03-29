@@ -1,115 +1,83 @@
-package miny_pascal;
-
-import java_cup.runtime.Symbol;
+import java_cup.runtime.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
 
 
 %%
+%class Lexer
 %cup
 %line
+%column
+%unicode
 
 %{
+  StringBuffer string = new StringBuffer();
 
-	public static void main(String args[]) throws Exception {
-		InputStream is = new FileInputStream(args[0]);
-		Yylex lexer = new Yylex(is);
+  private Symbol symbol(int sym) {
+    return new Symbol(sym, yyline+1, yycolumn+1);
+  }
 
-		Symbol token = null;
-		do {
-			token = lexer.next_token();
-			System.out.println(token == null ? "EOF" : token.toString());
-		} while (token != null);
-	}
-	
-	private int countLines(String str){
-		int count = 0;
-		for(int i = 0; i < str.length(); ++i){
-			if(str.charAt(i) == '\n'){
-				++count;
-			}
-		}
-		return count;
-	}
+  private Symbol symbol(int sym, Object val) {
+    return new Symbol(sym, yyline+1, yycolumn+1, val);
+  }
+
+  private void error(String message) {
+    System.out.println("Error at line "+(yyline+1)+", column "+(yycolumn+1)+" : "+message);
+  }
+
 %}
 
-DIGIT  =  [0-9]
-alpha =  [a-zA-Z_]
-IDE    =  {LETTER}({LETTER}|{DIGIT})*
-INT    =  {DIGIT}+
-SCALE  =  E("+"|"-")?{INT}
-REAL   =  ({INT})?"."{INT}({SCALE})?
-STRING =  \"(.|[^\"])*\"
-COMMENT=  "(*"(.|[^\"])*\*\)
+digit       =  [0-9]
+alpha       =  [a-zA-Z_]
+alphanum    =  [A-Za-z0-9]
+symbol      =  [_]
+identifier  =  {alpha}+({alphanum}|{symbol})*
+
+sl_comment  =  "//".*
+ml_comment  =  "/*"((.*?)|[\n]*)*"*/"
+commment    =  {sl_comment} | {ml_comment}
 
 %%
-"int"                   { return new Symbol(sym.INTEGER);}
-"char"                  { return new Symbol(sym.CHAR);}
-"return"                { return new Symbol(sym.RETURN);}
-"if"						{ return new Symbol(sym.IF); }
+"int"                   { return new symbol(sym.INTEGER);}
+"char"                  { return new symbol(sym.CHAR);}
+"return"                { return new symbol(sym.RETURN);}
+"if"					{ return new symbol(sym.IF); }
+"else"					{ return new symbol(sym.ELSE); }
+"while"					{ return new symbol(sym.WHILE); }
+"do"					{ return new symbol(sym.DO); }
+"length"				{ return new symbol(sym.LENGTH); }
+"write"				    { return new symbol(sym.WRITE); }
+"read"				    { return new symbol(sym.READ); }
+
+","						{ return new symbol(sym.COMMA); }
+";"						{ return new symbol(sym.SEMICOLON); }
+
+"+"						{ return new symbol(sym.ADD); }
+"-"						{ return new symbol(sym.MIN); }
+"*"						{ return new symbol(sym.MUL); }
+"/"						{ return new symbol(sym.DIV); }
+"("						{ return new symbol(sym.LPAR); }
+")"						{ return new symbol(sym.RPAR); }
+"["						{ return new symbol(sym.LRBACK); }
+"]"						{ return new symbol(sym.RBACK); }
+"{"						{ return new symbol(sym.LBRACE); }
+"}"						{ return new symbol(sym.RBRACE); }
 
 
-"FOR"						{ return new Symbol(sym.FOR); }
-"FROM"					{ return new Symbol(sym.FROM); }
-"BY"						{ return new Symbol(sym.BY); }
-"TO"						{ return new Symbol(sym.TO); }
-"FIN"						{ return new Symbol(sym.FIN); }
-"NEW"						{ return new Symbol(sym.NEW);}
-"IDENTICAL"				{ return new Symbol(sym.IDENTICAL); }
-"ELSE"					{ return new Symbol(sym.ELSE); }
-"END"						{ return new Symbol(sym.END); }
-"FALSE"					{ return new Symbol(sym.FALSE); }
-"GOTO"					{ return new Symbol(sym.GOTO); }
+">"						{ return new symbol(sym.GREATER); }
+"<"						{ return new symbol(sym.LESS); }
+"!="					{ return new symbol(sym.NEQ); }
+"=="					{ return new symbol(sym.EQU); }
 
-"FI"						{ return new Symbol(sym.FI); }
-"CASE"					{ return new Symbol(sym.CASE); }
-"FIXED"					{ return new Symbol(sym.INTEGER); }
-"LABEL"					{ return new Symbol(sym.LABEL); }
-"NOT"						{ return new Symbol(sym.NOT); }
-"OF"						{ return new Symbol(sym.OF); }
-"PROCEDURE"				{ return new Symbol(sym.PROCEDURE); }
-"FUNCTION"				{ return new Symbol(sym.FUNCTION ); }
-"PROGRAM"					{ return new Symbol(sym.PROGRAM); }
-"READ"					{ return new Symbol(sym.READ); }
-"FLOAT"					{ return new Symbol(sym.REAL); }
-"REPEAT"					{ return new Symbol(sym.REPEAT); }
-"THEN"					{ return new Symbol(sym.THEN); }
-"TRUE"					{ return new Symbol(sym.TRUE); }
-"DO"						{ return new Symbol(sym.DO); }
-"OD"						{ return new Symbol(sym.OD); }
-"WHILE"					{ return new Symbol(sym.WHILE); }
-"WRITE"					{ return new Symbol(sym.WRITE); }
-{IDE}					{ return new Symbol(sym.IDE, yytext()); 	}
-{INT}					{ return new Symbol(sym.INTCONST, new Integer(Integer.parseInt(yytext()))); }
-{REAL}					{ return new Symbol(sym.REALCONST, new Double(Double.parseDouble(yytext()))); }
-{STRING}				{ return new Symbol(sym.STRING, yytext()); }
-{COMMENT}				{ yyline += countLines(yytext()); }			
-"+"						{ return new Symbol(sym.ADD); }
-"-"						{ return new Symbol(sym.MIN); }
-"*"						{ return new Symbol(sym.MUL); }
-"/"						{ return new Symbol(sym.DIV); }
-"%"						{ return new Symbol(sym.MOD); }
-"<"						{ return new Symbol(sym.LES); }
-"<="					{ return new Symbol(sym.LEQ); }
-"=="					{ return new Symbol(sym.EQU); }
-"/="					{ return new Symbol(sym.NEQ); }
-">"						{ return new Symbol(sym.GRE); }
-">="					{ return new Symbol(sym.GEQ); }
-"&"						{ return new Symbol(sym.AND); }
-"|"						{ return new Symbol(sym.OR); }
-"="						{ return new Symbol(sym.ASSIGN); }
-"{"						{ return new Symbol(sym.LC); }
-"}"						{ return new Symbol(sym.RC); }
-":"						{ return new Symbol(sym.COLON); }
-";"						{ return new Symbol(sym.SEMI); }
-"("						{ return new Symbol(sym.LPAR); }
-")"						{ return new Symbol(sym.RPAR); }
-"["						{ return new Symbol(sym.LPAR_SQ); }
-"]"						{ return new Symbol(sym.RPAR_SQ); }
-"."						{ return new Symbol(sym.DOT); }
-","						{ return new Symbol(sym.COMMA); }
-"^"						{ return new Symbol(sym.PTR); }
+"!"						{ return new symbol(sym.NOT); }
+"="						{ return new symbol(sym.ASSIGN); }
+
+{identifier}			{ return new symbol(sym.NAME, yytext()); 	}
+{digit}+				{ return new symbol(sym.NUMBER, new Integer(Integer.parseInt(yytext()))); }
+
+{commment}				{ yyline += countLines(yytext()); }
+
 [\n]					{ ++yyline; }
 [\r\t\f\ ]+				{  }
 .						{ System.err.println("unexpected char " + yytext() + " !\n"); System.exit(0); }
