@@ -110,38 +110,38 @@ fun_declaration	        ::=  type NAME:n LPAR formal_pars RPAR block
                              {: System.out.println("Function declaration. \n * Name: " + n + "\n * Params: "); :}
 						  ;
 
-formal_pars			    ::=  formal_params_non_empty
+formal_pars			        ::=  formal_params_non_empty
                           |
                           ;
 
 formal_params_non_empty	::= formal_par COMMA formal_params_non_empty
-						  | formal_par
-						  ;
+            						  | formal_par
+            						  ;
 
-formal_par				::= type NAME
-						  ;
+formal_par				      ::= type NAME
+						              ;
 
-block				    ::= LBRACE var_declarations statements RBRACE
-						  ;
+block				            ::= LBRACE var_declarations statements RBRACE
+						              ;
 
-var_declaration		    ::= type NAME SEMICOLON {: System.out.println("Found a name!"); :}
-						  ;
+var_declaration		      ::= type NAME SEMICOLON {: System.out.println("Found a name!"); :}
+						              ;
 
-var_declarations	    ::= var_declaration var_declarations
-						  | /* Nothing */
-						  ;
+var_declarations	      ::= var_declaration var_declarations
+            						  | /* Nothing */
+            						  ;
 
-type					::= INT
-						  | CHAR
-						  ;
+type					          ::= INT
+            						  | CHAR
+            						  ;
 
-statements				::= statement SEMICOLON statements
-						  | /* Nothing */
-						  ;
+statements				      ::= statement SEMICOLON statements
+            						  | /* Nothing */
+            						  ;
 
-statement			    ::= IF LPAR exp RPAR statement
+statement			          ::= IF LPAR exp RPAR statement
                             %prec LOW
-						  | IF LPAR exp RPAR statement ELSE statement
+						              | IF LPAR exp RPAR statement ELSE statement
                           | WHILE LPAR exp RPAR statement
                           | lexp ASSIGN exp
                           | RETURN exp
