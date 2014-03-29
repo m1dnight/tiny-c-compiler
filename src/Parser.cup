@@ -1,4 +1,9 @@
 import java_cup.runtime.*;
+
+action code {:
+
+  SymbolTable scope = new SymbolTable();
+:}
    
 parser code {:
     
@@ -53,7 +58,9 @@ parser code {:
         System.exit(1);
     }
 
-    SymbolTable scope = new SymbolTable();
+
+    
+
 :};
    
 
@@ -109,7 +116,14 @@ declaration             ::=  fun_declaration
                           ;
 
 fun_declaration	        ::=  type NAME:n LPAR formal_pars RPAR block
-                             {: System.out.println("Function declaration. \n * Name: " + n + "\n * Params: "); :}
+                             {: System.out.println("Function declaration. \n * Name: " + n + "\n * Params: ");
+                                /* First insert the methodname in the current scope
+                                 * Create a new scope for this function block
+                                 * Attach the current function to the new scope
+                                 */
+                                scope.Insert(n, null);
+                                scope = scope.NewScope(n);
+                             :}
 						  ;
 
 formal_pars			        ::=  formal_params_non_empty
@@ -179,3 +193,5 @@ pars					::= exp
 						  | exp COMMA pars
 						  | /* No parameters */
 						  ;
+
+

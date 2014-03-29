@@ -24,7 +24,8 @@
 import java.io.*;
    
 public class Main {
-  static public void main(String argv[]) {    
+  static public void main(String argv[]) {
+    SymbolTable scope = new SymbolTable();    
     /* Start the parser */
     try {
       parser p = new parser(new Lexer(new FileReader(argv[0])));
@@ -33,6 +34,7 @@ public class Main {
       /* do cleanup here -- possibly rethrow e */
       e.printStackTrace();
     }
+
   }
 }
 
