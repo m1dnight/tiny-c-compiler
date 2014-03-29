@@ -52,6 +52,8 @@ parser code {:
         report_error(message, info);
         System.exit(1);
     }
+
+    SymbolTable scope = new SymbolTable();
 :};
    
 
