@@ -146,8 +146,8 @@ non terminal Integer    expr, factor, term;
    any values that might have been assigned from a terminal. */
    
    expr_list ::= expr_list expr_part
-                 |
-                 expr_part;
+               | expr_part
+               ;
    
 /* 'expr_part' is an 'expr' followed by the terminal 'SEMI'.  The ':e'
    after the non terminal 'expr' is a label an is used to access the

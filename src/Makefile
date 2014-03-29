@@ -4,6 +4,6 @@ JFLEX=jflex
 CUP=$(JAVA) java_cup.Main <
 
 all:
-	jflex lcalc.flex
-	java -jar "./lib/cup.jar" ycalc.cup
+	jflex tinyc.jflex
+	java -jar "./lib/cup.jar" Parser.cup
 	javac -cp ".:lib/jflex.jar" Main.java
