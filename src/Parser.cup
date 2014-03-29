@@ -63,8 +63,11 @@ parser code {:
    Terminals that have no value are listed first and then terminals
    that do have an value, in this case an integer value, are listed on
    the next line down. */
-terminal           SEMI, PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN;
-terminal Integer   NUMBER, ID;
+terminal           RETURN, IF, ELSE, WHILE, DO, LENGTH, WRITE, READ, COMMA, SEMICOLON, ADD, MIN, MUL,
+                   DIV, LPAR, RPAR, RBRACK, LBRACK, LBRACE, RBRACE, GREATER, LESS, NEQ, EQU, NOT, ASSIGN,
+                   INTEGER, CHAR;
+terminal Integer   NUMBER;
+terminal String    NAME;
    
 /* Non terminals used in the grammar section.  
 
@@ -109,7 +112,12 @@ non terminal Integer    expr, factor, term;
                  | NUMBER
                  | ID     
 */
-   
+program ::= program declaration
+            |
+            ;
+
+declaration ::= fun_declaration
+                | var_
 /* 'expr_list' is the start of our grammar.  It can lead to another
    'expr_list' followed by an 'expr_part' or it can just lead to an
    'expr_part'.  The lhs of the non terminals 'expr_list' and

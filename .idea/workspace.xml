@@ -11,6 +11,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -58,62 +63,72 @@
     <breakpoint_rules />
     <ui_properties />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="tinyc.jflex" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/tinyc.jflex">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="51" column="55" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.24692623" vertical-offset="788" max-vertical-offset="1764">
+                    <folding>
+                      <marker date="1396023418573" expanded="false" signature="7:86" placeholder="..." />
+                      <marker date="1396023418573" expanded="true" signature="220:272" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="320:377" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="654:686" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="713:742" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="769:800" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="812:840" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="854:884" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="899:930" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="942:970" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="985:1017" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1035:1066" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1083:1113" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1126:1157" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1169:1204" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1217:1246" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1258:1287" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1299:1328" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1340:1369" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1381:1411" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1423:1453" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1465:1497" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1509:1540" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1552:1584" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1596:1628" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1642:1675" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1687:1717" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1729:1758" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1770:1799" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1812:1841" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1853:1885" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1904:1945" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="1960:2033" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="2051:2084" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="2097:2108" placeholder="{...}" />
+                      <marker date="1396023418573" expanded="true" signature="2138:2215" placeholder="{...}" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="tiny-jflex" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tinyc.jflex" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tinyc.jflex">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="12" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1806">
-              <folding>
-                <marker date="1396023418573" expanded="true" signature="7:86" placeholder="..." />
-                <marker date="1396023418573" expanded="true" signature="220:272" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="320:377" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="654:686" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="713:742" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="769:800" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="812:840" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="854:884" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="899:930" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="942:970" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="985:1017" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1035:1066" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1083:1113" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1126:1157" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1169:1204" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1217:1246" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1258:1287" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1299:1328" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1340:1369" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1381:1411" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1423:1453" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1465:1497" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1509:1540" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1552:1584" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1596:1628" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1642:1675" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1687:1717" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1729:1758" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1770:1799" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1812:1841" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1853:1885" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1904:1945" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="1960:2033" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="2051:2084" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="2097:2108" placeholder="{...}" />
-                <marker date="1396023418573" expanded="true" signature="2138:2215" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Parser.cup" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="66" selection-start="2064" selection-end="2064" vertical-scroll-proportion="0.51302934" vertical-offset="630" max-vertical-offset="4557">
+            <state line="130" column="61" selection-start="5347" selection-end="5347" vertical-scroll-proportion="0.28175896" vertical-offset="2557" max-vertical-offset="4725">
               <folding />
             </state>
           </provider>
@@ -444,20 +459,20 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.50027394" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.50027394" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24986301" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14027397" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -465,30 +480,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24971879" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USERS">
@@ -515,7 +506,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="39" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1995">
           <folding>
-            <marker date="1396023418573" expanded="true" signature="7:86" placeholder="..." />
+            <marker date="1396023418573" expanded="false" signature="7:86" placeholder="..." />
             <marker date="1396023418573" expanded="true" signature="220:272" placeholder="{...}" />
             <marker date="1396023418573" expanded="true" signature="320:377" placeholder="{...}" />
             <marker date="1396023418573" expanded="true" signature="654:686" placeholder="{...}" />
@@ -605,9 +596,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tinyc.jflex">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="12" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1806">
+        <state line="51" column="55" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.24692623" vertical-offset="788" max-vertical-offset="1764">
           <folding>
-            <marker date="1396023418573" expanded="true" signature="7:86" placeholder="..." />
+            <marker date="1396023418573" expanded="false" signature="7:86" placeholder="..." />
             <marker date="1396023418573" expanded="true" signature="220:272" placeholder="{...}" />
             <marker date="1396023418573" expanded="true" signature="320:377" placeholder="{...}" />
             <marker date="1396023418573" expanded="true" signature="654:686" placeholder="{...}" />
@@ -649,7 +640,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="66" selection-start="2064" selection-end="2064" vertical-scroll-proportion="0.51302934" vertical-offset="630" max-vertical-offset="4557">
+        <state line="130" column="61" selection-start="5347" selection-end="5347" vertical-scroll-proportion="0.28175896" vertical-offset="2557" max-vertical-offset="4725">
           <folding />
         </state>
       </provider>
