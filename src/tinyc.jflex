@@ -10,6 +10,7 @@ import java.io.InputStream;
 %line
 %column
 %unicode
+%cup
 
 %{
   StringBuffer string = new StringBuffer();
