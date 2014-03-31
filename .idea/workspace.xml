@@ -72,16 +72,16 @@
       <file leaf-file-name="Makefile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Makefile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="64" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+            <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="49" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+            <state line="4" column="15" selection-start="62" selection-end="62" vertical-scroll-proportion="0.18103448" vertical-offset="0" max-vertical-offset="525">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,12 +89,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="tinyc.jflex" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="3" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1932">
+              <folding>
+                <marker date="1396268788788" expanded="true" signature="22:115" placeholder="..." />
+                <marker date="1396268788788" expanded="true" signature="257:309" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="357:414" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="695:719" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="746:771" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="798:825" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="837:861" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="875:901" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="916:943" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="955:979" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="994:1022" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1040:1067" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1084:1110" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1123:1150" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1162:1193" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1206:1232" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1244:1271" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1283:1310" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1322:1350" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1362:1388" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1400:1426" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1438:1466" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1478:1506" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1518:1546" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1558:1586" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1600:1629" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1641:1667" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1679:1707" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1719:1746" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1759:1784" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1796:1824" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1843:1921" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="1936:2066" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="2084:2122" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="2135:2146" placeholder="{...}" />
+                <marker date="1396268788788" expanded="true" signature="2176:2253" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="21" selection-start="269" selection-end="269" vertical-scroll-proportion="0.29215688" vertical-offset="40" max-vertical-offset="16926">
+            <state line="9" column="14" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="16905">
               <folding>
-                <element signature="e#0#38218#0" expanded="true" />
+                <element signature="e#0#38209#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,14 +172,14 @@
         <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
         <option value="$PROJECT_DIR$/src/Jflex/Lexer.java" />
         <option value="$PROJECT_DIR$/src/Makefile" />
+        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
         <option value="$PROJECT_DIR$/src/Jflex/tinyc.jflex" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
-        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1073" />
+    <option name="x" value="49" />
     <option name="y" value="2" />
     <option name="width" value="1871" />
     <option name="height" value="1078" />
@@ -211,24 +257,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -444,8 +472,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1073" y="2" width="1871" height="1078" extended-state="6" />
-    <editor active="true" />
+    <frame x="49" y="2" width="1871" height="1078" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -455,10 +483,10 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4861111" sideWeight="0.5010225" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48541668" sideWeight="0.5010225" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42395833" sideWeight="0.4989775" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42395833" sideWeight="0.4989775" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24986301" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -592,13 +620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="64" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Jflex/Lexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="643" column="26" selection-start="18152" selection-end="18152" vertical-scroll-proportion="1.5372849" vertical-offset="12657" max-vertical-offset="16737">
@@ -606,64 +627,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="14" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="16905">
+          <folding>
+            <element signature="e#0#38209#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="16" selection-start="30" selection-end="30" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1932">
+        <state line="22" column="3" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1932">
           <folding>
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="22:115" placeholder="..." />
+            <marker date="1396268788788" expanded="true" signature="257:309" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="357:414" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="695:719" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="746:771" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="798:825" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="837:861" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="875:901" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="916:943" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="955:979" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="994:1022" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1040:1067" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1084:1110" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1123:1150" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1162:1193" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1206:1232" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1244:1271" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1283:1310" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1322:1350" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1362:1388" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1400:1426" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1438:1466" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1478:1506" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1518:1546" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1558:1586" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1600:1629" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1641:1667" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1679:1707" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1719:1746" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1759:1784" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1796:1824" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1843:1921" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="1936:2066" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="2084:2122" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="2135:2146" placeholder="{...}" />
+            <marker date="1396268788788" expanded="true" signature="2176:2253" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="49" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+        <state line="4" column="15" selection-start="62" selection-end="62" vertical-scroll-proportion="0.18103448" vertical-offset="0" max-vertical-offset="525">
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="21" selection-start="269" selection-end="269" vertical-scroll-proportion="0.29215688" vertical-offset="40" max-vertical-offset="16926">
-          <folding>
-            <element signature="e#0#38218#0" expanded="true" />
           </folding>
         </state>
       </provider>

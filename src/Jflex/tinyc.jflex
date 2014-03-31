@@ -1,4 +1,4 @@
-package Main;
+package Jflex;
 import java_cup.runtime.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
