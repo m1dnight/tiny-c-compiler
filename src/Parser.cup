@@ -148,7 +148,17 @@ var_declarations	      ::= var_declaration var_declarations
             						  ;
 
 type					          ::= INT
+                            {: /* We create a new TypeInfo that holds that the value is an integer
+                                * We then attach this type to the value of 'type'
+                                * INT and FLOAT are simple types
+                                * Arrays and structs are complex types..
+                                */ 
+                              RESULT = TypeInfo thisType = new TypeInfo(Types.INTEGER);
+                              :}
             						  | CHAR
+                            {:
+                              //RESULT = TypeInfo thisType = new TypeInfo(Types.CHAR);
+                              :}
             						  ;
 
 statements				      ::= statement SEMICOLON statements
