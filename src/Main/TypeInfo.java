@@ -13,10 +13,9 @@ public class TypeInfo {
      * These are defined in the enum 'Types'.
      * @param typename
      */
-    public TypeInfo(Types typename){
-        this.type = typename;
+    public TypeInfo(Types type){
+        this.type = type;
     }
-
     /**
      * This method is used to compare two TypeInfo's.
      * They are equal if their declared type is the same.

@@ -58,4 +58,19 @@ public class SymbolTable {
 
         return si;
     }
+
+    public SymTabInfo Insert(SymTabInfo sti)
+    {
+        symbolList.add(sti);
+
+        /*
+         * Debug printing and stuff
+         */
+        if(sti.typeInfo != null)
+            System.out.printf("Inserted %5s with type %10s in current scope.\n", sti.name, sti.typeInfo.type.name());
+        else
+            System.out.printf("Inserted %5s in current scope.\n", sti.name);
+
+        return sti;
+    }
 }

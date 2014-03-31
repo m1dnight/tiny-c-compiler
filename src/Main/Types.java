@@ -5,5 +5,5 @@ package Main;
  * talking about in the TypeInfo class
  */
 public enum Types {
-    INTEGER
+    INTEGER, FUNCTION
 }

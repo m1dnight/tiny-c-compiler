@@ -2,6 +2,7 @@ package Cup;
 import java_cup.runtime.*;
 import Main.*;
 import Jflex.*;
+import java.util.ArrayList;
 
 action code {:
 
@@ -94,10 +95,13 @@ terminal Integer   NUMBER;
 terminal String    NAME;
 
 
-non terminal Object program, declaration, fun_declaration, formal_pars,
-					formal_params_non_empty, formal_par, block, var_declaration,
-					var_declarations, statements, statement, lexp, exp, pars;
-non terminal TypeInfo type;
+non terminal Object                 program, declaration, fun_declaration,
+                                    block, var_declaration,
+                                    var_declarations, statements, statement, lexp, exp, pars;
+
+non terminal TypeInfo               type, formal_par;
+
+non terminal ArrayList<TypeInfo>    formal_pars, formal_params_non_empty;
 
 /* ------------ Precedence declarations ------------------------------------ */
 
@@ -119,11 +123,19 @@ declaration             ::=  fun_declaration
 						  |  var_declaration
 						  ;
 
-fun_declaration         ::=  type NAME:n LPAR formal_pars RPAR block    {:  System.out.println("Function declaration. \n * Name: " + n + "\n * Params: ");
-																		    SymTabInfo ti = scope.Insert(n, null);
-																			scope = scope.NewScope();
-																			scope.function = ti;
-																		:}
+fun_declaration         ::=  type:rt NAME:n
+                                                                         {: System.out.println("Function declaration. \n * Name: " + n + "\n * Params: ");
+                                                                            SymTabInfo sti = new SymTabInfo(n, null);
+                                                                            scope.Insert(sti);
+                                                                            scope = scope.NewScope();
+                                                                            scope.function = sti;
+                                                                         :}
+                             LPAR formal_pars:ps RPAR block
+                                                                         {:
+                                                                            // Attach the parameters to the type
+                                                                            // of the function defining the current scope
+                                                                            scope.function.typeInfo = new FunctionTypeInfo(rt, ps);
+																		 :}
 						   ;
 
 formal_pars             ::=  formal_params_non_empty
@@ -131,8 +143,8 @@ formal_pars             ::=  formal_params_non_empty
 						  ;
 
 formal_params_non_empty ::= formal_par COMMA formal_params_non_empty
-									  | formal_par
-									  ;
+                          | formal_par
+                          ;
 
 formal_par              ::= type NAME
 						  ;

@@ -63,21 +63,64 @@
     <breakpoint_rules />
     <ui_properties />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="SymTabInfo.java" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="4" column="10" selection-start="75" selection-end="75" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="SymbolTable.java" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="71" column="74" selection-start="2281" selection-end="2281" vertical-scroll-proportion="0.0" vertical-offset="1050" max-vertical-offset="1701">
+                    <folding>
+                      <element signature="e#309#321#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="TypeInfo.java" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/Main/TypeInfo.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="16" column="24" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
+                    <folding>
+                      <element signature="docComment;method#TypeInfo#0;class#TypeInfo#0" expanded="false" />
+                      <element signature="docComment;method#equals#0;class#TypeInfo#0" expanded="false" />
+                      <element signature="method#equals#0;class#TypeInfo#0" expanded="false" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="FunctionTypeInfo.java" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/Main/FunctionTypeInfo.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="14" column="68" selection-start="353" selection-end="372" vertical-scroll-proportion="0.44277108" vertical-offset="0" max-vertical-offset="664">
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="tiny-jflex" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Makefile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -87,30 +130,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SymbolTable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+      <file leaf-file-name="Types.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main/Types.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="5" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="1386">
-              <folding>
-                <element signature="e#309#321#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TypeInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/TypeInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="798">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SymTabInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="5" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+            <state line="7" column="21" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
               <folding />
             </state>
           </provider>
@@ -119,9 +142,9 @@
       <file leaf-file-name="Parser.cup" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="0" selection-start="4212" selection-end="4212" vertical-scroll-proportion="0.6710963" vertical-offset="2221" max-vertical-offset="4410">
+            <state line="134" column="41" selection-start="4902" selection-end="4902" vertical-scroll-proportion="0.62229615" vertical-offset="2574" max-vertical-offset="4928">
               <folding>
-                <marker date="1396289368464" expanded="false" signature="20:70" placeholder="..." />
+                <marker date="1396295848539" expanded="true" signature="20:98" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -146,16 +169,17 @@
         <option value="$PROJECT_DIR$/src/Main/tinyc.jflex" />
         <option value="$PROJECT_DIR$/src/Main/Parser.cup" />
         <option value="$PROJECT_DIR$/src/Main/parser.java" />
-        <option value="$PROJECT_DIR$/src/Main/Types.java" />
         <option value="$PROJECT_DIR$/src/Main/Makefile" />
         <option value="$PROJECT_DIR$/src/Jflex/Lexer.java" />
         <option value="$PROJECT_DIR$/src/Makefile" />
-        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
         <option value="$PROJECT_DIR$/src/Jflex/tinyc.jflex" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
+        <option value="$PROJECT_DIR$/src/Main/Types.java" />
         <option value="$PROJECT_DIR$/src/Main/TypeInfo.java" />
+        <option value="$PROJECT_DIR$/src/Main/FunctionTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/Main/SymTabInfo.java" />
         <option value="$PROJECT_DIR$/src/Main/SymbolTable.java" />
+        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
         <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
       </list>
     </option>
@@ -505,20 +529,20 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.49972603" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49972603" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.50027394" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42395833" sideWeight="0.49863014" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42708334" sideWeight="0.49863014" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17589042" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12493151" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.328125" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
@@ -605,15 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="14" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="16905">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/share/java/JFlex.jar!/java_cup/runtime/Symbol.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="47" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="735" />
@@ -649,13 +664,6 @@
         <state line="0" column="0" selection-start="0" selection-end="968" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="892" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Types.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="11" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/other projecs/my-c-compiler-read-only/my-gcc/annex/roadmap.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="17" selection-start="220" selection-end="220" vertical-scroll-proportion="0.33224756" vertical-offset="27" max-vertical-offset="840">
@@ -677,23 +685,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Types.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="21" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/TypeInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="798">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="5" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+        <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.40152964" vertical-offset="0" max-vertical-offset="523">
           <folding />
         </state>
       </provider>
@@ -705,29 +706,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="739" column="100" selection-start="35286" selection-end="35286" vertical-scroll-proportion="0.95098037" vertical-offset="14971" max-vertical-offset="16947">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="4" column="10" selection-start="75" selection-end="75" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="5" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="1386">
+        <state line="71" column="74" selection-start="2281" selection-end="2281" vertical-scroll-proportion="0.0" vertical-offset="1050" max-vertical-offset="1701">
           <folding>
             <element signature="e#309#321#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/TypeInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="24" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
+          <folding>
+            <element signature="docComment;method#TypeInfo#0;class#TypeInfo#0" expanded="false" />
+            <element signature="docComment;method#equals#0;class#TypeInfo#0" expanded="false" />
+            <element signature="method#equals#0;class#TypeInfo#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/FunctionTypeInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="68" selection-start="353" selection-end="372" vertical-scroll-proportion="0.44277108" vertical-offset="0" max-vertical-offset="664">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17514">
+          <folding>
+            <element signature="e#0#40546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="0" selection-start="4212" selection-end="4212" vertical-scroll-proportion="0.6710963" vertical-offset="2221" max-vertical-offset="4410">
+        <state line="134" column="41" selection-start="4902" selection-end="4902" vertical-scroll-proportion="0.62229615" vertical-offset="2574" max-vertical-offset="4928">
           <folding>
-            <marker date="1396289368464" expanded="false" signature="20:70" placeholder="..." />
+            <marker date="1396295848539" expanded="true" signature="20:98" placeholder="..." />
           </folding>
         </state>
       </provider>
