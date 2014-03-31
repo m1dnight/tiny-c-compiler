@@ -1,7 +1,8 @@
-package src;
+package Main;
 import java_cup.runtime.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import Cup.*;
 
 
 

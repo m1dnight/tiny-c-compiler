@@ -1,4 +1,7 @@
+package Cup;
 import java_cup.runtime.*;
+import Main.*;
+import Jflex.*;
 
 action code {:
 
@@ -153,7 +156,8 @@ type					          ::= INT
                                 * INT and FLOAT are simple types
                                 * Arrays and structs are complex types..
                                 */ 
-                              RESULT = TypeInfo thisType = new TypeInfo(Types.INTEGER);
+                              System.out.println("Blabla");
+                              RESULT = new TypeInfo(Types.INTEGER);
                               :}
             						  | CHAR
                             {:

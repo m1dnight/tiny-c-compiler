@@ -1,4 +1,12 @@
+package Cup;
 import java_cup.runtime.*;
+import Main.*;
+import Jflex.*;
+
+action code {:
+
+  SymbolTable scope = new SymbolTable();
+:}
    
 parser code {:
     
@@ -52,6 +60,10 @@ parser code {:
         report_error(message, info);
         System.exit(1);
     }
+
+
+    
+
 :};
    
 
@@ -107,41 +119,59 @@ declaration             ::=  fun_declaration
                           ;
 
 fun_declaration	        ::=  type NAME:n LPAR formal_pars RPAR block
-                             {: System.out.println("Function declaration. \n * Name: " + n + "\n * Params: "); :}
+                             {: System.out.println("Function declaration. \n * Name: " + n + "\n * Params: ");
+                                /* First insert the methodname in the current scope
+                                 * Create a new scope for this function block
+                                 * Attach the current function to the new scope
+                                 */
+                                scope.Insert(n, null);
+                                scope = scope.NewScope(n);
+                             :}
 						  ;
 
-formal_pars			    ::=  formal_params_non_empty
+formal_pars			        ::=  formal_params_non_empty
                           |
                           ;
 
 formal_params_non_empty	::= formal_par COMMA formal_params_non_empty
-						  | formal_par
-						  ;
+            						  | formal_par
+            						  ;
 
-formal_par				::= type NAME
-						  ;
+formal_par				      ::= type NAME
+						              ;
 
-block				    ::= LBRACE var_declarations statements RBRACE
-						  ;
+block				            ::= LBRACE var_declarations statements RBRACE
+						              ;
 
-var_declaration		    ::= type NAME SEMICOLON {: System.out.println("Found a name!"); :}
-						  ;
+var_declaration		      ::= type NAME SEMICOLON {: System.out.println("Found a name!"); :}
+						              ;
 
-var_declarations	    ::= var_declaration var_declarations
-						  | /* Nothing */
-						  ;
+var_declarations	      ::= var_declaration var_declarations
+            						  | /* Nothing */
+            						  ;
 
-type					::= INT
-						  | CHAR
-						  ;
+type					          ::= INT
+                            {: /* We create a new TypeInfo that holds that the value is an integer
+                                * We then attach this type to the value of 'type'
+                                * INT and FLOAT are simple types
+                                * Arrays and structs are complex types..
+                                */ 
+                              System.out.println("Blabla");
+                              RESULT = new TypeInfo(Types.INTEGER);
+                              :}
+            						  | CHAR
+                            {:
+                              //RESULT = TypeInfo thisType = new TypeInfo(Types.CHAR);
+                              :}
+            						  ;
 
-statements				::= statement SEMICOLON statements
-						  | /* Nothing */
-						  ;
+statements				      ::= statement SEMICOLON statements
+            						  | /* Nothing */
+            						  ;
 
-statement			    ::= IF LPAR exp RPAR statement
+statement			          ::= IF LPAR exp RPAR statement
                             %prec LOW
-						  | IF LPAR exp RPAR statement ELSE statement
+						              | IF LPAR exp RPAR statement ELSE statement
                           | WHILE LPAR exp RPAR statement
                           | lexp ASSIGN exp
                           | RETURN exp
@@ -177,3 +207,5 @@ pars					::= exp
 						  | exp COMMA pars
 						  | /* No parameters */
 						  ;
+
+

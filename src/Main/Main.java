@@ -1,13 +1,15 @@
-package src;
-  
+package Main;
+
 import java.io.*;
+import Cup.*;
+import JFlex.*;
    
 public class Main {
   static public void main(String argv[]) {
-    SymbolTable scope = new SymbolTable();    
+    SymbolTable scope = new SymbolTable();
     /* Start the parser */
     try {
-      parser p = new parser(new Lexer(new FileReader(argv[0])));
+      parser p = new parser(new Jflex.Lexer(new FileReader(argv[0])));
       Object result = p.parse().value;      
     } catch (Exception e) {
       /* do cleanup here -- possibly rethrow e */

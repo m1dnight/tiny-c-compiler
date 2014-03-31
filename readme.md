@@ -15,7 +15,8 @@ which use Java instead of C.
 
 Compiling
 =========
-There is a makefile present that will compile everything nicely.
+There is a makefile present that will create the lexer and the parser.
+Otherwise an IDE is recommended (I used IntelliJ).
 
 Executing
 =========

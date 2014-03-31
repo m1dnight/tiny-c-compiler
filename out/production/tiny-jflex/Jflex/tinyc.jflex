@@ -1,6 +1,8 @@
+package Main;
 import java_cup.runtime.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import Cup.*;
 
 
 
@@ -13,7 +15,7 @@ import java.io.InputStream;
 %cup
 
 %{
-
+  
   StringBuffer string = new StringBuffer();
 
   private Symbol symbol(int type) {
@@ -23,6 +25,8 @@ import java.io.InputStream;
   private Symbol symbol(int type, Object val) {
     return new Symbol(type, yyline, yycolumn, val);
   }
+
+  
 
 %}
 

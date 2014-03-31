@@ -1,13 +1,12 @@
 JAVA=java
 JAVAC=javac
 JFLEX=jflex
-FILES = SymbolTable.java TypeInfo.java Types.java Main.java
+FILES = Jflex/tinyc.jflex Cup/Parser.cup
 
 
 
 all: $(FILES)
-	$(JFLEX) tinyc.jflex
-	$(JAVA) -jar "./lib/cup.jar" Parser.cup
-	$(JAVAC) -cp ".:./lib/*"  Main.java
+	$(JFLEX) Jflex/tinyc.jflex
+	cd Cup/ ; $(JAVA) -jar cup.jar -package Cup Parser.cup
 clean:
-	rm -f *.class Lexer.java parser.java sym.java *~
+	rm -Rf *.class Jflex/Lexer.java Cup/parser.java Cup/sym.java

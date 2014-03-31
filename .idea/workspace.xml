@@ -69,74 +69,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Parser.cup" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Parser.cup">
+      <file leaf-file-name="Makefile" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Makefile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="33" selection-start="4546" selection-end="4546" vertical-scroll-proportion="0.0" vertical-offset="2179" max-vertical-offset="3864">
+            <state line="11" column="64" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Symboltable.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Symboltable.java">
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="4" selection-start="81" selection-end="81" vertical-scroll-proportion="0.13876653" vertical-offset="0" max-vertical-offset="908">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Symbol.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///usr/share/java/JFlex.jar!/java_cup/runtime/Symbol.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="47" selection-start="699" selection-end="699" vertical-scroll-proportion="-12.96" vertical-offset="75" max-vertical-offset="714">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tinyc.jflex" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tinyc.jflex">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="49" selection-start="1589" selection-end="1631" vertical-scroll-proportion="0.0" vertical-offset="1213" max-vertical-offset="1848">
+            <state line="14" column="49" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
               <folding>
-                <marker date="1396104438908" expanded="true" signature="7:86" placeholder="..." />
-                <marker date="1396104438908" expanded="true" signature="226:278" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="326:383" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="660:684" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="711:736" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="763:790" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="802:826" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="840:866" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="881:908" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="920:944" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="959:987" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1005:1032" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1049:1075" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1088:1115" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1127:1158" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1171:1197" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1209:1236" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1248:1275" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1287:1315" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1327:1353" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1365:1391" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1403:1431" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1443:1471" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1483:1511" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1523:1551" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1565:1594" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1606:1632" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1644:1672" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1684:1711" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1724:1749" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1761:1789" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1808:1886" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="1901:2031" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="2049:2087" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="2100:2111" placeholder="{...}" />
-                <marker date="1396104438908" expanded="true" signature="2141:2218" placeholder="{...}" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parser.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="21" selection-start="269" selection-end="269" vertical-scroll-proportion="0.29215688" vertical-offset="40" max-vertical-offset="16926">
+              <folding>
+                <element signature="e#0#38218#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,17 +112,31 @@
       <list>
         <option value="$PROJECT_DIR$/src/example.jflex" />
         <option value="$PROJECT_DIR$/src/Lexer.java" />
+        <option value="$PROJECT_DIR$/src/Symboltable.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/tinyc.jflex" />
         <option value="$PROJECT_DIR$/src/Parser.cup" />
-        <option value="$PROJECT_DIR$/src/Symboltable.java" />
+        <option value="$PROJECT_DIR$/src/Main/SymbolTable.java" />
+        <option value="$PROJECT_DIR$/src/Main/tinyc.jflex" />
+        <option value="$PROJECT_DIR$/src/Main/TypeInfo.java" />
+        <option value="$PROJECT_DIR$/src/Main/Parser.cup" />
+        <option value="$PROJECT_DIR$/src/Main/parser.java" />
+        <option value="$PROJECT_DIR$/src/Main/Types.java" />
+        <option value="$PROJECT_DIR$/src/Main/Makefile" />
+        <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
+        <option value="$PROJECT_DIR$/src/Jflex/Lexer.java" />
+        <option value="$PROJECT_DIR$/src/Makefile" />
+        <option value="$PROJECT_DIR$/src/Jflex/tinyc.jflex" />
+        <option value="$PROJECT_DIR$/src/Main/Main.java" />
+        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="49" />
-    <option name="y" value="24" />
-    <option name="width" value="935" />
-    <option name="height" value="1056" />
+    <option name="x" value="1073" />
+    <option name="y" value="2" />
+    <option name="width" value="1871" />
+    <option name="height" value="1078" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -192,7 +164,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -243,8 +214,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Jflex" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -255,7 +263,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="options.lastSelected" value="reference.projectsettings.compiler.javacompiler" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -264,6 +272,13 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="/usr/share/java/cup-0.11a.jar!/" />
     <property name="recentsLimit" value="5" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/Jflex" />
+      <recent name="$PROJECT_DIR$/src/Cup" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
@@ -300,19 +315,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -338,6 +340,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -408,8 +423,28 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="24" width="935" height="1056" extended-state="4" />
+    <frame x="1073" y="2" width="1871" height="1078" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -420,21 +455,21 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.336887" sideWeight="0.5005624" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4861111" sideWeight="0.5010225" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.49943757" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42395833" sideWeight="0.4989775" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24986301" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28233972" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12657534" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -453,13 +488,13 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.336887" sideWeight="0.49943757" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24986301" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28233972" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -483,172 +518,153 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/tinyc.jflex">
+    <entry file="jar:///usr/share/java/JFlex.jar!/java_cup/runtime/Symbol.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="39" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1995">
-          <folding>
-            <marker date="1396104438908" expanded="true" signature="7:86" placeholder="..." />
-            <marker date="1396104438908" expanded="true" signature="226:278" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="326:383" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="660:684" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="711:736" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="763:790" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="802:826" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="840:866" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="881:908" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="920:944" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="959:987" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1005:1032" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1049:1075" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1088:1115" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1127:1158" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1171:1197" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1209:1236" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1248:1275" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1287:1315" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1327:1353" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1365:1391" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1403:1431" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1443:1471" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1483:1511" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1523:1551" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1565:1594" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1606:1632" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1644:1672" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1684:1711" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1724:1749" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1761:1789" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1808:1886" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1901:2031" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="2049:2087" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="2100:2111" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="2141:2218" placeholder="{...}" />
-          </folding>
+        <state line="20" column="47" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="735">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar:///usr/share/java/cup-0.11a.jar!/java_cup/symbol_set.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="38" selection-start="508" selection-end="508" vertical-scroll-proportion="-13.44" vertical-offset="0" max-vertical-offset="945">
-          <folding />
-        </state>
+        <state line="17" column="38" selection-start="508" selection-end="508" vertical-scroll-proportion="-13.44" vertical-offset="0" max-vertical-offset="945" />
       </provider>
     </entry>
     <entry file="jar:///usr/share/java/cup-0.11a.jar!/java_cup/symbol.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="-10.12" vertical-offset="125" max-vertical-offset="714">
-          <folding />
-        </state>
+        <state line="19" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="-10.12" vertical-offset="125" max-vertical-offset="714" />
       </provider>
     </entry>
     <entry file="jar:///usr/share/java/cup-0.11a.jar!/java_cup/sym.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="24" selection-start="392" selection-end="392" vertical-scroll-proportion="-1.4601018" vertical-offset="1196" max-vertical-offset="2226">
-          <folding />
-        </state>
+        <state line="17" column="24" selection-start="392" selection-end="392" vertical-scroll-proportion="-1.4601018" vertical-offset="1196" max-vertical-offset="2226" />
       </provider>
     </entry>
     <entry file="jar:///usr/share/java/cup-0.11a.jar!/java_cup/runtime/SymbolFactory.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="1" selection-start="694" selection-end="694" vertical-scroll-proportion="-12.6" vertical-offset="0" max-vertical-offset="441">
-          <folding />
-        </state>
+        <state line="16" column="1" selection-start="694" selection-end="694" vertical-scroll-proportion="-12.6" vertical-offset="0" max-vertical-offset="441" />
       </provider>
     </entry>
     <entry file="jar:///usr/share/java/cup-0.11a.jar!/java_cup/runtime/Symbol.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="-0.4" vertical-offset="11" max-vertical-offset="735">
-          <folding>
-            <element signature="e#0#968#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tinyc.jflex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="49" selection-start="1589" selection-end="1631" vertical-scroll-proportion="0.0" vertical-offset="1213" max-vertical-offset="1848">
-          <folding>
-            <marker date="1396104438908" expanded="true" signature="7:86" placeholder="..." />
-            <marker date="1396104438908" expanded="true" signature="226:278" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="326:383" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="660:684" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="711:736" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="763:790" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="802:826" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="840:866" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="881:908" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="920:944" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="959:987" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1005:1032" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1049:1075" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1088:1115" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1127:1158" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1171:1197" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1209:1236" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1248:1275" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1287:1315" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1327:1353" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1365:1391" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1403:1431" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1443:1471" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1483:1511" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1523:1551" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1565:1594" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1606:1632" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1644:1672" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1684:1711" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1724:1749" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1761:1789" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1808:1886" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="1901:2031" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="2049:2087" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="2100:2111" placeholder="{...}" />
-            <marker date="1396104438908" expanded="true" signature="2141:2218" placeholder="{...}" />
-          </folding>
-        </state>
+        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="-0.4" vertical-offset="11" max-vertical-offset="735" />
       </provider>
     </entry>
     <entry file="jar:///usr/share/java/JFlex.jar!/java_cup/runtime/Symbol.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="47" selection-start="699" selection-end="699" vertical-scroll-proportion="-12.96" vertical-offset="75" max-vertical-offset="714">
+        <state line="0" column="0" selection-start="0" selection-end="968" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="892">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="17" selection-start="640" selection-end="640" vertical-scroll-proportion="0.13680781" vertical-offset="0" max-vertical-offset="614">
+        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sym.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/TypeInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="33" selection-start="748" selection-end="748" vertical-scroll-proportion="0.5553746" vertical-offset="79" max-vertical-offset="1134">
+        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Types.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="11" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/other projecs/my-c-compiler-read-only/my-gcc/annex/roadmap.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="17" selection-start="220" selection-end="220" vertical-scroll-proportion="0.33224756" vertical-offset="27" max-vertical-offset="840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="11" selection-start="11" selection-end="11" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4515">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="64" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Jflex/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="643" column="26" selection-start="18152" selection-end="18152" vertical-scroll-proportion="1.5372849" vertical-offset="12657" max-vertical-offset="16737">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="16" selection-start="30" selection-end="30" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1932">
           <folding>
-            <element signature="e#0#1691#0" expanded="true" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1396266116029" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Lexer.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="345" selection-end="345" vertical-scroll-proportion="0.4446254" vertical-offset="0" max-vertical-offset="16674">
-          <folding />
+        <state line="14" column="49" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Parser.cup">
+    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="33" selection-start="4546" selection-end="4546" vertical-scroll-proportion="0.0" vertical-offset="2179" max-vertical-offset="3864">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Symboltable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="4" selection-start="81" selection-end="81" vertical-scroll-proportion="0.13876653" vertical-offset="0" max-vertical-offset="908">
-          <folding />
+        <state line="9" column="21" selection-start="269" selection-end="269" vertical-scroll-proportion="0.29215688" vertical-offset="40" max-vertical-offset="16926">
+          <folding>
+            <element signature="e#0#38218#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
