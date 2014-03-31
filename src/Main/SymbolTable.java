@@ -52,9 +52,9 @@ public class SymbolTable {
          * Debug printing and stuff
          */
         if(typeInformation != null)
-            System.out.printf("Inserted %5s with type %10s in current scope.\n", name, typeInformation.type.name());
+            System.out.printf("Inserted \"%5s\" with type %10s in current scope.\n", name, typeInformation.type.name());
         else
-            System.out.printf("Inserted %5s in current scope.\n", name);
+            System.out.printf("Inserted \"%5s\" in current scope.\n", name);
 
         return si;
     }

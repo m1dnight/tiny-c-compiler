@@ -1,8 +1,14 @@
 package Cup;
-import java_cup.runtime.*;
-import Main.*;
-import Jflex.*;
-import java.util.ArrayList;
+
+import Main.FunctionTypeInfo;
+import Main.SymTabInfo;
+import Main.SymbolTable;
+import Main.TypeInfo;
+import Main.Types;
+
+import java.util.LinkedList;
+import java.util.Arrays;
+
 
 action code {:
 
@@ -95,13 +101,14 @@ terminal Integer   NUMBER;
 terminal String    NAME;
 
 
-non terminal Object                 program, declaration, fun_declaration,
-                                    block, var_declaration,
-                                    var_declarations, statements, statement, lexp, exp, pars;
+non terminal Object                   program, declaration, fun_declaration,
+                                      block, var_declaration,
+                                      var_declarations, statements, statement, lexp, exp, pars;
 
-non terminal TypeInfo               type, formal_par;
+non terminal TypeInfo                 type;
 
-non terminal ArrayList<TypeInfo>    formal_pars, formal_params_non_empty;
+non terminal SymTabInfo               formal_par;
+non terminal LinkedList<SymTabInfo>   formal_pars, formal_params_non_empty;
 
 /* ------------ Precedence declarations ------------------------------------ */
 
@@ -114,7 +121,7 @@ precedence left     UMINUS;
 precedence left     DOT, LBRACK;
 /* ----------------------------Grammar Section------------------------------ */
 
-program                 ::=   program declaration
+program                 ::=   program declaration EOF
 						  | /* Empty */
 						  ;
 
@@ -124,8 +131,7 @@ declaration             ::=  fun_declaration
 						  ;
 
 fun_declaration         ::=  type:rt NAME:n
-                                                                         {: System.out.println("Function declaration. \n * Name: " + n + "\n * Params: ");
-                                                                            SymTabInfo sti = new SymTabInfo(n, null);
+                                                                         {: SymTabInfo sti = new SymTabInfo(n, null);
                                                                             scope.Insert(sti);
                                                                             scope = scope.NewScope();
                                                                             scope.function = sti;
@@ -138,21 +144,33 @@ fun_declaration         ::=  type:rt NAME:n
 																		 :}
 						   ;
 
-formal_pars             ::=  formal_params_non_empty
+formal_pars             ::=  formal_params_non_empty:ps                       {:
+                                                                                RESULT = ps;
+                                                                              :}
 						  |
 						  ;
 
-formal_params_non_empty ::= formal_par COMMA formal_params_non_empty
-                          | formal_par
+formal_params_non_empty ::= formal_par:p COMMA formal_params_non_empty:ps     {:
+                                                                                ps.addFirst(p);
+                                                                                RESULT = ps;
+                                                                              :}
+                          | formal_par:p                                      {:
+                                                                                RESULT = new LinkedList<SymTabInfo>(Arrays.asList(p));
+                                                                              :}
                           ;
 
-formal_par              ::= type NAME
+formal_par              ::= type:t NAME:n
+                                                                         {:
+                                                                            SymTabInfo sti = new SymTabInfo(n, t);
+                                                                            scope.Insert(sti); // Insert it into current scope
+                                                                            RESULT = sti;
+                                                                         :}
 						  ;
 
 block                   ::= LBRACE var_declarations statements RBRACE
 						  ;
 
-var_declaration         ::= type:t NAME:n SEMICOLON                      {: scope.Insert(n, t); :}
+var_declaration         ::= type:t NAME:n SEMICOLON                      {: /*scope.Insert(n, t);*/ :}
 						  ;
 
 var_declarations        ::= var_declaration var_declarations
@@ -166,11 +184,11 @@ type                    ::= INT                                          {: /* W
 																			 */ 
 																			RESULT = new TypeInfo(Types.INTEGER);
 																		 :}
-							| CHAR
-								  {:
-									  //RESULT = TypeInfo thisType = new TypeInfo(Types.CHAR);
-								  :}
-							;
+						  | CHAR
+                                                                         {:
+                                                                             RESULT = new TypeInfo(Types.CHAR);
+                                                                         :}
+						  ;
 
 statements                  ::= statement SEMICOLON statements
 							  | /* Nothing */
