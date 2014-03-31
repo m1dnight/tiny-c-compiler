@@ -96,7 +96,8 @@ terminal String    NAME;
 
 non terminal Object program, declaration, fun_declaration, formal_pars,
                     formal_params_non_empty, formal_par, block, var_declaration,
-                    var_declarations, type, statements, statement, lexp, exp, pars;
+                    var_declarations, statements, statement, lexp, exp, pars;
+non terminal TypeInfo type;
 
 /* ------------ Precedence declarations ------------------------------------ */
 
@@ -143,7 +144,7 @@ formal_par				      ::= type NAME
 block				            ::= LBRACE var_declarations statements RBRACE
 						              ;
 
-var_declaration		      ::= type NAME SEMICOLON {: System.out.println("Found a name!"); :}
+var_declaration		      ::= type:t NAME:n SEMICOLON {: scope.Insert(n, t); :}
 						              ;
 
 var_declarations	      ::= var_declaration var_declarations
@@ -151,14 +152,13 @@ var_declarations	      ::= var_declaration var_declarations
             						  ;
 
 type					          ::= INT
-                            {: /* We create a new TypeInfo that holds that the value is an integer
-                                * We then attach this type to the value of 'type'
-                                * INT and FLOAT are simple types
-                                * Arrays and structs are complex types..
-                                */ 
-                              System.out.println("Blabla");
-                              RESULT = new TypeInfo(Types.INTEGER);
-                              :}
+                                      {: /* We create a new TypeInfo that holds that the value is an integer
+                                          * We then attach this type to the value of 'type'
+                                          * INT and FLOAT are simple types
+                                          * Arrays and structs are complex types..
+                                          */ 
+                                          RESULT = new TypeInfo(Types.INTEGER);
+                                        :}
             						  | CHAR
                             {:
                               //RESULT = TypeInfo thisType = new TypeInfo(Types.CHAR);
