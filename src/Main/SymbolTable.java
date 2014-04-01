@@ -5,8 +5,8 @@ import java.util.*; // To use ArrayList
 public class SymbolTable {
 
     public SymTabInfo function;   // Name of the function that holds this scope
+    public SymbolTable parent;// The parent of this scope so we can create frames.
 
-    private SymbolTable parent;// The parent of this scope so we can create frames.
     private ArrayList<SymTabInfo> symbolList = new ArrayList<SymTabInfo>(); // The list that will hold all the identifiers in this scope
     private int level = 0; // Value indicating how deep we are in the scope
 

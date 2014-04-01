@@ -145,12 +145,17 @@ fun_declaration         ::=  type:rt NAME:n
                                                                             scope = scope.NewScope();
                                                                             scope.function = sti;
                                                                          :}
-                             LPAR formal_pars:ps RPAR block
+                             LPAR formal_pars:ps RPAR
                                                                          {:
                                                                             // Attach the parameters to the type
                                                                             // of the function defining the current scope
                                                                             scope.function.typeInfo = new FunctionTypeInfo(rt, ps);
 																		 :}
+					         block
+					                                                     {:
+					                                                        //We close the scope and put it back as the parent.
+					                                                        scope = scope.parent;
+					                                                     :}
 						   ;
 
 formal_pars             ::=  formal_params_non_empty:ps                       {:
