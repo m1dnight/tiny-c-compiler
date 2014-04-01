@@ -14,11 +14,6 @@ import Cup.*;
 %unicode
 %cup
 
-%eofval{
-  System.out.println("Scanner reached EOF.");
-  return new Symbol(sym.EOF);
-%eofval}
-
 %{
   
   StringBuffer string = new StringBuffer();

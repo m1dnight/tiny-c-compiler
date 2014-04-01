@@ -97,6 +97,8 @@ terminal           RETURN;
 terminal           ASSIGN, SEMICOLON, COMMA, DOT;
 terminal           LOW, UMINUS;
 
+
+
 terminal Integer   NUMBER;
 terminal String    NAME;
 
@@ -109,6 +111,7 @@ non terminal TypeInfo                 type;
 
 non terminal SymTabInfo               formal_par;
 non terminal LinkedList<SymTabInfo>   formal_pars, formal_params_non_empty;
+non terminal Object                   total;
 
 /* ------------ Precedence declarations ------------------------------------ */
 
@@ -120,8 +123,14 @@ precedence left     TIMES, DIVIDE;
 precedence left     UMINUS;
 precedence left     DOT, LBRACK;
 /* ----------------------------Grammar Section------------------------------ */
+// The total rule only serves as a rule so we can execute code at the EOF.
+// Parsing the EOF token gave me some trouble so I skipped it and found this dirty solution.
+// It works however, so I'm leaving it in pace. The codeblock can be used to print the
+// symbol table for example after a succesful parse.
 
-program                 ::=   program declaration EOF
+total                   ::=   program {: System.out.println("End of file\n"); :}
+                          ;
+program                 ::=   program declaration
 						  | /* Empty */
 						  ;
 

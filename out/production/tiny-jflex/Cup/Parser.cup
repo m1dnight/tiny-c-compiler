@@ -97,6 +97,8 @@ terminal           RETURN;
 terminal           ASSIGN, SEMICOLON, COMMA, DOT;
 terminal           LOW, UMINUS;
 
+
+
 terminal Integer   NUMBER;
 terminal String    NAME;
 
@@ -109,6 +111,7 @@ non terminal TypeInfo                 type;
 
 non terminal SymTabInfo               formal_par;
 non terminal LinkedList<SymTabInfo>   formal_pars, formal_params_non_empty;
+non terminal Object                   total;
 
 /* ------------ Precedence declarations ------------------------------------ */
 
@@ -121,7 +124,9 @@ precedence left     UMINUS;
 precedence left     DOT, LBRACK;
 /* ----------------------------Grammar Section------------------------------ */
 
-program                 ::=   program declaration EOF
+total                   ::=   program {: System.out.println("End of file\n"); :}
+                          ;
+program                 ::=   program declaration
 						  | /* Empty */
 						  ;
 
