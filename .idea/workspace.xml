@@ -69,24 +69,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Parser.cup" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Parser.cup" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="127" selection-start="5885" selection-end="5885" vertical-scroll-proportion="0.8287671" vertical-offset="2926" max-vertical-offset="5632">
-              <folding>
-                <marker date="1396354958459" expanded="true" signature="21:188" placeholder="..." />
-              </folding>
+            <state line="130" column="38" selection-start="4402" selection-end="4402" vertical-scroll-proportion="0.0" vertical-offset="2124" max-vertical-offset="4644">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Lexer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Jflex/Lexer.java">
+      <file leaf-file-name="YylexTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/other projecs/examples/simple-maven/src/test/java/YylexTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="16800">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="37" column="25" selection-start="919" selection-end="919" vertical-scroll-proportion="0.33269963" vertical-offset="365" max-vertical-offset="1044">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,10 +90,8 @@
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="26" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="16" column="5" selection-start="436" selection-end="436" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,10 +99,19 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="1701">
+            <state line="83" column="39" selection-start="2560" selection-end="2560" vertical-scroll-proportion="0.0" vertical-offset="826" max-vertical-offset="1764">
               <folding>
-                <element signature="e#308#320#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SymTabInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="43" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,22 +142,22 @@
         <option value="$PROJECT_DIR$/src/Makefile" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/Main/TypeInfo.java" />
-        <option value="$PROJECT_DIR$/src/Main/SymTabInfo.java" />
         <option value="$PROJECT_DIR$/src/Main/Types.java" />
         <option value="$PROJECT_DIR$/src/Main/FunctionTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/Cup/parser.java" />
         <option value="$PROJECT_DIR$/src/Jflex/Lexer.java" />
         <option value="$PROJECT_DIR$/src/Jflex/tinyc.jflex" />
-        <option value="$PROJECT_DIR$/src/Main/SymbolTable.java" />
         <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
+        <option value="$PROJECT_DIR$/src/Main/SymTabInfo.java" />
+        <option value="$PROJECT_DIR$/src/Main/SymbolTable.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="4017" />
-    <option name="y" value="2" />
-    <option name="width" value="1871" />
-    <option name="height" value="1078" />
+    <option name="x" value="1918" />
+    <option name="y" value="23" />
+    <option name="width" value="1924" />
+    <option name="height" value="1059" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -183,49 +186,32 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemId" value="tiny-c-compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JFlex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemId" value="tiny-c-compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemId" value="tiny-c-compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemId" value="tiny-c-compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemId" value="tiny-c-compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -235,11 +221,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemId" value="tiny-c-compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
+              <option name="myItemId" value="tiny-c-compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -251,45 +237,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Jflex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-jflex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Cup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -299,17 +248,14 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="recentsLimit" value="5" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/other projecs" />
+    <property name="options.lastSelected" value="reference.projectsettings.compiler.excludes" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="/usr/share/java/cup-0.11a.jar!/" />
-    <property name="recentsLimit" value="5" />
-    <property name="restartRequiresConfirmation" value="true" />
-    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -456,7 +402,7 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="tiny-jflex" />
+      <module name="tiny-c-compiler" />
       <envs />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
@@ -506,58 +452,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="4017" y="2" width="1871" height="1078" extended-state="6" />
+    <frame x="1918" y="23" width="1924" height="1059" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.49972603" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33471504" sideWeight="0.49972603" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49972603" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.50027394" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42708334" sideWeight="0.49863014" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.426943" sideWeight="0.49863014" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17589042" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12493151" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12135417" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32746115" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.49972603" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49972603" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.50027394" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42395833" sideWeight="0.49863014" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24986301" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12602739" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USERS">
@@ -592,64 +513,74 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Makefile">
+    <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="357">
+        <state line="70" column="0" selection-start="2348" selection-end="2348" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4608">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/other projecs/examples/simple-maven/src/test/java/YylexTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="16" selection-start="910" selection-end="910" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1170">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="10" selection-start="77" selection-end="77" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="525">
+        <state line="16" column="5" selection-start="436" selection-end="436" vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="414">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="1458">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
+    <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="3" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="1932">
+        <state line="155" column="127" selection-start="5885" selection-end="5885" vertical-scroll-proportion="0.0" vertical-offset="2325" max-vertical-offset="3840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="26" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="1215">
           <folding>
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="357" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="10" selection-start="77" selection-end="77" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="525">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="3" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="1932" />
       </provider>
     </entry>
     <entry file="jar:///usr/share/java/JFlex.jar!/java_cup/runtime/Symbol.class">
@@ -689,16 +620,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/other projecs/my-c-compiler-read-only/my-gcc/annex/roadmap.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="17" selection-start="220" selection-end="220" vertical-scroll-proportion="0.33224756" vertical-offset="27" max-vertical-offset="840">
-          <folding />
-        </state>
+        <state line="11" column="17" selection-start="220" selection-end="220" vertical-scroll-proportion="0.33224756" vertical-offset="27" max-vertical-offset="840" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.40152964" vertical-offset="0" max-vertical-offset="523">
-          <folding />
-        </state>
+        <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.40152964" vertical-offset="0" max-vertical-offset="523" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Types.java">
@@ -725,78 +652,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="1" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="666" selection-end="666" vertical-scroll-proportion="0.37209302" vertical-offset="637" max-vertical-offset="1932">
-          <folding>
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1396351310657" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
+        <state line="41" column="0" selection-start="666" selection-end="666" vertical-scroll-proportion="0.37209302" vertical-offset="637" max-vertical-offset="1932" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Jflex/Lexer.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="16800">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="1701">
-          <folding>
-            <element signature="e#308#320#0" expanded="true" />
-          </folding>
+        <state line="13" column="43" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+        <state line="16" column="5" selection-start="436" selection-end="436" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="39" selection-start="2560" selection-end="2560" vertical-scroll-proportion="0.0" vertical-offset="826" max-vertical-offset="1764">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -805,10 +682,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="127" selection-start="5885" selection-end="5885" vertical-scroll-proportion="0.8287671" vertical-offset="2926" max-vertical-offset="5632">
-          <folding>
-            <marker date="1396354958459" expanded="true" signature="21:188" placeholder="..." />
-          </folding>
+        <state line="130" column="38" selection-start="4402" selection-end="4402" vertical-scroll-proportion="0.0" vertical-offset="2124" max-vertical-offset="4644">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/other projecs/examples/simple-maven/src/test/java/YylexTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="25" selection-start="919" selection-end="919" vertical-scroll-proportion="0.33269963" vertical-offset="365" max-vertical-offset="1044">
+          <folding />
         </state>
       </provider>
     </entry>

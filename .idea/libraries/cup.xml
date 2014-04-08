@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cup">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/tiny-jflex/Cup/cup.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

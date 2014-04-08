@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="cup1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/other projecs/examples/cup/jflex.jar!/" />
+      <root url="jar://$PROJECT_DIR$/other projecs/examples/cup/cup.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
