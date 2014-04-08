@@ -79,15 +79,25 @@ public class SymbolTable {
     public void Print()
     {
         // Print scope information
-        System.out.printf("Defining function: %8s%n", function.name);
+        System.out.println("-------------------------------");
+        if(this.function != null)
+            System.out.printf("Defining function: %8s%n", this.function.name);
+        else
+            System.out.printf("Defining function: %8s%n", "root scope");
+        System.out.println("-------------------------------");
+
         // Map print over the symbol list
         for(SymTabInfo si : symbolList)
         {
             si.Print();
         }
-        System.out.println("**** Parent ****************");
+
         if(this.parent != null)
+        {
+            System.out.println("**** Parent");
             this.parent.Print();
+        }
+
 
     }
 }

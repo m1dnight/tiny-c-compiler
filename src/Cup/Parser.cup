@@ -129,7 +129,7 @@ precedence left     DOT, LBRACK;
 // symbol table for example after a succesful parse.
 
 total                   ::=   program {: System.out.println("End of file\n");
-                                         scope.PrintTable();
+                                         //scope.Print();
                                       :}
                           ;
 program                 ::=   program declaration
@@ -156,7 +156,9 @@ fun_declaration         ::=  type:rt NAME:n
 					         block
 					                                                     {:
 					                                                        //We close the scope and put it back as the parent.
-					                                                        scope = scope.parent;
+                                                                            System.out.println("After function " + n);
+                                                                            scope.Print();
+                                                                            scope = scope.parent;
 					                                                     :}
 						   ;
 

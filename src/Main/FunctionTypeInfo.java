@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class FunctionTypeInfo extends TypeInfo {
 
-    private LinkedList<SymTabInfo> parameters;
+    public LinkedList<SymTabInfo> parameters;
 
     private TypeInfo returnType;
     /**

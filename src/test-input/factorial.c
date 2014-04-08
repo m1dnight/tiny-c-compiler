@@ -1,11 +1,15 @@
-int factorial(int x)
+int rootScope;
+int rootScope;
+
+int factorial(int xParamOfFactorial)
 {
-	x = factorial(123, 456, func());
-	array[1] = 5;
+    int varInFact;
+	xInFactorial = factorial(123, 456, func());
+	arrayInFactorial[1] = 5;
 }
-int main()
+int main(int mainPAram)
 {
-    int x;
-    int y;
-    x = factorial(array[1]);
+    int xInMain;
+    int yInMain;
+    xInMain = factorial(array[1]);
 }

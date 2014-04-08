@@ -1,8 +1,8 @@
 package Main;
 
-import java.io.*;
-import Cup.*;
-import JFlex.*;
+import Cup.parser;
+
+import java.io.FileReader;
    
 public class Main {
   static public void main(String argv[]) {
