@@ -1,4 +1,6 @@
-package Main;
+package Typing;
+
+import Main.SymTabInfo;
 
 import java.util.LinkedList;
 
@@ -6,7 +8,7 @@ public class FunctionTypeInfo extends TypeInfo {
 
     public LinkedList<SymTabInfo> parameters;
 
-    private TypeInfo returnType;
+    public TypeInfo returnType;
     /**
      * Public construct that takes a returntype.
      * These are defined in the enum 'Types'.

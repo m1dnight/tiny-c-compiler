@@ -1,4 +1,4 @@
-package Main;
+package Typing;
 /**
  * This class will be created for each declaration we encounter during lexing.
  * Each declaration has a Types variable, which points us to which type we are
@@ -6,7 +6,7 @@ package Main;
  */
 
 public class TypeInfo {
-    Types type;
+    public Types type;
 
     /**
      * Public construct that takes a typename.

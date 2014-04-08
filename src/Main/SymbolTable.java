@@ -1,8 +1,8 @@
 package Main;
 
-import java_cup.symbol;
+import Typing.TypeInfo;
 
-import java.util.*; // To use ArrayList
+import java.util.ArrayList;
 
 public class SymbolTable {
 

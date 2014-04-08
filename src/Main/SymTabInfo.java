@@ -1,6 +1,10 @@
 package Main;
 
 
+import Typing.FunctionTypeInfo;
+import Typing.TypeInfo;
+import Typing.Types;
+
 public class SymTabInfo {
     public String name;
     public TypeInfo typeInfo;

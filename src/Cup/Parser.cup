@@ -1,10 +1,10 @@
 package Cup;
 
-import Main.FunctionTypeInfo;
+import Typing.FunctionTypeInfo;
 import Main.SymTabInfo;
 import Main.SymbolTable;
-import Main.TypeInfo;
-import Main.Types;
+import Typing.TypeInfo;
+import Typing.Types;
 
 import java.util.LinkedList;
 import java.util.Arrays;
