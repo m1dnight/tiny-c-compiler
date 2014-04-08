@@ -1,5 +1,7 @@
 package Main;
 
+import java_cup.symbol;
+
 import java.util.*; // To use ArrayList
 
 public class SymbolTable {
@@ -72,5 +74,20 @@ public class SymbolTable {
             System.out.printf("Inserted %5s in current scope.\n", sti.name);
 
         return sti;
+    }
+
+    public void Print()
+    {
+        // Print scope information
+        System.out.printf("Defining function: %8s%n", function.name);
+        // Map print over the symbol list
+        for(SymTabInfo si : symbolList)
+        {
+            si.Print();
+        }
+        System.out.println("**** Parent ****************");
+        if(this.parent != null)
+            this.parent.Print();
+
     }
 }

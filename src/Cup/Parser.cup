@@ -128,7 +128,9 @@ precedence left     DOT, LBRACK;
 // It works however, so I'm leaving it in pace. The codeblock can be used to print the
 // symbol table for example after a succesful parse.
 
-total                   ::=   program {: System.out.println("End of file\n"); :}
+total                   ::=   program {: System.out.println("End of file\n");
+                                         scope.PrintTable();
+                                      :}
                           ;
 program                 ::=   program declaration
 						  | /* Empty */

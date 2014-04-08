@@ -8,4 +8,9 @@ public class SymTabInfo {
         this.name = name;
         this.typeInfo = typeInfo;
     }
+
+    public void Print()
+    {
+        System.out.printf("Name:%8s - %8s%n", name, typeInfo.type.name());
+    }
 }
