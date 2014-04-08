@@ -63,99 +63,113 @@
     <breakpoint_rules />
     <ui_properties />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="FunctionTypeInfo.java" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="10" column="10" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="522">
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="TypeInfo.java" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/Typing/TypeInfo.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="8" column="11" selection-start="246" selection-end="246" vertical-scroll-proportion="0.15047021" vertical-offset="0" max-vertical-offset="957">
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="tiny-jflex" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Parser.cup" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="238" column="24" selection-start="10904" selection-end="10904" vertical-scroll-proportion="0.0" vertical-offset="3798" max-vertical-offset="4986">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tinyc.jflex" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="52" selection-start="1389" selection-end="1389" vertical-scroll-proportion="0.0" vertical-offset="610" max-vertical-offset="1656">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="16" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="918" column="26" selection-start="47922" selection-end="47922" vertical-scroll-proportion="0.0" vertical-offset="15833" max-vertical-offset="16758">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SymbolTable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="106" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1782">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SymTabInfo.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="0.82129276" vertical-offset="0" max-vertical-offset="774">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="Parser.cup" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="238" column="24" selection-start="10904" selection-end="10904" vertical-scroll-proportion="0.0" vertical-offset="3798" max-vertical-offset="4986">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="tinyc.jflex" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="61" column="52" selection-start="1389" selection-end="1389" vertical-scroll-proportion="0.0" vertical-offset="610" max-vertical-offset="1656">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="4" column="16" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="918" column="26" selection-start="47922" selection-end="47922" vertical-scroll-proportion="0.0" vertical-offset="15833" max-vertical-offset="16758">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SymbolTable.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="56" column="106" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1782">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SymTabInfo.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="17" column="39" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TypeChecking.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Typing/TypeChecking.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="7" column="0" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Types.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Typing/Types.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="8" column="1" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="OpCodes.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/ThreeAddressCode/OpCodes.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="10" column="0" selection-start="289" selection-end="289" vertical-scroll-proportion="0.41860464" vertical-offset="0" max-vertical-offset="430">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="Types.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/Typing/Types.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="1" column="3" selection-start="19" selection-end="19" vertical-scroll-proportion="0.03982301" vertical-offset="0" max-vertical-offset="452">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -192,6 +206,9 @@
         <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
         <option value="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/Typing/TypeInfo.java" />
+        <option value="$PROJECT_DIR$/src/Typing/TypeChecking.java" />
+        <option value="$PROJECT_DIR$/src/Typing/Types.java" />
+        <option value="$PROJECT_DIR$/src/ThreeAddressCode/OpCodes.java" />
       </list>
     </option>
   </component>
@@ -293,7 +310,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
+              <option name="myItemId" value="ThreeAddressCode" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -537,7 +554,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1918" y="23" width="1924" height="1059" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -550,7 +567,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.50027394" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.426943" sideWeight="0.49863014" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.426943" sideWeight="0.49863014" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17589042" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -696,13 +713,6 @@
         <state line="10" column="6" selection-start="182" selection-end="182" vertical-scroll-proportion="0.40152964" vertical-offset="0" max-vertical-offset="523" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Typing/Types.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="27" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="16" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
@@ -738,15 +748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="10" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="522">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
         <state line="238" column="24" selection-start="10904" selection-end="10904" vertical-scroll-proportion="0.0" vertical-offset="3798" max-vertical-offset="4986">
@@ -754,19 +755,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Typing/TypeInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="11" selection-start="246" selection-end="246" vertical-scroll-proportion="0.15047021" vertical-offset="0" max-vertical-offset="957">
+        <state line="17" column="39" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Typing/TypeChecking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/Typing/Types.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="655" selection-end="655" vertical-scroll-proportion="0.82129276" vertical-offset="0" max-vertical-offset="774">
+        <state line="8" column="1" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Typing/TypeInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="11" selection-start="246" selection-end="251" vertical-scroll-proportion="0.15047021" vertical-offset="0" max-vertical-offset="957">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="10" selection-start="179" selection-end="179" vertical-scroll-proportion="0.18808778" vertical-offset="0" max-vertical-offset="957">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ThreeAddressCode/OpCodes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="289" selection-end="289" vertical-scroll-proportion="0.41860464" vertical-offset="0" max-vertical-offset="430">
+          <folding />
         </state>
       </provider>
     </entry>
