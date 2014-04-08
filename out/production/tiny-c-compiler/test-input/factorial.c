@@ -1,11 +1,11 @@
-int factorial(int x)
+int factorial(int xParamOfFactorial)
 {
-	x = factorial(123, 456, func());
-	array[1] = 5;
+    int result;
+    result = xParamOfFactorial + factorial(xParamOfFactorial - 1);
 }
-int main()
+int main(int mainPAram)
 {
-    int x;
-    int y;
-    x = factorial(array[1]);
+    int factorialInput;
+    factorialInput = 5;
+    return factorial(factorialInput);
 }

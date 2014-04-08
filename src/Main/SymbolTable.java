@@ -32,7 +32,7 @@ public class SymbolTable {
         // Instantiate the function of the new
         // scope to the older one. Just in case
         // this new scope is not created by a function
-        // definition.
+        // definition but perhaps by a forloop.
         newScope.function = this.function;
         return newScope;
     }
@@ -64,15 +64,6 @@ public class SymbolTable {
     public SymTabInfo Insert(SymTabInfo sti)
     {
         symbolList.add(sti);
-
-        /*
-         * Debug printing and stuff
-         */
-        if(sti.typeInfo != null)
-            System.out.printf("Inserted %5s with type %10s in current scope.\n", sti.name, sti.typeInfo.type.name());
-        else
-            System.out.printf("Inserted %5s in current scope.\n", sti.name);
-
         return sti;
     }
 

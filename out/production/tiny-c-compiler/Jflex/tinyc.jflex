@@ -75,8 +75,8 @@ commment    =  {sl_comment} | {ml_comment}
 "!"						{ return symbol(sym.NOT); }
 "="						{ return symbol(sym.ASSIGN); }
 
-{identifier}			{ System.out.println("NAME: " + yytext()); return symbol(sym.NAME, yytext()); 	}
-{digit}+				{ System.out.println("NUMBER: " + Integer.parseInt(yytext())); return symbol(sym.NUMBER, new Integer(Integer.parseInt(yytext()))); }
+{identifier}			{ /*System.out.println("NAME: " + yytext());*/ return symbol(sym.NAME, yytext()); 	}
+{digit}+				{ /*System.out.println("NUMBER: " + Integer.parseInt(yytext()));*/ return symbol(sym.NUMBER, new Integer(Integer.parseInt(yytext()))); }
 
 {commment}				{ /* yyline += countLines(yytext()); */}
 

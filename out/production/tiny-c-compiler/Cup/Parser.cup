@@ -129,7 +129,7 @@ precedence left     DOT, LBRACK;
 // symbol table for example after a succesful parse.
 
 total                   ::=   program {: System.out.println("End of file\n");
-                                         scope.PrintTable();
+                                         //scope.Print();
                                       :}
                           ;
 program                 ::=   program declaration
@@ -143,6 +143,7 @@ declaration             ::=  fun_declaration
 
 fun_declaration         ::=  type:rt NAME:n
                                                                          {: SymTabInfo sti = new SymTabInfo(n, null);
+                                                                            System.out.printf("Creating new scope for function %s%n", n);
                                                                             scope.Insert(sti);
                                                                             scope = scope.NewScope();
                                                                             scope.function = sti;
@@ -156,7 +157,8 @@ fun_declaration         ::=  type:rt NAME:n
 					         block
 					                                                     {:
 					                                                        //We close the scope and put it back as the parent.
-					                                                        scope = scope.parent;
+                                                                            scope.Print();
+                                                                            scope = scope.parent;
 					                                                     :}
 						   ;
 
@@ -178,15 +180,32 @@ formal_params_non_empty ::= formal_par:p COMMA formal_params_non_empty:ps     {:
 formal_par              ::= type:t NAME:n
                                                                          {:
                                                                             SymTabInfo sti = new SymTabInfo(n, t);
-                                                                            scope.Insert(sti); // Insert it into current scope
+                                                                            // The current scope is the function itself,
+                                                                            // So we add this parameter to the scope..
+                                                                            scope.Insert(sti);
                                                                             RESULT = sti;
                                                                          :}
 						  ;
 
-block                   ::= LBRACE var_declarations statements RBRACE
+block                   ::= LBRACE                                       {: // We open a new block so we create a new scope
+                                                                            scope = scope.NewScope();
+                                                                            System.out.println("Creating new scope for block");
+                                                                         :}
+                            var_declarations statements 
+                            RBRACE                                       {:
+                                                                            // We close the block so scope is closed.
+                                                                            scope.Print();
+                                                                            scope = scope.parent;
+                                                                         :}
 						  ;
 
-var_declaration         ::= type:t NAME:n SEMICOLON                      {: /*scope.Insert(n, t);*/ :}
+var_declaration         ::= type:t NAME:n SEMICOLON                      {: 
+                                                                            // Create a new SymTabInfo
+                                                                            // We know it's not a function
+                                                                            //TODO Insert code for arrays and stuff
+                                                                            SymTabInfo sti = new SymTabInfo(n, t);
+                                                                            scope.Insert(sti); 
+                                                                         :}
 						  ;
 
 var_declarations        ::= var_declaration var_declarations

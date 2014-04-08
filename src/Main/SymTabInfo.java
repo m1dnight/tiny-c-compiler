@@ -1,6 +1,5 @@
 package Main;
 
-import sun.org.mozilla.javascript.Function;
 
 public class SymTabInfo {
     public String name;
