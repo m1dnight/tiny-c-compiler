@@ -110,9 +110,9 @@ terminal String    NAME;
 
 non terminal Object                   program, declaration, fun_declaration,
                                       block, var_declaration,
-                                      var_declarations, statements, statement, lexp, pars;
+                                      var_declarations, statements, lexp, pars;
 
-non terminal CodeContainer            exp;
+non terminal CodeContainer            exp, statement;
 
 non terminal TypeInfo                 type;
 
@@ -240,9 +240,15 @@ statement                   ::= IF LPAR exp RPAR statement
 								%prec LOW
 							  | IF LPAR exp RPAR statement ELSE statement
 							  | WHILE LPAR exp RPAR statement
-							  | lexp ASSIGN exp                          {:
-                                                                             // The statement 3AC is generated here
-
+							  | lexp:target ASSIGN exp:exp               {:
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             cc.AppendCode(value.codeList);
+                                                                             // Create the 3AC for the assignment   
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, 
+                                                                                                                         target.place.typeInfo,
+                                                                                                                         null,
+                                                                                                                         value.place.typeInfo);
+                                                                             RESULT = cc;
                                                                          :}
 							  | RETURN exp
 							  | block
