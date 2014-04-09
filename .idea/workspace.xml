@@ -81,7 +81,7 @@
       <file leaf-file-name="Parser.cup" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="232" column="31" selection-start="10704" selection-end="10704" vertical-scroll-proportion="-14.555555" vertical-offset="3783" max-vertical-offset="5040">
+            <state line="239" column="31" selection-start="10912" selection-end="10912" vertical-scroll-proportion="-14.555555" vertical-offset="3909" max-vertical-offset="5166">
               <folding />
             </state>
           </provider>
@@ -90,7 +90,7 @@
       <file leaf-file-name="CodeContainer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="28" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+            <state line="17" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
               <folding />
             </state>
           </provider>
@@ -114,10 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="381" column="36" selection-start="18120" selection-end="18120" vertical-scroll-proportion="0.6765376" vertical-offset="6507" max-vertical-offset="16578">
+            <state line="376" column="32" selection-start="17818" selection-end="17818" vertical-scroll-proportion="0.0" vertical-offset="6075" max-vertical-offset="16578">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,10 +125,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SymbolTable.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SymbolTable.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="106" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1782">
+            <state line="51" column="0" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.20689656" vertical-offset="756" max-vertical-offset="2016">
               <folding />
             </state>
           </provider>
@@ -192,20 +192,21 @@
         <option value="$PROJECT_DIR$/src/test-input/factorial.c" />
         <option value="$PROJECT_DIR$/src/Main/FunctionTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/Main/SymTabInfo.java" />
-        <option value="$PROJECT_DIR$/src/Main/SymbolTable.java" />
         <option value="$PROJECT_DIR$/src/Jflex/tinyc.jflex" />
         <option value="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/Typing/TypeInfo.java" />
         <option value="$PROJECT_DIR$/src/Typing/TypeChecking.java" />
         <option value="$PROJECT_DIR$/src/Typing/Types.java" />
         <option value="$PROJECT_DIR$/src/ThreeAddressCode/OpCodes.java" />
-        <option value="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
         <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
         <option value="$PROJECT_DIR$/src/Cup/parser.java" />
+        <option value="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
+        <option value="$PROJECT_DIR$/src/Main/SymbolTable.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1920" />
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1057" />
@@ -545,7 +546,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1057" extended-state="6" />
+    <frame x="1920" y="23" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -564,14 +565,39 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21614583" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.50362694" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21614583" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34093264" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284974" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33471504" sideWeight="0.49972603" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284974" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49972603" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.50027394" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.426943" sideWeight="0.49863014" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.49972603" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17589042" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21614583" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34093264" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USERS">
@@ -740,13 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="106" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1782">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="39" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
@@ -775,26 +794,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
+    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="28" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-          <folding />
+        <state line="376" column="32" selection-start="17818" selection-end="17818" vertical-scroll-proportion="0.0" vertical-offset="6075" max-vertical-offset="16578">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="232" column="31" selection-start="10704" selection-end="10704" vertical-scroll-proportion="-14.555555" vertical-offset="3783" max-vertical-offset="5040">
+        <state line="239" column="31" selection-start="10912" selection-end="10912" vertical-scroll-proportion="-14.555555" vertical-offset="3909" max-vertical-offset="5166">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="381" column="36" selection-start="18120" selection-end="18120" vertical-scroll-proportion="0.6765376" vertical-offset="6507" max-vertical-offset="16578">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="17" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.20689656" vertical-offset="756" max-vertical-offset="2016">
+          <folding />
         </state>
       </provider>
     </entry>

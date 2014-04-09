@@ -237,7 +237,10 @@ statement                   ::= IF LPAR exp RPAR statement
 								%prec LOW
 							  | IF LPAR exp RPAR statement ELSE statement
 							  | WHILE LPAR exp RPAR statement
-							  | lexp ASSIGN exp
+							  | lexp ASSIGN exp                          {:
+                                                                             // The statement 3AC is generated here
+
+                                                                         :}
 							  | RETURN exp
 							  | block
 							  | WRITE exp
@@ -263,7 +266,11 @@ exp                     ::= exp PLUS exp
 						  | NUMBER
 						  | NAME LPAR pars RPAR
 						  | QCHAR
-						  | NAME
+						  | NAME:n                                       {:
+                                                                             // The 'place' of this variable name is 
+                                                                             // the location in the symboltable.
+                                                                             scope.Lookup(n);
+                                                                         :}
 						  ;
 
 pars                    ::= exp

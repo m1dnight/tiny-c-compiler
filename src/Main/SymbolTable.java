@@ -54,7 +54,7 @@ public class SymbolTable {
          * Debug printing and stuff
          */
         if(typeInformation != null)
-            System.out.printf("Inserted \"%5s\" with type %10s in current scope.\n", name, typeInformation.type.name());
+            System.out.printf("Inserted \"%5s\" with type %10s in current scope.\n", name, typeInformation/**/.type.name());
         else
             System.out.printf("Inserted \"%5s\" in current scope.\n", name);
 
@@ -65,6 +65,21 @@ public class SymbolTable {
     {
         symbolList.add(sti);
         return sti;
+    }
+
+    public SymTabInfo Lookup(String name)
+    {
+        // Check to see if we can find in this current scope
+        for(SymTabInfo si : symbolList)
+        {
+            if(si.name.equals(name))
+                return si;
+        }
+        // If we have a parent, look it up there
+        if(this.parent != null)
+            return parent.Lookup(name);
+        // It can't be found..
+        return null;
     }
 
     public void Print()

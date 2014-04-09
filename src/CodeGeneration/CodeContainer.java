@@ -7,4 +7,11 @@ package CodeGeneration;
  * TypeInformation as well. (I suppose at this point).
  */
 public class CodeContainer {
+    private StringBuilder threeAddressCode;
+
+    public String AppendCode(String code)
+    {
+        this.threeAddressCode.append(code);
+        return threeAddressCode.toString();
+    }
 }
