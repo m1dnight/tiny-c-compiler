@@ -1,4 +1,4 @@
-package ThreeAddressCode;
+package CodeGeneration;
 
 /**
  * This class contains a simple enum that holds all the possible

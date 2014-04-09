@@ -6,6 +6,8 @@ import Main.SymbolTable;
 import Typing.TypeInfo;
 import Typing.Types;
 
+import CodeGen.CodeContainer;
+
 import java.util.LinkedList;
 import java.util.Arrays;
 
@@ -105,7 +107,9 @@ terminal String    NAME;
 
 non terminal Object                   program, declaration, fun_declaration,
                                       block, var_declaration,
-                                      var_declarations, statements, statement, lexp, exp, pars;
+                                      var_declarations, statements, statement, lexp, pars;
+
+non terminal CodeContainer            exp;
 
 non terminal TypeInfo                 type;
 
@@ -238,7 +242,6 @@ statement                   ::= IF LPAR exp RPAR statement
 							  | block
 							  | WRITE exp
 							  | READ lexp
-							  | lexp
 							  ;
 
 lexp                    ::= NAME
