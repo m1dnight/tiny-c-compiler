@@ -26,6 +26,34 @@ public class ThreeAddressCode {
         {
             return String.format("%s = %s %s", result.name, "minus", arg1.name);
         }
-        return "didntmatchanycase";
+        /**
+         * Assignment
+         */
+        if(opCode == OpCodes.A0)
+        {
+            return String.format("%s = %s", result.name, arg1.name);
+        }
+        /**
+         * Simple arithmetic expressions
+         */
+        if(opCode == OpCodes.A2PLUS)
+        {
+            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+        }
+        if(opCode == OpCodes.A2MINUS)
+        {
+            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+        }
+        if(opCode == OpCodes.A2TIMES)
+        {
+            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+        }
+        if(opCode == OpCodes.A2DIV)
+        {
+            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+        }
+
+        // In case we didn't match anything return a string that will show in the output
+        return "**ERROR CONVERTING**";
     }
 }

@@ -110,9 +110,9 @@ terminal String    NAME;
 
 non terminal Object                   program, declaration, fun_declaration,
                                       block, var_declaration,
-                                      var_declarations, statements, statement, lexp, pars;
+                                      var_declarations, statements, lexp, pars;
 
-non terminal CodeContainer            exp;
+non terminal CodeContainer            exp, statement;
 
 non terminal TypeInfo                 type;
 
@@ -240,9 +240,15 @@ statement                   ::= IF LPAR exp RPAR statement
 								%prec LOW
 							  | IF LPAR exp RPAR statement ELSE statement
 							  | WHILE LPAR exp RPAR statement
-							  | lexp ASSIGN exp                          {:
-                                                                             // The statement 3AC is generated here
-
+							  | lexp:target ASSIGN exp:exp               {:
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             cc.AppendCode(value.codeList);
+                                                                             // Create the 3AC for the assignment   
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, 
+                                                                                                                         target.place.typeInfo,
+                                                                                                                         null,
+                                                                                                                         value.place.typeInfo);
+                                                                             RESULT = cc;
                                                                          :}
 							  | RETURN exp
 							  | block
@@ -254,14 +260,98 @@ lexp                    ::= NAME
 						  | lexp LBRACK exp RBRACK  // array access
 						  ;
 
-exp                     ::= exp PLUS exp
-						  | exp GREATER exp
-						  | exp LESS exp
-						  | exp EQUAL exp
-						  | exp NEQUAL exp
-						  | exp MINUS exp
-						  | exp TIMES exp
-						  | exp DIVIDE exp
+exp                     ::= exp:e1 NEQUAL  exp:e2 
+						  | exp:e1 EQUAL   exp:e2 
+						  | exp:e1 GREATER exp:e2 
+						  | exp:e1 LESS    exp:e2 
+						  | exp:e1 PLUS    exp:e2                        {:
+                                                                             // Create a new variable name that will hold our minus value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             
+                                                                             // Create new SymTabInfo
+                                                                             // The typeinfo is the same as the original expression so 
+                                                                             // we pick it out of the original CodeContainer object
+                                                                             // For sum etc the type is the same as the first and second
+                                                                             SymTabInfo newSti = new SymTabInfo(varname, e1.place.typeInfo);
+                                                                             scope.Insert(newSti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.place = newSti;
+                                                                             //We create a new 3AC that makes a minus value 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2PLUS,
+                                                                                                                         e1.place, e1.place, newSti);
+
+                                                                             cc.AppendCode(e1.codeList);
+                                                                             cc.AppendCode(e2.codeList);
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :}  
+						  | exp:e1 MINUS   exp:e2                        {:
+                                                                             // Create a new variable name that will hold our minus value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             
+                                                                             // Create new SymTabInfo
+                                                                             // The typeinfo is the same as the original expression so 
+                                                                             // we pick it out of the original CodeContainer object
+                                                                             // For sum etc the type is the same as the first and second
+                                                                             SymTabInfo newSti = new SymTabInfo(varname, e1.place.typeInfo);
+                                                                             scope.Insert(newSti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.place = newSti;
+                                                                             //We create a new 3AC that makes a minus value 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2MINUS,
+                                                                                                                         e1.place, e1.place, newSti);
+
+                                                                             cc.AppendCode(e1.codeList);
+                                                                             cc.AppendCode(e2.codeList);
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :} 
+						  | exp:e1 TIMES   exp:e2                        {:
+                                                                             // Create a new variable name that will hold our minus value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             
+                                                                             // Create new SymTabInfo
+                                                                             // The typeinfo is the same as the original expression so 
+                                                                             // we pick it out of the original CodeContainer object
+                                                                             // For sum etc the type is the same as the first and second
+                                                                             SymTabInfo newSti = new SymTabInfo(varname, e1.place.typeInfo);
+                                                                             scope.Insert(newSti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.place = newSti;
+                                                                             //We create a new 3AC that makes a minus value 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2TIMES,
+                                                                                                                         e1.place, e1.place, newSti);
+
+                                                                             cc.AppendCode(e1.codeList);
+                                                                             cc.AppendCode(e2.codeList);
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :} 
+						  | exp:e1 DIVIDE  exp:e2                        {:
+                                                                             // Create a new variable name that will hold our minus value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             
+                                                                             // Create new SymTabInfo
+                                                                             // The typeinfo is the same as the original expression so 
+                                                                             // we pick it out of the original CodeContainer object
+                                                                             // For sum etc the type is the same as the first and second
+                                                                             SymTabInfo newSti = new SymTabInfo(varname, e1.place.typeInfo);
+                                                                             scope.Insert(newSti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.place = newSti;
+                                                                             //We create a new 3AC that makes a minus value 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2DIV,
+                                                                                                                         e1.place, e1.place, newSti);
+
+                                                                             cc.AppendCode(e1.codeList);
+                                                                             cc.AppendCode(e2.codeList);
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :} 
 						  | LPAR exp:e RPAR                              {:
                                                                              // The 'place' of this variable name is 
                                                                              // the location in the symboltable.

@@ -21,6 +21,8 @@ public class VarnameCreator {
     public String CreateName()
     {
         this.counter++;
+        System.out.printf("Created varname: %s%n", String.format("_var%d", counter));
         return String.format("_var%d", counter);
+
     }
 }
