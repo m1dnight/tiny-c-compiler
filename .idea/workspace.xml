@@ -81,16 +81,16 @@
       <file leaf-file-name="ThreeAddressCode.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="65" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
+            <state line="28" column="35" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0" vertical-offset="7" max-vertical-offset="666">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CodeContainer.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CodeContainer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="10" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
+            <state line="19" column="5" selection-start="539" selection-end="539" vertical-scroll-proportion="0.29471892" vertical-offset="169" max-vertical-offset="756">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#440#458#0" expanded="true" />
@@ -99,10 +99,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VarnameCreator.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="VarnameCreator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="24" selection-start="376" selection-end="376" vertical-scroll-proportion="0.49063033" vertical-offset="0" max-vertical-offset="587">
+            <state line="26" column="0" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
               <folding />
             </state>
           </provider>
@@ -140,7 +140,7 @@
       <file leaf-file-name="SymTabInfo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="39" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
+            <state line="11" column="52" selection-start="210" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="738">
               <folding />
             </state>
           </provider>
@@ -194,7 +194,6 @@
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/test-input/factorial.c" />
         <option value="$PROJECT_DIR$/src/Main/FunctionTypeInfo.java" />
-        <option value="$PROJECT_DIR$/src/Main/SymTabInfo.java" />
         <option value="$PROJECT_DIR$/src/Jflex/tinyc.jflex" />
         <option value="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/Typing/TypeInfo.java" />
@@ -204,9 +203,10 @@
         <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
         <option value="$PROJECT_DIR$/src/Cup/parser.java" />
         <option value="$PROJECT_DIR$/src/Main/SymbolTable.java" />
-        <option value="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
         <option value="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
         <option value="$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java" />
+        <option value="$PROJECT_DIR$/src/Main/SymTabInfo.java" />
+        <option value="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
       </list>
     </option>
   </component>
@@ -746,27 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="39" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Typing/TypeChecking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/OpCodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="376" column="32" selection-start="17818" selection-end="17818" vertical-scroll-proportion="0.0" vertical-offset="6075" max-vertical-offset="16578">
@@ -783,9 +762,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2016">
+        <state line="26" column="0" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
           <folding />
         </state>
       </provider>
@@ -797,27 +776,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/OpCodes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="287" selection-end="287" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Typing/TypeChecking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/SymTabInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="52" selection-start="210" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="738">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/SymbolTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="1614" selection-end="1614" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2016">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="65" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
+        <state line="28" column="35" selection-start="711" selection-end="711" vertical-scroll-proportion="0.0" vertical-offset="7" max-vertical-offset="666">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="10" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
+        <state line="19" column="5" selection-start="539" selection-end="539" vertical-scroll-proportion="0.29471892" vertical-offset="169" max-vertical-offset="756">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#440#458#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="24" selection-start="376" selection-end="376" vertical-scroll-proportion="0.49063033" vertical-offset="0" max-vertical-offset="587">
-          <folding />
         </state>
       </provider>
     </entry>
