@@ -1,5 +1,7 @@
 package CodeGeneration;
 
+import Main.SymTabInfo;
+
 /**
  * Expressions in CUP will be of this type.
  * They will contain the intermediate code that the parser creates.
@@ -7,7 +9,13 @@ package CodeGeneration;
  * TypeInformation as well. (I suppose at this point).
  */
 public class CodeContainer {
+    private SymTabInfo sti;
     private StringBuilder threeAddressCode;
+    
+    public CodeContainer(SymTabInfo sti)
+    {
+        this.sti = sti;
+    }
 
     public String AppendCode(String code)
     {

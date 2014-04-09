@@ -269,7 +269,8 @@ exp                     ::= exp PLUS exp
 						  | NAME:n                                       {:
                                                                              // The 'place' of this variable name is 
                                                                              // the location in the symboltable.
-                                                                             scope.Lookup(n);
+                                                                             //TODO Nullcheck here?
+                                                                             SymTabInfo sti = scope.Lookup(n);
                                                                          :}
 						  ;
 
