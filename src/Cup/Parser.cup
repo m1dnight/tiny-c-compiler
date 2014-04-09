@@ -6,7 +6,8 @@ import Main.SymbolTable;
 import Typing.TypeInfo;
 import Typing.Types;
 
-import CodeGen.CodeContainer;
+import CodeGeneration.CodeContainer;
+import CodeGeneration.VarnameCreator;
 
 import java.util.LinkedList;
 import java.util.Arrays;
@@ -256,10 +257,26 @@ exp                     ::= exp PLUS exp
 						  | exp LESS exp
 						  | exp EQUAL exp
 						  | exp NEQUAL exp
-						  | exp MINUS exp
+						  | exp MINUS exp                                {:
+                                                                             // The 'place' of this variable name is 
+                                                                             // the location in the symboltable.
+                                                                             //TODO Nullcheck here?
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             cc.place = e.place;
+                                                                             cc.codeList = e.codeList;
+                                                                             RESULT = cc;
+                                                                         :}
 						  | exp TIMES exp
 						  | exp DIVIDE exp
-						  | LPAR exp RPAR
+						  | LPAR exp:e RPAR                              {:
+                                                                             // The 'place' of this variable name is 
+                                                                             // the location in the symboltable.
+                                                                             //TODO Nullcheck here?
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             cc.place = e.place;
+                                                                             cc.codeList = e.codeList;
+                                                                             RESULT = cc;
+                                                                         :}
 						  | exp LBRACK exp RBRACK
 						  | MINUS exp
 							%prec UMINUS
@@ -270,7 +287,8 @@ exp                     ::= exp PLUS exp
                                                                              // The 'place' of this variable name is 
                                                                              // the location in the symboltable.
                                                                              //TODO Nullcheck here?
-                                                                             SymTabInfo sti = scope.Lookup(n);
+                                                                             CodeContainer cc = new CodeContainer(scope.Lookup(n));
+
                                                                          :}
 						  ;
 

@@ -2,6 +2,8 @@ package CodeGeneration;
 
 import Main.SymTabInfo;
 
+import java.util.ArrayList;
+
 /**
  * Expressions in CUP will be of this type.
  * They will contain the intermediate code that the parser creates.
@@ -9,17 +11,26 @@ import Main.SymTabInfo;
  * TypeInformation as well. (I suppose at this point).
  */
 public class CodeContainer {
-    private SymTabInfo sti;
-    private StringBuilder threeAddressCode;
-    
+    public  SymTabInfo place;
+    public ArrayList<ThreeAddressCode> codeList = new ArrayList<ThreeAddressCode>();
+
+    public CodeContainer(){}
+
     public CodeContainer(SymTabInfo sti)
     {
-        this.sti = sti;
+        this.place = sti;
     }
 
-    public String AppendCode(String code)
+    public ArrayList<ThreeAddressCode> AppendCode(ThreeAddressCode code)
     {
-        this.threeAddressCode.append(code);
-        return threeAddressCode.toString();
+        this.codeList.add(code);
+        return codeList;
     }
+
+    public ArrayList<ThreeAddressCode> AppendCode(ArrayList<ThreeAddressCode> code)
+    {
+        this.codeList.addAll(code);
+        return this.codeList;
+    }
+
 }
