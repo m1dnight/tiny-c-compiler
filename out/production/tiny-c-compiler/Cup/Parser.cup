@@ -1,4 +1,4 @@
-package Cup;
+                                                                                                               package Cup;
 
 import Typing.FunctionTypeInfo;
 import Main.SymTabInfo;
@@ -110,13 +110,13 @@ terminal String    NAME;
 
 non terminal Object                   program, declaration, fun_declaration,
                                       block, var_declaration,
-                                      var_declarations, statements, lexp, pars;
+                                      var_declarations, statements, pars;
 
 non terminal CodeContainer            exp, statement;
 
 non terminal TypeInfo                 type;
 
-non terminal SymTabInfo               formal_par;
+non terminal SymTabInfo               formal_par, lexp;
 non terminal LinkedList<SymTabInfo>   formal_pars, formal_params_non_empty;
 non terminal Object                   total;
 
@@ -242,12 +242,12 @@ statement                   ::= IF LPAR exp RPAR statement
 							  | WHILE LPAR exp RPAR statement
 							  | lexp:target ASSIGN exp:exp               {:
                                                                              CodeContainer cc = new CodeContainer();
-                                                                             cc.AppendCode(value.codeList);
+                                                                             cc.AppendCode(exp.codeList);
                                                                              // Create the 3AC for the assignment   
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, 
-                                                                                                                         target.place.typeInfo,
+                                                                                                                         exp.place,
                                                                                                                          null,
-                                                                                                                         value.place.typeInfo);
+                                                                                                                         target);
                                                                              RESULT = cc;
                                                                          :}
 							  | RETURN exp
@@ -256,7 +256,11 @@ statement                   ::= IF LPAR exp RPAR statement
 							  | READ lexp
 							  ;
 
-lexp                    ::= NAME
+lexp                    ::= NAME:n                                       {:
+                                                                             // We should have already declared this name
+                                                                             // so we simply look it up in the symbol table
+                                                                             RESULT = scope.Lookup(n);
+                                                                         :}
 						  | lexp LBRACK exp RBRACK  // array access
 						  ;
 
@@ -390,8 +394,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2
                                                                              // The 'place' of this variable name is 
                                                                              // the location in the symboltable.
                                                                              //TODO Nullcheck here?
-                                                                             CodeContainer cc = new CodeContainer(scope.Lookup(n));
-
+                                                                             RESULT = new CodeContainer(scope.Lookup(n));
                                                                          :}
 						  ;
 
