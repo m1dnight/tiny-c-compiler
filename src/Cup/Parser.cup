@@ -272,8 +272,7 @@ exp                     ::= exp PLUS exp
                                                                              RESULT = cc;
                                                                          :}
 						  | exp LBRACK exp RBRACK
-						  | MINUS exp:e
-							%prec UMINUS                                 {:
+						  | MINUS exp:e                                  {:
                                                                              // Create a new variable name that will hold our minus value
                                                                              String varname = VarnameCreator.getInstance().CreateName();
                                                                              
@@ -287,12 +286,13 @@ exp                     ::= exp PLUS exp
                                                                              cc.place = newSti;
                                                                              //We create a new 3AC that makes a minus value 
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A1MINUS,
-                                                                                                                         e, null, newSti);
+                                                                                                                         e.place, null, newSti);
 
                                                                              cc.codeList = e.codeList;
                                                                              cc.AppendCode(tac);
                                                                              RESULT = cc;
                                                                          :}
+                            %prec UMINUS  
 						  | NUMBER
 						  | NAME LPAR pars RPAR
 						  | QCHAR

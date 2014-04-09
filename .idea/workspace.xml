@@ -90,7 +90,7 @@
       <file leaf-file-name="CodeContainer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="5" selection-start="539" selection-end="539" vertical-scroll-proportion="0.29471892" vertical-offset="169" max-vertical-offset="756">
+            <state line="19" column="5" selection-start="539" selection-end="539" vertical-scroll-proportion="0.5826235" vertical-offset="0" max-vertical-offset="756">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#440#458#0" expanded="true" />
@@ -120,7 +120,7 @@
       <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="376" column="32" selection-start="17818" selection-end="17818" vertical-scroll-proportion="0.0" vertical-offset="6075" max-vertical-offset="16578">
+            <state line="439" column="100" selection-start="22047" selection-end="22047" vertical-scroll-proportion="0.0" vertical-offset="7703" max-vertical-offset="17460">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -552,7 +552,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="23" width="1920" height="1057" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -571,7 +571,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21614583" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34093264" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34093264" sideWeight="0.49972603" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284974" sideWeight="0.49972603" order="1" side_tool="false" content_ui="tabs" />
@@ -746,15 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="376" column="32" selection-start="17818" selection-end="17818" vertical-scroll-proportion="0.0" vertical-offset="6075" max-vertical-offset="16578">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
         <state line="243" column="31" selection-start="11160" selection-end="11160" vertical-scroll-proportion="-14.555555" vertical-offset="3981" max-vertical-offset="5202">
@@ -811,9 +802,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="439" column="100" selection-start="22047" selection-end="22047" vertical-scroll-proportion="0.0" vertical-offset="7685" max-vertical-offset="17442">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="5" selection-start="539" selection-end="539" vertical-scroll-proportion="0.29471892" vertical-offset="169" max-vertical-offset="756">
+        <state line="19" column="5" selection-start="539" selection-end="539" vertical-scroll-proportion="0.5826235" vertical-offset="0" max-vertical-offset="756">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#440#458#0" expanded="true" />

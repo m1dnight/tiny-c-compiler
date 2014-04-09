@@ -8,6 +8,8 @@ import Typing.Types;
 
 import CodeGeneration.CodeContainer;
 import CodeGeneration.VarnameCreator;
+import CodeGeneration.ThreeAddressCode;
+import CodeGeneration.OpCodes;
 
 import java.util.LinkedList;
 import java.util.Arrays;
@@ -257,15 +259,7 @@ exp                     ::= exp PLUS exp
 						  | exp LESS exp
 						  | exp EQUAL exp
 						  | exp NEQUAL exp
-						  | exp MINUS exp                                {:
-                                                                             // The 'place' of this variable name is 
-                                                                             // the location in the symboltable.
-                                                                             //TODO Nullcheck here?
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             cc.place = e.place;
-                                                                             cc.codeList = e.codeList;
-                                                                             RESULT = cc;
-                                                                         :}
+						  | exp MINUS exp
 						  | exp TIMES exp
 						  | exp DIVIDE exp
 						  | LPAR exp:e RPAR                              {:
@@ -278,8 +272,27 @@ exp                     ::= exp PLUS exp
                                                                              RESULT = cc;
                                                                          :}
 						  | exp LBRACK exp RBRACK
-						  | MINUS exp
-							%prec UMINUS
+						  | MINUS exp:e                                  {:
+                                                                             // Create a new variable name that will hold our minus value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             
+                                                                             // Create new SymTabInfo
+                                                                             // The typeinfo is the same as the original expression so 
+                                                                             // we pick it out of the original CodeContainer object
+                                                                             SymTabInfo newSti = new SymTabInfo(varname, e.place.typeInfo);
+                                                                             scope.Insert(newSti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.place = newSti;
+                                                                             //We create a new 3AC that makes a minus value 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A1MINUS,
+                                                                                                                         e.place, null, newSti);
+
+                                                                             cc.codeList = e.codeList;
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :}
+                            %prec UMINUS  
 						  | NUMBER
 						  | NAME LPAR pars RPAR
 						  | QCHAR
