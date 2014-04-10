@@ -4,5 +4,5 @@ int main(int mainPAram)
     int y;
     int z;
     int a;
-    x = 5 * 3 / 3 + 1 * 23 + -1;
+    x = 5 * 3 / 3 + 1 * 23 + -1 / z + a + -x;
 }

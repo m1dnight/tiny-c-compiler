@@ -261,7 +261,8 @@ lexp                    ::= NAME:n                                       {:
                                                                          :}
 						  | lexp LBRACK exp RBRACK  // array access
 						  ;
-
+//As is customary, we assume that || and && are left-associative, and that || has lowest precedence, then &&, then ! .
+Given th
 exp                     ::= exp:e1 NEQUAL  exp:e2 
 						  | exp:e1 EQUAL   exp:e2 
 						  | exp:e1 GREATER exp:e2 
