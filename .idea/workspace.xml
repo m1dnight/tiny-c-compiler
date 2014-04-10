@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Typing/ConstantTypeInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SymbolTable/VariableSymTabInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Typing/VariableTypeInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Typing/TypeChecking.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Main/SymTabInfo.java" afterPath="$PROJECT_DIR$/src/SymbolTable/SymTabInfo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Main/SymbolTable.java" afterPath="$PROJECT_DIR$/src/SymbolTable/SymbolTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" afterPath="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Main.java" afterPath="$PROJECT_DIR$/src/Main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Cup/Parser.cup" afterPath="$PROJECT_DIR$/src/Cup/Parser.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Typing/TypeInfo.java" afterPath="$PROJECT_DIR$/src/Typing/TypeInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Typing/Types.java" afterPath="$PROJECT_DIR$/src/Typing/Types.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="" />
     <ignored path="TinyC-Java.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
