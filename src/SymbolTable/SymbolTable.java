@@ -1,4 +1,4 @@
-package Main;
+package SymbolTable;
 
 import Typing.TypeInfo;
 
@@ -9,23 +9,20 @@ public class SymbolTable {
     public SymTabInfo function;   // Name of the function that holds this scope
     public SymbolTable parent;// The parent of this scope so we can create frames.
 
-    private ArrayList<SymTabInfo> symbolList = new ArrayList<SymTabInfo>(); // The list that will hold all the identifiers in this scope
+    private ArrayList<VariableSymTabInfo> symbolList = new ArrayList<VariableSymTabInfo>(); // The list that will hold all the identifiers in this scope
     private int level = 0; // Value indicating how deep we are in the scope
 
 
-    public SymbolTable()
-    {
+    public SymbolTable() {
         this.parent = null;
     }
 
-    public SymbolTable(int level)
-    {
+    public SymbolTable(int level) {
         this.parent = null;
         this.level = level;
     }
 
-    public SymbolTable NewScope()
-    {
+    public SymbolTable NewScope() {
         // Create a new scope frame
         SymbolTable newScope = new SymbolTable(this.level + 1);
         newScope.parent = this;
@@ -42,18 +39,18 @@ public class SymbolTable {
      * to the list of the current scope.
      * This function also creates the SymTabInfo object for each
      * identifier. We need this e.g. for labeling a scope.
-     * @param name : name of the function or variable
+     *
+     * @param name            : name of the function or variable
      * @param typeInformation : Object holding the type info
      */
-    public SymTabInfo Insert(String name, TypeInfo typeInformation)
-    {
-        SymTabInfo si = new SymTabInfo(name, typeInformation);
+    public SymTabInfo Insert(String name, TypeInfo typeInformation) {
+        VariableSymTabInfo si = new VariableSymTabInfo(typeInformation, name);
         symbolList.add(si);
 
         /*
          * Debug printing and stuff
          */
-        if(typeInformation != null)
+        if (typeInformation != null)
             System.out.printf("Inserted \"%5s\" with type %10s in current scope.\n", name, typeInformation/**/.type.name());
         else
             System.out.printf("Inserted \"%5s\" in current scope.\n", name);
@@ -61,49 +58,23 @@ public class SymbolTable {
         return si;
     }
 
-    public SymTabInfo Insert(SymTabInfo sti)
-    {
+    public SymTabInfo Insert(VariableSymTabInfo sti) {
         symbolList.add(sti);
         return sti;
     }
 
-    public SymTabInfo Lookup(String name)
-    {
+    public SymTabInfo Lookup(String name) {
         // Check to see if we can find in this current scope
-        for(SymTabInfo si : symbolList)
-        {
-            if(si.name.equals(name))
+        for (VariableSymTabInfo si : symbolList) {
+            //We need to check if the entry is a VariableSymTabInfo!
+            //TODO Is this needed?
+            if (si.name.equals(name))
                 return si;
         }
         // If we have a parent, look it up there
-        if(this.parent != null)
+        if (this.parent != null)
             return parent.Lookup(name);
         // It can't be found..
         return null;
-    }
-
-    public void Print()
-    {
-        // Print scope information
-        System.out.println("-------------------------------");
-        if(this.function != null)
-            System.out.printf("Defining function: %8s%n", this.function.name);
-        else
-            System.out.printf("Defining function: %8s%n", "root scope");
-        System.out.println("-------------------------------");
-
-        // Map print over the symbol list
-        for(SymTabInfo si : symbolList)
-        {
-            si.Print();
-        }
-
-        if(this.parent != null)
-        {
-            System.out.println("**** Parent");
-            this.parent.Print();
-        }
-
-
     }
 }

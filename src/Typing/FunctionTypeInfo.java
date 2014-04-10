@@ -1,6 +1,6 @@
 package Typing;
 
-import Main.SymTabInfo;
+import SymbolTable.SymTabInfo;
 
 import java.util.LinkedList;
 
@@ -20,5 +20,10 @@ public class FunctionTypeInfo extends TypeInfo {
         super(Types.FUNCTION);
         this.returnType = returnType;
         this.parameters = paramlist;
+    }
+
+    public Types ActualType()
+    {
+        return returnType.ActualType();
     }
 }

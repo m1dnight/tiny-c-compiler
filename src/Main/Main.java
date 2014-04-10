@@ -1,6 +1,7 @@
 package Main;
 
 import Cup.parser;
+import SymbolTable.SymbolTable;
 
 import java.io.FileReader;
    

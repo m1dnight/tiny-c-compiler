@@ -1,6 +1,6 @@
 package CodeGeneration;
 
-import Main.SymTabInfo;
+import SymbolTable.SymTabInfo;
 
 /**
  * The class will be an object representing a three address code.
@@ -24,35 +24,36 @@ public class ThreeAddressCode {
     @Override
     public String toString()
     {
+        
         if(opCode == OpCodes.A1MINUS)
         {
-            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
         }
         /**
          * Assignment
          */
         if(opCode == OpCodes.A0)
         {
-            return String.format("%s = %s", result.name, arg1.name);
+            return String.format("%s = %s", result.IdentifiertoString(), arg1.IdentifiertoString());
         }
         /**
          * Simple arithmetic expressions
          */
         if(opCode == OpCodes.A2PLUS)
         {
-            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
         }
         if(opCode == OpCodes.A2MINUS)
         {
-            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
         }
         if(opCode == OpCodes.A2TIMES)
         {
-            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
         }
         if(opCode == OpCodes.A2DIV)
         {
-            return String.format("%s = %s %s", result.name, "minus", arg1.name);
+            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
         }
 
         // In case we didn't match anything return a string that will show in the output

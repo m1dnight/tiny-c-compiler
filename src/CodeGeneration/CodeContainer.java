@@ -1,6 +1,6 @@
 package CodeGeneration;
 
-import Main.SymTabInfo;
+import SymbolTable.SymTabInfo;
 
 import java.util.ArrayList;
 
@@ -11,14 +11,14 @@ import java.util.ArrayList;
  * TypeInformation as well. (I suppose at this point).
  */
 public class CodeContainer {
-    public  SymTabInfo place;
+    public  SymTabInfo symTabInfo;
     public ArrayList<ThreeAddressCode> codeList = new ArrayList<ThreeAddressCode>();
 
     public CodeContainer(){}
 
     public CodeContainer(SymTabInfo sti)
     {
-        this.place = sti;
+        this.symTabInfo = sti;
     }
 
     public ArrayList<ThreeAddressCode> AppendCode(ThreeAddressCode code)
