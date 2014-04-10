@@ -383,7 +383,9 @@ exp                     ::= exp:e1 NEQUAL  exp:e2
                                                                              RESULT = cc;
                                                                          :}
                             %prec UMINUS  
-						  | NUMBER
+						  | NUMBER:n                                     {:
+                                                                            System.out.println("Number found: " + n.intValue())   ;
+                                                                         :}
 						  | NAME LPAR pars RPAR
 						  | QCHAR
 						  | NAME:n                                       {:

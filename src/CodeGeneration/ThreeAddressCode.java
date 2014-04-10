@@ -17,6 +17,8 @@ public class ThreeAddressCode {
         this.arg1 = arg1;
         this.arg2 = arg2;
         this.result = result;
+        // Print out the 3AC for debugging purposes
+        System.out.println(this.toString());
     }
 
     @Override
