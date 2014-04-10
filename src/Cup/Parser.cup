@@ -233,7 +233,18 @@ statements                  ::= statement SEMICOLON statements
 							  | /* Nothing */
 							  ;
 
-statement                   ::= IF LPAR exp RPAR statement
+statement                   ::= IF LPAR exp:cond RPAR statement:s        {:
+                                                                             // Create the true exit label
+                                                                             String trueLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             // The false label is the next label of statement (to skip over it)
+                                                                             // which equals the next label of RESULT
+                                                                             // The code for RESULT =
+                                                                             // --> cond.Code
+                                                                             // --> insert label true
+                                                                             // --> insert statement code
+                                                                             
+
+                                                                         :}
 								%prec LOW
 							  | IF LPAR exp RPAR statement ELSE statement
 							  | WHILE LPAR exp RPAR statement
@@ -265,7 +276,7 @@ lexp                    ::= NAME:n                                       {:
 Given th
 exp                     ::= exp:e1 NEQUAL  exp:e2 
 						  | exp:e1 EQUAL   exp:e2 
-						  | exp:e1 GREATER exp:e2 
+						  | exp:e1 GREATER exp:e2
 						  | exp:e1 LESS    exp:e2 
 						  | exp:e1 PLUS    exp:e2                        {:
                                                                              // Create a new variable name that will hold our minus value
