@@ -24,10 +24,10 @@ public class ThreeAddressCode {
     @Override
     public String toString()
     {
-        
+
         if(opCode == OpCodes.A1MINUS)
         {
-            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
+            return String.format("%s = %s %s", result.IdentifiertoString(), " -", arg1.IdentifiertoString());
         }
         /**
          * Assignment
@@ -41,19 +41,19 @@ public class ThreeAddressCode {
          */
         if(opCode == OpCodes.A2PLUS)
         {
-            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " + ", arg2.IdentifiertoString());
         }
         if(opCode == OpCodes.A2MINUS)
         {
-            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " - ", arg2.IdentifiertoString());
         }
         if(opCode == OpCodes.A2TIMES)
         {
-            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " * ", arg2.IdentifiertoString());
         }
         if(opCode == OpCodes.A2DIV)
         {
-            return String.format("%s = %s %s", result.IdentifiertoString(), "minus", arg1.IdentifiertoString());
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " / ", arg2.IdentifiertoString());
         }
 
         // In case we didn't match anything return a string that will show in the output

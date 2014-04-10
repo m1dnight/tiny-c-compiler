@@ -279,7 +279,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2
                                                                              cc.symTabInfo = vsti;
                                                                              //Opcode, arg1, arg2, result 
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2PLUS,
-                                                                                                                         e1.symTabInfo, e1.symTabInfo, vsti);
+                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
 
                                                                              cc.AppendCode(e1.codeList);
                                                                              cc.AppendCode(e2.codeList);
@@ -299,7 +299,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2
                                                                              cc.symTabInfo = vsti;
                                                                              //Opcode, arg1, arg2, result 
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2MINUS,
-                                                                                                                         e1.symTabInfo, e1.symTabInfo, vsti);
+                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
 
                                                                              cc.AppendCode(e1.codeList);
                                                                              cc.AppendCode(e2.codeList);
@@ -319,7 +319,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2
                                                                              cc.symTabInfo = vsti;
                                                                              //Opcode, arg1, arg2, result 
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2TIMES,
-                                                                                                                         e1.symTabInfo, e1.symTabInfo, vsti);
+                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
 
                                                                              cc.AppendCode(e1.codeList);
                                                                              cc.AppendCode(e2.codeList);
@@ -339,7 +339,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2
                                                                              cc.symTabInfo = vsti;
                                                                              //Opcode, arg1, arg2, result 
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2DIV,
-                                                                                                                         e1.symTabInfo, e1.symTabInfo, vsti);
+                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
 
                                                                              cc.AppendCode(e1.codeList);
                                                                              cc.AppendCode(e2.codeList);
