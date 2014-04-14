@@ -248,15 +248,15 @@ statement                   ::= IF LPAR exp:cond RPAR statement:s        {:
 								%prec LOW
 							  | IF LPAR exp RPAR statement ELSE statement
 							  | WHILE LPAR exp RPAR statement
-							  | lexp:target ASSIGN exp:exp               {:
+							  | lexp:tar ASSIGN exp:ex               {:
                                                                              CodeContainer cc = new CodeContainer();
-                                                                             cc.AppendCode(exp.codeList);
+                                                                             cc.AppendCode(ex.codeList);
                                                                              // Create the 3AC for the assignment
                                                                              //Opcode, Arg1, Arg2, Result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, 
-                                                                                                                         exp.symTabInfo,
+                                                                                                                         ex.symTabInfo,
                                                                                                                          null,
-                                                                                                                         target);
+                                                                                                                         tar);
                                                                              RESULT = cc;
                                                                          :}
 							  | RETURN exp
@@ -273,7 +273,6 @@ lexp                    ::= NAME:n                                       {:
 						  | lexp LBRACK exp RBRACK  // array access
 						  ;
 //As is customary, we assume that || and && are left-associative, and that || has lowest precedence, then &&, then ! .
-Given th
 exp                     ::= exp:e1 NEQUAL  exp:e2 
 						  | exp:e1 EQUAL   exp:e2 
 						  | exp:e1 GREATER exp:e2
