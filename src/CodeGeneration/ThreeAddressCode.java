@@ -21,10 +21,25 @@ public class ThreeAddressCode {
         System.out.println(this.toString());
     }
 
+    public ThreeAddressCode(OpCodes op, SymTabInfo arg)
+    {
+        this.opCode = op;
+        this.arg1 = arg;
+        // Print out the 3AC for debugging purposes
+        System.out.println(this.toString());
+    }
+
     @Override
     public String toString()
     {
-
+        if(opCode == OpCodes.GOTO)
+        {
+            return String.format("GOTO %s", arg1.IdentifiertoString());
+        }
+        if(opCode == OpCodes.LABEL)
+        {
+            return String.format("%s", arg1.IdentifiertoString());
+        }
         if(opCode == OpCodes.A1MINUS)
         {
             return String.format("%s = %s %s", result.IdentifiertoString(), " -", arg1.IdentifiertoString());

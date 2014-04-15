@@ -234,14 +234,31 @@ statements                  ::= statement SEMICOLON statements
 							  ;
 
 statement                   ::= IF LPAR exp:cond RPAR statement:s        {:
+                                                                             CodeContainer resultCodeContainer = new CodeContainer();
+                                                                             resultCodeContainer.AppendCode(cond.codeList);
+
                                                                              // Create the true exit label
                                                                              String trueLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
+                                                                             StringSymTabInfo trueLabelSymtabInfo = new StringSymTabInfo(cti, trueLabel);
+                                                                             // Create a 3AC for the GOTO label
+                                                                             //Opcode, Arg1, Arg2, Result
+                                                                             ThreeAddressCode trueLabelAC = new ThreeAddressCode(OpCodes.LABEL,
+                                                                                                                         trueLabelSymtabInfo);
+                                                                             // Add the code to the result
+                                                                             resultCodeContainer.AppendCode(trueLabelAC);
+                                                                             // Code for the consequent
+                                                                             resultCodeContainer.AppendCode(s.codeList);
+                                                                             // Create the false exit label
+                                                                             String falseLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, falseLabel);
                                                                              // The false label is the next label of statement (to skip over it)
                                                                              // which equals the next label of RESULT
                                                                              // The code for RESULT =
                                                                              // --> cond.Code
                                                                              // --> insert label true
                                                                              // --> insert statement code
+                                                                             
                                                                              
 
                                                                          :}
@@ -273,10 +290,86 @@ lexp                    ::= NAME:n                                       {:
 						  | lexp LBRACK exp RBRACK  // array access
 						  ;
 //As is customary, we assume that || and && are left-associative, and that || has lowest precedence, then &&, then ! .
-exp                     ::= exp:e1 NEQUAL  exp:e2 
-						  | exp:e1 EQUAL   exp:e2 
-						  | exp:e1 GREATER exp:e2
-						  | exp:e1 LESS    exp:e2 
+exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
+                                                                             // Create a new variable name that will hold our value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
+                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+
+                                                                             scope.Insert(vsti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.symTabInfo = vsti;
+                                                                             //Opcode, arg1, arg2, result 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2NEQ,
+                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
+
+                                                                             cc.AppendCode(e1.codeList);
+                                                                             cc.AppendCode(e2.codeList);
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :}  
+						  | exp:e1 EQUAL   exp:e2                        {:
+                                                                             // Create a new variable name that will hold our value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
+                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+
+                                                                             scope.Insert(vsti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.symTabInfo = vsti;
+                                                                             //Opcode, arg1, arg2, result 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2EQ,
+                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
+
+                                                                             cc.AppendCode(e1.codeList);
+                                                                             cc.AppendCode(e2.codeList);
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :}   
+						  | exp:e1 GREATER exp:e2                        {:
+                                                                             // Create a new variable name that will hold our value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
+                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+
+                                                                             scope.Insert(vsti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.symTabInfo = vsti;
+                                                                             //Opcode, arg1, arg2, result 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2GT,
+                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
+
+                                                                             cc.AppendCode(e1.codeList);
+                                                                             cc.AppendCode(e2.codeList);
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :}  
+						  | exp:e1 LESS    exp:e2                        {:
+                                                                             // Create a new variable name that will hold our value
+                                                                             String varname = VarnameCreator.getInstance().CreateName();
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
+                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+
+                                                                             scope.Insert(vsti);
+                                                                             CodeContainer cc = new CodeContainer();
+                                                                             // The place of the variable is the SymTabInfo we just created
+                                                                             cc.symTabInfo = vsti;
+                                                                             //Opcode, arg1, arg2, result 
+                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2LT,
+                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
+
+                                                                             cc.AppendCode(e1.codeList);
+                                                                             cc.AppendCode(e2.codeList);
+                                                                             cc.AppendCode(tac);
+                                                                             RESULT = cc;
+                                                                         :}   
 						  | exp:e1 PLUS    exp:e2                        {:
                                                                              // Create a new variable name that will hold our minus value
                                                                              String varname = VarnameCreator.getInstance().CreateName();

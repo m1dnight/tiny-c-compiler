@@ -234,14 +234,31 @@ statements                  ::= statement SEMICOLON statements
 							  ;
 
 statement                   ::= IF LPAR exp:cond RPAR statement:s        {:
+                                                                             CodeContainer resultCodeContainer = new CodeContainer();
+                                                                             resultCodeContainer.AppendCode(cond.codeList);
+
                                                                              // Create the true exit label
                                                                              String trueLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
+                                                                             StringSymTabInfo trueLabelSymtabInfo = new StringSymTabInfo(cti, trueLabel);
+                                                                             // Create a 3AC for the GOTO label
+                                                                             //Opcode, Arg1, Arg2, Result
+                                                                             ThreeAddressCode trueLabelAC = new ThreeAddressCode(OpCodes.LABEL,
+                                                                                                                         trueLabelSymtabInfo);
+                                                                             // Add the code to the result
+                                                                             resultCodeContainer.AppendCode(trueLabelAC);
+                                                                             // Code for the consequent
+                                                                             resultCodeContainer.AppendCode(s.codeList);
+                                                                             // Create the false exit label
+                                                                             String falseLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, falseLabel);
                                                                              // The false label is the next label of statement (to skip over it)
                                                                              // which equals the next label of RESULT
                                                                              // The code for RESULT =
                                                                              // --> cond.Code
                                                                              // --> insert label true
                                                                              // --> insert statement code
+                                                                             
                                                                              
 
                                                                          :}
