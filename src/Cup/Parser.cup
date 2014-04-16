@@ -6,6 +6,7 @@ import SymbolTable.SymTabInfo;
 import SymbolTable.SymbolTable;
 import SymbolTable.IntegerSymTabInfo;
 import SymbolTable.VariableSymTabInfo;
+import SymbolTable.StringSymTabInfo;
 import Typing.Types;
 import Typing.VariableTypeInfo;
 import CodeGeneration.CodeContainer;
@@ -234,33 +235,29 @@ statements                  ::= statement SEMICOLON statements
 							  ;
 
 statement                   ::= IF LPAR exp:cond RPAR statement:s        {:
-                                                                             CodeContainer resultCodeContainer = new CodeContainer();
-                                                                             resultCodeContainer.AppendCode(cond.codeList);
-
+                                                                             // Output
+                                                                             CodeContainer result = CodeContainer();
+                                                                             // The variable that contains the value of the condition
+                                                                             String resultVariable = cond.ResultVariable();
                                                                              // Create the true exit label
-                                                                             String trueLabel = VarnameCreator.getInstance().CreateLabel();
-                                                                             ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
-                                                                             StringSymTabInfo trueLabelSymtabInfo = new StringSymTabInfo(cti, trueLabel);
-                                                                             // Create a 3AC for the GOTO label
-                                                                             //Opcode, Arg1, Arg2, Result
-                                                                             ThreeAddressCode trueLabelAC = new ThreeAddressCode(OpCodes.LABEL,
-                                                                                                                         trueLabelSymtabInfo);
-                                                                             // Add the code to the result
-                                                                             resultCodeContainer.AppendCode(trueLabelAC);
-                                                                             // Code for the consequent
-                                                                             resultCodeContainer.AppendCode(s.codeList);
-                                                                             // Create the false exit label
                                                                              String falseLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
                                                                              StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, falseLabel);
-                                                                             // The false label is the next label of statement (to skip over it)
-                                                                             // which equals the next label of RESULT
-                                                                             // The code for RESULT =
-                                                                             // --> cond.Code
-                                                                             // --> insert label true
-                                                                             // --> insert statement code
-                                                                             
-                                                                             
-
+                                                                             // Create the TAC that will check if the value is true
+                                                                             // ifFalse <x> goto <falseLabel>
+                                                                             // Arg2 = goto label if false
+                                                                             ThreeAddressCode iftest = new ThreeAddressCode(OpCodes.IFFALSE,
+                                                                                                                            resultVariable,
+                                                                                                                            falseLabel,
+                                                                                                                            null);
+                                                                             ThreeAddressCode falseTac = new ThreeAddressCode(OpCodes.LABEL, trueLabel);
+                                                                             result.AppendCode(cond.codeList);
+                                                                             result.AppendCode(iftest);
+                                                                             // We created the tac so we next we add the code to fallthrough
+                                                                             result.AppendCode(s.codeList);
+                                                                             // Insert the false label
+                                                                             result.AppendCode(falseTac);
+                                                                             RESULT = result;                                                                           
                                                                          :}
 								%prec LOW
 							  | IF LPAR exp RPAR statement ELSE statement

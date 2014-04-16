@@ -29,6 +29,9 @@ public class ThreeAddressCode {
         System.out.println(this.toString());
     }
 
+    public SymTabInfo getResultSymTabInfo() {
+        return result;
+    }
     @Override
     public String toString()
     {

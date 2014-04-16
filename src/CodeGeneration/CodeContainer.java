@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class CodeContainer {
     public  SymTabInfo symTabInfo;
     public ArrayList<ThreeAddressCode> codeList = new ArrayList<ThreeAddressCode>();
-
     public CodeContainer(){}
 
     public CodeContainer(SymTabInfo sti)
@@ -21,6 +20,10 @@ public class CodeContainer {
         this.symTabInfo = sti;
     }
 
+    public SymTabInfo ResultVariable()
+    {
+        return codeList.get(0).getResultSymTabInfo();
+    }
     public ArrayList<ThreeAddressCode> AppendCode(ThreeAddressCode code)
     {
         this.codeList.add(code);
