@@ -44,6 +44,13 @@ public class ThreeAddressCode {
     public String toString()
     {
         /*****************************************************************************
+         * Return Statements
+         *****************************************************************************/
+        if(opCode == OpCodes.RETURN)
+        {
+            return String.format("return %s", arg1.IdentifiertoString());
+        }
+        /*****************************************************************************
          * Function Calls
          *****************************************************************************/
         if(opCode == OpCodes.CALL)

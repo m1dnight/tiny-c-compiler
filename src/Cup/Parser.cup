@@ -253,7 +253,6 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                              // Output
                                                                              CodeContainer result = new CodeContainer();
                                                                              // The variable that contains the value of the condition
-                                                                             SymTabInfo resultVariable = cond.ResultVariable();
                                                                              // Create the true exit label
                                                                              String falseLabel = VarnameCreator.getInstance().CreateLabel();
                                                                              ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
@@ -262,7 +261,7 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                              // ifFalse <x> goto <falseLabel>
                                                                              // Arg2 = goto label if false
                                                                              ThreeAddressCode iftest = new ThreeAddressCode(OpCodes.IFFALSE,
-                                                                                                                            resultVariable,
+                                                                                                                            cond.symTabInfo,
                                                                                                                             falseLabelSymtabInfo,
                                                                                                                             null);
                                                                              ThreeAddressCode falseTac = new ThreeAddressCode(OpCodes.LABEL, falseLabelSymtabInfo);
@@ -278,8 +277,6 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
 							  | IF LPAR exp:cond RPAR block:cons ELSE block:alt  {:
                                                                              // Output
                                                                              CodeContainer result = new CodeContainer();
-                                                                             // The variable that contains the value of the condition
-                                                                             SymTabInfo resultVariable = cond.ResultVariable();
                                                                              // Create the false exit label
                                                                              String falseLabel = VarnameCreator.getInstance().CreateLabel();
                                                                              ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
@@ -300,7 +297,7 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                              // ifFalse <x> goto <falseLabel>
                                                                              // Arg2 = goto label if false
                                                                              ThreeAddressCode iftest = new ThreeAddressCode(OpCodes.IFFALSE,
-                                                                                                                            resultVariable,
+                                                                                                                            cond.symTabInfo,
                                                                                                                             falseLabelSymtabInfo,
                                                                                                                             null);
 
@@ -324,16 +321,25 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
 							  | lexp:tar ASSIGN exp:ex                   {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              cc.AppendCode(ex.codeList);
-                                                                             // Create the 3AC for the assignment
-                                                                             //Opcode, Arg1, Arg2, Result
+                                                                             // The symTabInfo variable of 'ex' contains the SymTabInfo of the variable
+                                                                             // that contains the result of the expression.
+                                                                             //Parameters: Opcode, Arg1, Arg2, Result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, 
                                                                                                                          ex.symTabInfo,
                                                                                                                          null,
                                                                                                                          tar);
                                                                              cc.AppendCode(tac);
+                                                                             cc.symTabInfo = tar;
                                                                              RESULT = cc;
                                                                          :}
-							  | RETURN exp
+							  | RETURN exp:e                             {:
+                                                                            // The variable that holds the result of the expression is
+                                                                            // is held inside e.symTabInfo. So we pass that to the TAC constructor.
+                                                                            ThreeAddressCode tac = new ThreeAddressCode(OpCodes.RETURN, e.symTabInfo);
+                                                                            CodeContainer cc = new CodeContainer();
+                                                                            cc.AppendCode(tac);
+                                                                            RESULT = cc;
+                                                                         :}
 							  | block
 							  | WRITE exp
 							  | READ lexp
@@ -511,7 +517,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              RESULT = e;
                                                                          :}
 						  | exp LBRACK exp RBRACK                        {:
-                                                                            
+                                                                            // Arrays
 
                                                                          :}
 						  | MINUS exp:e                                  {:
@@ -525,6 +531,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
 
                                                                              scope.Insert(vsti);
                                                                              CodeContainer cc = new CodeContainer();
+
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
                                                                              //Opcode, arg1, arg2, result 
@@ -537,10 +544,8 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                          :}
                             %prec UMINUS  
 						  | NUMBER:n                                     {:
-                                                                            //TODO Can't I make the IntegerSymTabInfo constructor
-                                                                            // create the proper type? It's always going to be integer..
                                                                             ConstantTypeInfo ti = new ConstantTypeInfo(Types.INTEGER);
-                                                                            IntegerSymTabInfo csti = new IntegerSymTabInfo(ti, n.intValue());
+                                                                            IntegerSymTabInfo csti = new IntegerSymTabInfo(n.intValue());
                                                                             RESULT = new CodeContainer(csti); 
                                                                          :}
 						  | NAME:n LPAR pars:ps RPAR                     {:
@@ -570,11 +575,16 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                             VariableSymTabInfo functionResultVariable = new VariableSymTabInfo(new VariableTypeInfo(funcReturnType), varname);
                                                                             scope.Insert(functionResultVariable);
 
+                                                                            // Update the SymTabInfo for the CodeContainer (the resutling variable).
+                                                                            call.symTabInfo = functionResultVariable;
+
+
                                                                             // Create the TAC for the function call.
                                                                             call.AppendCode(new ThreeAddressCode(OpCodes.CALL,
                                                                                                                  functionResultVariable, 
                                                                                                                  funcTypeInfo.NumberOfParams(),
                                                                                                                  func));
+                                                                            RESULT = call;
 
 
                                                                          :}
