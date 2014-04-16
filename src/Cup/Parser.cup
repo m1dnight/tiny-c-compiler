@@ -112,10 +112,10 @@ terminal String    NAME;
 
 non terminal Object                    program, declaration, fun_declaration,
                                        var_declaration,
-                                       var_declarations, pars;
+                                       var_declarations;
 
 non terminal CodeContainer             exp, statement, block;
-non terminal LinkedList<CodeContainer> statements;
+non terminal LinkedList<CodeContainer> statements, pars;
 
 non terminal Types                     type;
 
@@ -511,8 +511,8 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              RESULT = e;
                                                                          :}
 						  | exp LBRACK exp RBRACK                        {:
-                                                                            // Function Call
                                                                             
+
                                                                          :}
 						  | MINUS exp:e                                  {:
                                                                              // Create a new variable name that will hold our minus value
@@ -543,7 +543,41 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                             IntegerSymTabInfo csti = new IntegerSymTabInfo(ti, n.intValue());
                                                                             RESULT = new CodeContainer(csti); 
                                                                          :}
-						  | NAME LPAR pars RPAR
+						  | NAME:n LPAR pars:ps RPAR                     {:
+                                                                            // Function Call
+                                                                            // Add each TAC for each parameter to the result.
+                                                                            CodeContainer res = new CodeContainer();
+                                                                            // Create a temporary object to store the parameterlist we are building.
+                                                                            // The actual call.
+                                                                            CodeContainer call = new CodeContainer();
+                                                                            for(CodeContainer cc : ps)
+                                                                            {
+                                                                                // Create a TAC for the param of the call
+                                                                                call.AppendCode(new ThreeAddressCode(OpCodes.PARAM, cc.ResultVariable()));
+                                                                                res.AppendCode(cc.codeList);
+                                                                            }
+
+                                                                            // Create the variable that will hold the result of the function call.
+                                                                            String varname = VarnameCreator.getInstance().CreateName();
+                                                                            // Get the SymTabInfo from the scope
+                                                                            VariableSymTabInfo func = (VariableSymTabInfo)scope.Lookup(n);
+
+                                                                            // We need the return type, so we get it from the SymTabInfo.
+                                                                            FunctionTypeInfo funcTypeInfo = (FunctionTypeInfo) func.typeInfo;
+                                                                            Types funcReturnType = funcTypeInfo.ActualType();
+
+                                                                            // We create a new variable in our scope which will store the result from the functioncall.
+                                                                            VariableSymTabInfo functionResultVariable = new VariableSymTabInfo(new VariableTypeInfo(funcReturnType), varname);
+                                                                            scope.Insert(functionResultVariable);
+
+                                                                            // Create the TAC for the function call.
+                                                                            call.AppendCode(new ThreeAddressCode(OpCodes.CALL,
+                                                                                                                 functionResultVariable, 
+                                                                                                                 funcTypeInfo.NumberOfParams(),
+                                                                                                                 func));
+
+
+                                                                         :}
 						  | QCHAR
 						  | NAME:n                                       {:
                                                                              
@@ -551,8 +585,18 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                          :}
 						  ;
 
-pars                    ::= exp
-						  | exp COMMA pars
+pars                    ::= exp:p                                        {:
+                                                                            RESULT = new LinkedList<CodeContainer>(Arrays.asList(p));
+                                                                         :}
+						  | exp:p COMMA pars:ps                          {:
+                                                                            // For each parameter we create a CodeContainer
+                                                                            // this allows us to still distinct between them in the function call
+                                                                            LinkedList<CodeContainer> result = new LinkedList<CodeContainer>();
+                                                                            result.addFirst(p);
+                                                                            if(ps != null)
+                                                                                result.addAll(ps);
+                                                                            RESULT = result;
+                                                                         :}
 						  | /* No parameters */
 						  ;
 

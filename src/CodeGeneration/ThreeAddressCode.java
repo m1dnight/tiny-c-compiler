@@ -10,6 +10,7 @@ public class ThreeAddressCode {
     private SymTabInfo arg1;
     private SymTabInfo arg2;
     private SymTabInfo result;
+    private int ParamCount;
 
     public ThreeAddressCode(OpCodes op, SymTabInfo arg1, SymTabInfo arg2, SymTabInfo result)
     {
@@ -18,6 +19,15 @@ public class ThreeAddressCode {
         this.arg2 = arg2;
         this.result = result;
         // Print out the 3AC for debugging purposes
+    }
+
+    // Special constructor for function calls
+    public ThreeAddressCode(OpCodes op, SymTabInfo arg1, int ParamCount, SymTabInfo result)
+    {
+        this.opCode = op;
+        this.arg1 = arg1;
+        this.ParamCount = ParamCount;
+        this.result = result;
     }
 
     public ThreeAddressCode(OpCodes op, SymTabInfo arg)
@@ -33,6 +43,13 @@ public class ThreeAddressCode {
     @Override
     public String toString()
     {
+        /*****************************************************************************
+         * Function Calls
+         *****************************************************************************/
+        if(opCode == OpCodes.CALL)
+        {
+            return String.format("%s = call %s, %s", result.IdentifiertoString(), arg1.IdentifiertoString(), this.ParamCount);
+        }
         /*****************************************************************************
          * Boolean Expressions
          *****************************************************************************/

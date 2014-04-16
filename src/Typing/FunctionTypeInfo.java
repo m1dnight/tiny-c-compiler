@@ -14,7 +14,6 @@ public class FunctionTypeInfo extends TypeInfo {
      * These are defined in the enum 'Types'.
      * The paramList contains a list of SymTabInfo's.
      * These are needed so we know the name and type of each parameter.
-     * @param typename
      */
     public FunctionTypeInfo(TypeInfo returnType, LinkedList<SymTabInfo> paramlist) {
         super(Types.FUNCTION);
@@ -25,5 +24,10 @@ public class FunctionTypeInfo extends TypeInfo {
     public Types ActualType()
     {
         return returnType.ActualType();
+    }
+
+    public int NumberOfParams()
+    {
+        return parameters.size();
     }
 }
