@@ -36,4 +36,9 @@ public class CodeContainer {
         return this.codeList;
     }
 
+    public void PrintCode()
+    {
+        for(int i = 0; i < codeList.size(); i++)
+            System.out.println(codeList.get(i).toString());
+    }
 }

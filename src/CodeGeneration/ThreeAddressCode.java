@@ -18,7 +18,6 @@ public class ThreeAddressCode {
         this.arg2 = arg2;
         this.result = result;
         // Print out the 3AC for debugging purposes
-        System.out.println(this.toString());
     }
 
     public ThreeAddressCode(OpCodes op, SymTabInfo arg)
@@ -26,7 +25,6 @@ public class ThreeAddressCode {
         this.opCode = op;
         this.arg1 = arg;
         // Print out the 3AC for debugging purposes
-        System.out.println(this.toString());
     }
 
     public SymTabInfo getResultSymTabInfo() {
@@ -35,6 +33,16 @@ public class ThreeAddressCode {
     @Override
     public String toString()
     {
+        /*****************************************************************************
+         * Boolean Expressions
+         *****************************************************************************/
+        if(opCode == OpCodes.A2GT)
+        {
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), ">", arg2.IdentifiertoString());
+        }
+        /*****************************************************************************
+         * Control Flow
+         *****************************************************************************/
         if(opCode == OpCodes.GOTO)
         {
             return String.format("GOTO %s", arg1.IdentifiertoString());
@@ -43,20 +51,28 @@ public class ThreeAddressCode {
         {
             return String.format("%s", arg1.IdentifiertoString());
         }
+        if(opCode == OpCodes.IFFALSE)
+        {
+            return String.format("ifFalse %s GOTO %s", arg1.IdentifiertoString(), arg2.IdentifiertoString());
+        }
+        if(opCode == OpCodes.LABEL)
+        {
+            return String.format("%s", arg1.IdentifiertoString());
+        }
+        /******************************************************************************
+         * Assignment
+         *****************************************************************************/
+        if(opCode == OpCodes.A0)
+        {
+             return String.format("%s = %s", result.IdentifiertoString(), arg1.IdentifiertoString());
+        }
+        /******************************************************************************
+         * Simple arithmetic expressions
+         *****************************************************************************/
         if(opCode == OpCodes.A1MINUS)
         {
             return String.format("%s = %s %s", result.IdentifiertoString(), " -", arg1.IdentifiertoString());
         }
-        /**
-         * Assignment
-         */
-        if(opCode == OpCodes.A0)
-        {
-            return String.format("%s = %s", result.IdentifiertoString(), arg1.IdentifiertoString());
-        }
-        /**
-         * Simple arithmetic expressions
-         */
         if(opCode == OpCodes.A2PLUS)
         {
             return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " + ", arg2.IdentifiertoString());
@@ -75,6 +91,6 @@ public class ThreeAddressCode {
         }
 
         // In case we didn't match anything return a string that will show in the output
-        return "**ERROR CONVERTING**";
+        return String.format("**ERROR CONVERTING TAC TO STRING**\n\tOpCode: %s", opCode.name());
     }
 }
