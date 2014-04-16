@@ -44,8 +44,8 @@ commment    =  {sl_comment} | {ml_comment}
 "int"                   { return symbol(sym.INT);}
 "char"                  { return symbol(sym.CHAR);}
 "return"                { return symbol(sym.RETURN);}
-"if"					{ System.out.println("IF \n"); return symbol(sym.IF);   }
-"else"					{ System.out.println("ELSE \n"); return symbol(sym.ELSE); }
+"if"					{ return symbol(sym.IF);   }
+"else"					{ return symbol(sym.ELSE); }
 "while"					{ return symbol(sym.WHILE); }
 "do"					{ return symbol(sym.DO); }
 "length"				{ return symbol(sym.LENGTH); }

@@ -111,10 +111,10 @@ terminal String    NAME;
 
 
 non terminal Object                    program, declaration, fun_declaration,
-                                       block, var_declaration,
+                                       var_declaration,
                                        var_declarations, pars;
 
-non terminal CodeContainer             exp, statement;
+non terminal CodeContainer             exp, statement, block;
 non terminal LinkedList<CodeContainer> statements;
 
 non terminal Types                     type;
@@ -165,16 +165,17 @@ fun_declaration         ::=  type:rt NAME:n
                                                                             // of the function defining the current scope
                                                                             scope.function.typeInfo = new FunctionTypeInfo(new VariableTypeInfo(rt), ps);
 																		 :}
-					         block
+					         block:b
 					                                                     {:
 					                                                        //We close the scope and put it back as the parent.
                                                                             scope = scope.parent;
+                                                                            b.PrintCode();
 					                                                     :}
 						   ;
 
-formal_pars             ::=  formal_params_non_empty:ps                       {:
-                                                                                RESULT = ps;
-                                                                              :}
+formal_pars             ::=  formal_params_non_empty:ps                  {:
+                                                                            RESULT = ps;
+                                                                         :}
 						  |
 						  ;
 
@@ -203,9 +204,13 @@ block                   ::= LBRACE                                       {: // W
                             var_declarations statements:sts 
                             RBRACE                                       {:
                                                                             // We close the block so scope is closed.
-                                                                            for(CodeContainer cc : sts)
-                                                                                cc.PrintCode();
                                                                             scope = scope.parent;
+                                                                            // Create single code container to contain all code
+                                                                            CodeContainer res = new CodeContainer();
+                                                                            for(CodeContainer cc : sts)
+                                                                                res.AppendCode(cc.codeList);
+                                                                            
+                                                                            RESULT = res;
                                                                          :}
 						  ;
 
@@ -270,8 +275,7 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                              RESULT = result;                                                                           
                                                                          :}
 								%prec LOW
-							  | IF LPAR exp:cond RPAR statement:cons ELSE statement:alt  {:
-                                                                             System.out.println("Parsing if else\n");
+							  | IF LPAR exp:cond RPAR block:cons ELSE block:alt  {:
                                                                              // Output
                                                                              CodeContainer result = new CodeContainer();
                                                                              // The variable that contains the value of the condition
