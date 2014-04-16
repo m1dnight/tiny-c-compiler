@@ -271,6 +271,7 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                          :}
 								%prec LOW
 							  | IF LPAR exp:cond RPAR statement:cons ELSE statement:alt  {:
+                                                                             System.out.println("Parsing if else\n");
                                                                              // Output
                                                                              CodeContainer result = new CodeContainer();
                                                                              // The variable that contains the value of the condition
