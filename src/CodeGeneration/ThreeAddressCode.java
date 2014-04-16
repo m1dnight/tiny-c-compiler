@@ -57,6 +57,10 @@ public class ThreeAddressCode {
         {
             return String.format("%s = call %s, %s", result.IdentifiertoString(), arg1.IdentifiertoString(), this.ParamCount);
         }
+        if(opCode == OpCodes.PARAM)
+        {
+            return String.format("param %s", arg1.IdentifiertoString());
+        }
         /*****************************************************************************
          * Boolean Expressions
          *****************************************************************************/

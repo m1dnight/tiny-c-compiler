@@ -551,16 +551,16 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
 						  | NAME:n LPAR pars:ps RPAR                     {:
                                                                             // Function Call
                                                                             // Add each TAC for each parameter to the result.
-                                                                            CodeContainer res = new CodeContainer();
+                                                                            CodeContainer temp = new CodeContainer();
                                                                             // Create a temporary object to store the parameterlist we are building.
-                                                                            // The actual call.
                                                                             CodeContainer call = new CodeContainer();
                                                                             for(CodeContainer cc : ps)
                                                                             {
                                                                                 // Create a TAC for the param of the call
-                                                                                call.AppendCode(new ThreeAddressCode(OpCodes.PARAM, cc.ResultVariable()));
-                                                                                res.AppendCode(cc.codeList);
+                                                                                temp.AppendCode(new ThreeAddressCode(OpCodes.PARAM, cc.symTabInfo));
+                                                                                call.AppendCode(cc.codeList);
                                                                             }
+                                                                            call.AppendCode(temp.codeList);
 
                                                                             // Create the variable that will hold the result of the function call.
                                                                             String varname = VarnameCreator.getInstance().CreateName();
@@ -581,9 +581,9 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
 
                                                                             // Create the TAC for the function call.
                                                                             call.AppendCode(new ThreeAddressCode(OpCodes.CALL,
-                                                                                                                 functionResultVariable, 
+                                                                                                                 func, 
                                                                                                                  funcTypeInfo.NumberOfParams(),
-                                                                                                                 func));
+                                                                                                                 functionResultVariable));
                                                                             RESULT = call;
 
 

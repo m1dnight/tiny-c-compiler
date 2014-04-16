@@ -1,6 +1,12 @@
 int factorial(int x)
 {
-    return x;
+    int a;
+    int b;
+    int c;
+    a = 5;
+    b = 2;
+    c = a + b;
+    return c;
 }
 
 int main(int mainPAram)
@@ -16,7 +22,8 @@ int main(int mainPAram)
     {
         x = 7;
     };
-    a = 2;
+    a = factorial(1 + 2, factorial(2));
+
 }
 /*
 x = 5
