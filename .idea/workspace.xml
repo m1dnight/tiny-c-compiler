@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/OpCodes.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/OpCodes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Cup/Parser.cup" afterPath="$PROJECT_DIR$/src/Cup/Parser.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test-input/numbers.c" afterPath="$PROJECT_DIR$/src/test-input/numbers.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TinyC-Java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,7 +75,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/Cup/parser.java" line="925" class="Cup.CUP$parser$actions" package="Cup">
+      <breakpoint url="file://$PROJECT_DIR$/src/Cup/parser.java" line="978" class="Cup.CUP$parser$actions" package="Cup">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -97,14 +95,14 @@
     <ui_properties />
   </component>
   <component name="DockManager">
-    <window id="1">
+    <window id="2">
       <content type="file-editors">
         <state>
           <leaf>
             <file leaf-file-name="ThreeAddressCode.java" pinned="false" current="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="40" column="111" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.22770199" vertical-offset="657" max-vertical-offset="2300">
+                  <state line="31" column="5" selection-start="793" selection-end="793" vertical-scroll-proportion="0.6726128" vertical-offset="84" max-vertical-offset="2500">
                     <folding />
                   </state>
                 </provider>
@@ -124,7 +122,7 @@
       <file leaf-file-name="Parser.cup" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="269" column="86" selection-start="14476" selection-end="14476" vertical-scroll-proportion="0.0" vertical-offset="4575" max-vertical-offset="9234">
+            <state line="312" column="0" selection-start="19145" selection-end="19145" vertical-scroll-proportion="0.0" vertical-offset="5349" max-vertical-offset="10026">
               <folding />
             </state>
           </provider>
@@ -139,13 +137,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="925" column="0" selection-start="61023" selection-end="61023" vertical-scroll-proportion="0.33333334" vertical-offset="19192" max-vertical-offset="26040">
+            <state line="978" column="0" selection-start="66863" selection-end="66863" vertical-scroll-proportion="0.0" vertical-offset="20284" max-vertical-offset="27132">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#60715#60730#0" expanded="true" />
+                <element signature="e#66555#66570#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -187,10 +185,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="numbers.c" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="numbers.c" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+            <state line="8" column="14" selection-start="111" selection-end="111" vertical-scroll-proportion="0.24573378" vertical-offset="0" max-vertical-offset="586">
               <folding />
             </state>
           </provider>
@@ -234,10 +232,10 @@
         <option value="$PROJECT_DIR$/src/Typing/Types.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable/StringSymTabInfo.java" />
         <option value="$PROJECT_DIR$/src/CodeGeneration/OpCodes.java" />
-        <option value="$PROJECT_DIR$/src/test-input/numbers.c" />
-        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
         <option value="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
         <option value="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
+        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
+        <option value="$PROJECT_DIR$/src/test-input/numbers.c" />
       </list>
     </option>
   </component>
@@ -641,7 +639,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272921" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" x="1582" y="548" width="1920" height="396" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32659575" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" x="1582" y="548" width="1920" height="396" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39787233" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32765958" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -773,7 +771,7 @@
         <state line="760" column="0" selection-start="46313" selection-end="46313" vertical-scroll-proportion="0.0" vertical-offset="13680" max-vertical-offset="20214">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#60715#60730#0" expanded="true" />
+            <element signature="e#66555#66570#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -822,7 +820,7 @@
         <state line="760" column="0" selection-start="46313" selection-end="46313" vertical-scroll-proportion="0.0" vertical-offset="13680" max-vertical-offset="20214">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#60715#60730#0" expanded="true" />
+            <element signature="e#66555#66570#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -979,7 +977,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="269" column="86" selection-start="14476" selection-end="14476" vertical-scroll-proportion="0.0" vertical-offset="4575" max-vertical-offset="9234">
+        <state line="312" column="0" selection-start="19145" selection-end="19145" vertical-scroll-proportion="0.0" vertical-offset="5349" max-vertical-offset="10026">
           <folding />
         </state>
       </provider>
@@ -998,20 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="111" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.22770199" vertical-offset="657" max-vertical-offset="2300">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="21" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.0" vertical-offset="470" max-vertical-offset="1056">
@@ -1021,11 +1005,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="925" column="0" selection-start="61023" selection-end="61023" vertical-scroll-proportion="0.33333334" vertical-offset="19192" max-vertical-offset="26040">
+        <state line="978" column="0" selection-start="66863" selection-end="66863" vertical-scroll-proportion="0.0" vertical-offset="20284" max-vertical-offset="27132">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#60715#60730#0" expanded="true" />
+            <element signature="e#66555#66570#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="5" selection-start="793" selection-end="793" vertical-scroll-proportion="0.6726128" vertical-offset="84" max-vertical-offset="2500">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="14" selection-start="111" selection-end="111" vertical-scroll-proportion="0.24573378" vertical-offset="0" max-vertical-offset="586">
+          <folding />
         </state>
       </provider>
     </entry>

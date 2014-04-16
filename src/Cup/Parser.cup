@@ -244,7 +244,7 @@ statements                  ::= statement:st SEMICOLON statements:sts    {:
 							  | /* Nothing */
 							  ;
 
-statement                   ::= IF LPAR exp:cond RPAR statement:s        {:
+statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                              // Output
                                                                              CodeContainer result = new CodeContainer();
                                                                              // The variable that contains the value of the condition
@@ -264,15 +264,59 @@ statement                   ::= IF LPAR exp:cond RPAR statement:s        {:
                                                                              result.AppendCode(cond.codeList);
                                                                              result.AppendCode(iftest);
                                                                              // We created the tac so we next we add the code to fallthrough
-                                                                             result.AppendCode(s.codeList);
+                                                                             result.AppendCode(cons.codeList);
                                                                              // Insert the false label
                                                                              result.AppendCode(falseTac);
                                                                              RESULT = result;                                                                           
                                                                          :}
 								%prec LOW
-							  | IF LPAR exp RPAR statement ELSE statement
+							  | IF LPAR exp:cond RPAR statement:cons ELSE statement:alt  {:
+                                                                             // Output
+                                                                             CodeContainer result = new CodeContainer();
+                                                                             // The variable that contains the value of the condition
+                                                                             SymTabInfo resultVariable = cond.ResultVariable();
+                                                                             // Create the false exit label
+                                                                             String falseLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
+                                                                             StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, falseLabel);
+                                                                             ThreeAddressCode falseTac = new ThreeAddressCode(OpCodes.LABEL, falseLabelSymtabInfo);
+
+                                                                             // Create the true label exit
+                                                                             String trueLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             StringSymTabInfo trueLabelSymtabInfo = new StringSymTabInfo(cti, trueLabel);
+                                                                             ThreeAddressCode trueTac = new ThreeAddressCode(OpCodes.LABEL, trueLabelSymtabInfo);
+
+                                                                             // Create the true label exit
+                                                                             String afterIfLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             StringSymTabInfo afterIfSymtabInfo = new StringSymTabInfo(cti, afterIfLabel);
+                                                                             ThreeAddressCode afterIfTac = new ThreeAddressCode(OpCodes.LABEL, afterIfSymtabInfo);
+
+                                                                             // Create the TAC that will check if the value is true
+                                                                             // ifFalse <x> goto <falseLabel>
+                                                                             // Arg2 = goto label if false
+                                                                             ThreeAddressCode iftest = new ThreeAddressCode(OpCodes.IFFALSE,
+                                                                                                                            resultVariable,
+                                                                                                                            falseLabelSymtabInfo,
+                                                                                                                            null);
+
+                                                                             // TAC to jump to after if, if we executed the consequent
+                                                                             ThreeAddressCode jumpAfterIfTac = new ThreeAddressCode(OpCodes.GOTO, afterIfSymtabInfo);
+
+                                                                             result.AppendCode(cond.codeList);
+                                                                             result.AppendCode(iftest);
+                                                                             // We created the tac so we next we add the code to fallthrough
+                                                                             result.AppendCode(cons.codeList);
+                                                                             result.AppendCode(jumpAfterIfTac);
+                                                                             // Insert the false label
+                                                                             result.AppendCode(falseTac);
+                                                                             // Insert the alternative code
+                                                                             result.AppendCode(alt.codeList);                                                                                     
+                                                                             result.AppendCode(afterIfTac);
+
+                                                                             RESULT = result;                                                                           
+                                                                         :}
 							  | WHILE LPAR exp RPAR statement
-							  | lexp:tar ASSIGN exp:ex               {:
+							  | lexp:tar ASSIGN exp:ex                   {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              cc.AppendCode(ex.codeList);
                                                                              // Create the 3AC for the assignment
