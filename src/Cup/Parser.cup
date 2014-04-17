@@ -110,11 +110,7 @@ terminal Integer   NUMBER;
 terminal String    NAME;
 
 
-non terminal Object                    program, declaration, fun_declaration,
-                                       var_declaration,
-                                       var_declarations;
-
-non terminal CodeContainer             exp, statement, block;
+non terminal CodeContainer             exp, statement, block, fun_declaration, declaration, var_declarations, var_declaration, program;
 non terminal LinkedList<CodeContainer> statements, pars;
 
 non terminal Types                     type;
@@ -138,17 +134,28 @@ precedence left     DOT, LBRACK;
 // It works however, so I'm leaving it in pace. The codeblock can be used to print the
 // symbol table for example after a succesful parse.
 
-total                   ::=   program {: System.out.println("End of file");
-                                         //scope.Print();
-                                      :}
+total                   ::=   program:p                                  {: 
+                                                                             p.PrintCode();
+                                                                         :}
                           ;
-program                 ::=   program declaration
+program                 ::=   program:ps declaration:p                   {:
+                                                                             // We have a CodeContainer which contains our entire program at this point.
+                                                                             // program is a LinkedList<CodeContainer> and declaration is a single CodeContainer.
+                                                                             // program can be null as well.
+                                                                             CodeContainer res = new CodeContainer();
+                                                                             if(ps != null) 
+                                                                                res.AppendCode(ps.codeList);
+                                                                             res.AppendCode(p.codeList);
+                                                                             RESULT = res;
+                                                                         :}
 						  | /* Empty */
 						  ;
 
 
-declaration             ::=  fun_declaration
-						  |  var_declaration
+declaration             ::=  fun_declaration:fd                          {:
+                                                                             RESULT = fd;
+                                                                         :}
+						  |  var_declaration:vd
 						  ;
 
 fun_declaration         ::=  type:rt NAME:n
@@ -169,7 +176,8 @@ fun_declaration         ::=  type:rt NAME:n
 					                                                     {:
 					                                                        //We close the scope and put it back as the parent.
                                                                             scope = scope.parent;
-                                                                            b.PrintCode();
+                                                                            // Make the fun_declaration 
+                                                                            RESULT = b;
 					                                                     :}
 						   ;
 

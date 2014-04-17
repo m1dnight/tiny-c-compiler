@@ -1,5 +1,9 @@
 package CodeGeneration;
 
+import SymbolTable.StringSymTabInfo;
+import Typing.ConstantTypeInfo;
+import Typing.Types;
+
 /**
  * VarnameCreator is used to generate unique names throughout the parsing process.
  * We create unique names for intermediate variables and for GOTO labels based
@@ -29,5 +33,24 @@ public class VarnameCreator {
     {
         this.labelCounter++;
         return String.format("_label%d", labelCounter);
+    }
+
+    public ThreeAddressCode GenerateLabel()
+    {
+        // Create a new string for the label.
+        String labelText = this.CreateLabel();
+        // We need a TypeInfo for the label (needed in the TAC).
+        StringSymTabInfo labelTypeInfo = new StringSymTabInfo(new ConstantTypeInfo(Types.STRING), labelText);
+        // Create the TAC
+        return new ThreeAddressCode(OpCodes.LABEL, labelTypeInfo);
+    }
+    public ThreeAddressCode GenerateLabel(String name)
+    {
+        // Create a new string for the label.
+        String labelText = "_" + name + "Label";
+        // We need a TypeInfo for the label (needed in the TAC).
+        StringSymTabInfo labelTypeInfo = new StringSymTabInfo(new ConstantTypeInfo(Types.STRING), labelText);
+        // Create the TAC
+        return new ThreeAddressCode(OpCodes.LABEL, labelTypeInfo);
     }
 }
