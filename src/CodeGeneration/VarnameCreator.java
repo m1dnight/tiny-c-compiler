@@ -32,25 +32,14 @@ public class VarnameCreator {
     public String CreateLabel()
     {
         this.labelCounter++;
-        return String.format("_label%d", labelCounter);
+        return String.format("_label%d:", labelCounter);
     }
-
-    public ThreeAddressCode GenerateLabel()
+    public String CreateLabel(String labelText)
     {
-        // Create a new string for the label.
-        String labelText = this.CreateLabel();
-        // We need a TypeInfo for the label (needed in the TAC).
-        StringSymTabInfo labelTypeInfo = new StringSymTabInfo(new ConstantTypeInfo(Types.STRING), labelText);
-        // Create the TAC
-        return new ThreeAddressCode(OpCodes.LABEL, labelTypeInfo);
+        return String.format("_label_%s:", labelText);
     }
-    public ThreeAddressCode GenerateLabel(String name)
+    public String CreateFunctionLabel(String labelText)
     {
-        // Create a new string for the label.
-        String labelText = "_" + name + "Label";
-        // We need a TypeInfo for the label (needed in the TAC).
-        StringSymTabInfo labelTypeInfo = new StringSymTabInfo(new ConstantTypeInfo(Types.STRING), labelText);
-        // Create the TAC
-        return new ThreeAddressCode(OpCodes.LABEL, labelTypeInfo);
+        return String.format("function_%s:", labelText);
     }
 }

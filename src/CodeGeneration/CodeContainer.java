@@ -36,6 +36,12 @@ public class CodeContainer {
         return this.codeList;
     }
 
+    public ArrayList<ThreeAddressCode> AddFirst(ThreeAddressCode code)
+    {
+        this.codeList.add(0, code);
+        return this.codeList;
+    }
+
     public void PrintCode()
     {
         for(int i = 0; i < codeList.size(); i++)

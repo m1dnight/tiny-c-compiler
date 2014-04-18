@@ -176,7 +176,12 @@ fun_declaration         ::=  type:rt NAME:n
 					                                                     {:
 					                                                        //We close the scope and put it back as the parent.
                                                                             scope = scope.parent;
-                                                                            // Make the fun_declaration 
+                                                                            // Create a label that indicates the beginning of this function
+                                                                            String beginFunLabel = VarnameCreator.getInstance().CreateFunctionLabel(n);
+                                                                            ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
+                                                                            StringSymTabInfo beginFunLabelSymtabInfo = new StringSymTabInfo(cti, beginFunLabel);
+                                                                            ThreeAddressCode beginFunTac = new ThreeAddressCode(OpCodes.LABEL, beginFunLabelSymtabInfo);
+                                                                            b.AddFirst(beginFunTac);
                                                                             RESULT = b;
 					                                                     :}
 						   ;
