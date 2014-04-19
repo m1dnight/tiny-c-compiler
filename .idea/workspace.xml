@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Cup/Parser.cup" afterPath="$PROJECT_DIR$/src/Cup/Parser.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test-input/numbers.c" afterPath="$PROJECT_DIR$/src/test-input/numbers.c" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Assembly/Generator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TinyC-Java.iws" />
@@ -87,10 +84,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="numbers.c" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="numbers.c" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.4787234" vertical-offset="0" max-vertical-offset="564">
+            <state line="15" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Generator.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Assembly/Generator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="24" selection-start="143" selection-end="143" vertical-scroll-proportion="0.23049645" vertical-offset="0" max-vertical-offset="564">
               <folding />
             </state>
           </provider>
@@ -100,10 +106,7 @@
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="50" column="0" selection-start="1393" selection-end="1393" vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="2340">
-              <folding>
-                <element signature="e#1062#1063#0" expanded="true" />
-                <element signature="e#1091#1092#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -112,9 +115,7 @@
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="28" column="36" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="918">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -122,7 +123,7 @@
       <file leaf-file-name="CodeContainer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="0" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="972">
+            <state line="47" column="0" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.0" vertical-offset="846" max-vertical-offset="1008">
               <folding />
             </state>
           </provider>
@@ -131,7 +132,7 @@
       <file leaf-file-name="SymbolTable.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SymbolTable/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="52" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.0" vertical-offset="583" max-vertical-offset="1494">
+            <state line="68" column="52" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="1530">
               <folding />
             </state>
           </provider>
@@ -140,19 +141,8 @@
       <file leaf-file-name="VariableSymTabInfo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SymbolTable/VariableSymTabInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
+            <state line="13" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="432">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1250" column="127" selection-start="87283" selection-end="87283" vertical-scroll-proportion="0.0" vertical-offset="22277" max-vertical-offset="25272">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -160,10 +150,8 @@
       <file leaf-file-name="IntegerSymTabInfo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="27" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="10" column="27" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="432">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,7 +159,7 @@
       <file leaf-file-name="OpCodes.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CodeGeneration/OpCodes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="65" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+            <state line="7" column="65" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="288">
               <folding />
             </state>
           </provider>
@@ -221,6 +209,7 @@
         <option value="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
         <option value="$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java" />
         <option value="$PROJECT_DIR$/src/test-input/numbers.c" />
+        <option value="$PROJECT_DIR$/src/Assembly/Generator.java" />
       </list>
     </option>
   </component>
@@ -413,6 +402,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TinyC-Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-c-compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assembly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -483,19 +490,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -521,6 +515,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -640,7 +647,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="25" width="1920" height="1055" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -663,8 +670,8 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -683,13 +690,13 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3347548" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19423692" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3464819" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -729,6 +736,34 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/SymbolTable/VariableSymTabInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="432">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="27" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="432">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/OpCodes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="65" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="288">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="55" selection-start="1632" selection-end="1632" vertical-scroll-proportion="0.0" vertical-offset="692" max-vertical-offset="1656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="0" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="594">
@@ -739,10 +774,7 @@
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="59" column="38" selection-start="1996" selection-end="1996" vertical-scroll-proportion="0.0" vertical-offset="1062" max-vertical-offset="1224">
-          <folding>
-            <element signature="e#1062#1063#0" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -776,19 +808,7 @@
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1206">
-          <folding>
-            <element signature="e#1062#1063#0" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="760" column="0" selection-start="46313" selection-end="46313" vertical-scroll-proportion="0.0" vertical-offset="13680" max-vertical-offset="20214">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -827,19 +847,7 @@
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1206">
-          <folding>
-            <element signature="e#1062#1063#0" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="760" column="0" selection-start="46313" selection-end="46313" vertical-scroll-proportion="0.0" vertical-offset="13680" max-vertical-offset="20214">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -877,9 +885,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="195" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="6135">
-          <folding />
-        </state>
+        <state line="9" column="17" selection-start="195" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="6135" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/src/Cup/cup.jar!/java_cup/runtime/ComplexSymbolFactory.class">
@@ -950,13 +956,6 @@
         <state line="168" column="0" selection-start="6107" selection-end="6107" vertical-scroll-proportion="0.0" vertical-offset="2528" max-vertical-offset="3114" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Jflex/Lexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="640" column="33" selection-start="18051" selection-end="18051" vertical-scroll-proportion="0.0" vertical-offset="11321" max-vertical-offset="14328">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="55" selection-start="1632" selection-end="1632" vertical-scroll-proportion="0.0" vertical-offset="692" max-vertical-offset="1656">
@@ -981,9 +980,7 @@
     <entry file="file://$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="27" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -996,24 +993,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="340" column="0" selection-start="22100" selection-end="22100" vertical-scroll-proportion="0.0" vertical-offset="6120" max-vertical-offset="11142">
-          <folding />
-        </state>
+        <state line="340" column="0" selection-start="22100" selection-end="22100" vertical-scroll-proportion="0.0" vertical-offset="6120" max-vertical-offset="11142" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/OpCodes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="65" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1250" column="127" selection-start="87283" selection-end="87283" vertical-scroll-proportion="0.0" vertical-offset="22259" max-vertical-offset="25254">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1034,25 +1020,27 @@
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="36" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="918">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="0" selection-start="1393" selection-end="1393" vertical-scroll-proportion="0.0" vertical-offset="712" max-vertical-offset="2340">
-          <folding>
-            <element signature="e#1062#1063#0" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.4787234" vertical-offset="0" max-vertical-offset="564">
+        <state line="15" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assembly/Generator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="24" selection-start="143" selection-end="143" vertical-scroll-proportion="0.23049645" vertical-offset="0" max-vertical-offset="564">
           <folding />
         </state>
       </provider>
