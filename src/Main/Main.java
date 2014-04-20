@@ -1,5 +1,7 @@
 package Main;
 
+import Assembly.Generator;
+import CodeGeneration.CodeContainer;
 import Cup.parser;
 import SymbolTable.SymbolTable;
 
@@ -11,7 +13,9 @@ public class Main {
     /* Start the parser */
     try {
       parser p = new parser(new Jflex.Lexer(new FileReader(argv[0])));
-      Object result = p.parse().value;      
+      CodeContainer result = (CodeContainer) p.parse().value;
+        new Generator().SplitToBlocks(result);
+
     } catch (Exception e) {
       /* do cleanup here -- possibly rethrow e */
       e.printStackTrace();

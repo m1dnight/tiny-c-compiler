@@ -110,14 +110,13 @@ terminal Integer   NUMBER;
 terminal String    NAME;
 
 
-non terminal CodeContainer             exp, statement, block, fun_declaration, declaration, var_declarations, var_declaration, program;
+non terminal CodeContainer             exp, statement, block, fun_declaration, declaration, var_declarations, var_declaration, program, total;
 non terminal LinkedList<CodeContainer> statements, pars;
 
 non terminal Types                     type;
 
 non terminal SymTabInfo                formal_par, lexp;
 non terminal LinkedList<SymTabInfo>    formal_pars, formal_params_non_empty;
-non terminal Object                    total;
 
 /* ------------ Precedence declarations ------------------------------------ */
 
@@ -134,8 +133,9 @@ precedence left     DOT, LBRACK;
 // It works however, so I'm leaving it in pace. The codeblock can be used to print the
 // symbol table for example after a succesful parse.
 
-total                   ::=   program:p                                  {: 
+total                   ::=   program:p                                  {:
                                                                              p.PrintCode();
+                                                                             RESULT = p;
                                                                          :}
                           ;
 program                 ::=   program:ps declaration:p                   {:

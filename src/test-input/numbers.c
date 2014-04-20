@@ -5,6 +5,13 @@ int positivize(int x)
     return 0;
 }
 
+int factorial(int x)
+{
+    int result;
+    result = x * factorial(x -1);
+    return result;
+}
+
 int main(int mainParam)
 {
     int x;
