@@ -2,8 +2,10 @@
   <library name="cup">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/src/Cup/cup.jar!/" />
+      <root url="file://$PROJECT_DIR$/src/Cup" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/src/Cup" recursive="false" />
   </library>
 </component>
