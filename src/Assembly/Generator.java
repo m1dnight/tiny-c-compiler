@@ -51,11 +51,11 @@ public class Generator {
         // Check to see if it is a label.
         // If it is a label we will jump to it.
         ThreeAddressCode tac = cc.get(tacIndex);
-        if(tac.opCode == OpCodes.LABEL)
+        if(tac.getOpCode() == OpCodes.LABEL)
             return true;
 
         tac = cc.get(tacIndex - 1);
-        if(tac.opCode == OpCodes.IFFALSE || tac.opCode == OpCodes.GOTO)
+        if(tac.getOpCode() == OpCodes.IFFALSE || tac.getOpCode() == OpCodes.GOTO)
             return true;
 
         return false;

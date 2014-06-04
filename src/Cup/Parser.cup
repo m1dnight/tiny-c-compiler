@@ -219,7 +219,7 @@ formal_par              ::= type:t NAME:n
 block                   ::= LBRACE                                       {:
                                                                             // block
                                                                             // We open a new block so we create a new scope
-                                                                            System.out.println("Found a block");                                                                            //We close the scope and put it back as the parent.
+                                                                            //We close the scope and put it back as the parent.
                                                                             scope = scope.NewScope();
                                                                          :}
                             var_declarations statements:sts 

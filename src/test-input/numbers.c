@@ -1,14 +1,18 @@
 int positivize(int x)
 {
+    int y;
+    y = x;
     if(x > 0)
     {
+        x = 0;
+        x = y;
         return x;
     }
     else
     {
+        x = x * -1;
         return x;
     };
-
     return 0;
 }
 
@@ -24,6 +28,6 @@ int main(int mainParam)
     int x;
     x = 5;
     mainParam = positivize(x);
-    return mainParam;
+    return mainParam;ah oei
 
 }

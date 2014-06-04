@@ -6,7 +6,7 @@ import SymbolTable.SymTabInfo;
  * The class will be an object representing a three address code.
  */
 public class ThreeAddressCode {
-    public  OpCodes opCode;
+    private OpCodes opCode;
     private SymTabInfo arg1;
     private SymTabInfo arg2;
     private SymTabInfo result;
@@ -121,5 +121,40 @@ public class ThreeAddressCode {
 
         // In case we didn't match anything return a string that will show in the output
         return String.format("**ERROR CONVERTING TAC TO STRING**\n\tOpCode: %s", opCode.name());
+    }
+
+    /*******************************************************************************************************************
+     *********************************************** GETTERS AND SETTERS ***********************************************
+     ******************************************************************************************************************/
+    public OpCodes getOpCode() {
+        return opCode;
+    }
+
+    public void setOpCode(OpCodes opCode) {
+        this.opCode = opCode;
+    }
+
+    public SymTabInfo getArg1() {
+        return arg1;
+    }
+
+    public void setArg1(SymTabInfo arg1) {
+        this.arg1 = arg1;
+    }
+
+    public SymTabInfo getArg2() {
+        return arg2;
+    }
+
+    public void setArg2(SymTabInfo arg2) {
+        this.arg2 = arg2;
+    }
+
+    public SymTabInfo getResult() {
+        return result;
+    }
+
+    public void setResult(SymTabInfo result) {
+        this.result = result;
     }
 }
