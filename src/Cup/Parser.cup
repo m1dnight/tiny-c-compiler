@@ -134,11 +134,13 @@ precedence left     DOT, LBRACK;
 // symbol table for example after a succesful parse.
 
 total                   ::=   program:p                                  {:
+                                                                             // total
                                                                              p.PrintCode();
                                                                              RESULT = p;
                                                                          :}
                           ;
 program                 ::=   program:ps declaration:p                   {:
+                                                                             // program
                                                                              // We have a CodeContainer which contains our entire program at this point.
                                                                              // program is a LinkedList<CodeContainer> and declaration is a single CodeContainer.
                                                                              // program can be null as well.
@@ -153,13 +155,15 @@ program                 ::=   program:ps declaration:p                   {:
 
 
 declaration             ::=  fun_declaration:fd                          {:
+                                                                             // declaration
                                                                              RESULT = fd;
                                                                          :}
 						  |  var_declaration:vd
 						  ;
 
 fun_declaration         ::=  type:rt NAME:n
-                                                                         {: // Create symboltable entry
+                                                                         {: // fun_declaration
+                                                                            // Create symboltable entry
                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(null, n);
                                                                             // We insert it in the current scope but we update values later
                                                                             scope.Insert(vsti);
@@ -174,7 +178,7 @@ fun_declaration         ::=  type:rt NAME:n
 																		 :}
 					         block:b
 					                                                     {:
-					                                                        //We close the scope and put it back as the parent.
+					                                                        System.out.println("Found a block");					                                                        //We close the scope and put it back as the parent.
                                                                             scope = scope.parent;
                                                                             // Create a label that indicates the beginning of this function
                                                                             String beginFunLabel = VarnameCreator.getInstance().CreateFunctionLabel(n);
@@ -186,13 +190,14 @@ fun_declaration         ::=  type:rt NAME:n
 					                                                     :}
 						   ;
 
-formal_pars             ::=  formal_params_non_empty:ps                  {:
+formal_pars             ::=  formal_params_non_empty:ps                  {: // formal_pars
                                                                             RESULT = ps;
                                                                          :}
 						  |
 						  ;
 
 formal_params_non_empty ::= formal_par:p COMMA formal_params_non_empty:ps     {:
+                                                                                // formal_params_non_empty
                                                                                 ps.addFirst(p);
                                                                                 RESULT = ps;
                                                                               :}
@@ -203,6 +208,7 @@ formal_params_non_empty ::= formal_par:p COMMA formal_params_non_empty:ps     {:
 
 formal_par              ::= type:t NAME:n
                                                                          {:
+                                                                            // formal_par
                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(t), n);
                                                                             // The current scope is the function itself,
                                                                             // So we add this parameter to the scope..
@@ -211,7 +217,9 @@ formal_par              ::= type:t NAME:n
                                                                          :}
 						  ;
 
-block                   ::= LBRACE                                       {: // We open a new block so we create a new scope
+block                   ::= LBRACE                                       {:
+                                                                            // block
+                                                                            // We open a new block so we create a new scope
                                                                             scope = scope.NewScope();
                                                                          :}
                             var_declarations statements:sts 
@@ -228,7 +236,7 @@ block                   ::= LBRACE                                       {: // W
 						  ;
 
 var_declaration         ::= type:t NAME:n SEMICOLON                      {: 
-
+                                                                            // var_declaration
                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(t), n);
                                                                             scope.Insert(vsti); 
                                                                          :}
@@ -238,7 +246,8 @@ var_declarations        ::= var_declaration var_declarations
 						  | /* Nothing */
 						  ;
 
-type                    ::= INT                                          {: /* We create a new TypeInfo that holds that the value is an integer
+type                    ::= INT                                          {: // type
+                                                                            /* We create a new TypeInfo that holds that the value is an integer
 																			 * We then attach this type to the value of 'type'
 																			 * INT and FLOAT are simple types
 																			 * Arrays and structs are complex types..
@@ -288,7 +297,7 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                          :}
 								%prec LOW
 							  | IF LPAR exp:cond RPAR block:cons ELSE block:alt  {:
-                                                                             // Output
+                                                                             // IF THEN BLOCK
                                                                              CodeContainer result = new CodeContainer();
                                                                              // Create the false exit label
                                                                              String falseLabel = VarnameCreator.getInstance().CreateLabel();

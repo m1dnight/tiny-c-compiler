@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Generator {
 
-    public ArrayList<BasicBlock> SplitToBlocks(CodeContainer cc)
+    public static  ArrayList<BasicBlock> SplitToBlocks(CodeContainer cc)
     {
         ArrayList<BasicBlock> blocks = new ArrayList<BasicBlock>();
         // We loop over all the TAC's in the CodeContainer.
@@ -20,17 +20,24 @@ public class Generator {
         while(counter < cc.codeList.size())
         {
             BasicBlock block = new BasicBlock();
-            while(IsLeader(cc.codeList, counter) && counter < cc.codeList.size())
+            // If we have a leader, we create a new block and keep adding the code
+            // until we meet a new leader.
+            if(IsLeader(cc.codeList, counter))
             {
                 block.AppendCode(cc.codeList.get(counter));
                 counter++;
+                while(counter < cc.codeList.size() && !IsLeader(cc.codeList, counter))
+                {
+                    block.AppendCode(cc.codeList.get(counter));
+                    counter++;
+                }
             }
             blocks.add(block);
         }
         return blocks;
 
     }
-    private boolean IsLeader(ArrayList<ThreeAddressCode> cc, int tacIndex)
+    private static boolean IsLeader(ArrayList<ThreeAddressCode> cc, int tacIndex)
     {
         /**
          * The instruction is a leader if:
@@ -52,6 +59,20 @@ public class Generator {
             return true;
 
         return false;
+    }
+
+    public static void PrintBlocks(ArrayList<BasicBlock> blocks)
+    {
+        System.out.println("*****************************************************");
+        System.out.println("*********** BASIC BLOCKS ****************************");
+        System.out.println("*****************************************************");
+        for(BasicBlock block : blocks)
+        {
+            System.out.println(block);
+            System.out.println("*****************************************************");
+        }
+        System.out.println("*********** END OF BASIC BLOCKS *********************");
+        System.out.println("*****************************************************");
     }
 
 }
