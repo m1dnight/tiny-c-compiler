@@ -178,8 +178,7 @@ fun_declaration         ::=  type:rt NAME:n
 																		 :}
 					         block:b
 					                                                     {:
-					                                                        System.out.println("Found a block");					                                                        //We close the scope and put it back as the parent.
-                                                                            scope = scope.parent;
+					                                                        scope = scope.parent;
                                                                             // Create a label that indicates the beginning of this function
                                                                             String beginFunLabel = VarnameCreator.getInstance().CreateFunctionLabel(n);
                                                                             ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
@@ -220,10 +219,12 @@ formal_par              ::= type:t NAME:n
 block                   ::= LBRACE                                       {:
                                                                             // block
                                                                             // We open a new block so we create a new scope
+                                                                            System.out.println("Found a block");                                                                            //We close the scope and put it back as the parent.
                                                                             scope = scope.NewScope();
                                                                          :}
                             var_declarations statements:sts 
                             RBRACE                                       {:
+                                                                            // block
                                                                             // We close the block so scope is closed.
                                                                             scope = scope.parent;
                                                                             // Create single code container to contain all code
@@ -261,6 +262,7 @@ type                    ::= INT                                          {: // t
 						  ;
 
 statements                  ::= statement:st SEMICOLON statements:sts    {:
+                                                                            // statements
                                                                             // Append the statement to the statements
                                                                             LinkedList<CodeContainer> result = new LinkedList<CodeContainer>();
                                                                             result.addFirst(st);
@@ -272,7 +274,7 @@ statements                  ::= statement:st SEMICOLON statements:sts    {:
 							  ;
 
 statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
-                                                                             // Output
+                                                                             // single if
                                                                              CodeContainer result = new CodeContainer();
                                                                              // The variable that contains the value of the condition
                                                                              // Create the true exit label
@@ -339,6 +341,7 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
 
                                                                              RESULT = result;                                                                           
                                                                          :}
+
 							  | WHILE LPAR exp RPAR statement
 							  | lexp:tar ASSIGN exp:ex                   {:
                                                                              CodeContainer cc = new CodeContainer();
@@ -362,7 +365,6 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                             cc.AppendCode(tac);
                                                                             RESULT = cc;
                                                                          :}
-							  | block
 							  | WRITE exp
 							  | READ lexp
 							  ;

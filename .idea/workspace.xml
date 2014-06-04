@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assembly/BasicBlock.java" afterPath="$PROJECT_DIR$/src/Assembly/BasicBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assembly/Generator.java" afterPath="$PROJECT_DIR$/src/Assembly/Generator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Main.java" afterPath="$PROJECT_DIR$/src/Main/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Cup/Parser.cup" afterPath="$PROJECT_DIR$/src/Cup/Parser.cup" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test-input/numbers.c" afterPath="$PROJECT_DIR$/src/test-input/numbers.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -63,7 +60,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/Main/Main.java" line="13" class="Main.Main" package="Main">
+      <breakpoint url="file://$PROJECT_DIR$/src/Cup/parser.java" line="1004" class="Cup.CUP$parser$actions" package="Cup">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -91,7 +88,7 @@
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="1" selection-start="777" selection-end="777" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
+            <state line="13" column="0" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
               <folding />
             </state>
           </provider>
@@ -100,10 +97,11 @@
       <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="1" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="25452">
+            <state line="1010" column="13" selection-start="71453" selection-end="71453" vertical-scroll-proportion="0.0" vertical-offset="17644" max-vertical-offset="25290">
               <folding>
-                <element signature="e#17971#17986#0" expanded="true" />
-                <element signature="e#73495#73510#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#17787#17802#0" expanded="true" />
+                <element signature="e#73001#73016#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,7 +110,7 @@
       <file leaf-file-name="numbers.c" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.18367347" vertical-offset="0" max-vertical-offset="588">
+            <state line="9" column="6" selection-start="107" selection-end="107" vertical-scroll-proportion="0.29944548" vertical-offset="0" max-vertical-offset="630">
               <folding />
             </state>
           </provider>
@@ -121,7 +119,7 @@
       <file leaf-file-name="Parser.cup" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="635" column="0" selection-start="51592" selection-end="51592" vertical-scroll-proportion="0.0" vertical-offset="10564" max-vertical-offset="11538">
+            <state line="637" column="0" selection-start="51769" selection-end="51769" vertical-scroll-proportion="0.0" vertical-offset="7306" max-vertical-offset="11574">
               <folding />
             </state>
           </provider>
@@ -207,8 +205,8 @@
         <option value="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
         <option value="$PROJECT_DIR$/src/Assembly/BasicBlock.java" />
         <option value="$PROJECT_DIR$/src/Assembly/Generator.java" />
-        <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
+        <option value="$PROJECT_DIR$/src/Cup/Parser.cup" />
         <option value="$PROJECT_DIR$/src/Cup/parser.java" />
         <option value="$PROJECT_DIR$/src/test-input/numbers.c" />
       </list>
@@ -624,7 +622,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="tiny-c-compiler" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -674,9 +678,9 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3208502" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31398964" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" x="1582" y="548" width="1920" height="396" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31382978" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" x="1582" y="548" width="1920" height="396" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39658847" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39574468" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34109312" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -687,7 +691,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21991481" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34574467" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34574467" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1010,31 +1014,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="635" column="0" selection-start="51592" selection-end="51592" vertical-scroll-proportion="0.0" vertical-offset="10564" max-vertical-offset="11538">
+        <state line="637" column="0" selection-start="51769" selection-end="51769" vertical-scroll-proportion="0.0" vertical-offset="7306" max-vertical-offset="11574">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="1" selection-start="777" selection-end="777" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
+        <state line="13" column="0" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="1" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0" vertical-offset="72" max-vertical-offset="25434">
+        <state line="1010" column="13" selection-start="71453" selection-end="71453" vertical-scroll-proportion="0.0" vertical-offset="17626" max-vertical-offset="25272">
           <folding>
-            <element signature="e#17971#17986#0" expanded="true" />
-            <element signature="e#73495#73510#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#17787#17802#0" expanded="true" />
+            <element signature="e#73001#73016#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.18367347" vertical-offset="0" max-vertical-offset="588">
+        <state line="9" column="6" selection-start="107" selection-end="107" vertical-scroll-proportion="0.29944548" vertical-offset="0" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
