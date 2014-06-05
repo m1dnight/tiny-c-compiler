@@ -23,7 +23,13 @@ action code {:
 :}
    
 parser code {:
-	
+
+	public VariableSymTabInfo GenerateVariable(Types type)
+	{
+	  String varname = VarnameCreator.getInstance().CreateName();
+	  VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(type), varname);
+	  return vsti;
+	}
 	/* Change the method report_error so it will display the line and
 	   column of where the error occurred in the input as well as the
 	   reason for the error which is passed into the method in the
@@ -377,165 +383,57 @@ lexp                    ::= NAME:n                                       {:
 						  | lexp LBRACK exp RBRACK  // array access
 						  ;
 //As is customary, we assume that || and && are left-associative, and that || has lowest precedence, then &&, then ! .
-exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
-                                                                             // Create a new variable name that will hold our value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
+exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             scope.Insert(tempVariable);
 
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2NEQ,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
-
-                                                                             cc.AppendCode(e1.codeList);
-                                                                             cc.AppendCode(e2.codeList);
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
-                                                                         :}  
-						  | exp:e1 EQUAL   exp:e2                        {:
-                                                                             // Create a new variable name that will hold our value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
-
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2EQ,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
-
-                                                                             cc.AppendCode(e1.codeList);
-                                                                             cc.AppendCode(e2.codeList);
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
-                                                                         :}   
-						  | exp:e1 GREATER exp:e2                        {:
-                                                                             // Create a new variable name that will hold our value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
-
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2GT,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
-
-                                                                             cc.AppendCode(e1.codeList);
-                                                                             cc.AppendCode(e2.codeList);
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
-                                                                         :}  
-						  | exp:e1 LESS    exp:e2                        {:
-                                                                             // Create a new variable name that will hold our value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
-
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2LT,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
-
-                                                                             cc.AppendCode(e1.codeList);
-                                                                             cc.AppendCode(e2.codeList);
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
-                                                                         :}   
-						  | exp:e1 PLUS    exp:e2                        {:
-                                                                             // Create a new variable name that will hold our minus value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
-
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2PLUS,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
-
-                                                                             cc.AppendCode(e1.codeList);
-                                                                             cc.AppendCode(e2.codeList);
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
+                                                                             // Create ArithmeticExpression
+                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
+                                                                                                                                 OpCodes.A2PLUS, 
+                                                                                                                                 e1.getResult(), e2.getResult(),
+                                                                                                                                 tempVariable);
+                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             RESULT = exp;
                                                                          :}  
 						  | exp:e1 MINUS   exp:e2                        {:
-                                                                             // Create a new variable name that will hold our minus value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             scope.Insert(tempVariable);
 
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2MINUS,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
-
-                                                                             cc.AppendCode(e1.codeList);
-                                                                             cc.AppendCode(e2.codeList);
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
+                                                                             // Create ArithmeticExpression
+                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
+                                                                                                                                 OpCodes.A2MINUS, 
+                                                                                                                                 e1.getResult(), e2.getResult(),
+                                                                                                                                 tempVariable);
+                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             RESULT = exp;
                                                                          :} 
 						  | exp:e1 TIMES   exp:e2                        {:
-                                                                             // Create a new variable name that will hold our minus value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             scope.Insert(tempVariable);
 
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2TIMES,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
-
-                                                                             cc.AppendCode(e1.codeList);
-                                                                             cc.AppendCode(e2.codeList);
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
+                                                                             // Create ArithmeticExpression
+                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
+                                                                                                                                 OpCodes.A2DIV, 
+                                                                                                                                 e1.getResult(), e2.getResult(),
+                                                                                                                                 tempVariable);
+                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             RESULT = exp;
                                                                          :} 
 						  | exp:e1 DIVIDE  exp:e2                        {:
-                                                                             // Create a new variable name that will hold our minus value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             Types newType = e1.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             scope.Insert(tempVariable);
 
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2DIV,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
-
-                                                                             cc.AppendCode(e1.codeList);
-                                                                             cc.AppendCode(e2.codeList);
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
+                                                                             // Create ArithmeticExpression
+                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
+                                                                                                                                 OpCodes.A2DIV, 
+                                                                                                                                 e1.getResult(), e2.getResult(),
+                                                                                                                                 tempVariable);
+                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             RESULT = exp;
                                                                          :} 
 						  | LPAR exp:e RPAR                              {:
                                                                              RESULT = e;
@@ -545,90 +443,66 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
 
                                                                          :}
 						  | MINUS exp:e                                  {:
-                                                                             // Create a new variable name that will hold our minus value
-                                                                             String varname = VarnameCreator.getInstance().CreateName();
 
-                                                                             // The type is the result of the type of e.
-                                                                             // So we get that type
-                                                                             Types newType = e.symTabInfo.typeInfo.ActualType();   
-                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             scope.Insert(tempVariable);
 
-                                                                             scope.Insert(vsti);
-                                                                             CodeContainer cc = new CodeContainer();
-
-                                                                             // The place of the variable is the SymTabInfo we just created
-                                                                             cc.symTabInfo = vsti;
-                                                                             //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A1MINUS,
-                                                                                                                         e.symTabInfo, null, vsti);
-
-                                                                             cc.codeList = e.codeList;
-                                                                             cc.AppendCode(tac);
-                                                                             RESULT = cc;
+                                                                             // Create ArithmeticExpression
+                                                                             UnaryArithmeticExpression exp = new UnaryArithmeticExpression(e1.getExpressionType(), 
+                                                                                                                                 OpCodes.A1MINUS, 
+                                                                                                                                 e.getResult(),
+                                                                                                                                 tempVariable);
+                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             RESULT = exp;
+                                                                         :} 
                                                                          :}
                             %prec UMINUS  
 						  | NUMBER:n                                     {:
+
                                                                             ConstantTypeInfo ti = new ConstantTypeInfo(Types.INTEGER);
                                                                             IntegerSymTabInfo csti = new IntegerSymTabInfo(n.intValue());
-                                                                            RESULT = new CodeContainer(csti); 
+
+                                                                            ConstantExpression ce = new ConstantExpression(csti, ti);
+                                                                            RESULT = ce;
                                                                          :}
 						  | NAME:n LPAR pars:ps RPAR                     {:
                                                                             // Function Call
                                                                             // Add each TAC for each parameter to the result.
-                                                                            CodeContainer temp = new CodeContainer();
-                                                                            // Create a temporary object to store the parameterlist we are building.
-                                                                            CodeContainer call = new CodeContainer();
-                                                                            for(CodeContainer cc : ps)
-                                                                            {
-                                                                                // Create a TAC for the param of the call
-                                                                                temp.AppendCode(new ThreeAddressCode(OpCodes.PARAM, cc.symTabInfo));
-                                                                                call.AppendCode(cc.codeList);
-                                                                            }
-                                                                            call.AppendCode(temp.codeList);
+                                                                            //CodeContainer temp = new CodeContainer();
 
-                                                                            // Create the variable that will hold the result of the function call.
-                                                                            String varname = VarnameCreator.getInstance().CreateName();
+                                                                            // Emit all the PARAM codes
+                                                                            for(SymTabInfo sti : ps.getIdentifiers())
+                                                                                program.add(new ThreeAddressCode(Opcodes.PARAM, sti));
+
                                                                             // Get the SymTabInfo from the scope
                                                                             VariableSymTabInfo func = (VariableSymTabInfo)scope.Lookup(n);
-
                                                                             // We need the return type, so we get it from the SymTabInfo.
                                                                             FunctionTypeInfo funcTypeInfo = (FunctionTypeInfo) func.typeInfo;
-                                                                            Types funcReturnType = funcTypeInfo.ActualType();
 
-                                                                            // We create a new variable in our scope which will store the result from the functioncall.
-                                                                            VariableSymTabInfo functionResultVariable = new VariableSymTabInfo(new VariableTypeInfo(funcReturnType), varname);
-                                                                            scope.Insert(functionResultVariable);
+                                                                            VariableSymTabInfo tempVariable = GenerateVariable(funcTypeInfo.ActualType());
+                                                                            scope.Insert(tempVariable);
 
-                                                                            // Update the SymTabInfo for the CodeContainer (the resutling variable).
-                                                                            call.symTabInfo = functionResultVariable;
-
-
+                                                                            FunctionCallExpression result = new FunctionCallExpression(tempVariable, funcTypeInfo.ActualType());
                                                                             // Create the TAC for the function call.
-                                                                            call.AppendCode(new ThreeAddressCode(OpCodes.CALL,
-                                                                                                                 func, 
-                                                                                                                 funcTypeInfo.NumberOfParams(),
-                                                                                                                 functionResultVariable));
-                                                                            RESULT = call;
-
-
+                                                                            program.add(result.ToThreeAddressCode());
+                                                                            RESULT = result;
                                                                          :}
 						  | QCHAR
 						  | NAME:n                                       {:
-                                                                             
-                                                                             RESULT = new CodeContainer(scope.Lookup(n));
+                                                                             VariableExpression var = new VariableExpression(scope.Lookup(n), scope.Lookup(n).typeInfo.ActualType());
+                                                                             RESULT = var;
                                                                          :}
 						  ;
 
 pars                    ::= exp:p                                        {:
-                                                                            RESULT = new LinkedList<CodeContainer>(Arrays.asList(p));
+                                                                            RESULT = new ParameterList(p);
                                                                          :}
 						  | exp:p COMMA pars:ps                          {:
                                                                             // For each parameter we create a CodeContainer
                                                                             // this allows us to still distinct between them in the function call
-                                                                            LinkedList<CodeContainer> result = new LinkedList<CodeContainer>();
-                                                                            result.addFirst(p);
-                                                                            if(ps != null)
-                                                                                result.addAll(ps);
+                                                                            ParameterList result = new ParameterList(p);
+                                                                            result.AddParameters(ps);
                                                                             RESULT = result;
                                                                          :}
 						  | /* No parameters */
