@@ -10,18 +10,26 @@ import SymbolTable.SymTabInfo;
  */
 public class Node {
     private OpCodes    opCode;
-    private SymTabInfo rightHandArg1;
-    private SymTabInfo rightHandArg2;
-    private SymTabInfo leftHandResult;
+    private Node       left;
+    private Node       right;
+    private SymTabInfo label;
 
-    public Node(OpCodes opCode, Node n1, Node n2) {
-
+    public Node(OpCodes opCode, Node left, Node right) {
+        this.opCode = opCode;
+        this.left   = left;
+        this.right  = right;
     }
+
+
 
     /******************************************************************************************************************/
     /************************************ STATIC FUNCTIONS ************************************************************/
     /******************************************************************************************************************/
+    public static boolean isSame(Node a, Node b)
+    {
+        if(this.opCode == toCompare.getOpCode() &&
 
+    }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
@@ -33,27 +41,27 @@ public class Node {
         this.opCode = opCode;
     }
 
-    public SymTabInfo getRightHandArg1() {
-        return rightHandArg1;
+    public Node getLeft() {
+        return left;
     }
 
-    public void setRightHandArg1(SymTabInfo rightHandArg1) {
-        this.rightHandArg1 = rightHandArg1;
+    public void setLeft(Node left) {
+        this.left = left;
     }
 
-    public SymTabInfo getRightHandArg2() {
-        return rightHandArg2;
+    public Node getRight() {
+        return right;
     }
 
-    public void setRightHandArg2(SymTabInfo rightHandArg2) {
-        this.rightHandArg2 = rightHandArg2;
+    public void setRight(Node right) {
+        this.right = right;
     }
 
-    public SymTabInfo getLeftHandResult() {
-        return leftHandResult;
+    public SymTabInfo getLabel() {
+        return label;
     }
 
-    public void setLeftHandResult(SymTabInfo leftHandResult) {
-        this.leftHandResult = leftHandResult;
+    public void setLabel(SymTabInfo label) {
+        this.label = label;
     }
 }
