@@ -7,11 +7,9 @@ import SymbolTable.SymTabInfo;
  * Created by christophe on 05.06.14.
  */
 
-public class BooleanExpression extends ThreeAddressCode {
+public class BooleanExpression extends CodeContainer {
     private StringSymTabInfo trueLabel;
     private StringSymTabInfo falseLabel;
-    private CodeContainer    trueCode;
-    private CodeContainer    falseCode;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
@@ -38,22 +36,6 @@ public class BooleanExpression extends ThreeAddressCode {
         this.falseLabel = falseLabel;
     }
 
-
-    public CodeContainer getTrueCode() {
-        return trueCode;
-    }
-
-    public void setTrueCode(CodeContainer trueCode) {
-        this.trueCode = trueCode;
-    }
-
-    public CodeContainer getFalseCode() {
-        return falseCode;
-    }
-
-    public void setFalseCode(CodeContainer falseCode) {
-        this.falseCode = falseCode;
-    }
     @Override
     public String toString()
     {

@@ -3,16 +3,8 @@ int positivize(int x)
     int y;
     y = x;
     if(x > 0)
-    {
         x = 0;
-        x = y;
-        return x;
-    }
-    else
-    {
-        x = x * -1;
-        return x;
-    };
+    x = DoSomeCode;
     return 0;
 }
 

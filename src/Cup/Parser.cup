@@ -9,10 +9,7 @@ import SymbolTable.VariableSymTabInfo;
 import SymbolTable.StringSymTabInfo;
 import Typing.Types;
 import Typing.VariableTypeInfo;
-import CodeGeneration.CodeContainer;
-import CodeGeneration.VarnameCreator;
-import CodeGeneration.ThreeAddressCode;
-import CodeGeneration.OpCodes;
+import CodeGeneration.*;
 import java.util.LinkedList;
 import java.util.Arrays;
 
@@ -20,6 +17,7 @@ import java.util.Arrays;
 action code {:
 
   SymbolTable scope = new SymbolTable();
+  CodeContainer program = new CodeContainer();
 :}
    
 parser code {:
@@ -110,9 +108,9 @@ terminal Integer   NUMBER;
 terminal String    NAME;
 
 
-non terminal CodeContainer             exp, bexp, statement, block, fun_declaration, declaration, var_declarations, var_declaration, program, total;
+non terminal CodeContainer             exp, statement, block, fun_declaration, declaration, var_declarations, var_declaration, program, total;
 non terminal LinkedList<CodeContainer> statements, pars;
-
+non terminal BooleanExpression         bexp;
 non terminal Types                     type;
 
 non terminal SymTabInfo                formal_par, lexp;
@@ -135,7 +133,7 @@ precedence left     DOT, LBRACK;
 
 total                   ::=   program:p                                  {:
                                                                              // total
-                                                                             p.PrintCode();
+                                                                             program.PrintCode();
                                                                              RESULT = p;
                                                                          :}
                           ;
@@ -276,25 +274,40 @@ statements                  ::= statement:st SEMICOLON statements:sts    {:
 statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
                                                                              // single if
                                                                              CodeContainer result = new CodeContainer();
-                                                                             // The variable that contains the value of the condition
-                                                                             // Create the true exit label
+
+                                                                             // Create the labels to backpatch.
                                                                              String falseLabel = VarnameCreator.getInstance().CreateLabel();
                                                                              ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
                                                                              StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, falseLabel);
+                                                                             ThreeAddressCode falseTac = new ThreeAddressCode(OpCodes.LABEL, falseLabelSymtabInfo);
+
+                                                                             // Create the true label exit
+                                                                             String trueLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             StringSymTabInfo trueLabelSymtabInfo = new StringSymTabInfo(cti, trueLabel);
+                                                                             ThreeAddressCode trueTac = new ThreeAddressCode(OpCodes.LABEL, trueLabelSymtabInfo);
+
+                                                                             // Create the true label exit
+                                                                             String afterIfLabel = VarnameCreator.getInstance().CreateLabel();
+                                                                             StringSymTabInfo afterIfSymtabInfo = new StringSymTabInfo(cti, afterIfLabel);
+                                                                             ThreeAddressCode afterIfTac = new ThreeAddressCode(OpCodes.LABEL, afterIfSymtabInfo);
                                                                              // Create the TAC that will check if the value is true
                                                                              // ifFalse <x> goto <falseLabel>
                                                                              // Arg2 = goto label if false
-                                                                             ThreeAddressCode iftest = new ThreeAddressCode(OpCodes.IFFALSE,
-                                                                                                                            cond.symTabInfo,
-                                                                                                                            falseLabelSymtabInfo,
-                                                                                                                            null);
-                                                                             ThreeAddressCode falseTac = new ThreeAddressCode(OpCodes.LABEL, falseLabelSymtabInfo);
+                                                                             cond.setTrueLabel(trueLabelSymtabInfo);
+                                                                             cond.setFalseLabel(afterIfSymtabInfo);
+                                                                             // ThreeAddressCode iftest = new ThreeAddressCode(OpCodes.IFFALSE,
+                                                                             //                                                cond.symTabInfo,
+                                                                             //                                                falseLabelSymtabInfo,
+                                                                             //                                                null);
+                                                                             //ThreeAddressCode falseTac = new ThreeAddressCode(OpCodes.LABEL, falseLabelSymtabInfo);
                                                                              result.AppendCode(cond.codeList);
-                                                                             result.AppendCode(iftest);
-                                                                             // We created the tac so we next we add the code to fallthrough
+                                                                             result.AppendCode(trueTac);
                                                                              result.AppendCode(cons.codeList);
-                                                                             // Insert the false label
                                                                              result.AppendCode(falseTac);
+                                                                             // We created the tac so we next we add the code to fallthrough
+                                                                             //result.AppendCode(cons.codeList);
+                                                                             // Insert the false label
+                                                                             //result.AppendCode(falseTac);
                                                                              RESULT = result;                                                                           
                                                                          :}
 								%prec LOW
@@ -460,11 +473,7 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              RESULT = cc;
                                                                          :}                                                                                                                                                                                                                         
                           ;                       
-exp                     ::= bexp:e                                       {:
-                                                                             // OR
-                                                                             RESULT = e;     
-                                                                         :}
-						  | exp:e1 PLUS    exp:e2                        {:
+exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create a new variable name that will hold our minus value
                                                                              String varname = VarnameCreator.getInstance().CreateName();
                                                                              // For now we take the type of the first expression (no typecheck)
