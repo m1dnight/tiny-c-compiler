@@ -388,7 +388,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2NEQ,
                                                                                                                          e1.symTabInfo, e2.symTabInfo, vsti);
 
@@ -408,7 +408,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2EQ,
                                                                                                                          e1.symTabInfo, e2.symTabInfo, vsti);
 
@@ -428,7 +428,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2GT,
                                                                                                                          e1.symTabInfo, e2.symTabInfo, vsti);
 
@@ -448,7 +448,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2LT,
                                                                                                                          e1.symTabInfo, e2.symTabInfo, vsti);
 
@@ -468,7 +468,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2PLUS,
                                                                                                                          e1.symTabInfo, e2.symTabInfo, vsti);
 
@@ -488,7 +488,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2MINUS,
                                                                                                                          e1.symTabInfo, e2.symTabInfo, vsti);
 
@@ -508,7 +508,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2TIMES,
                                                                                                                          e1.symTabInfo, e2.symTabInfo, vsti);
 
@@ -528,7 +528,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
                                                                              CodeContainer cc = new CodeContainer();
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2DIV,
                                                                                                                          e1.symTabInfo, e2.symTabInfo, vsti);
 
@@ -558,7 +558,7 @@ exp                     ::= exp:e1 NEQUAL  exp:e2                        {:
 
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
-                                                                             //Opcode, arg1, arg2, result 
+                                                                             //Opcode, rightHandArg1, rightHandArg2, result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A1MINUS,
                                                                                                                          e.symTabInfo, null, vsti);
 

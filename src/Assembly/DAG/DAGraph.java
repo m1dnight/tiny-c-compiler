@@ -35,7 +35,7 @@ public class DAGraph {
                 // we add it.
                 Node n1 = getNode(tac.getArg1());
                 if(n1 == null)
-                 n1 = new LeafNode(tac.getArg1());
+                 n1 = new Node(tac.getArg1());
 
                 Node n2 = getNode(tac.getArg2());
                 if(n2 == null)

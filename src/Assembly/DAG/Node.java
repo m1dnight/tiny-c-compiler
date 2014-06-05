@@ -5,19 +5,58 @@ import SymbolTable.SymTabInfo;
 
 /**
  * Created by christophe on 6/4/14.
+ * Represents a node in the form of:
+ *
  */
 public class Node {
-    private SymTabInfo symbol;
+    private OpCodes    opCode;
+    private SymTabInfo rightHandArg1;
+    private SymTabInfo rightHandArg2;
+    private SymTabInfo leftHandResult;
 
-    public Node(OpCodes opCode, SymTabInfo arg1, SymTabInfo arg2) {
-        
+    public Node(SymTabInfo arg1) {
+        this.
     }
 
-    public void setSymbol(SymTabInfo symbol) {
-        this.symbol = symbol;
+    /******************************************************************************************************************/
+    /************************************ STATIC FUNCTIONS ************************************************************/
+    /******************************************************************************************************************/
+
+    public static Node CreateLeaf()
+    /******************************************************************************************************************/
+    /************************************ GETTERS AND SETTERS *********************************************************/
+    /******************************************************************************************************************/
+
+    /******************************************************************************************************************/
+    public OpCodes getOpCode() {
+        return opCode;
     }
 
-    public SymTabInfo getSymbol() {
-        return symbol;
+    public void setOpCode(OpCodes opCode) {
+        this.opCode = opCode;
+    }
+
+    public SymTabInfo getRightHandArg1() {
+        return rightHandArg1;
+    }
+
+    public void setRightHandArg1(SymTabInfo rightHandArg1) {
+        this.rightHandArg1 = rightHandArg1;
+    }
+
+    public SymTabInfo getRightHandArg2() {
+        return rightHandArg2;
+    }
+
+    public void setRightHandArg2(SymTabInfo rightHandArg2) {
+        this.rightHandArg2 = rightHandArg2;
+    }
+
+    public SymTabInfo getLeftHandResult() {
+        return leftHandResult;
+    }
+
+    public void setLeftHandResult(SymTabInfo leftHandResult) {
+        this.leftHandResult = leftHandResult;
     }
 }
