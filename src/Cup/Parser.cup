@@ -273,7 +273,7 @@ statements                  ::= statement:st SEMICOLON statements:sts    {:
 							  | /* Nothing */
 							  ;
 
-statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
+statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
                                                                              // single if
                                                                              CodeContainer result = new CodeContainer();
                                                                              // The variable that contains the value of the condition
@@ -298,7 +298,7 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                              RESULT = result;                                                                           
                                                                          :}
 								%prec LOW
-							  | IF LPAR exp:cond RPAR block:cons ELSE block:alt  {:
+							  | IF LPAR bexp:cond RPAR block:cons ELSE block:alt  {:
                                                                              // IF THEN BLOCK
                                                                              CodeContainer result = new CodeContainer();
                                                                              // Create the false exit label
