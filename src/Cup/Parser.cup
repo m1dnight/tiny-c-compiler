@@ -1,5 +1,6 @@
 package Cup;
 
+import Expressions.*;
 import Typing.ConstantTypeInfo;
 import Typing.FunctionTypeInfo;
 import SymbolTable.SymTabInfo;
@@ -13,13 +14,15 @@ import CodeGeneration.CodeContainer;
 import CodeGeneration.VarnameCreator;
 import CodeGeneration.ThreeAddressCode;
 import CodeGeneration.OpCodes;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Arrays;
 
-
 action code {:
 
-  SymbolTable scope = new SymbolTable();
+  SymbolTable scope = new SymbolTable();    
+  ArrayList<ThreeAddressCode> program = new ArrayList<ThreeAddressCode>();
 :}
    
 parser code {:
@@ -115,10 +118,10 @@ terminal           LOW, UMINUS;
 terminal Integer   NUMBER;
 terminal String    NAME;
 
-
-non terminal CodeContainer             exp, statement, block, fun_declaration, declaration, var_declarations, var_declaration, program, total;
-non terminal LinkedList<CodeContainer> statements, pars;
-
+non terminal Expression                exp;
+non terminal CodeContainer             statement, block, fun_declaration, declaration, var_declarations, var_declaration, program, total;
+non terminal LinkedList<CodeContainer> statements;
+non terminal ParameterList             pars;
 non terminal Types                     type;
 
 non terminal SymTabInfo                formal_par, lexp;
@@ -385,7 +388,7 @@ lexp                    ::= NAME:n                                       {:
 //As is customary, we assume that || and && are left-associative, and that || has lowest precedence, then &&, then ! .
 exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
                                                                              scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
@@ -398,7 +401,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                          :}  
 						  | exp:e1 MINUS   exp:e2                        {:
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
                                                                              scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
@@ -411,7 +414,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                          :} 
 						  | exp:e1 TIMES   exp:e2                        {:
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
                                                                              scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
@@ -424,7 +427,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                          :} 
 						  | exp:e1 DIVIDE  exp:e2                        {:
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
                                                                              scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
@@ -445,7 +448,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 						  | MINUS exp:e                                  {:
 
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = GenerateVariable(e1.getExpressionType());
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
                                                                              scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
@@ -456,7 +459,6 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              program.add(exp.GenerateThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :} 
-                                                                         :}
                             %prec UMINUS  
 						  | NUMBER:n                                     {:
 
@@ -473,17 +475,17 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 
                                                                             // Emit all the PARAM codes
                                                                             for(SymTabInfo sti : ps.getIdentifiers())
-                                                                                program.add(new ThreeAddressCode(Opcodes.PARAM, sti));
+                                                                                program.add(new ThreeAddressCode(OpCodes.PARAM, sti));
 
                                                                             // Get the SymTabInfo from the scope
                                                                             VariableSymTabInfo func = (VariableSymTabInfo)scope.Lookup(n);
                                                                             // We need the return type, so we get it from the SymTabInfo.
                                                                             FunctionTypeInfo funcTypeInfo = (FunctionTypeInfo) func.typeInfo;
 
-                                                                            VariableSymTabInfo tempVariable = GenerateVariable(funcTypeInfo.ActualType());
+                                                                            VariableSymTabInfo tempVariable = parser.GenerateVariable(funcTypeInfo.ActualType());
                                                                             scope.Insert(tempVariable);
 
-                                                                            FunctionCallExpression result = new FunctionCallExpression(tempVariable, funcTypeInfo.ActualType());
+                                                                            FunctionCallExpression result = new FunctionCallExpression(tempVariable, funcTypeInfo.ActualType(), func);
                                                                             // Create the TAC for the function call.
                                                                             program.add(result.ToThreeAddressCode());
                                                                             RESULT = result;
@@ -499,8 +501,6 @@ pars                    ::= exp:p                                        {:
                                                                             RESULT = new ParameterList(p);
                                                                          :}
 						  | exp:p COMMA pars:ps                          {:
-                                                                            // For each parameter we create a CodeContainer
-                                                                            // this allows us to still distinct between them in the function call
                                                                             ParameterList result = new ParameterList(p);
                                                                             result.AddParameters(ps);
                                                                             RESULT = result;
