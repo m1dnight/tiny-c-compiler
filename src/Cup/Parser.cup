@@ -379,11 +379,9 @@ lexp                    ::= NAME:n                                       {:
 //As is customary, we assume that || and && are left-associative, and that || has lowest precedence, then &&, then ! .
 
 bexp                    ::= exp:e1 GREATER exp:e2                        {:
-                                                                             // Create a new variable name that will hold our value
+                                                                             // Create a new variable name that will *possibly* hold our value
                                                                              String varname = VarnameCreator.getInstance().CreateName();
-                                                                             // The type of this variable is a boolean.
-                                                                             Types newType = Types.BOOLEAN;
-                                                                             // Create a new variable which is the target of this expression.
+                                                                             Types newType = Types.BOOLEAN; // The type of this variable is a boolean.
                                                                              VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(newType), varname);
 
                                                                              scope.Insert(vsti);
@@ -391,8 +389,10 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              // The place of the variable is the SymTabInfo we just created
                                                                              cc.symTabInfo = vsti;
                                                                              //Opcode, rightHandArg1, rightHandArg2, result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A2GT,
-                                                                                                                         e1.symTabInfo, e2.symTabInfo, vsti);
+                                                                             BooleanExpression tac = new BooleanExpression(OpCodes.A2GT,
+                                                                                                                           e1.symTabInfo, 
+                                                                                                                           e2.symTabInfo, 
+                                                                                                                           vsti);
 
                                                                              cc.AppendCode(e1.codeList);
                                                                              cc.AppendCode(e2.codeList);

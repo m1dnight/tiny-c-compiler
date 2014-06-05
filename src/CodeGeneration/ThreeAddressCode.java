@@ -6,11 +6,11 @@ import SymbolTable.SymTabInfo;
  * The class will be an object representing a three address code.
  */
 public class ThreeAddressCode {
-    private OpCodes opCode;
-    private SymTabInfo arg1;
-    private SymTabInfo arg2;
-    private SymTabInfo result;
-    private int ParamCount;
+    protected OpCodes opCode;
+    protected SymTabInfo arg1;
+    protected SymTabInfo arg2;
+    protected SymTabInfo result;
+    protected int ParamCount;
 
     public ThreeAddressCode(OpCodes op, SymTabInfo arg1, SymTabInfo arg2, SymTabInfo result)
     {
