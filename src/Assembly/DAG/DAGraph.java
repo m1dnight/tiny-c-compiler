@@ -22,6 +22,10 @@ public class DAGraph {
         // For each instruction in the basicblock
         for(ThreeAddressCode tac : basicBlock.getTacs())
         {
+            /**
+             * This part is for when we are dealing with TAC's in the form of:
+             * A = B op C
+             */
             if(tac.getOpCode() == OpCodes.A2PLUS  ||
                tac.getOpCode() == OpCodes.A2TIMES ||
                tac.getOpCode() == OpCodes.A2MINUS ||
@@ -33,23 +37,33 @@ public class DAGraph {
             {
                 // If the the first variable in the TAC (e.g., A = B + C, we mean B) is not yet in the DAG
                 // we add it.
-                Node n1 = getNode(tac.getArg1());
+                LeafNode n1 = getNode(tac.getArg1());
                 if(n1 == null)
-                 n1 = new Node(tac.getArg1());
+                 n1 = new LeafNode(tac.getArg1());
 
-                Node n2 = getNode(tac.getArg2());
+                LeafNode n2 = getNode(tac.getArg2());
                 if(n2 == null)
                     n2 = new LeafNode(tac.getArg1());
 
                 // Find the node that has these two nodes as children
-                Node opNode = FindNode(tac.getOpCode());
+                Node opNode = FindNode(tac.getOpCode(), n1, n2);
                 if(opNode == null)
-                    opNode = new Node(tac.getOpCode(), tac.getArg1(), tac.getArg2());
-
-                opNode.setSymbol(tac.getResult());
+                    opNode = new Node(tac.getOpCode(), n1, n2);
+                opNode.addSymbol(tac.getResult());
             }
+            /**
+             * This part is for when we are dealing with TAC's in the form of:
+             * A = op B
+             */
+
+
         }
     }
+
+    private Node FindNode(OpCodes opCode, Node n1, Node n2) {
+        return null;
+    }
+
 
     private Node FindNode(OpCodes opCode) {
         return null;

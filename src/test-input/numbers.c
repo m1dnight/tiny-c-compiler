@@ -28,6 +28,6 @@ int main(int mainParam)
     int x;
     x = 5;
     mainParam = positivize(x);
-    return mainParam;ah oei
+    return mainParam;
 
 }

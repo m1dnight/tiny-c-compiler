@@ -98,7 +98,7 @@ public class ThreeAddressCode {
         /******************************************************************************
          * Simple arithmetic expressions
          *****************************************************************************/
-        if(opCode == OpCodes.A1MINUS)f
+        if(opCode == OpCodes.A1MINUS)
         {
             return String.format("%s = %s %s", result.IdentifiertoString(), " -", arg1.IdentifiertoString());
         }
