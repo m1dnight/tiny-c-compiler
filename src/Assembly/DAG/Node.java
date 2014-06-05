@@ -3,32 +3,52 @@ package Assembly.DAG;
 import CodeGeneration.OpCodes;
 import SymbolTable.SymTabInfo;
 
+import java.util.ArrayList;
+
 /**
  * Created by christophe on 6/4/14.
  * Represents a node in the form of:
  *
  */
 public class Node {
-    private OpCodes    opCode;
-    private Node       left;
-    private Node       right;
-    private SymTabInfo label;
+    private OpCodes               opCode;
+    private Node                  left;
+    private Node                  right;
+    private ArrayList<SymTabInfo> labels;
 
+
+    /******************************************************************************************************************/
+    /************************************ CONSTRUCTORS  ***************************************************************/
+    /******************************************************************************************************************/
+    public Node(SymTabInfo label)
+    {
+        this.labels = new ArrayList<SymTabInfo>();
+        this.labels.add(label);
+    }
     public Node(OpCodes opCode, Node left, Node right) {
         this.opCode = opCode;
         this.left   = left;
         this.right  = right;
     }
-
-
-
-    /******************************************************************************************************************/
-    /************************************ STATIC FUNCTIONS ************************************************************/
-    /******************************************************************************************************************/
-    public static boolean isSame(Node a, Node b)
+    public Node(OpCodes opCode, Node single)
     {
-        if(this.opCode == toCompare.getOpCode() &&
+        this.opCode = opCode;
+        this.left = single;
+    }
 
+    public Node() {
+    }
+    /******************************************************************************************************************/
+    /************************************ LOGIC ***********************************************************************/
+    /******************************************************************************************************************/
+    public void AddSymbol(SymTabInfo label)
+    {
+        this.labels.add(label);
+    }
+
+    public boolean ContainsSymbol(SymTabInfo label)
+    {
+        return labels.contains(label);
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
@@ -57,11 +77,11 @@ public class Node {
         this.right = right;
     }
 
-    public SymTabInfo getLabel() {
-        return label;
+    public ArrayList<SymTabInfo> getLabels() {
+        return labels;
     }
 
-    public void setLabel(SymTabInfo label) {
-        this.label = label;
+    public void setLabels(ArrayList<SymTabInfo> labels) {
+        this.labels = labels;
     }
 }
