@@ -118,8 +118,8 @@ terminal           LOW, UMINUS;
 terminal Integer   NUMBER;
 terminal String    NAME;
 
-non terminal Expression                exp;
-non terminal CodeContainer             statement, block, fun_declaration, declaration, var_declarations, var_declaration, program, total;
+non terminal Expression                exp, statement;
+non terminal CodeContainer             block, fun_declaration, declaration, var_declarations, var_declaration, program, total;
 non terminal LinkedList<CodeContainer> statements;
 non terminal ParameterList             pars;
 non terminal Types                     type;
@@ -353,6 +353,7 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
 
 							  | WHILE LPAR exp RPAR statement
 							  | lexp:tar ASSIGN exp:ex                   {:
+                                                                            AssignmentExpression aex = new AssignmentExpression(ex.getIdentifier(), tar);
                                                                              CodeContainer cc = new CodeContainer();
                                                                              cc.AppendCode(ex.codeList);
                                                                              // The symTabInfo variable of 'ex' contains the SymTabInfo of the variable
@@ -360,7 +361,6 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
                                                                              //Parameters: Opcode, Arg1, Arg2, Result
                                                                              ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, 
                                                                                                                          ex.symTabInfo,
-                                                                                                                         null,
                                                                                                                          tar);
                                                                              cc.AppendCode(tac);
                                                                              cc.symTabInfo = tar;
@@ -369,10 +369,9 @@ statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
 							  | RETURN exp:e                             {:
                                                                             // The variable that holds the result of the expression is
                                                                             // is held inside e.symTabInfo. So we pass that to the TAC constructor.
-                                                                            ThreeAddressCode tac = new ThreeAddressCode(OpCodes.RETURN, e.symTabInfo);
-                                                                            CodeContainer cc = new CodeContainer();
-                                                                            cc.AppendCode(tac);
-                                                                            RESULT = cc;
+                                                                            ReturnExpression re = new ReturnExpression(e.getIdentifier());
+                                                                            program.add(re.GenerateThreeAddressCode());
+                                                                            RESULT = re;
                                                                          :}
 							  | WRITE exp
 							  | READ lexp
@@ -448,13 +447,13 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 						  | MINUS exp:e                                  {:
 
                                                                              // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e.getExpressionType());
                                                                              scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             UnaryArithmeticExpression exp = new UnaryArithmeticExpression(e1.getExpressionType(), 
+                                                                             UnaryArithmeticExpression exp = new UnaryArithmeticExpression(e.getExpressionType(), 
                                                                                                                                  OpCodes.A1MINUS, 
-                                                                                                                                 e.getResult(),
+                                                                                                                                 e.getIdentifier(),
                                                                                                                                  tempVariable);
                                                                              program.add(exp.GenerateThreeAddressCode());
                                                                              RESULT = exp;
