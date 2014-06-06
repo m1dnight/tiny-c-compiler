@@ -4,9 +4,12 @@ import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
 import Typing.Types;
 
+import java.util.ArrayList;
+
 public class Expression {
-    protected SymTabInfo identifier;
-    protected Types      expressionType;
+    private   ArrayList<Expression> codeList;
+    protected SymTabInfo            identifier;
+    protected Types                 expressionType;
 
     public ThreeAddressCode ToThreeAddressCode() {
         throw new Error("ToThreeAddressCode() should be overridden by subclasses!");
@@ -37,4 +40,13 @@ public class Expression {
     public void setExpressionType(Types expressionType) {
         this.expressionType = expressionType;
     }
+
+    public ArrayList<Expression> getCodeList() {
+        return codeList;
+    }
+
+    public void setCodeList(ArrayList<Expression> codeList) {
+        this.codeList = codeList;
+    }
+
 }

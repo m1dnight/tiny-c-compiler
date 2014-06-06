@@ -33,6 +33,22 @@ parser code {:
 	  VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(type), varname);
 	  return vsti;
 	}
+    public StringSymTabInfo CreateLabel()
+    {
+        String label = VarnameCreator.getInstance().CreateLabel();
+        ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
+        StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, label);
+        return falseLabelSymtabInfo;
+
+    }
+    public StringSymTabInfo CreateFunctionLabel(String name)
+    {
+        // Create a label that indicates the beginning of this function
+        String label = VarnameCreator.getInstance().CreateFunctionLabel(name);
+        ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
+        StringSymTabInfo beginFunLabelSymtabInfo = new StringSymTabInfo(cti, label);
+        return beginFunLabelSymtabInfo;
+    }
 	/* Change the method report_error so it will display the line and
 	   column of where the error occurred in the input as well as the
 	   reason for the error which is passed into the method in the
@@ -118,9 +134,14 @@ terminal           LOW, UMINUS;
 terminal Integer   NUMBER;
 terminal String    NAME;
 
-non terminal Expression                exp, statement;
-non terminal CodeContainer             block, fun_declaration, declaration, var_declarations, var_declaration, program, total;
-non terminal LinkedList<CodeContainer> statements;
+non terminal Expression                exp;
+non terminal Statement                 statement;
+non terminal StatementList             statements, block;
+non terminal FunctionDeclaration       fun_declaration;
+non terminal BooleanExpression         bexp;
+non terminal Declaration               declaration;
+non terminal CodeContainer             var_declarations, var_declaration;
+non terminal Program                   program, total;
 non terminal ParameterList             pars;
 non terminal Types                     type;
 
@@ -144,7 +165,7 @@ precedence left     DOT, LBRACK;
 
 total                   ::=   program:p                                  {:
                                                                              // total
-                                                                             p.PrintCode();
+                                                                             System.out.println(p.toString());
                                                                              RESULT = p;
                                                                          :}
                           ;
@@ -153,11 +174,10 @@ program                 ::=   program:ps declaration:p                   {:
                                                                              // We have a CodeContainer which contains our entire program at this point.
                                                                              // program is a LinkedList<CodeContainer> and declaration is a single CodeContainer.
                                                                              // program can be null as well.
-                                                                             CodeContainer res = new CodeContainer();
-                                                                             if(ps != null) 
-                                                                                res.AppendCode(ps.codeList);
-                                                                             res.AppendCode(p.codeList);
-                                                                             RESULT = res;
+                                                                             Program pgrm = new Program();
+                                                                             pgrm.AddDeclarations(ps);
+                                                                             pgrm.AddDeclaration(p);
+                                                                             RESULT = pgrm;
                                                                          :}
 						  | /* Empty */
 						  ;
@@ -187,14 +207,12 @@ fun_declaration         ::=  type:rt NAME:n
 																		 :}
 					         block:b
 					                                                     {:
+                                                                            StringSymTabInfo funLabel = parser.CreateFunctionLabel(n);
 					                                                        scope = scope.parent;
-                                                                            // Create a label that indicates the beginning of this function
-                                                                            String beginFunLabel = VarnameCreator.getInstance().CreateFunctionLabel(n);
-                                                                            ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
-                                                                            StringSymTabInfo beginFunLabelSymtabInfo = new StringSymTabInfo(cti, beginFunLabel);
-                                                                            ThreeAddressCode beginFunTac = new ThreeAddressCode(OpCodes.LABEL, beginFunLabelSymtabInfo);
-                                                                            b.AddFirst(beginFunTac);
-                                                                            RESULT = b;
+                                                                            FunctionDeclaration f = new FunctionDeclaration();
+                                                                            f.setBeginLabel(funLabel);
+                                                                            f.setBody(b);
+                                                                            RESULT = f;
 					                                                     :}
 						   ;
 
@@ -233,15 +251,8 @@ block                   ::= LBRACE                                       {:
                                                                          :}
                             var_declarations statements:sts 
                             RBRACE                                       {:
-                                                                            // block
-                                                                            // We close the block so scope is closed.
                                                                             scope = scope.parent;
-                                                                            // Create single code container to contain all code
-                                                                            CodeContainer res = new CodeContainer();
-                                                                            for(CodeContainer cc : sts)
-                                                                                res.AppendCode(cc.codeList);
-                                                                            
-                                                                            RESULT = res;
+                                                                            RESULT = sts;
                                                                          :}
 						  ;
 
@@ -273,105 +284,43 @@ type                    ::= INT                                          {: // t
 statements                  ::= statement:st SEMICOLON statements:sts    {:
                                                                             // statements
                                                                             // Append the statement to the statements
-                                                                            LinkedList<CodeContainer> result = new LinkedList<CodeContainer>();
-                                                                            result.addFirst(st);
-                                                                            if(sts != null)
-                                                                                result.addAll(sts);
-                                                                            RESULT = result;
+                                                                            RESULT = new StatementList(st);
+                                                                            RESULT.AddStatements(sts);
                                                                          :}
 							  | /* Nothing */
 							  ;
 
-statement                   ::= IF LPAR exp:cond RPAR statement:cons        {:
-                                                                             // single if
-                                                                             CodeContainer result = new CodeContainer();
-                                                                             // The variable that contains the value of the condition
-                                                                             // Create the true exit label
-                                                                             String falseLabel = VarnameCreator.getInstance().CreateLabel();
-                                                                             ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
-                                                                             StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, falseLabel);
-                                                                             // Create the TAC that will check if the value is true
-                                                                             // ifFalse <x> goto <falseLabel>
-                                                                             // Arg2 = goto label if false
-                                                                             ThreeAddressCode iftest = new ThreeAddressCode(OpCodes.IFFALSE,
-                                                                                                                            cond.symTabInfo,
-                                                                                                                            falseLabelSymtabInfo,
-                                                                                                                            null);
-                                                                             ThreeAddressCode falseTac = new ThreeAddressCode(OpCodes.LABEL, falseLabelSymtabInfo);
-                                                                             result.AppendCode(cond.codeList);
-                                                                             result.AppendCode(iftest);
-                                                                             // We created the tac so we next we add the code to fallthrough
-                                                                             result.AppendCode(cons.codeList);
-                                                                             // Insert the false label
-                                                                             result.AppendCode(falseTac);
-                                                                             RESULT = result;                                                                           
+statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
+
+                                                                             StringSymTabInfo falseLabel = parser.CreateLabel();
+                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel();
+                                                                             StringSymTabInfo endLabel   = parser.CreateLabel();
+
+                                                                             cond.setTrueLabel(trueLabel);
+                                                                             cond.setFalseLabel(falseLabel);
+                                                                             cond.setTrueCode(cons);
+
+                                                                             IfStatement iex = new IfStatement();
+                                                                             iex.setBexp(cond);
+                                                                             RESULT = iex;
                                                                          :}
 								%prec LOW
-							  | IF LPAR exp:cond RPAR block:cons ELSE block:alt  {:
-                                                                             // IF THEN BLOCK
-                                                                             CodeContainer result = new CodeContainer();
-                                                                             // Create the false exit label
-                                                                             String falseLabel = VarnameCreator.getInstance().CreateLabel();
-                                                                             ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
-                                                                             StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, falseLabel);
-                                                                             ThreeAddressCode falseTac = new ThreeAddressCode(OpCodes.LABEL, falseLabelSymtabInfo);
-
-                                                                             // Create the true label exit
-                                                                             String trueLabel = VarnameCreator.getInstance().CreateLabel();
-                                                                             StringSymTabInfo trueLabelSymtabInfo = new StringSymTabInfo(cti, trueLabel);
-                                                                             ThreeAddressCode trueTac = new ThreeAddressCode(OpCodes.LABEL, trueLabelSymtabInfo);
-
-                                                                             // Create the true label exit
-                                                                             String afterIfLabel = VarnameCreator.getInstance().CreateLabel();
-                                                                             StringSymTabInfo afterIfSymtabInfo = new StringSymTabInfo(cti, afterIfLabel);
-                                                                             ThreeAddressCode afterIfTac = new ThreeAddressCode(OpCodes.LABEL, afterIfSymtabInfo);
-
-                                                                             // Create the TAC that will check if the value is true
-                                                                             // ifFalse <x> goto <falseLabel>
-                                                                             // Arg2 = goto label if false
-                                                                             ThreeAddressCode iftest = new ThreeAddressCode(OpCodes.IFFALSE,
-                                                                                                                            cond.symTabInfo,
-                                                                                                                            falseLabelSymtabInfo,
-                                                                                                                            null);
-
-                                                                             // TAC to jump to after if, if we executed the consequent
-                                                                             ThreeAddressCode jumpAfterIfTac = new ThreeAddressCode(OpCodes.GOTO, afterIfSymtabInfo);
-
-                                                                             result.AppendCode(cond.codeList);
-                                                                             result.AppendCode(iftest);
-                                                                             // We created the tac so we next we add the code to fallthrough
-                                                                             result.AppendCode(cons.codeList);
-                                                                             result.AppendCode(jumpAfterIfTac);
-                                                                             // Insert the false label
-                                                                             result.AppendCode(falseTac);
-                                                                             // Insert the alternative code
-                                                                             result.AppendCode(alt.codeList);                                                                                     
-                                                                             result.AppendCode(afterIfTac);
-
-                                                                             RESULT = result;                                                                           
-                                                                         :}
 
 							  | WHILE LPAR exp RPAR statement
 							  | lexp:tar ASSIGN exp:ex                   {:
-                                                                            AssignmentExpression aex = new AssignmentExpression(ex.getIdentifier(), tar);
-                                                                             CodeContainer cc = new CodeContainer();
-                                                                             cc.AppendCode(ex.codeList);
-                                                                             // The symTabInfo variable of 'ex' contains the SymTabInfo of the variable
-                                                                             // that contains the result of the expression.
-                                                                             //Parameters: Opcode, Arg1, Arg2, Result
-                                                                             ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, 
-                                                                                                                         ex.symTabInfo,
-                                                                                                                         tar);
-                                                                             cc.AppendCode(tac);
-                                                                             cc.symTabInfo = tar;
-                                                                             RESULT = cc;
+                                                                            AssignStatement as = new AssignStatement(tar, ex);
+                                                                             //cc.AppendCode(tac);
+                                                                             //cc.symTabInfo = tar;
+                                                                            //program.add(aex.ToThreeAddressCode());
+
+                                                                            RESULT = as;
                                                                          :}
 							  | RETURN exp:e                             {:
                                                                             // The variable that holds the result of the expression is
                                                                             // is held inside e.symTabInfo. So we pass that to the TAC constructor.
-                                                                            ReturnExpression re = new ReturnExpression(e.getIdentifier());
-                                                                            program.add(re.GenerateThreeAddressCode());
-                                                                            RESULT = re;
+                                                                            ReturnStatement rs = new ReturnStatement(e);
+                                                                            //program.add(re.ToThreeAddressCode());
+                                                                            RESULT = rs;
                                                                          :}
 							  | WRITE exp
 							  | READ lexp
@@ -384,6 +333,59 @@ lexp                    ::= NAME:n                                       {:
                                                                          :}
 						  | lexp LBRACK exp RBRACK  // array access
 						  ;
+bexp                    ::= exp:e1 GREATER exp:e2                        {:
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(Types.INTEGER);
+                                                                             scope.Insert(tempVariable);
+
+                                                                             // Create ArithmeticExpression
+                                                                             BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
+                                                                                                                           OpCodes.A2GT, 
+                                                                                                                           e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                           tempVariable);
+                                                                             //program.add(exp.ToThreeAddressCode());
+                                                                             RESULT = exp;
+                                                                         :}                                                                                
+                          | exp:e1 LESS    exp:e2                        {:
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(Types.INTEGER);
+                                                                             scope.Insert(tempVariable);
+
+                                                                             // Create ArithmeticExpression
+                                                                             BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
+                                                                                                                           OpCodes.A2LT, 
+                                                                                                                           e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                           tempVariable);
+                                                                             //program.add(exp.ToThreeAddressCode());
+                                                                             RESULT = exp;
+                                                                         :}   
+                          | exp:e1 EQUAL   exp:e2                        {:
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(Types.INTEGER);
+                                                                             scope.Insert(tempVariable);
+
+                                                                             // Create ArithmeticExpression
+                                                                             BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
+                                                                                                                           OpCodes.A2EQ, 
+                                                                                                                           e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                           tempVariable);
+                                                                             //program.add(exp.ToThreeAddressCode());
+                                                                             RESULT = exp;
+                                                                         :}    
+                          | exp:e1 NEQUAL  exp:e2                        {:
+                                                                             // For now we take the type of the first expression (no typecheck)
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(Types.INTEGER);
+                                                                             scope.Insert(tempVariable);
+
+                                                                             // Create ArithmeticExpression
+                                                                             BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
+                                                                                                                           OpCodes.A2NEQ, 
+                                                                                                                           e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                           tempVariable);
+                                                                             //program.add(exp.ToThreeAddressCode());
+                                                                             RESULT = exp;
+                                                                         :} 
+                          ;                           
 //As is customary, we assume that || and && are left-associative, and that || has lowest precedence, then &&, then ! .
 exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // For now we take the type of the first expression (no typecheck)
@@ -393,9 +395,9 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
                                                                                                                                  OpCodes.A2PLUS, 
-                                                                                                                                 e1.getResult(), e2.getResult(),
+                                                                                                                                 e1.getIdentifier(), e2.getIdentifier(),
                                                                                                                                  tempVariable);
-                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :}  
 						  | exp:e1 MINUS   exp:e2                        {:
@@ -406,9 +408,9 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
                                                                                                                                  OpCodes.A2MINUS, 
-                                                                                                                                 e1.getResult(), e2.getResult(),
+                                                                                                                                 e1.getIdentifier(), e2.getIdentifier(),
                                                                                                                                  tempVariable);
-                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :} 
 						  | exp:e1 TIMES   exp:e2                        {:
@@ -419,9 +421,9 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
                                                                                                                                  OpCodes.A2DIV, 
-                                                                                                                                 e1.getResult(), e2.getResult(),
+                                                                                                                                 e1.getIdentifier(), e2.getIdentifier(),
                                                                                                                                  tempVariable);
-                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :} 
 						  | exp:e1 DIVIDE  exp:e2                        {:
@@ -432,9 +434,9 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
                                                                                                                                  OpCodes.A2DIV, 
-                                                                                                                                 e1.getResult(), e2.getResult(),
+                                                                                                                                 e1.getIdentifier(), e2.getIdentifier(),
                                                                                                                                  tempVariable);
-                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :} 
 						  | LPAR exp:e RPAR                              {:
@@ -455,7 +457,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                                                                                  OpCodes.A1MINUS, 
                                                                                                                                  e.getIdentifier(),
                                                                                                                                  tempVariable);
-                                                                             program.add(exp.GenerateThreeAddressCode());
+                                                                             program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :} 
                             %prec UMINUS  
@@ -464,7 +466,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             ConstantTypeInfo ti = new ConstantTypeInfo(Types.INTEGER);
                                                                             IntegerSymTabInfo csti = new IntegerSymTabInfo(n.intValue());
 
-                                                                            ConstantExpression ce = new ConstantExpression(csti, ti);
+                                                                            ConstantExpression ce = new ConstantExpression(csti, Types.INTEGER);
                                                                             RESULT = ce;
                                                                          :}
 						  | NAME:n LPAR pars:ps RPAR                     {:
