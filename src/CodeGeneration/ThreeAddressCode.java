@@ -88,9 +88,13 @@ public class ThreeAddressCode {
         {
             return String.format("%s", arg1.IdentifiertoString());
         }
-        if(opCode == OpCodes.A2GT)
+        if(opCode == OpCodes.A2GTIF)
         {
             return String.format("IF %s > %s GOTO %s", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
+        }
+        if(opCode == OpCodes.A2EQIF)
+        {
+            return String.format("IF %s == %s GOTO %s", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
         }
         /******************************************************************************
          * Assignment
@@ -121,6 +125,22 @@ public class ThreeAddressCode {
         if(opCode == OpCodes.A2DIV)
         {
             return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " / ", arg2.IdentifiertoString());
+        }
+        if(opCode == OpCodes.A2EQ)
+        {
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " == ", arg2.IdentifiertoString());
+        }
+        if(opCode == OpCodes.A2NEQ)
+        {
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " != ", arg2.IdentifiertoString());
+        }
+        if(opCode == OpCodes.A2GT)
+        {
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " > ", arg2.IdentifiertoString());
+        }
+        if(opCode == OpCodes.A2LT)
+        {
+            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " < ", arg2.IdentifiertoString());
         }
 
         // In case we didn't match anything return a string that will show in the output

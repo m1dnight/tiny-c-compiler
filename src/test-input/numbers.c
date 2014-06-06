@@ -1,10 +1,14 @@
 int positivize(int x)
 {
     int y;
-
-    y = 3;
+    y = 1 > 2;
+    x = 2 ==2;
+    x = 1 < 2;
+    x = 1 != 2;
+    x = 3;
     y = x + 1 + 2 + 3;
-    if(x > 0)
+    if(x == 0)
+
         x = 123456789;
 
     return 0;
@@ -24,5 +28,4 @@ int main(int mainParam)
     x = 5;
     mainParam = positivize(x);
     return mainParam;
-
 }

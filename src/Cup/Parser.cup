@@ -342,7 +342,7 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
                                                                                                                            OpCodes.A2GT, 
-                                                                                                                           e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                           e1, e2,
                                                                                                                            tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
@@ -355,7 +355,7 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
                                                                                                                            OpCodes.A2LT, 
-                                                                                                                           e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                           e1, e2,
                                                                                                                            tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
@@ -368,7 +368,7 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
                                                                                                                            OpCodes.A2EQ, 
-                                                                                                                           e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                           e1, e2,
                                                                                                                            tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
@@ -381,7 +381,7 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
                                                                                                                            OpCodes.A2NEQ, 
-                                                                                                                           e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                           e1, e2,
                                                                                                                            tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
@@ -461,6 +461,9 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :} 
+                          | bexp:exp                                     {:
+                                                                             RESULT = exp;                            
+                                                                         :}
                             %prec UMINUS  
 						  | NUMBER:n                                     {:
 

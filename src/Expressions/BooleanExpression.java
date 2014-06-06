@@ -13,8 +13,8 @@ import java.util.Collection;
  * Created by christophe on 06.06.14.
  */
 public class BooleanExpression extends ArithmeticExpession {
-    protected SymTabInfo operand1;
-    protected SymTabInfo operand2;
+    protected Expression operand1;
+    protected Expression operand2;
     private   SymTabInfo trueLabel;
     private   SymTabInfo falseLabel;
     private   SymTabInfo endLabel;
@@ -25,7 +25,7 @@ public class BooleanExpression extends ArithmeticExpession {
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public BooleanExpression(Types expressionType, OpCodes operation, SymTabInfo operand1, SymTabInfo operand2, SymTabInfo result) {
+    public BooleanExpression(Types expressionType, OpCodes operation, Expression operand1, Expression operand2, SymTabInfo result) {
         super(result, expressionType, operation);
         this.operand1       = operand1;
         this.operand2       = operand2;
@@ -35,12 +35,34 @@ public class BooleanExpression extends ArithmeticExpession {
     /******************************************************************************************************************/
     @Override
     public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
-        throw new NotImplementedException();
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        output.addAll(this.operand1.ToThreeAddressCode());
+        output.addAll(this.operand2.ToThreeAddressCode());
+        output.add( new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.identifier));
+        return output;
     }
 
     public ArrayList<ThreeAddressCode> ToCondition()
     {
-        ThreeAddressCode iff  = new ThreeAddressCode(this.operation, this.operand1, this.operand2, this.trueLabel);
+        //TODO Can we remove this?
+        // Change to the if operation so the ThreeAddressCode knows what to do.
+        if(this.operation == OpCodes.A2EQ)
+        {
+            this.operation = OpCodes.A2EQIF;
+        }
+        if(this.operation == OpCodes.A2NEQ)
+        {
+            this.operation = OpCodes.A2NEQIF;
+        }
+        if(this.operation == OpCodes.A2GT)
+        {
+            this.operation = OpCodes.A2GTIF;
+        }
+        if(this.operation == OpCodes.A2LT)
+        {
+            this.operation = OpCodes.A2LTIF;
+        }
+        ThreeAddressCode iff  = new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
         ThreeAddressCode iff2 = new ThreeAddressCode(OpCodes.GOTO, this.falseLabel);
 
         ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>(2);
@@ -55,19 +77,19 @@ public class BooleanExpression extends ArithmeticExpession {
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public SymTabInfo getOperand1() {
+    public Expression getOperand1() {
         return operand1;
     }
 
-    public void setOperand1(SymTabInfo operand1) {
+    public void setOperand1(Expression operand1) {
         this.operand1 = operand1;
     }
 
-    public SymTabInfo getOperand2() {
+    public Expression getOperand2() {
         return operand2;
     }
 
-    public void setOperand2(SymTabInfo operand2) {
+    public void setOperand2(Expression operand2) {
         this.operand2 = operand2;
     }
 
