@@ -1,5 +1,7 @@
 package Expressions;
 
+import CodeGeneration.ThreeAddressCode;
+
 import java.util.ArrayList;
 
 /**
@@ -30,7 +32,22 @@ public class Program {
     }
     public String toString()
     {
-        return "program";
+        StringBuilder sb = new StringBuilder();
+        for(Declaration d : declarations)
+        {
+            sb.append(d.toString());
+        }
+        return sb.toString();
+    }
+
+    public ArrayList<ThreeAddressCode> toThreeAddressCode()
+    {
+        ArrayList<ThreeAddressCode> program = new ArrayList<ThreeAddressCode>();
+        for(Declaration d : this.declarations)
+        {
+            program.addAll(d.toThreeAddressCode());
+        }
+        return program;
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
@@ -42,4 +59,6 @@ public class Program {
     public void setDeclarations(ArrayList<Declaration> declarations) {
         this.declarations = declarations;
     }
+
+
 }

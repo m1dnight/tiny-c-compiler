@@ -1,6 +1,9 @@
 package Expressions;
 
+import CodeGeneration.ThreeAddressCode;
+
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by christophe on 06.06.14.
@@ -36,6 +39,16 @@ public class StatementList {
             this.statements.add(s);
         return this;
     }
+
+    public ArrayList<ThreeAddressCode> toThreeAddressCode() {
+
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        for(Statement s : this.statements)
+        {
+           output.addAll(s.toThreeAddressCode());
+        }
+        return output;
+    }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
@@ -47,4 +60,5 @@ public class StatementList {
     public void setStatements(ArrayList<Statement> statements) {
         this.statements = statements;
     }
+
 }

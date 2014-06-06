@@ -1,5 +1,6 @@
 package Expressions;
 
+import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
 import Typing.Types;
 
@@ -10,5 +11,10 @@ public class ConstantExpression extends Expression {
 
     public ConstantExpression(SymTabInfo identifier, Types type) {
         super(identifier, type);
+    }
+
+    public ThreeAddressCode ToThreeAddressCode()
+    {
+        return null;
     }
 }

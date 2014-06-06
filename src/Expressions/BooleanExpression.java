@@ -6,6 +6,7 @@ import SymbolTable.SymTabInfo;
 import Typing.Types;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by christophe on 06.06.14.
@@ -94,4 +95,5 @@ public class BooleanExpression extends ArithmeticExpession {
     public void setFalseCode(Statement falseCode) {
         this.falseCode = falseCode;
     }
+
 }

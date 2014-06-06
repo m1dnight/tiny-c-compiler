@@ -4,6 +4,8 @@ import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
 
+import java.util.ArrayList;
+
 /**
  * Created by christophe on 06.06.14.
  */
@@ -22,6 +24,16 @@ public class AssignStatement extends Statement {
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
+    public ArrayList<ThreeAddressCode> toThreeAddressCode()
+    {
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        if(valueExpressions != null) // It could be a single integer!
+            output.add(valueExpressions.ToThreeAddressCode());
+        ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, this.valueExpressions.getIdentifier(), null, this.target);
+        output.add(tac);
+        return output;
+    }
+
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/

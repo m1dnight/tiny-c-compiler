@@ -10,6 +10,10 @@ import java.util.ArrayList;
 public class Statement {
     public ArrayList<ThreeAddressCode> getCodeList()
     {
-        throw new Error("getCodeList() should be implemented by sub classes!");
+        throw new Error("getCodeList() should be implemented by sub classes of Statement!");
+    }
+
+    public ArrayList<ThreeAddressCode> toThreeAddressCode() {
+        throw new Error("toThreeAddressCode() should be implemented by sub classes of Statement!");
     }
 }

@@ -3,7 +3,9 @@ package Main;
 import Assembly.BasicBlock;
 import Assembly.Generator;
 import CodeGeneration.CodeContainer;
+import CodeGeneration.ThreeAddressCode;
 import Cup.parser;
+import Expressions.Program;
 import SymbolTable.SymbolTable;
 
 import java.io.FileReader;
@@ -15,9 +17,14 @@ public class Main {
     /* Start the parser */
         try {
             parser p = new parser(new Jflex.Lexer(new FileReader(argv[0])));
-            CodeContainer result = (CodeContainer) p.parse().value;
-            ArrayList<BasicBlock> basicBlocks =  Generator.SplitToBlocks(result);
-            Generator.PrintBlocks(basicBlocks);
+            Program result = (Program) p.parse().value;
+            for(ThreeAddressCode tac : result.toThreeAddressCode())
+            {
+                System.out.println(tac.toString());
+            }
+            int x = 5;
+/*            ArrayList<BasicBlock> basicBlocks =  Generator.SplitToBlocks(result);
+            Generator.PrintBlocks(basicBlocks);*/
 
         } catch (Exception e) {
       /* do cleanup here -- possibly rethrow e */
