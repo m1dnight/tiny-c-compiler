@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/BooleanExpression.java" afterPath="$PROJECT_DIR$/src/Expressions/BooleanExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/IfElseStatement.java" afterPath="$PROJECT_DIR$/src/Expressions/IfElseStatement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Cup/Parser.cup" afterPath="$PROJECT_DIR$/src/Cup/Parser.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/VarnameCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test-input/numbers.c" afterPath="$PROJECT_DIR$/src/test-input/numbers.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="" />
     <ignored path="TinyC-Java.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -787,7 +780,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20234291" sideWeight="0.7018122" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3556263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3556263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32908705" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
