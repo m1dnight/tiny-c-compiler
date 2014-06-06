@@ -473,11 +473,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 						  | NAME:n LPAR pars:ps RPAR                     {:
                                                                             // Function Call
                                                                             // Add each TAC for each parameter to the result.
-                                                                            //CodeContainer temp = new CodeContainer();
-
-                                                                            // Emit all the PARAM codes
-                                                                            for(SymTabInfo sti : ps.getIdentifiers())
-                                                                                program.add(new ThreeAddressCode(OpCodes.PARAM, sti));
+                                                                            //CodeContainer temp = new CodeContainer()
 
                                                                             // Get the SymTabInfo from the scope
                                                                             VariableSymTabInfo func = (VariableSymTabInfo)scope.Lookup(n);
@@ -487,7 +483,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(funcTypeInfo.ActualType());
                                                                             scope.Insert(tempVariable);
 
-                                                                            FunctionCallExpression result = new FunctionCallExpression(tempVariable, funcTypeInfo.ActualType(), func);
+                                                                            FunctionCallExpression result = new FunctionCallExpression(tempVariable, funcTypeInfo.ActualType(), func, ps);
                                                                             // Create the TAC for the function call.
                                                                             //program.add(result.ToThreeAddressCode());
                                                                             RESULT = result;

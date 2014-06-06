@@ -1,6 +1,8 @@
 int positivize(int x)
 {
     int y;
+
+    y = 3;
     y = x + 1 + 2 + 3;
     if(x > 0)
         x = 123456789;
@@ -11,6 +13,7 @@ int positivize(int x)
 int factorial(int x)
 {
     int result;
+    x = 3;
     result = x * factorial(x -1);
     return result;
 }

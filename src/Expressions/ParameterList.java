@@ -1,5 +1,7 @@
 package Expressions;
 
+import CodeGeneration.OpCodes;
+import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
 
 import java.util.ArrayList;
@@ -38,6 +40,20 @@ public class ParameterList {
         if(params != null)
             this.parameterList.addAll(params.getParameterList());
         return this;
+    }
+
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode()
+    {
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        for(Expression e : this.parameterList)
+        {
+            output.addAll(e.ToThreeAddressCode());
+        }
+        for(Expression e : this.parameterList)
+        {
+            output.add(new ThreeAddressCode(OpCodes.PARAM, e.getIdentifier()));
+        }
+        return output;
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
