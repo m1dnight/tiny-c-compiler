@@ -1,18 +1,3 @@
-int positivize(int x)
-{
-    int y;
-    if(x == 0)
-    {
-        x = 123456789;
-    }
-    else
-    {
-        x= 45466;
-    };
-
-    return 0;
-}
-
 int factorial(int x)
 {
     int result;
@@ -20,6 +5,23 @@ int factorial(int x)
     result = x * factorial(x -1);
     return result;
 }
+
+int positivize(int x)
+{
+    int y;
+    if(x == 0)
+    {
+        y = x * factorial(x - 1);
+    }
+    else
+    {
+        y = 45466;
+    };
+
+    return 0;
+}
+
+
 
 int main(int mainParam)
 {

@@ -32,14 +32,14 @@ public class VarnameCreator {
     public String CreateLabel()
     {
         this.labelCounter++;
-        return String.format("_label%d:", labelCounter);
+        return String.format("_label%d", labelCounter);
     }
     public String CreateLabel(String labelText)
     {
-        return String.format("_label_%s:", labelText);
+        return String.format("_label_%s", labelText);
     }
     public String CreateFunctionLabel(String labelText)
     {
-        return String.format("function_%s:", labelText);
+        return String.format("function_%s", labelText);
     }
 }
