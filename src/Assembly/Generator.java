@@ -11,24 +11,24 @@ import java.util.ArrayList;
  */
 public class Generator {
 
-    public static  ArrayList<BasicBlock> SplitToBlocks(CodeContainer cc)
+    public static  ArrayList<BasicBlock> SplitToBlocks(ArrayList<ThreeAddressCode> cc)
     {
         ArrayList<BasicBlock> blocks = new ArrayList<BasicBlock>();
         // We loop over all the TAC's in the CodeContainer.
         // As long as they are leaders we add them to a CodeContainer.
         int counter = 0;
-        while(counter < cc.codeList.size())
+        while(counter < cc.size())
         {
             BasicBlock block = new BasicBlock();
             // If we have a leader, we create a new block and keep adding the code
             // until we meet a new leader.
-            if(IsLeader(cc.codeList, counter))
+            if(IsLeader(cc, counter))
             {
-                block.AppendCode(cc.codeList.get(counter));
+                block.AppendCode(cc.get(counter));
                 counter++;
-                while(counter < cc.codeList.size() && !IsLeader(cc.codeList, counter))
+                while(counter < cc.size() && !IsLeader(cc, counter))
                 {
-                    block.AppendCode(cc.codeList.get(counter));
+                    block.AppendCode(cc.get(counter));
                     counter++;
                 }
             }

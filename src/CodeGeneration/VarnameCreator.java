@@ -36,7 +36,8 @@ public class VarnameCreator {
     }
     public String CreateLabel(String labelText)
     {
-        return String.format("_label_%s", labelText);
+        this.labelCounter++;
+        return String.format("_lbl_%s_%d", labelText, labelCounter);
     }
     public String CreateFunctionLabel(String labelText)
     {

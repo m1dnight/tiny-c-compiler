@@ -33,10 +33,17 @@ parser code {:
 	  VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(type), varname);
 	  return vsti;
 	}
-    public StringSymTabInfo CreateLabel(String name)
+    public StringSymTabInfo CreateLabel()
     {
         String label = VarnameCreator.getInstance().CreateLabel();
-        label = label + name;
+        ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
+        StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, label);
+        return falseLabelSymtabInfo;
+
+    }
+    public StringSymTabInfo CreateLabel(String name)
+    {
+        String label = VarnameCreator.getInstance().CreateLabel(name);
         ConstantTypeInfo cti = new ConstantTypeInfo(Types.STRING);
         StringSymTabInfo falseLabelSymtabInfo = new StringSymTabInfo(cti, label);
         return falseLabelSymtabInfo;
@@ -293,9 +300,9 @@ statements                  ::= statement:st SEMICOLON statements:sts    {:
 
 statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 
-                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("_False");
-                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("_True");
-                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("_End");
+                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("False");
+                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("True");
+                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("End");
 
                                                                              cond.setTrueLabel(trueLabel);
                                                                              cond.setFalseLabel(falseLabel);
@@ -309,9 +316,9 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 								%prec LOW
                               | IF LPAR bexp:cond RPAR block:cons ELSE block:alt  {:
 
-                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("_False");
-                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("_True");
-                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("_End");
+                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("False");
+                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("True");
+                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("End");
 
                                                                              cond.setTrueLabel(trueLabel);
                                                                              cond.setFalseLabel(falseLabel);
