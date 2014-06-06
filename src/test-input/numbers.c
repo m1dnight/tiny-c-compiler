@@ -1,15 +1,14 @@
 int positivize(int x)
 {
     int y;
-    y = 1 > 2;
-    x = 2 ==2;
-    x = 1 < 2;
-    x = 1 != 2;
-    x = 3;
-    y = x + 1 + 2 + 3;
     if(x == 0)
-
+    {
         x = 123456789;
+    }
+    else
+    {
+        x= 45466;
+    };
 
     return 0;
 }

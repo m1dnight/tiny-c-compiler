@@ -18,8 +18,8 @@ public class BooleanExpression extends ArithmeticExpession {
     private   SymTabInfo trueLabel;
     private   SymTabInfo falseLabel;
     private   SymTabInfo endLabel;
-    private   Statement  trueCode;
-    private   Statement  falseCode;
+    private   StatementList  trueCode;
+    private   StatementList  falseCode;
 
 
     /******************************************************************************************************************/
@@ -109,20 +109,27 @@ public class BooleanExpression extends ArithmeticExpession {
         this.falseLabel = falseLabel;
     }
 
-    public Statement getTrueCode() {
+    public StatementList getTrueCode() {
         return trueCode;
     }
 
-    public void setTrueCode(Statement trueCode) {
+    public void setTrueCode(StatementList trueCode) {
         this.trueCode = trueCode;
     }
+    public void setTrueCode(Statement trueCode) {
+        this.trueCode = new StatementList(trueCode);
+    }
 
-    public Statement getFalseCode() {
+    public StatementList getFalseCode() {
         return falseCode;
     }
 
-    public void setFalseCode(Statement falseCode) {
+    public void setFalseCode(StatementList falseCode) {
         this.falseCode = falseCode;
+    }
+
+    public void setFalseCode(Statement falseCode) {
+        this.trueCode = new StatementList(falseCode);
     }
 
     public SymTabInfo getEndLabel() {

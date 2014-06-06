@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Expressions/IfElseStatement.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/BooleanExpression.java" afterPath="$PROJECT_DIR$/src/Expressions/BooleanExpression.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/OpCodes.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/OpCodes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Cup/Parser.cup" afterPath="$PROJECT_DIR$/src/Cup/Parser.cup" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test-input/numbers.c" afterPath="$PROJECT_DIR$/src/test-input/numbers.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -81,86 +80,25 @@
     <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Expression.java" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/Expressions/Expression.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="828">
-                    <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                      <element signature="method#getIdentifier#0;class#Expression#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="ArithmeticExpession.java" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/Expressions/ArithmeticExpession.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="513">
-                    <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="BooleanExpression.java" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/Expressions/BooleanExpression.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.793456" vertical-offset="178" max-vertical-offset="2412">
-                    <caret line="60" column="41" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="41" />
-                    <folding>
-                      <element signature="e#1762#1780#0" expanded="true" />
-                      <element signature="e#2966#2984#0" expanded="true" />
-                      <element signature="e#3636#3637#0" expanded="true" />
-                      <element signature="e#3667#3668#0" expanded="true" />
-                      <element signature="e#3719#3720#0" expanded="true" />
-                      <element signature="e#3759#3760#0" expanded="true" />
-                      <element signature="e#3798#3799#0" expanded="true" />
-                      <element signature="e#3829#3830#0" expanded="true" />
-                      <element signature="e#3881#3882#0" expanded="true" />
-                      <element signature="e#3921#3922#0" expanded="true" />
-                      <element signature="e#3961#3962#0" expanded="true" />
-                      <element signature="e#3993#3994#0" expanded="true" />
-                      <element signature="e#4047#4048#0" expanded="true" />
-                      <element signature="e#4089#4090#0" expanded="true" />
-                      <element signature="e#4130#4131#0" expanded="true" />
-                      <element signature="e#4163#4164#0" expanded="true" />
-                      <element signature="e#4219#4220#0" expanded="true" />
-                      <element signature="e#4263#4264#0" expanded="true" />
-                      <element signature="e#4301#4302#0" expanded="true" />
-                      <element signature="e#4332#4333#0" expanded="true" />
-                      <element signature="e#4383#4384#0" expanded="true" />
-                      <element signature="e#4423#4424#0" expanded="true" />
-                      <element signature="e#4462#4463#0" expanded="true" />
-                      <element signature="e#4494#4495#0" expanded="true" />
-                      <element signature="e#4547#4548#0" expanded="true" />
-                      <element signature="e#4589#4590#0" expanded="true" />
-                      <element signature="e#4628#4629#0" expanded="true" />
-                      <element signature="e#4659#4660#0" expanded="true" />
-                      <element signature="e#4711#4712#0" expanded="true" />
-                      <element signature="e#4751#4752#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="TinyC-Java" />
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="StatementList.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Expressions/StatementList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
+              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+              <folding>
+                <element signature="e#664#665#0" expanded="true" />
+                <element signature="e#708#709#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AssignStatement.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Expressions/AssignStatement.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -171,41 +109,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThreeAddressCode.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
+      <file leaf-file-name="Statement.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Expressions/Statement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="2580">
-              <caret line="114" column="93" selection-start-line="114" selection-start-column="93" selection-end-line="114" selection-end-column="93" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="numbers.c" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="numbers.c" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13661203" vertical-offset="0" max-vertical-offset="555">
-              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="21" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parser.cup" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
+      <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5325" max-vertical-offset="7770">
-              <caret line="167" column="79" selection-start-line="167" selection-start-column="79" selection-end-line="167" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tinyc.jflex" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="736" max-vertical-offset="1380">
-              <caret line="69" column="55" selection-start-line="69" selection-start-column="55" selection-end-line="69" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="12781" max-vertical-offset="19290">
+              <caret line="889" column="81" selection-start-line="889" selection-start-column="81" selection-end-line="889" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -215,56 +145,64 @@
         <entry file="file://$PROJECT_DIR$/src/Expressions/IfStatement.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+      <file leaf-file-name="IfElseStatement.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Expressions/IfElseStatement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="9609" max-vertical-offset="18750">
-              <caret line="680" column="101" selection-start-line="680" selection-start-column="101" selection-end-line="680" selection-end-column="101" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FunctionCallExpression.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Expressions/FunctionCallExpression.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="840">
-              <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1519#1537#0" expanded="true" />
-                <element signature="e#2246#2247#0" expanded="true" />
-                <element signature="e#2282#2283#0" expanded="true" />
-                <element signature="e#2347#2348#0" expanded="true" />
-                <element signature="e#2397#2398#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BinaryArithmeticExpression.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Expressions/BinaryArithmeticExpression.java">
+      <file leaf-file-name="BooleanExpression.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Expressions/BooleanExpression.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="795">
-              <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.70673954" vertical-offset="542" max-vertical-offset="2115">
+              <caret line="69" column="21" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1770#1788#0" expanded="true" />
+                <element signature="e#2974#2992#0" expanded="true" />
+                <element signature="e#3644#3645#0" expanded="true" />
+                <element signature="e#3675#3676#0" expanded="true" />
+                <element signature="e#3727#3728#0" expanded="true" />
+                <element signature="e#3767#3768#0" expanded="true" />
+                <element signature="e#3806#3807#0" expanded="true" />
+                <element signature="e#3837#3838#0" expanded="true" />
+                <element signature="e#3889#3890#0" expanded="true" />
+                <element signature="e#3929#3930#0" expanded="true" />
+                <element signature="e#3969#3970#0" expanded="true" />
+                <element signature="e#4001#4002#0" expanded="true" />
+                <element signature="e#4055#4056#0" expanded="true" />
+                <element signature="e#4097#4098#0" expanded="true" />
+                <element signature="e#4138#4139#0" expanded="true" />
+                <element signature="e#4171#4172#0" expanded="true" />
+                <element signature="e#4227#4228#0" expanded="true" />
+                <element signature="e#4271#4272#0" expanded="true" />
+                <element signature="e#4313#4314#0" expanded="true" />
+                <element signature="e#4344#4345#0" expanded="true" />
+                <element signature="e#4399#4400#0" expanded="true" />
+                <element signature="e#4439#4440#0" expanded="true" />
+                <element signature="e#4489#4490#0" expanded="true" />
+                <element signature="e#4548#4549#0" expanded="true" />
+                <element signature="e#4591#4592#0" expanded="true" />
+                <element signature="e#4623#4624#0" expanded="true" />
+                <element signature="e#4680#4681#0" expanded="true" />
+                <element signature="e#4722#4723#0" expanded="true" />
+                <element signature="e#4775#4776#0" expanded="true" />
+                <element signature="e#4835#4836#0" expanded="true" />
+                <element signature="e#4874#4875#0" expanded="true" />
+                <element signature="e#4905#4906#0" expanded="true" />
+                <element signature="e#4957#4958#0" expanded="true" />
+                <element signature="e#4997#4998#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -283,7 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Typing/VariableTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/Typing/TypeInfo.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable/SymbolTable.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable/SymTabInfo.java" />
@@ -331,8 +268,9 @@
         <option value="$PROJECT_DIR$/src/Expressions/ParameterList.java" />
         <option value="$PROJECT_DIR$/src/Expressions/FunctionCallExpression.java" />
         <option value="$PROJECT_DIR$/src/Cup/parser.java" />
-        <option value="$PROJECT_DIR$/src/Expressions/BooleanExpression.java" />
         <option value="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
+        <option value="$PROJECT_DIR$/src/Expressions/IfElseStatement.java" />
+        <option value="$PROJECT_DIR$/src/Expressions/BooleanExpression.java" />
         <option value="$PROJECT_DIR$/src/test-input/numbers.c" />
       </list>
     </option>
@@ -869,9 +807,9 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22470714" sideWeight="0.7009346" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1943557" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3568376" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20234291" sideWeight="0.7009346" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1943557" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3568376" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32908705" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -964,13 +902,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Typing/TypeInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="666">
-          <caret line="7" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="522">
@@ -1185,16 +1116,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/Statement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Expressions/ReturnStatement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="738">
@@ -1206,17 +1127,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/StatementList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="1134">
-          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Expressions/ArithmeticExpession.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="513">
+        <state vertical-scroll-proportion="0.07770961" vertical-offset="0" max-vertical-offset="978">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
@@ -1290,78 +1203,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/Expression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="828">
-          <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getIdentifier#0;class#Expression#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/AssignStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="750">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="9609" max-vertical-offset="18750">
-          <caret line="680" column="101" selection-start-line="680" selection-start-column="101" selection-end-line="680" selection-end-column="101" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Expressions/BinaryArithmeticExpression.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="795">
           <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/BooleanExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.793456" vertical-offset="178" max-vertical-offset="2412">
-          <caret line="60" column="41" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="41" />
-          <folding>
-            <element signature="e#1762#1780#0" expanded="true" />
-            <element signature="e#2966#2984#0" expanded="true" />
-            <element signature="e#3636#3637#0" expanded="true" />
-            <element signature="e#3667#3668#0" expanded="true" />
-            <element signature="e#3719#3720#0" expanded="true" />
-            <element signature="e#3759#3760#0" expanded="true" />
-            <element signature="e#3798#3799#0" expanded="true" />
-            <element signature="e#3829#3830#0" expanded="true" />
-            <element signature="e#3881#3882#0" expanded="true" />
-            <element signature="e#3921#3922#0" expanded="true" />
-            <element signature="e#3961#3962#0" expanded="true" />
-            <element signature="e#3993#3994#0" expanded="true" />
-            <element signature="e#4047#4048#0" expanded="true" />
-            <element signature="e#4089#4090#0" expanded="true" />
-            <element signature="e#4130#4131#0" expanded="true" />
-            <element signature="e#4163#4164#0" expanded="true" />
-            <element signature="e#4219#4220#0" expanded="true" />
-            <element signature="e#4263#4264#0" expanded="true" />
-            <element signature="e#4301#4302#0" expanded="true" />
-            <element signature="e#4332#4333#0" expanded="true" />
-            <element signature="e#4383#4384#0" expanded="true" />
-            <element signature="e#4423#4424#0" expanded="true" />
-            <element signature="e#4462#4463#0" expanded="true" />
-            <element signature="e#4494#4495#0" expanded="true" />
-            <element signature="e#4547#4548#0" expanded="true" />
-            <element signature="e#4589#4590#0" expanded="true" />
-            <element signature="e#4628#4629#0" expanded="true" />
-            <element signature="e#4659#4660#0" expanded="true" />
-            <element signature="e#4711#4712#0" expanded="true" />
-            <element signature="e#4751#4752#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1392,7 +1239,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="2580">
+        <state vertical-scroll-proportion="0.74345547" vertical-offset="1254" max-vertical-offset="2580">
           <caret line="114" column="93" selection-start-line="114" selection-start-column="93" selection-end-line="114" selection-end-column="93" />
           <folding />
         </state>
@@ -1401,16 +1248,117 @@
     <entry file="file://$PROJECT_DIR$/src/Expressions/IfStatement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12781" max-vertical-offset="19290">
+          <caret line="889" column="81" selection-start-line="889" selection-start-column="81" selection-end-line="889" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/Statement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/AssignStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="750">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/Expression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73619634" vertical-offset="0" max-vertical-offset="978">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getIdentifier#0;class#Expression#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/StatementList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
+          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+          <folding>
+            <element signature="e#664#665#0" expanded="true" />
+            <element signature="e#708#709#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13661203" vertical-offset="0" max-vertical-offset="555">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="21" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/IfElseStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/BooleanExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70673954" vertical-offset="542" max-vertical-offset="2115">
+          <caret line="69" column="21" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+          <folding>
+            <element signature="e#1770#1788#0" expanded="true" />
+            <element signature="e#2974#2992#0" expanded="true" />
+            <element signature="e#3644#3645#0" expanded="true" />
+            <element signature="e#3675#3676#0" expanded="true" />
+            <element signature="e#3727#3728#0" expanded="true" />
+            <element signature="e#3767#3768#0" expanded="true" />
+            <element signature="e#3806#3807#0" expanded="true" />
+            <element signature="e#3837#3838#0" expanded="true" />
+            <element signature="e#3889#3890#0" expanded="true" />
+            <element signature="e#3929#3930#0" expanded="true" />
+            <element signature="e#3969#3970#0" expanded="true" />
+            <element signature="e#4001#4002#0" expanded="true" />
+            <element signature="e#4055#4056#0" expanded="true" />
+            <element signature="e#4097#4098#0" expanded="true" />
+            <element signature="e#4138#4139#0" expanded="true" />
+            <element signature="e#4171#4172#0" expanded="true" />
+            <element signature="e#4227#4228#0" expanded="true" />
+            <element signature="e#4271#4272#0" expanded="true" />
+            <element signature="e#4313#4314#0" expanded="true" />
+            <element signature="e#4344#4345#0" expanded="true" />
+            <element signature="e#4399#4400#0" expanded="true" />
+            <element signature="e#4439#4440#0" expanded="true" />
+            <element signature="e#4489#4490#0" expanded="true" />
+            <element signature="e#4548#4549#0" expanded="true" />
+            <element signature="e#4591#4592#0" expanded="true" />
+            <element signature="e#4623#4624#0" expanded="true" />
+            <element signature="e#4680#4681#0" expanded="true" />
+            <element signature="e#4722#4723#0" expanded="true" />
+            <element signature="e#4775#4776#0" expanded="true" />
+            <element signature="e#4835#4836#0" expanded="true" />
+            <element signature="e#4874#4875#0" expanded="true" />
+            <element signature="e#4905#4906#0" expanded="true" />
+            <element signature="e#4957#4958#0" expanded="true" />
+            <element signature="e#4997#4998#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
