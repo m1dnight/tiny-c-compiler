@@ -30,4 +30,6 @@ public class BasicBlock {
     private void setTacs(ArrayList<ThreeAddressCode> block) {
         this.block = block;
     }
+
+
 }

@@ -12,47 +12,40 @@ import java.util.ArrayList;
  */
 public class DAGraph {
 
-    private final BasicBlock basicBlock;
-    private final ArrayList<Node> nodes;
-
-    public DAGraph(BasicBlock input) {
-        this.basicBlock = input;
-        this.nodes = new ArrayList<Node>();
-    }
-
-    private void GenerateGraph() {
+    public static ArrayList<Node> GenerateGraph(BasicBlock basicBlock) {
+        ArrayList<Node> nodes = new ArrayList<Node>();
         // For each instruction in the basicblock
         for (ThreeAddressCode tac : basicBlock.getTacs()) {
             /**
              * This part is for when we are dealing with TAC's in the form of:
              * A = B op C
              */
-            if (tac.getOpCode() == OpCodes.A2PLUS  ||
-                tac.getOpCode() == OpCodes.A2TIMES ||
-                tac.getOpCode() == OpCodes.A2MINUS ||
-                tac.getOpCode() == OpCodes.A2DIV   ||
-                tac.getOpCode() == OpCodes.A2NEQ   ||
-                tac.getOpCode() == OpCodes.A2EQ    ||
-                tac.getOpCode() == OpCodes.A2GT    ||
-                tac.getOpCode() == OpCodes.A2LT     ) {
+            if (tac.getOpCode() == OpCodes.A2PLUS      ||
+                    tac.getOpCode() == OpCodes.A2TIMES ||
+                    tac.getOpCode() == OpCodes.A2MINUS ||
+                    tac.getOpCode() == OpCodes.A2DIV   ||
+                    tac.getOpCode() == OpCodes.A2NEQ   ||
+                    tac.getOpCode() == OpCodes.A2EQ    ||
+                    tac.getOpCode() == OpCodes.A2GT    ||
+                    tac.getOpCode() == OpCodes.A2LT     ){
                 // If the the first variable in the TAC (e.g., A = B + C, we mean B) is not yet in the DAG, we add it.
-                Node n1 = getNode(tac.getArg1());
+                Node n1 = getNode(nodes, tac.getArg1());
                 if (n1 == null) {
                     n1 = new LeafNode(tac.getArg1());
-                    this.nodes.add(n1);
+                    nodes.add(n1);
                 }
 
-                Node n2 = getNode(tac.getArg2());
+                Node n2 = getNode(nodes, tac.getArg2());
                 if (n2 == null) {
                     n2 = new LeafNode(tac.getArg2());
-                    this.nodes.add(n2);
+                    nodes.add(n2);
                 }
 
                 // Find the node that has these two nodes as children
-                Node opNode = FindNode(tac.getOpCode(), n1, n2);
+                Node opNode = FindNode(nodes, tac.getOpCode(), n1, n2);
                 if (opNode == null) {
                     opNode = new Node(tac.getOpCode(), n1, n2);
-                    this.nodes.add(opNode);
+                    nodes.add(opNode);
                 }
                 opNode.AddSymbol(tac.getResult());
             }
@@ -61,18 +54,18 @@ public class DAGraph {
              * A = op B
              */
             if (tac.getOpCode() == OpCodes.A1MINUS ||
-                tac.getOpCode() == OpCodes.A1FTOI  ||
-                tac.getOpCode() == OpCodes.A1ITOF   ) {
+                    tac.getOpCode() == OpCodes.A1FTOI ||
+                    tac.getOpCode() == OpCodes.A1ITOF) {
                 // Find the node that belongs to arg1.
-                Node n1 = getNode(tac.getArg1());
+                Node n1 = getNode(nodes, tac.getArg1());
                 if (n1 == null) {
                     n1 = new LeafNode(tac.getArg1());
-                    this.nodes.add(n1);
+                    nodes.add(n1);
                 }
-                Node opNode = FindNode(tac.getOpCode(), n1, null);
+                Node opNode = FindNode(nodes, tac.getOpCode(), n1, null);
                 if (opNode == null) {
                     opNode = new Node(tac.getOpCode(), n1, null);
-                    this.nodes.add(opNode);
+                    nodes.add(opNode);
                 }
                 opNode.AddSymbol(tac.getResult());
             }
@@ -80,13 +73,11 @@ public class DAGraph {
              * This part is for dealing with assignments
              * A = B
              */
-            if(tac.getOpCode() == OpCodes.A0)
-            {
-                Node n1 = getNode(tac.getArg1());
-                if(n1 == null)
-                {
+            if (tac.getOpCode() == OpCodes.A0) {
+                Node n1 = getNode(nodes, tac.getArg1());
+                if (n1 == null) {
                     n1 = new LeafNode(tac.getArg1());
-                    this.nodes.add(n1);
+                    nodes.add(n1);
                 }
                 n1.AddSymbol(tac.getResult());
             }
@@ -94,29 +85,36 @@ public class DAGraph {
              * This part is for dealing with jumps.
              * IF B relop C GOTO L
              */
-            Node n1 = getNode(tac.getArg1());
-            if (n1 == null) {
-                n1 = new LeafNode(tac.getArg1());
-                this.nodes.add(n1);
-            }
+            if (tac.getOpCode() == OpCodes.A2EQIF  ||
+                tac.getOpCode() == OpCodes.A2GTIF  ||
+                tac.getOpCode() == OpCodes.A2LTIF  ||
+                tac.getOpCode() == OpCodes.A2NEQIF   ) {
 
-            Node n2 = getNode(tac.getArg2());
-            if (n2 == null) {
-                n2 = new LeafNode(tac.getArg2());
-                this.nodes.add(n2);
-            }
+                Node n1 = getNode(nodes, tac.getArg1());
+                if (n1 == null) {
+                    n1 = new LeafNode(tac.getArg1());
+                    nodes.add(n1);
+                }
 
-            Node opNode = FindNode(tac.getOpCode(), n1, n2);
-            if (opNode == null) {
-                opNode = new Node(tac.getOpCode(), n1, n2);
-                this.nodes.add(opNode);
+                Node n2 = getNode(nodes, tac.getArg2());
+                if (n2 == null) {
+                    n2 = new LeafNode(tac.getArg2());
+                    nodes.add(n2);
+                }
+
+                Node opNode = FindNode(nodes, tac.getOpCode(), n1, n2);
+                if (opNode == null) {
+                    opNode = new Node(tac.getOpCode(), n1, n2);
+                    nodes.add(opNode);
+                }
+                opNode.AddSymbol(tac.getResult());
             }
-            opNode.AddSymbol(tac.getResult());
         }
+        return nodes;
     }
 
-    private Node FindNode(OpCodes opCode, Node n1, Node n2) {
-        for (Node n : this.nodes) {
+    private static Node FindNode(ArrayList<Node> nodes, OpCodes opCode, Node n1, Node n2) {
+        for (Node n : nodes) {
             if (n.getOpCode() == opCode &&
                     n1 == n.getLeft() &&
                     n2 == n.getRight())
@@ -125,8 +123,8 @@ public class DAGraph {
         return null;
     }
 
-    private Node getNode(SymTabInfo label) {
-        for (Node n : this.nodes)
+    private static Node getNode(ArrayList<Node> nodes, SymTabInfo label) {
+        for (Node n : nodes)
             if (n.ContainsSymbol(label))
                 return n;
         return null;

@@ -1,6 +1,7 @@
 package Main;
 
 import Assembly.BasicBlock;
+import Assembly.DAG.DAGraph;
 import Assembly.Generator;
 import CodeGeneration.CodeContainer;
 import CodeGeneration.ThreeAddressCode;
@@ -23,6 +24,9 @@ public class Main {
                 System.out.println(tac.toString());
             }
             ArrayList<BasicBlock> basicBlocks =  Generator.SplitToBlocks(result.toThreeAddressCode());
+            int hash = 0;
+            for(BasicBlock b : basicBlocks)
+                hash |= DAGraph.GenerateGraph(b).hashCode();
             Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {

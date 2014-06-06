@@ -43,6 +43,7 @@ public class Node {
     /******************************************************************************************************************/
     public void AddSymbol(SymTabInfo label)
     {
+        if(this.labels == null) this.labels = new ArrayList<SymTabInfo>();
         this.labels.add(label);
     }
 
