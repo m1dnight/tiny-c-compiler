@@ -28,7 +28,7 @@ public class AssignStatement extends Statement {
     {
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
         if(valueExpressions != null) // It could be a single integer!
-            output.add(valueExpressions.ToThreeAddressCode());
+            output.addAll(valueExpressions.ToThreeAddressCode());
         ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, this.valueExpressions.getIdentifier(), null, this.target);
         output.add(tac);
         return output;

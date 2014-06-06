@@ -1,9 +1,9 @@
 int positivize(int x)
 {
     int y;
-    y = x;
+    y = x + 1 + 2 + 3;
     if(x > 0)
-        x = 0;
+        x = 123456789;
 
     return 0;
 }

@@ -20,6 +20,7 @@ public class Main {
             Program result = (Program) p.parse().value;
             for(ThreeAddressCode tac : result.toThreeAddressCode())
             {
+                if(tac != null)
                 System.out.println(tac.toString());
             }
             int x = 5;

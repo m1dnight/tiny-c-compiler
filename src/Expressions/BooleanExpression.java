@@ -4,6 +4,7 @@ import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
 import Typing.Types;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +17,7 @@ public class BooleanExpression extends ArithmeticExpession {
     protected SymTabInfo operand2;
     private   SymTabInfo trueLabel;
     private   SymTabInfo falseLabel;
+    private   SymTabInfo endLabel;
     private   Statement  trueCode;
     private   Statement  falseCode;
 
@@ -32,17 +34,22 @@ public class BooleanExpression extends ArithmeticExpession {
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
     @Override
-    public ThreeAddressCode ToThreeAddressCode() {
-        return new ThreeAddressCode(this.operation, this.operand1, this.operand2, this.identifier);
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
+        throw new NotImplementedException();
     }
 
     public ArrayList<ThreeAddressCode> ToCondition()
     {
-        ThreeAddressCode iff  = new ThreeAddressCode(OpCodes.IF, this.operand1, this.operand2, this.trueLabel);
+        ThreeAddressCode iff  = new ThreeAddressCode(this.operation, this.operand1, this.operand2, this.trueLabel);
         ThreeAddressCode iff2 = new ThreeAddressCode(OpCodes.GOTO, this.falseLabel);
+
         ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>(2);
         rv.add(iff);
         rv.add(iff2);
+        rv.add(new ThreeAddressCode(OpCodes.LABEL, trueLabel));
+        rv.addAll(trueCode.toThreeAddressCode());
+
+        rv.add(new ThreeAddressCode(OpCodes.LABEL, falseLabel));
         return rv;
     }
     /******************************************************************************************************************/
@@ -96,4 +103,11 @@ public class BooleanExpression extends ArithmeticExpession {
         this.falseCode = falseCode;
     }
 
+    public SymTabInfo getEndLabel() {
+        return endLabel;
+    }
+
+    public void setEndLabel(SymTabInfo endLabel) {
+        this.endLabel = endLabel;
+    }
 }

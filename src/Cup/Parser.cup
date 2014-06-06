@@ -298,6 +298,7 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 
                                                                              cond.setTrueLabel(trueLabel);
                                                                              cond.setFalseLabel(falseLabel);
+                                                                             cond.setEndLabel(endLabel);
                                                                              cond.setTrueCode(cons);
 
                                                                              IfStatement iex = new IfStatement();
@@ -395,7 +396,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
                                                                                                                                  OpCodes.A2PLUS, 
-                                                                                                                                 e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                                 e1, e2,
                                                                                                                                  tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
@@ -408,7 +409,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
                                                                                                                                  OpCodes.A2MINUS, 
-                                                                                                                                 e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                                 e1, e2,
                                                                                                                                  tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
@@ -420,8 +421,8 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 
                                                                              // Create ArithmeticExpression
                                                                              BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
-                                                                                                                                 OpCodes.A2DIV, 
-                                                                                                                                 e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                                 OpCodes.A2TIMES, 
+                                                                                                                                 e1, e2,
                                                                                                                                  tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
@@ -434,7 +435,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
                                                                                                                                  OpCodes.A2DIV, 
-                                                                                                                                 e1.getIdentifier(), e2.getIdentifier(),
+                                                                                                                                 e1, e2,
                                                                                                                                  tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
@@ -455,9 +456,9 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              // Create ArithmeticExpression
                                                                              UnaryArithmeticExpression exp = new UnaryArithmeticExpression(e.getExpressionType(), 
                                                                                                                                  OpCodes.A1MINUS, 
-                                                                                                                                 e.getIdentifier(),
+                                                                                                                                 e,
                                                                                                                                  tempVariable);
-                                                                             program.add(exp.ToThreeAddressCode());
+                                                                             //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :} 
                             %prec UMINUS  
@@ -488,7 +489,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 
                                                                             FunctionCallExpression result = new FunctionCallExpression(tempVariable, funcTypeInfo.ActualType(), func);
                                                                             // Create the TAC for the function call.
-                                                                            program.add(result.ToThreeAddressCode());
+                                                                            //program.add(result.ToThreeAddressCode());
                                                                             RESULT = result;
                                                                          :}
 						  | QCHAR

@@ -10,8 +10,9 @@ public class Expression {
     private   ArrayList<Expression> codeList;
     protected SymTabInfo            identifier;
     protected Types                 expressionType;
+    private   ArrayList<Expression> cedeList;
 
-    public ThreeAddressCode ToThreeAddressCode() {
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
         throw new Error("ToThreeAddressCode() should be overridden by subclasses!");
     }
     /******************************************************************************************************************/

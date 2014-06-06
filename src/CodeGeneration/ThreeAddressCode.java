@@ -62,13 +62,13 @@ public class ThreeAddressCode {
         {
             return String.format("param %s", arg1.IdentifiertoString());
         }
-        /*****************************************************************************
+/*        *//*****************************************************************************
          * Boolean Expressions
-         *****************************************************************************/
+         *****************************************************************************//*
         if(opCode == OpCodes.A2GT)
         {
             return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), ">", arg2.IdentifiertoString());
-        }
+        }*/
         /*****************************************************************************
          * Control Flow
          *****************************************************************************/
@@ -87,6 +87,10 @@ public class ThreeAddressCode {
         if(opCode == OpCodes.LABEL)
         {
             return String.format("%s", arg1.IdentifiertoString());
+        }
+        if(opCode == OpCodes.A2GT)
+        {
+            return String.format("IF %s > %s GOTO %s", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
         }
         /******************************************************************************
          * Assignment

@@ -4,6 +4,8 @@ import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
 import Typing.Types;
 
+import java.util.ArrayList;
+
 /**
  * Created by christophe on 05.06.14.
  */
@@ -13,8 +15,8 @@ public class VariableExpression extends Expression {
         super(identifier, type);
     }
 
-    public ThreeAddressCode ToThreeAddressCode()
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode()
     {
-        return null;
+        return new ArrayList<ThreeAddressCode>(0);
     }
 }

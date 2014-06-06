@@ -26,8 +26,10 @@ public class FunctionCallExpression extends Expression {
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public ThreeAddressCode ToThreeAddressCode() {
-        return new ThreeAddressCode(OpCodes.CALL, this.function, ((FunctionTypeInfo) this.function.typeInfo).NumberOfParams(), this.identifier);
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        output.add(new ThreeAddressCode(OpCodes.CALL, this.function, ((FunctionTypeInfo) this.function.typeInfo).NumberOfParams(), this.identifier));
+        return output;
     }
 
 }
