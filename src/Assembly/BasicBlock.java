@@ -3,6 +3,7 @@ package Assembly;
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymbolTable;
 import SymbolTable.SymTabInfo;
+import com.sun.org.apache.xpath.internal.operations.Variable;
 
 import java.util.ArrayList;
 
@@ -37,8 +38,8 @@ public class BasicBlock {
             ThreeAddressCode tac = block.getTac(index);
 
             // Lookup all the variables in the Symboltable.
-            SymTabInfo result   = tac.getResult();
-            SymTabInfo operand1 = tac.getArg1();
+            //tac.getResult().
+            //SymTabInfo operand1 = tac.getArg1();
             SymTabInfo operand2 = tac.getArg2();
 
         }
