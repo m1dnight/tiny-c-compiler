@@ -12,6 +12,9 @@ public class ThreeAddressCode {
     private SymTabInfo result;
     private int ParamCount;
 
+    /******************************************************************************************************************/
+    /************************************ CONSTRUCTORS  ***************************************************************/
+    /******************************************************************************************************************/
     public ThreeAddressCode(OpCodes op, SymTabInfo arg1, SymTabInfo arg2, SymTabInfo result)
     {
         this.opCode = op;
@@ -36,11 +39,9 @@ public class ThreeAddressCode {
         this.arg1 = arg;
         // Print out the 3AC for debugging purposes
     }
-
-    public SymTabInfo getResultSymTabInfo() {
-        return result;
-    }
-
+    /******************************************************************************************************************/
+    /************************************ LOGIC ***********************************************************************/
+    /******************************************************************************************************************/
     @Override
     public String toString()
     {
@@ -180,5 +181,9 @@ public class ThreeAddressCode {
 
     public void setResult(SymTabInfo result) {
         this.result = result;
+    }
+
+    public SymTabInfo getResultSymTabInfo() {
+        return result;
     }
 }

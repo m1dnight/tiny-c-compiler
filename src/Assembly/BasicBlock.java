@@ -1,6 +1,8 @@
 package Assembly;
 
 import CodeGeneration.ThreeAddressCode;
+import SymbolTable.SymbolTable;
+import SymbolTable.SymTabInfo;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,21 @@ public class BasicBlock {
         }
         return output.toString();
     }
+
+    public static void DetermineLiveness(SymbolTable symTab, BasicBlock block)
+    {
+        // Traverse the statements in reverse
+        for(int index = block.getTacs().size() - 1; index >= 0; index--)
+        {
+            ThreeAddressCode tac = block.getTac(index);
+
+            // Lookup all the variables in the Symboltable.
+            SymTabInfo result   = tac.getResult();
+            SymTabInfo operand1 = tac.getArg1();
+            SymTabInfo operand2 = tac.getArg2();
+
+        }
+    }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
@@ -35,6 +52,11 @@ public class BasicBlock {
 
     private void setTacs(ArrayList<ThreeAddressCode> block) {
         this.block = block;
+    }
+
+    public ThreeAddressCode getTac(int idx)
+    {
+        return block.get(idx);
     }
 
 

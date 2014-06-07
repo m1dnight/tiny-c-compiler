@@ -2,6 +2,7 @@ package SymbolTable;
 
 import Typing.TypeInfo;
 import Utils.StringUtils;
+import com.sun.org.apache.xpath.internal.operations.Variable;
 import sun.awt.Symbol;
 
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class SymbolTable {
         return sti;
     }
 
-    public SymTabInfo Lookup(String name) {
+    public VariableSymTabInfo Lookup(String name) {
         // Check to see if we can find in this current scope
         for (VariableSymTabInfo si : symbolList) {
             //We need to check if the entry is a VariableSymTabInfo!
