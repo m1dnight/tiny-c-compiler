@@ -1,6 +1,8 @@
 package SymbolTable;
 
 import Typing.TypeInfo;
+import Utils.StringUtils;
+import sun.awt.Symbol;
 
 import java.util.ArrayList;
 
@@ -30,12 +32,19 @@ public class SymbolTable {
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-
+        sb.append("Level: " + this.level + StringUtils.repeat("*", 32) + "\n");
         for(VariableSymTabInfo var : this.symbolList)
         {
 
+            sb.append(StringUtils.repeat("-", this.level) + " ");
+            sb.append(var.IdentifiertoString() + "\n");
         }
-        return "";
+        if(this.children != null)
+        for(SymbolTable st : children)
+        {
+            sb.append(st.toString());
+        }
+        return sb.toString();
     }
 
     public SymbolTable NewScope() {

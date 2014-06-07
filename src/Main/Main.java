@@ -19,6 +19,7 @@ public class Main {
         try {
             parser p = new parser(new Jflex.Lexer(new FileReader(argv[0])));
             Program result = (Program) p.parse().value;
+
             System.out.println(result.getSymbolTable());
             for(ThreeAddressCode tac : result.toThreeAddressCode())
             {
