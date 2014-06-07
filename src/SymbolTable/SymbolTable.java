@@ -37,7 +37,7 @@ public class SymbolTable {
         {
 
             sb.append(StringUtils.repeat("-", this.level) + " ");
-            sb.append(var.IdentifiertoString() + "\n");
+            sb.append(var.toString() + "\n");
         }
         if(this.children != null)
         for(SymbolTable st : children)
@@ -78,6 +78,7 @@ public class SymbolTable {
         if (this.parent != null)
             return parent.Lookup(name);
         // It can't be found..
+        System.out.println("*** ERROR ***\nSymbolTable: Did not find " + name);
         return null;
     }
 }
