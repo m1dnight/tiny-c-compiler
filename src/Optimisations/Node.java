@@ -46,34 +46,48 @@ public class Node {
     {
         //return String.format(opCode.name() + " | " + (left == null ? "" : left.getLabels()) + " - " + (right == null ? "" : right.getLabels()) + " | " + this.getLabels());
         StringBuilder sb = new StringBuilder();
+        if (this.right == null && this.left == null) {
+            sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  No children");
+            return sb.toString();
+        }
+        if (this.right == null)
+            if (this.left.getClass() == LeafNode.class) // We have a left leaf
+            {
+                sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Null" + "\n  *Left: " + this.left);
+                return sb.toString();
+            } else {
+                sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Null" + "\n  *Left: " + this.left.getOpCode());
+                return sb.toString();
+            }
 
-        if(this.right.getClass() == Node.class && this.left.getClass() == Node.class)
-        {
+        if (this.left == null)
+            if (this.left.getClass() == LeafNode.class) // We have a left leaf
+            {
+                sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Right: " + this.right + "\n  *Null");
+                return sb.toString();
+            } else {
+                sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Right: " + this.right.getOpCode() + "\n  *Null");
+                return sb.toString();
+            }
+
+        if (this.right.getClass() == Node.class && this.left.getClass() == Node.class) {
             sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left.getOpCode() + "\n  *Right:" + this.right.getOpCode());
+            return sb.toString();
         }
-        else
+        if (this.right.getClass() == LeafNode.class && this.left.getClass() == LeafNode.class) {
+            sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left + "\n  *Right:" + this.right);
+            return sb.toString();
+        }
+        if (this.left.getClass() == LeafNode.class) // Right is an internal node
         {
-            if(this.right.getClass() == LeafNode.class && this.left.getClass() == LeafNode.class)
-            {
-                sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left + "\n  *Right:" + this.right);
-            }
-            else
-            {
-                if(this.left.getClass() == LeafNode.class) // Right is an internal node
-                {
-                    sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left + "\n  *Right:" + this.right.getOpCode());
-                }
-                else
-                {
-                    if(this.right.getClass() == LeafNode.class) // Left is an internal node
-                    {
-                        sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left.getOpCode() + "\n  *Right:" + this.right);
-                    }
-                }
-            }
+            sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left + "\n  *Right:" + this.right.getOpCode());
+            return sb.toString();
         }
-
-
+        if (this.right.getClass() == LeafNode.class) // Left is an internal node
+        {
+            sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left.getOpCode() + "\n  *Right:" + this.right);
+            return sb.toString();
+        }
         return sb.toString();
     }
 

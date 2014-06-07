@@ -27,6 +27,7 @@ public class Main {
             // Print out all the TACs.
             for(ThreeAddressCode tac : result.toThreeAddressCode())
             {
+
                 System.out.println(tac.toString());
             }
 
