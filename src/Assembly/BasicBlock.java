@@ -59,7 +59,7 @@ public class BasicBlock {
         return block;
     }
 
-    private void setTacs(ArrayList<ThreeAddressCode> block) {
+    public void setTacs(ArrayList<ThreeAddressCode> block) {
         this.block = block;
     }
 

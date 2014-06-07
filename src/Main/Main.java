@@ -1,9 +1,8 @@
 package Main;
 
 import Assembly.BasicBlock;
-import Assembly.DAG.DAGraph;
+import Optimisations.DAGraph;
 import Assembly.Generator;
-import CodeGeneration.CodeContainer;
 import CodeGeneration.ThreeAddressCode;
 import Cup.parser;
 import Expressions.Program;
@@ -23,7 +22,7 @@ public class Main {
             // Parse and lex.
             Program result = (Program) p.parse().value;
             // Print out the symbol table.
-            System.out.println(result.getSymbolTable());
+            //System.out.println(result.getSymbolTable());
 
             // Print out all the TACs.
             for(ThreeAddressCode tac : result.toThreeAddressCode())
@@ -35,17 +34,19 @@ public class Main {
             ArrayList<BasicBlock> basicBlocks =  Generator.SplitToBlocks(result.toThreeAddressCode());
 
             // Determine liveness for each variable in the basic block.
-            for(BasicBlock b : basicBlocks)
-                DetermineLiveness(result.getSymbolTable(), b);
+            //for(BasicBlock b : basicBlocks)
+            //    DetermineLiveness(result.getSymbolTable(), b);
 
             // Print the symbol table again.
             //System.out.println(result.getSymbolTable());
 
             // Generate a DAG for each basic block.
             int hash = 0;
-            for(BasicBlock b : basicBlocks)
+            for(BasicBlock b : basicBlocks) {
                 hash |= DAGraph.GenerateGraph(b).hashCode();
-            Generator.PrintBlocks(basicBlocks);
+                System.out.println("*************************************");
+            }
+            //Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {
       /* do cleanup here -- possibly rethrow e */

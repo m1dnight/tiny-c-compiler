@@ -24,7 +24,8 @@ public class VariableSymTabInfo extends SymTabInfo {
 
     public String toString()
     {
-        return String.format("Name: %10s Live: %5s", name, this.live);
+        //return String.format("Name: %10s Live: %5s", name, this.live);
+        return String.format(name);
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/

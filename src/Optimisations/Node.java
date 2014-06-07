@@ -1,4 +1,4 @@
-package Assembly.DAG;
+package Optimisations;
 
 import CodeGeneration.OpCodes;
 import SymbolTable.SymTabInfo;
@@ -41,6 +41,42 @@ public class Node {
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
+
+    public String toString()
+    {
+        //return String.format(opCode.name() + " | " + (left == null ? "" : left.getLabels()) + " - " + (right == null ? "" : right.getLabels()) + " | " + this.getLabels());
+        StringBuilder sb = new StringBuilder();
+
+        if(this.right.getClass() == Node.class && this.left.getClass() == Node.class)
+        {
+            sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left.getOpCode() + "\n  *Right:" + this.right.getOpCode());
+        }
+        else
+        {
+            if(this.right.getClass() == LeafNode.class && this.left.getClass() == LeafNode.class)
+            {
+                sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left + "\n  *Right:" + this.right);
+            }
+            else
+            {
+                if(this.left.getClass() == LeafNode.class) // Right is an internal node
+                {
+                    sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left + "\n  *Right:" + this.right.getOpCode());
+                }
+                else
+                {
+                    if(this.right.getClass() == LeafNode.class) // Left is an internal node
+                    {
+                        sb.append("Node:  " + "Operation: " + this.opCode + "Labels: " + this.getLabels() + "\n  *Left: " + this.left.getOpCode() + "\n  *Right:" + this.right);
+                    }
+                }
+            }
+        }
+
+
+        return sb.toString();
+    }
+
     public void AddSymbol(SymTabInfo label)
     {
         if(this.labels == null) this.labels = new ArrayList<SymTabInfo>();
@@ -79,6 +115,7 @@ public class Node {
     }
 
     public ArrayList<SymTabInfo> getLabels() {
+        if(this.labels == null) return new ArrayList<SymTabInfo>(0);
         return labels;
     }
 

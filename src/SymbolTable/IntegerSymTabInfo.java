@@ -15,4 +15,9 @@ public class IntegerSymTabInfo extends SymTabInfo {
     public String IdentifiertoString() {
         return Integer.toString(value);
     }
+
+    public String toString()
+    {
+        return this.value + "";
+    }
 }

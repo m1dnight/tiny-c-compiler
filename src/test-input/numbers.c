@@ -1,12 +1,9 @@
-int factorial(int x)
+int main()
 {
-    int result;
-    result = factorial(x - 1) * x;
-    return result;
-}
-
-int main(int mainParam)
-{
-    mainParam = factorial(mainParam);
-    return mainParam;
+    int x;
+    int y;
+    int z;
+    x = 1 + 2;
+    y = x * 3;
+    z = x / y;
 }

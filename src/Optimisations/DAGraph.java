@@ -1,4 +1,4 @@
-package Assembly.DAG;
+package Optimisations;
 
 import Assembly.BasicBlock;
 import CodeGeneration.OpCodes;
@@ -6,6 +6,7 @@ import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * Created by christophe on 6/4/14.
@@ -14,6 +15,7 @@ public class DAGraph {
 
     public static ArrayList<Node> GenerateGraph(BasicBlock basicBlock) {
         ArrayList<Node> nodes = new ArrayList<Node>();
+        LinkedHashMap<SymTabInfo, Node> mapping = new LinkedHashMap<SymTabInfo, Node>();
         // For each instruction in the basicblock
         for (ThreeAddressCode tac : basicBlock.getTacs()) {
             /**
@@ -48,6 +50,7 @@ public class DAGraph {
                     nodes.add(opNode);
                 }
                 opNode.AddSymbol(tac.getResult());
+                mapping.put(tac.getResult(), opNode);
             }
             /**
              * This part is for when we are dealing with TAC's in the form of:
@@ -68,6 +71,7 @@ public class DAGraph {
                     nodes.add(opNode);
                 }
                 opNode.AddSymbol(tac.getResult());
+                mapping.put(tac.getResult(), opNode);
             }
             /**
              * This part is for dealing with assignments
@@ -80,6 +84,7 @@ public class DAGraph {
                     nodes.add(n1);
                 }
                 n1.AddSymbol(tac.getResult());
+                mapping.put(tac.getResult(), n1);
             }
             /**
              * This part is for dealing with jumps.
@@ -108,7 +113,17 @@ public class DAGraph {
                     nodes.add(opNode);
                 }
                 opNode.AddSymbol(tac.getResult());
+                //mapping.put(tac.getResult(), opNode);
+
             }
+        }
+        // Print out the results for debugging purposes.
+        //System.out.println("Node mapping:\n" + mapping);
+        System.out.println("Nodes:");
+        for(Node n : nodes)
+        {
+            if(n != null)
+            System.out.println(n);
         }
         return nodes;
     }
