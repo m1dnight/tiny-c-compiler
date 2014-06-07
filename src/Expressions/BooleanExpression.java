@@ -60,6 +60,8 @@ public class BooleanExpression extends ArithmeticExpession {
         {
             ThreeAddressCode iff  = new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
             ThreeAddressCode iff2 = new ThreeAddressCode(OpCodes.GOTO, this.falseLabel);
+            rv.addAll(operand1.ToThreeAddressCode());
+            rv.addAll(operand2.ToThreeAddressCode());
             rv.add(iff);
             rv.add(iff2);
             rv.add(new ThreeAddressCode(OpCodes.LABEL, trueLabel));
