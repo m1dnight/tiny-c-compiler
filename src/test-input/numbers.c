@@ -1,7 +1,12 @@
+int factorial(int x)
+{
+    int result;
+    result = factorial(x - 1) * x;
+    return result;
+}
+
 int main(int mainParam)
 {
-    int x;
-    if((5 - 4)  > (x - 1 + 2))
-        x = 123;
+    mainParam = factorial(mainParam);
     return mainParam;
 }

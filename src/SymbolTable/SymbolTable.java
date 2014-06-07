@@ -8,11 +8,14 @@ public class SymbolTable {
 
     public SymTabInfo function;   // Name of the function that holds this scope
     public SymbolTable parent;// The parent of this scope so we can create frames.
+    public ArrayList<SymbolTable> children;
 
     private ArrayList<VariableSymTabInfo> symbolList = new ArrayList<VariableSymTabInfo>(); // The list that will hold all the identifiers in this scope
     private int level = 0; // Value indicating how deep we are in the scope
 
-
+    /******************************************************************************************************************/
+    /************************************ CONSTRUCTORS  ***************************************************************/
+    /******************************************************************************************************************/
     public SymbolTable() {
         this.parent = null;
     }
@@ -21,41 +24,32 @@ public class SymbolTable {
         this.parent = null;
         this.level = level;
     }
+    /******************************************************************************************************************/
+    /************************************ LOGIC ***********************************************************************/
+    /******************************************************************************************************************/
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        for(VariableSymTabInfo var : this.symbolList)
+        {
+
+        }
+        return "";
+    }
 
     public SymbolTable NewScope() {
         // Create a new scope frame
         SymbolTable newScope = new SymbolTable(this.level + 1);
         newScope.parent = this;
+        if(this.children == null) this.children = new ArrayList<SymbolTable>();
+        this.children.add(newScope);
         // Instantiate the function of the new
         // scope to the older one. Just in case
         // this new scope is not created by a function
         // definition but perhaps by a forloop.
         newScope.function = this.function;
         return newScope;
-    }
-
-    /**
-     * This function will create a new SymTabInfo and add this
-     * to the list of the current scope.
-     * This function also creates the SymTabInfo object for each
-     * identifier. We need this e.g. for labeling a scope.
-     *
-     * @param name            : name of the function or variable
-     * @param typeInformation : Object holding the type info
-     */
-    public SymTabInfo Insert(String name, TypeInfo typeInformation) {
-        VariableSymTabInfo si = new VariableSymTabInfo(typeInformation, name);
-        symbolList.add(si);
-
-        /*
-         * Debug printing and stuff
-         */
-        if (typeInformation != null)
-            System.out.printf("Inserted \"%5s\" with type %10s in current scope.\n", name, typeInformation/**/.type.name());
-        else
-            System.out.printf("Inserted \"%5s\" in current scope.\n", name);
-
-        return si;
     }
 
     public SymTabInfo Insert(VariableSymTabInfo sti) {

@@ -55,10 +55,8 @@ public class Generator {
             return true;
 
         tac = cc.get(tacIndex - 1);
-        if(tac.getOpCode() == OpCodes.IFFALSE || tac.getOpCode() == OpCodes.GOTO)
-            return true;
+        return tac.getOpCode() == OpCodes.IFFALSE || tac.getOpCode() == OpCodes.GOTO;
 
-        return false;
     }
 
     public static void PrintBlocks(ArrayList<BasicBlock> blocks)

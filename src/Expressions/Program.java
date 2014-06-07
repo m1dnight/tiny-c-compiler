@@ -1,6 +1,7 @@
 package Expressions;
 
 import CodeGeneration.ThreeAddressCode;
+import SymbolTable.SymbolTable;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,10 @@ import java.util.ArrayList;
  */
 public class Program {
     private ArrayList<Declaration> declarations;
+    private SymbolTable            symbolTable;
+
+    public Program() {
+    }
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
@@ -61,4 +66,11 @@ public class Program {
     }
 
 
+    public SymbolTable getSymbolTable() {
+        return symbolTable;
+    }
+
+    public void setSymbolTable(SymbolTable symbolTable) {
+        this.symbolTable = symbolTable;
+    }
 }
