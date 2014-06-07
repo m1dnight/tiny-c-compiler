@@ -32,17 +32,25 @@ public class BasicBlock {
 
     public static void DetermineLiveness(SymbolTable symTab, BasicBlock block)
     {
-        // Traverse the statements in reverse
+/*        // Traverse the statements in reverse
         for(int index = block.getTacs().size() - 1; index >= 0; index--)
         {
+
             ThreeAddressCode tac = block.getTac(index);
-
+            // Check to see if we are dealing with an assignment or an operation.
+            if(tac.getOpCode() == OpCodes.)
             // Lookup all the variables in the Symboltable.
-            //tac.getResult().
-            //SymTabInfo operand1 = tac.getArg1();
-            SymTabInfo operand2 = tac.getArg2();
 
-        }
+            SymTabInfo result   = tac.getResult();
+            SymTabInfo operand1 = tac.getArg1();
+            SymTabInfo operand2 = tac.getArg2();
+            if(null != result)
+            result.setLive(false);
+            if(null != operand1)
+            operand1.setLive(false);
+            if(null != operand2)
+            operand2.setLive(false);
+        }*/
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
