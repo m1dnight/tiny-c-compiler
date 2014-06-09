@@ -59,8 +59,9 @@ public class BasicBlock {
         return block;
     }
 
-    public void setTacs(ArrayList<ThreeAddressCode> block) {
+    public BasicBlock setTacs(ArrayList<ThreeAddressCode> block) {
         this.block = block;
+        return this;
     }
 
     public ThreeAddressCode getTac(int idx)

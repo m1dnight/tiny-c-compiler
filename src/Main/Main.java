@@ -7,6 +7,7 @@ import CodeGeneration.ThreeAddressCode;
 import Cup.parser;
 import Expressions.Program;
 import Optimisations.LocalValueNumbering;
+import Optimisations.RedudantVariablesBasic;
 import SymbolTable.SymbolTable;
 
 import java.io.File;
@@ -46,7 +47,16 @@ public class Main {
 
             // Print the symbol table again.
             //System.out.println(result.getSymbolTable());
-
+            for(BasicBlock b : basicBlocks) {
+                //hash |= DAGraph.GenerateGraph(b).hashCode();
+                b.setTacs(RedudantVariablesBasic.Optimize(b).getTacs());
+            }
+            System.out.println("*************************************");
+            for(BasicBlock b : basicBlocks)
+            {
+                System.out.println(b.toString());
+            }
+            System.out.println("*************************************");
             // Generate a DAG for each basic block.
             int hash = 0;
             for(BasicBlock b : basicBlocks) {
