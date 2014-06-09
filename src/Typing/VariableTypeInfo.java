@@ -4,18 +4,29 @@ package Typing;
  * Created by christophe on 4/10/14.
  */
 public class VariableTypeInfo extends TypeInfo {
-    /**
-     * Public construct that takes a typename.
-     * These are defined in the enum 'Types'.
-     *
-     * @param type
-     */
+    /******************************************************************************************************************/
+    /************************************ CONSTRUCTORS  ***************************************************************/
+    /******************************************************************************************************************/
     public VariableTypeInfo(Types type) {
         super(type);
     }
-
+    /******************************************************************************************************************/
+    /************************************ LOGIC ***********************************************************************/
+    /******************************************************************************************************************/
     @Override
     public Types ActualType() {
         return this.type;
+    }
+    public boolean equals(Object object)
+    {
+        boolean sameSame = false;
+
+        if (object != null && object instanceof VariableTypeInfo)
+        {
+            VariableTypeInfo obj = (VariableTypeInfo) object;
+            sameSame = this.type == obj.type;
+        }
+
+        return sameSame;
     }
 }

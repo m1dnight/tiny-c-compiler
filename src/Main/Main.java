@@ -8,13 +8,17 @@ import Cup.parser;
 import Expressions.Program;
 import SymbolTable.SymbolTable;
 
+import java.io.File;
 import java.io.FileReader;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static Assembly.BasicBlock.DetermineLiveness;
 
 public class Main {
     static public void main(String argv[]) {
+
+
         SymbolTable scope = new SymbolTable();
     /* Start the parser */
         try {

@@ -15,7 +15,7 @@ public class LeafNode extends Node {
     public String toString()
     {
         if(this.getLabels().size() == 0)
-            return String.format("Leaf:  " + "<no labels>");
-        return String.format("Leaf:  " + this.getLabels());
+            return String.format("\nLeaf:  " + "<no labels>");
+        return String.format("\nLeaf:  " + this.getLabels());
     }
 }

@@ -7,8 +7,11 @@ import java.util.LinkedList;
 public class FunctionTypeInfo extends TypeInfo {
 
     public LinkedList<SymTabInfo> parameters;
+    public TypeInfo               returnType;
 
-    public TypeInfo returnType;
+    /******************************************************************************************************************/
+    /************************************ CONSTRUCTORS  ***************************************************************/
+    /******************************************************************************************************************/
     /**
      * Public construct that takes a returntype.
      * These are defined in the enum 'Types'.
@@ -20,7 +23,38 @@ public class FunctionTypeInfo extends TypeInfo {
         this.returnType = returnType;
         this.parameters = paramlist;
     }
+    /******************************************************************************************************************/
+    /************************************ LOGIC ***********************************************************************/
+    /******************************************************************************************************************/
+    public boolean equals(Object object)
+    {
+        boolean sameSame = false;
 
+        if (object != null && object instanceof FunctionTypeInfo)
+        {
+            FunctionTypeInfo obj = (FunctionTypeInfo) object;
+
+            sameSame = this.returnType == obj.returnType;
+
+            sameSame = sameSame && this.type == obj.type;
+
+            if(this.parameters.size() == obj.parameters.size())
+            {
+                for(int p = 0; p < this.parameters.size(); p++)
+                {
+                    SymTabInfo p1 = this.parameters.get(p);
+                    SymTabInfo p2 = obj.parameters.get(p);
+                    if(!p1.equals(p2))
+                        return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return sameSame;
+    }
     public Types ActualType()
     {
         return returnType.ActualType();

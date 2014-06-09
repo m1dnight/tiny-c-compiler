@@ -1,7 +1,7 @@
 int factorial(int xParamOfFactorial)
 {
     int result;
-    result = xParamOfFactorial + factorial(xParamOfFactorial - 1);
+    result = xParamOfFactorial * factorial(xParamOfFactorial - 1);
 }
 int main(int mainPAram)
 {

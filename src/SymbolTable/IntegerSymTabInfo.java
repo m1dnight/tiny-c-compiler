@@ -5,12 +5,28 @@ import Typing.Types;
 
 public class IntegerSymTabInfo extends SymTabInfo {
     public int value;
-
+    /******************************************************************************************************************/
+    /************************************ CONSTRUCTORS  ***************************************************************/
+    /******************************************************************************************************************/
     public IntegerSymTabInfo(int value) {
         super(new ConstantTypeInfo(Types.INTEGER));
         this.value = value;
     }
+    /******************************************************************************************************************/
+    /************************************ LOGIC ***********************************************************************/
+    /******************************************************************************************************************/
+    @Override
+    public boolean equals(Object object)
+    {
+        boolean sameSame = false;
 
+        if (object != null && object instanceof IntegerSymTabInfo)
+        {
+            sameSame = this.value == ((IntegerSymTabInfo) object).value;
+        }
+
+        return sameSame;
+    }
     @Override
     public String IdentifiertoString() {
         return Integer.toString(value);

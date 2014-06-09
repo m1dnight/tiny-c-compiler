@@ -5,8 +5,7 @@ import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 /**
  * Created by christophe on 6/4/14.
@@ -14,33 +13,29 @@ import java.util.LinkedHashMap;
 public class DAGraph {
 
     public static ArrayList<Node> GenerateGraph(BasicBlock basicBlock) {
-        ArrayList<Node> nodes = new ArrayList<Node>();
+        ArrayList<Node> nodes                   = new ArrayList<Node>();
         LinkedHashMap<SymTabInfo, Node> mapping = new LinkedHashMap<SymTabInfo, Node>();
+
         // For each instruction in the basicblock
         for (ThreeAddressCode tac : basicBlock.getTacs()) {
-            /**
-             * This part is for when we are dealing with TAC's in the form of:
-             * A = B op C
-             */
-            if (tac.getOpCode() == OpCodes.A2PLUS      ||
-                    tac.getOpCode() == OpCodes.A2TIMES ||
-                    tac.getOpCode() == OpCodes.A2MINUS ||
-                    tac.getOpCode() == OpCodes.A2DIV   ||
-                    tac.getOpCode() == OpCodes.A2NEQ   ||
-                    tac.getOpCode() == OpCodes.A2EQ    ||
-                    tac.getOpCode() == OpCodes.A2GT    ||
-                    tac.getOpCode() == OpCodes.A2LT     ){
+            if (tac.getOpCode() == OpCodes.A2PLUS    || tac.getOpCode() == OpCodes.A2TIMES || tac.getOpCode() == OpCodes.A2MINUS ||
+                    tac.getOpCode() == OpCodes.A2DIV || tac.getOpCode() == OpCodes.A2NEQ   || tac.getOpCode() == OpCodes.A2EQ    ||
+                    tac.getOpCode() == OpCodes.A2GT  || tac.getOpCode() == OpCodes.A2LT) {
                 // If the the first variable in the TAC (e.g., A = B + C, we mean B) is not yet in the DAG, we add it.
-                Node n1 = getNode(nodes, tac.getArg1());
-                if (n1 == null) {
+                Node n1 = getNode(mapping, tac.getArg1());
+                if (n1 == null)
+                {
                     n1 = new LeafNode(tac.getArg1());
                     nodes.add(n1);
+                    mapping.put(tac.getArg1(), n1);
                 }
 
-                Node n2 = getNode(nodes, tac.getArg2());
-                if (n2 == null) {
+                Node n2 = getNode(mapping, tac.getArg2());
+                if (n2 == null)
+                {
                     n2 = new LeafNode(tac.getArg2());
                     nodes.add(n2);
+                    mapping.put(tac.getArg2(), n2);
                 }
 
                 // Find the node that has these two nodes as children
@@ -49,27 +44,8 @@ public class DAGraph {
                     opNode = new Node(tac.getOpCode(), n1, n2);
                     nodes.add(opNode);
                 }
-                opNode.AddSymbol(tac.getResult());
-                mapping.put(tac.getResult(), opNode);
-            }
-            /**
-             * This part is for when we are dealing with TAC's in the form of:
-             * A = op B
-             */
-            if (tac.getOpCode() == OpCodes.A1MINUS ||
-                    tac.getOpCode() == OpCodes.A1FTOI ||
-                    tac.getOpCode() == OpCodes.A1ITOF) {
-                // Find the node that belongs to arg1.
-                Node n1 = getNode(nodes, tac.getArg1());
-                if (n1 == null) {
-                    n1 = new LeafNode(tac.getArg1());
-                    nodes.add(n1);
-                }
-                Node opNode = FindNode(nodes, tac.getOpCode(), n1, null);
-                if (opNode == null) {
-                    opNode = new Node(tac.getOpCode(), n1, null);
-                    nodes.add(opNode);
-                }
+                // Remove x from the list of labels in the current node.
+                UpdateLabels(mapping, tac.getResult());
                 opNode.AddSymbol(tac.getResult());
                 mapping.put(tac.getResult(), opNode);
             }
@@ -78,70 +54,50 @@ public class DAGraph {
              * A = B
              */
             if (tac.getOpCode() == OpCodes.A0) {
-                Node n1 = getNode(nodes, tac.getArg1());
+                Node n1 = getNode(mapping, tac.getArg1());
                 if (n1 == null) {
                     n1 = new LeafNode(tac.getArg1());
                     nodes.add(n1);
+                    mapping.put(tac.getArg1(), n1);
                 }
+                UpdateLabels(mapping, tac.getResult());
                 n1.AddSymbol(tac.getResult());
                 mapping.put(tac.getResult(), n1);
             }
-            /**
-             * This part is for dealing with jumps.
-             * IF B relop C GOTO L
-             */
-            if (tac.getOpCode() == OpCodes.A2EQIF  ||
-                tac.getOpCode() == OpCodes.A2GTIF  ||
-                tac.getOpCode() == OpCodes.A2LTIF  ||
-                tac.getOpCode() == OpCodes.A2NEQIF   ) {
-
-                Node n1 = getNode(nodes, tac.getArg1());
-                if (n1 == null) {
-                    n1 = new LeafNode(tac.getArg1());
-                    nodes.add(n1);
-                }
-
-                Node n2 = getNode(nodes, tac.getArg2());
-                if (n2 == null) {
-                    n2 = new LeafNode(tac.getArg2());
-                    nodes.add(n2);
-                }
-
-                Node opNode = FindNode(nodes, tac.getOpCode(), n1, n2);
-                if (opNode == null) {
-                    opNode = new Node(tac.getOpCode(), n1, n2);
-                    nodes.add(opNode);
-                }
-                opNode.AddSymbol(tac.getResult());
-                //mapping.put(tac.getResult(), opNode);
-
-            }
         }
-        // Print out the results for debugging purposes.
-        //System.out.println("Node mapping:\n" + mapping);
-        System.out.println("Nodes:");
         for(Node n : nodes)
         {
-            if(n != null)
-            System.out.println(n);
+            if(n instanceof LeafNode)
+                System.out.println("Leaf: " + n.getLabels());
+            else
+                System.out.println("Node: " + n.getOpCode() + " - " + n.getLabels());
         }
         return nodes;
+    }
+
+    private static void UpdateLabels(LinkedHashMap<SymTabInfo, Node> nodes, SymTabInfo result) {
+        Node n = getNode(nodes, result);
+        if(n != null)
+            n.RemoveSymbol(result);
     }
 
     private static Node FindNode(ArrayList<Node> nodes, OpCodes opCode, Node n1, Node n2) {
         for (Node n : nodes) {
             if (n.getOpCode() == opCode &&
-                    n1 == n.getLeft() &&
+                    n1 == n.getLeft()   &&
                     n2 == n.getRight())
                 return n;
         }
         return null;
     }
 
-    private static Node getNode(ArrayList<Node> nodes, SymTabInfo label) {
-        for (Node n : nodes)
-            if (n.ContainsSymbol(label))
-                return n;
+    private static Node getNode(LinkedHashMap<SymTabInfo, Node> nodes, SymTabInfo label) {
+        // Iterate over all the nodes. If we have a node that corresponds to this label,
+        // return the node.
+        for (Map.Entry<SymTabInfo, Node> entry : nodes.entrySet()) {
+            if (entry.getKey().equals(label))
+                return entry.getValue();
+        }
         return null;
     }
 }
