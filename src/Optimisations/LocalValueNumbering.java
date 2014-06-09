@@ -41,14 +41,15 @@ public class LocalValueNumbering
                         symbolToNumber.put(tac.getResult(), symbolNumberOfArg);
                     } else
                     {
-                        symbolToNumber.put(evaluated, number);
+                        symbolToNumber.put(evaluated, number, true);
                         number++;
                         int symbolNumberOfArg = symbolToNumber.getValue(evaluated);
-                        symbolToNumber.put(tac.getResult(), symbolNumberOfArg);
+                        symbolToNumber.put(tac.getResult(), symbolNumberOfArg, true);
                     }
                     tac.setArg1(evaluated);
                     tac.setArg2(null);
                     tac.setOpCode(OpCodes.A0);
+                    continue;
                 } else
                 {
                     if (!symbolToNumber.containsKey(tac.getArg1()))

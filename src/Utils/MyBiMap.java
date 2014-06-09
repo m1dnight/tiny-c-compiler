@@ -11,15 +11,21 @@ public class MyBiMap<K, V>
 
     class Entry<K, V>
     {
+        public K       key;
+        public V       value;
+        public boolean flag;
+        Entry(K key, V value, boolean flag)
+        {
+            this.key   = key;
+            this.value = value;
+            this.flag  = flag;
+        }
         Entry(K key, V value)
         {
-            this.key = key;
+            this.key   = key;
             this.value = value;
+            this.flag  = false;
         }
-
-        public K key;
-        public V value;
-
         public String toString()
         {
             return String.format("%s -> %s", key.toString(), value.toString());
@@ -50,6 +56,25 @@ public class MyBiMap<K, V>
             }*/
         }
         store.add(new Entry<K, V>(key, value));
+    }
+
+    public void put(K key, V value, boolean flag)
+    {
+        for(Entry<K, V> e : store)
+        {
+            if(e.key.equals(key))
+            {
+                e.value = value;
+                e.flag = flag;
+                return;
+            }
+/*            if(e.value.equals(value))
+            {
+                e.key = key;
+                return;
+            }*/
+        }
+        store.add(new Entry<K, V>(key, value, flag));
     }
     /******************************************************************************************************************/
     /************************************ REMOVING ********************************************************************/

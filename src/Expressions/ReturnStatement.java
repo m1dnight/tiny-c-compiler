@@ -25,6 +25,7 @@ public class ReturnStatement extends Statement {
     public ArrayList<ThreeAddressCode> toThreeAddressCode()
     {
         ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>();
+        rv.addAll(returnExpressions.ToThreeAddressCode());
         rv.add(new ThreeAddressCode(OpCodes.RETURN, returnExpressions.getIdentifier()));
         return rv;
     }
