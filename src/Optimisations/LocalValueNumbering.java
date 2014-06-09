@@ -90,6 +90,7 @@ public class LocalValueNumbering
                         symbolToNumber.put(tac.getResult(), number);
                         number++;
                     }
+                    continue;
                 }
 
                 if (tac.getOpCode() == OpCodes.A0)
