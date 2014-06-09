@@ -8,6 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="cup" level="project" />
+    <orderEntry type="library" name="com.google.collect:com.springsource.com.google.common.collect:0.8.0.20080820" level="project" />
   </component>
 </module>
 

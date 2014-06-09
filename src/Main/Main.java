@@ -6,6 +6,7 @@ import Assembly.Generator;
 import CodeGeneration.ThreeAddressCode;
 import Cup.parser;
 import Expressions.Program;
+import Optimisations.LocalValueNumbering;
 import SymbolTable.SymbolTable;
 
 import java.io.File;
@@ -29,12 +30,13 @@ public class Main {
             //System.out.println(result.getSymbolTable());
 
             // Print out all the TACs.
+            System.out.println("*************************************");
             for(ThreeAddressCode tac : result.toThreeAddressCode())
             {
 
                 System.out.println(tac.toString());
             }
-
+            System.out.println("*************************************");
             // Generate basic blocks.
             ArrayList<BasicBlock> basicBlocks =  Generator.SplitToBlocks(result.toThreeAddressCode());
 
@@ -48,9 +50,15 @@ public class Main {
             // Generate a DAG for each basic block.
             int hash = 0;
             for(BasicBlock b : basicBlocks) {
-                hash |= DAGraph.GenerateGraph(b).hashCode();
-                System.out.println("*************************************");
+                //hash |= DAGraph.GenerateGraph(b).hashCode();
+                b = LocalValueNumbering.Optimize(b);
             }
+            System.out.println("*************************************");
+            for(BasicBlock b : basicBlocks)
+            {
+                System.out.println(b.toString());
+            }
+            System.out.println("*************************************");
             //Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {

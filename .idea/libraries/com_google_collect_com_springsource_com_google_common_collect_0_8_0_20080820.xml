@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.google.collect:com.springsource.com.google.common.collect:0.8.0.20080820" type="repository">
+    <properties maven-id="com.google.collect:com.springsource.com.google.common.collect:0.8.0.20080820" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/collect/com.springsource.com.google.common.collect/0.8.0.20080820/com.springsource.com.google.common.collect-0.8.0.20080820.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

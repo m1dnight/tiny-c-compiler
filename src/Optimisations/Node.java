@@ -20,20 +20,10 @@ public class Node {
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public Node(SymTabInfo label)
-    {
-        this.labels = new ArrayList<SymTabInfo>();
-        this.labels.add(label);
-    }
     public Node(OpCodes opCode, Node left, Node right) {
         this.opCode = opCode;
         this.left   = left;
         this.right  = right;
-    }
-    public Node(OpCodes opCode, Node single)
-    {
-        this.opCode = opCode;
-        this.left = single;
     }
 
     public Node() {
@@ -41,56 +31,6 @@ public class Node {
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-
-    public String toString()
-    {
-        //return String.format(opCode.name() + " | " + (left == null ? "" : left.getLabels()) + " - " + (right == null ? "" : right.getLabels()) + " | " + this.getLabels());
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n");
-        if (this.right == null && this.left == null) {
-            sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  No children");
-            return sb.toString();
-        }
-        if (this.right == null)
-            if (this.left.getClass() == LeafNode.class) // We have a left leaf
-            {
-                sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  *Null" + "\n  *Left: " + this.left);
-                return sb.toString();
-            } else {
-                sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  *Null" + "\n  *Left: " + this.left.getOpCode());
-                return sb.toString();
-            }
-
-        if (this.left == null)
-            if (this.left.getClass() == LeafNode.class) // We have a left leaf
-            {
-                sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  *Right: " + this.right + "\n  *Null");
-                return sb.toString();
-            } else {
-                sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  *Right: " + this.right.getOpCode() + "\n  *Null");
-                return sb.toString();
-            }
-
-        if (this.right.getClass() == Node.class && this.left.getClass() == Node.class) {
-            sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  *Left: " + this.left.getOpCode() + "\n  *Right:" + this.right.getOpCode());
-            return sb.toString();
-        }
-        if (this.right.getClass() == LeafNode.class && this.left.getClass() == LeafNode.class) {
-            sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  *Left: " + this.left + "\n  *Right:" + this.right);
-            return sb.toString();
-        }
-        if (this.left.getClass() == LeafNode.class) // Right is an internal node
-        {
-            sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  *Left: " + this.left + "\n  *Right:" + this.right.getOpCode());
-            return sb.toString();
-        }
-        if (this.right.getClass() == LeafNode.class) // Left is an internal node
-        {
-            sb.append("Node:  " + "Operation: " + this.opCode + " Labels: " + this.getLabels() + "\n  *Left: " + this.left.getOpCode() + "\n  *Right:" + this.right);
-            return sb.toString();
-        }
-        return sb.toString();
-    }
 
     public void AddSymbol(SymTabInfo label)
     {
@@ -103,10 +43,6 @@ public class Node {
         {
             this.labels.remove(label);
         }
-    }
-    public boolean ContainsSymbol(SymTabInfo label)
-    {
-        return labels.contains(label);
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/

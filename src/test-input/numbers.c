@@ -2,7 +2,12 @@ int main()
 {
     int x;
     int y;
-    x = 1 + 2;
-    y = x / 2 + 3;
-    return x;
+    int z;
+    y = x * 3;
+    z = x * 3;
+    x = 2 + 1;
+    y = x * 3;
+    y = y + x;
+    x = y - z;
+    y = x;
 }

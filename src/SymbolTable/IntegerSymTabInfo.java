@@ -22,7 +22,7 @@ public class IntegerSymTabInfo extends SymTabInfo {
 
         if (object != null && object instanceof IntegerSymTabInfo)
         {
-            sameSame = this.value == ((IntegerSymTabInfo) object).value;
+            sameSame = this.value ==  ((IntegerSymTabInfo) object).value;
         }
 
         return sameSame;

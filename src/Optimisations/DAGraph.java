@@ -13,8 +13,9 @@ import java.util.*;
 public class DAGraph {
 
     public static ArrayList<Node> GenerateGraph(BasicBlock basicBlock) {
-        ArrayList<Node> nodes                   = new ArrayList<Node>();
-        LinkedHashMap<SymTabInfo, Node> mapping = new LinkedHashMap<SymTabInfo, Node>();
+        ArrayList<Node> nodes                       = new ArrayList<Node>();
+        LinkedHashMap<SymTabInfo, Node> nodeMap     = new LinkedHashMap<SymTabInfo, Node>();
+        LinkedHashMap<SymTabInfo, LeafNode> leafMap = new LinkedHashMap<SymTabInfo, LeafNode>();
 
         // For each instruction in the basicblock
         for (ThreeAddressCode tac : basicBlock.getTacs()) {
@@ -22,20 +23,20 @@ public class DAGraph {
                     tac.getOpCode() == OpCodes.A2DIV || tac.getOpCode() == OpCodes.A2NEQ   || tac.getOpCode() == OpCodes.A2EQ    ||
                     tac.getOpCode() == OpCodes.A2GT  || tac.getOpCode() == OpCodes.A2LT) {
                 // If the the first variable in the TAC (e.g., A = B + C, we mean B) is not yet in the DAG, we add it.
-                Node n1 = getNode(mapping, tac.getArg1());
+                Node n1 = getNode(nodeMap, tac.getArg1());
                 if (n1 == null)
                 {
                     n1 = new LeafNode(tac.getArg1());
                     nodes.add(n1);
-                    mapping.put(tac.getArg1(), n1);
+                    leafMap.put(tac.getArg1(), (LeafNode)n1);
                 }
 
-                Node n2 = getNode(mapping, tac.getArg2());
+                Node n2 = getNode(nodeMap, tac.getArg2());
                 if (n2 == null)
                 {
                     n2 = new LeafNode(tac.getArg2());
                     nodes.add(n2);
-                    mapping.put(tac.getArg2(), n2);
+                    leafMap.put(tac.getArg2(), (LeafNode)n2);
                 }
 
                 // Find the node that has these two nodes as children
@@ -45,24 +46,24 @@ public class DAGraph {
                     nodes.add(opNode);
                 }
                 // Remove x from the list of labels in the current node.
-                UpdateLabels(mapping, tac.getResult());
+                UpdateLabels(nodeMap, tac.getResult());
                 opNode.AddSymbol(tac.getResult());
-                mapping.put(tac.getResult(), opNode);
+                nodeMap.put(tac.getResult(), opNode);
             }
             /**
              * This part is for dealing with assignments
              * A = B
              */
             if (tac.getOpCode() == OpCodes.A0) {
-                Node n1 = getNode(mapping, tac.getArg1());
+                Node n1 = getNode(nodeMap, tac.getArg1());
                 if (n1 == null) {
                     n1 = new LeafNode(tac.getArg1());
                     nodes.add(n1);
-                    mapping.put(tac.getArg1(), n1);
+                    leafMap.put(tac.getArg1(), (LeafNode) n1);
                 }
-                UpdateLabels(mapping, tac.getResult());
+                UpdateLabels(nodeMap, tac.getResult());
                 n1.AddSymbol(tac.getResult());
-                mapping.put(tac.getResult(), n1);
+                nodeMap.put(tac.getResult(), n1);
             }
         }
         for(Node n : nodes)
@@ -70,7 +71,7 @@ public class DAGraph {
             if(n instanceof LeafNode)
                 System.out.println("Leaf: " + n.getLabels());
             else
-                System.out.println("Node: " + n.getOpCode() + " - " + n.getLabels());
+                System.out.println("Node: " + n.getOpCode() + " - " + n.getLabels() + "\n-- Left: " + n.getLeft().getLabels() + "\n-- Right: " + n.getRight().getLabels());
         }
         return nodes;
     }
