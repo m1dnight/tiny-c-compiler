@@ -39,11 +39,11 @@ public class MyBiMap<K, V>
                 e.value = value;
                 return;
             }
-            if(e.value.equals(value))
+/*            if(e.value.equals(value))
             {
                 e.key = key;
                 return;
-            }
+            }*/
         }
         store.add(new Entry<K, V>(key, value));
     }
@@ -57,6 +57,28 @@ public class MyBiMap<K, V>
         return false;
     }
 
+    public void removeWithKey(K key)
+    {
+        for(int i = 0; i < store.size(); i++)
+        {
+            if(store.get(i).key.equals(key))
+            {
+                store.remove(i);
+            }
+            break;
+        }
+    }
+    public void removeWithValue(V value)
+    {
+        for(int i = 0; i < store.size(); i++)
+        {
+            if(store.get(i).value.equals(value))
+            {
+                store.remove(i);
+            }
+            break;
+        }
+    }
     public V getValue(K key)
     {
         for(Entry<K, V> e : store)

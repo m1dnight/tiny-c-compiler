@@ -39,8 +39,7 @@ public class LocalValueNumbering
                     {
                         int symbolNumberOfArg = symbolToNumber.getValue(evaluated);
                         symbolToNumber.put(tac.getResult(), symbolNumberOfArg);
-                    }
-                    else
+                    } else
                     {
                         symbolToNumber.put(evaluated, number);
                         number++;
@@ -50,8 +49,7 @@ public class LocalValueNumbering
                     tac.setArg1(evaluated);
                     tac.setArg2(null);
                     tac.setOpCode(OpCodes.A0);
-                }
-                else
+                } else
                 {
                     if (!symbolToNumber.containsKey(tac.getArg1()))
                     {
@@ -82,6 +80,8 @@ public class LocalValueNumbering
                         tac.setOpCode(OpCodes.A0);
                         tac.setArg2(null);
                         tac.setArg1(var);
+                        symbolToNumber.put(tac.getResult(), symbolNumber);
+
                     } else
                     {
                         // We have not found the hash key
@@ -92,20 +92,28 @@ public class LocalValueNumbering
                     }
                     continue;
                 }
-
-                if (tac.getOpCode() == OpCodes.A0)
+            }
+            if (tac.getOpCode() == OpCodes.A0)
+            {
+                // If we are assigning to a variable that is already in our hashtable we need to
+                // invalidate that record (remove it).
+                if (symbolToNumber.containsKey(tac.getResult()))
                 {
-                    // If the argument does not exist we add a unique number to it.
-                    if (!symbolToNumber.containsKey(tac.getArg1()))
-                    {
-                        symbolToNumber.put(tac.getArg1(), number);
-                        number++;
-                    }
-                    int symbolNumberOfArg = symbolToNumber.getValue(tac.getArg1());
-                    symbolToNumber.put(tac.getResult(), symbolNumberOfArg);
+                    int indexForSymbol = symbolToNumber.getValue(tac.getResult());
+                    opToNumber.removeWithValue(indexForSymbol);
                 }
+                // If the argument does not exist we add a unique number to it.
+                if (!symbolToNumber.containsKey(tac.getArg1()))
+                {
+                    symbolToNumber.put(tac.getArg1(), number);
+                    number++;
+                }
+                int symbolNumberOfArg = symbolToNumber.getValue(tac.getResult());
+                symbolToNumber.put(tac.getResult(), symbolNumberOfArg);
+                continue;
             }
         }
+
         return block;
     }
 }

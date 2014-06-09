@@ -16,7 +16,7 @@ public class RedudantVariablesBasic
     {
         ArrayList<ThreeAddressCode> workingCopy = (ArrayList<ThreeAddressCode>) b.getTacs().clone();
         int currentSize = workingCopy.size();
-        for(int idx = 0; idx < currentSize; idx++)
+        for(int idx = 0; idx < currentSize - 1; idx++)
         {
             ThreeAddressCode nextRecord    = workingCopy.get(idx + 1);
             ThreeAddressCode currentRecord = workingCopy.get(idx);
