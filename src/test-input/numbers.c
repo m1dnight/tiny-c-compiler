@@ -7,12 +7,11 @@ int main()
     int b;
     int c;
     int d;
+    int e;
 
-
-
-    a = x + y;
-    b = x + y;
-    //a = 17;
-    b = 12;
-    c = x + y;
+    a = 2 + 2;
+    b = 2 + 2;
+    d = b;
+    b = a;
+    e = d + c;
 }

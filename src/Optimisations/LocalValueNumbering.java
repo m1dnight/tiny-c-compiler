@@ -102,12 +102,18 @@ public class LocalValueNumbering
                     int indexForSymbol = symbolToNumber.getValue(tac.getResult());
                     opToNumber.removeWithValue(indexForSymbol);
                 }
+                else
+                {
+                    symbolToNumber.put(tac.getResult(), number);
+                    number++;
+                }
                 // If the argument does not exist we add a unique number to it.
                 if (!symbolToNumber.containsKey(tac.getArg1()))
                 {
                     symbolToNumber.put(tac.getArg1(), number);
                     number++;
                 }
+
                 int symbolNumberOfArg = symbolToNumber.getValue(tac.getResult());
                 symbolToNumber.put(tac.getResult(), symbolNumberOfArg);
                 continue;
