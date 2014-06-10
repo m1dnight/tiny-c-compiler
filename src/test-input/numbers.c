@@ -15,9 +15,12 @@ int main()
     int c;
     int d;
     int e;
-    a = 2 + 2;
+    a = 8 / 2;
+    a = 1 > 2;
+    a = 1 < 2;
     b = 2 + 2;
     d = b;
+    c = 3;
     b = a;
     e = d + c;
     return factorial(e);

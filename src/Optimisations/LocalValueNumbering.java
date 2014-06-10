@@ -3,7 +3,6 @@ package Optimisations;
 import Assembly.BasicBlock;
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
-import SymbolTable.IntegerSymTabInfo;
 import SymbolTable.SymTabInfo;
 import Utils.MyBiMap;
 
@@ -25,30 +24,6 @@ public class LocalValueNumbering
                     tac.getOpCode() == OpCodes.A2DIV || tac.getOpCode() == OpCodes.A2NEQ || tac.getOpCode() == OpCodes.A2EQ ||
                     tac.getOpCode() == OpCodes.A2GT || tac.getOpCode() == OpCodes.A2LT)
             {
-                // First of all we check if we can apply constant folding.
-                // A = x + y will be evaluated if x and y are constants.
-                if (tac.getArg1() instanceof IntegerSymTabInfo && tac.getArg2() instanceof IntegerSymTabInfo)
-                {
-
-                    IntegerSymTabInfo evaluated = new IntegerSymTabInfo(((IntegerSymTabInfo) tac.getArg1()).value + ((IntegerSymTabInfo) tac.getArg2()).value);
-                    if (symbolToNumber.containsKey(evaluated))
-                    {
-                        int symbolNumberOfArg = symbolToNumber.getValue(evaluated);
-                        symbolToNumber.put(tac.getResult(), symbolNumberOfArg);
-                    } else
-                    {
-                        symbolToNumber.put(evaluated, number, true);
-                        number++;
-                        int symbolNumberOfArg = symbolToNumber.getValue(evaluated);
-                        symbolToNumber.put(tac.getResult(), symbolNumberOfArg, true);
-                    }
-                    tac.setArg1(evaluated);
-                    tac.setArg2(null);
-                    tac.setResult(tac.getResult());
-                    tac.setOpCode(OpCodes.A0);
-                    continue;
-                } else
-                {
                     if (!symbolToNumber.containsKey(tac.getArg1()))
                     {
                         symbolToNumber.put(tac.getArg1(), number);
@@ -89,7 +64,6 @@ public class LocalValueNumbering
                         number++;
                     }
                     continue;
-                }
             }
             if (tac.getOpCode() == OpCodes.A0)
             {
