@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/cup"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/com.google.collect:com.springsource.com.google.common.collect:0.8.0.20080820"/>
+	<classpathentry kind="output" path="out/production/tiny-c-compiler"/>
+</classpath>

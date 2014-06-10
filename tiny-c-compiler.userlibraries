@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="cup">
+    <archive path="/home/christophe/BitBucket/tiny-c-compiler/src/Cup/cup.jar" />
+    <archive path="/home/christophe/BitBucket/tiny-c-compiler/src/Cup/cup.jar" />
+  </library>
+  <library name="com.google.collect:com.springsource.com.google.common.collect:0.8.0.20080820">
+    <archive path="/home/christophe/.m2/repository/com/google/collect/com.springsource.com.google.common.collect/0.8.0.20080820/com.springsource.com.google.common.collect-0.8.0.20080820.jar" />
+  </library>
+</eclipse-userlibraries>
+

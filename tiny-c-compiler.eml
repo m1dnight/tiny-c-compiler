@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/tiny-c-compiler"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="cup" value="project"/>
+		<level name="com.google.collect:com.springsource.com.google.common.collect:0.8.0.20080820" value="project"/>
+	</levels>
+</component>
