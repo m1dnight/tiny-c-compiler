@@ -1,21 +1,17 @@
 package Main;
 
 import Assembly.BasicBlock;
-import Optimisations.DAGraph;
 import Assembly.Generator;
 import CodeGeneration.ThreeAddressCode;
 import Cup.parser;
 import Expressions.Program;
+import Optimisations.ConstantPropagation;
 import Optimisations.LocalValueNumbering;
 import Optimisations.RedudantVariablesBasic;
 import SymbolTable.SymbolTable;
 
-import java.io.File;
 import java.io.FileReader;
-import java.net.URL;
 import java.util.ArrayList;
-
-import static Assembly.BasicBlock.DetermineLiveness;
 
 public class Main {
     static public void main(String argv[]) {
@@ -47,28 +43,55 @@ public class Main {
 
             // Print the symbol table again.
             //System.out.println(result.getSymbolTable());
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
+            System.out.println("*************************************");
+            System.out.println("***Remove redundant variables********");
+            System.out.println("*************************************");
             for(BasicBlock b : basicBlocks) {
                 //hash |= DAGraph.GenerateGraph(b).hashCode();
                 b.setTacs(RedudantVariablesBasic.Optimize(b).getTacs());
             }
-            System.out.println("*************************************");
             for(BasicBlock b : basicBlocks)
             {
                 System.out.println(b.toString());
             }
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
             System.out.println("*************************************");
+            System.out.println("***Local Value Numbering ************");
+            System.out.println("*************************************");
+            System.out.println("Local Value Numbering");
             // Generate a DAG for each basic block.
             int hash = 0;
             for(BasicBlock b : basicBlocks) {
                 //hash |= DAGraph.GenerateGraph(b).hashCode();
                 b = LocalValueNumbering.Optimize(b);
             }
-            System.out.println("*************************************");
             for(BasicBlock b : basicBlocks)
             {
                 System.out.println(b.toString());
             }
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
             System.out.println("*************************************");
+            System.out.println("***Constant Propagatoin *************");
+            System.out.println("*************************************");
+            System.out.println("Constant Propagation");
+            // Generate a DAG for each basic block.
+            hash = 0;
+            for(BasicBlock b : basicBlocks) {
+                //hash |= DAGraph.GenerateGraph(b).hashCode();
+                b.setTacs(ConstantPropagation.Optimize(b).getTacs());
+            }
+
+            for(BasicBlock b : basicBlocks)
+            {
+                System.out.println(b.toString());
+            }
             //Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {

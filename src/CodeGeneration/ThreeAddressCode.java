@@ -6,11 +6,11 @@ import SymbolTable.SymTabInfo;
  * The class will be an object representing a three address code.
  */
 public class ThreeAddressCode {
-    private OpCodes opCode;
+    private OpCodes    opCode;
     private SymTabInfo arg1;
     private SymTabInfo arg2;
     private SymTabInfo result;
-    private int ParamCount;
+    private int        ParamCount;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
@@ -21,7 +21,6 @@ public class ThreeAddressCode {
         this.arg1 = arg1;
         this.arg2 = arg2;
         this.result = result;
-        // Print out the 3AC for debugging purposes
     }
 
     // Special constructor for function calls
@@ -37,7 +36,11 @@ public class ThreeAddressCode {
     {
         this.opCode = op;
         this.arg1 = arg;
-        // Print out the 3AC for debugging purposes
+    }
+
+    public ThreeAddressCode()
+    {
+
     }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/

@@ -6,10 +6,6 @@ import CodeGeneration.ThreeAddressCode;
 import SymbolTable.IntegerSymTabInfo;
 import SymbolTable.SymTabInfo;
 import Utils.MyBiMap;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-
-import java.util.HashMap;
 
 /**
  * Created by christophe on 09.06.14.
@@ -48,6 +44,7 @@ public class LocalValueNumbering
                     }
                     tac.setArg1(evaluated);
                     tac.setArg2(null);
+                    tac.setResult(tac.getResult());
                     tac.setOpCode(OpCodes.A0);
                     continue;
                 } else
