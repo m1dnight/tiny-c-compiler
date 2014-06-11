@@ -15,17 +15,15 @@ int main()
     int c;
     int d;
     int e;
-    a = 8 / 2;
-    a = 1 > 2;
-    a = 1 < 2;
-    a = 2 * 123;
-    x = a + 1;
-    y = 246 + 1;
-    a = 1 == 2;
-    b = 2 + 2;
-    d = b;
-    c = 3;
-    b = a;
-    e = d + c;
+    if(1 > 2)
+    {
+        x = a + b;
+    }
+    else
+    {
+        x = b + c;
+    };
+
+    y = a + b;
     return factorial(e);
 }
