@@ -221,6 +221,7 @@ fun_declaration         ::=  type:rt NAME:n
                                                                             FunctionDeclaration f = new FunctionDeclaration();
                                                                             f.setBeginLabel(funLabel);
                                                                             f.setBody(b);
+                                                                            f.setParameters(ps);
                                                                             RESULT = f;
 					                                                     :}
 						   ;

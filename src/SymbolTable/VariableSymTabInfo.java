@@ -3,7 +3,7 @@ package SymbolTable;
 import Typing.TypeInfo;
 
 public class VariableSymTabInfo extends SymTabInfo {
-    public  String  name;
+    private String name;
 
 
     /******************************************************************************************************************/
@@ -43,8 +43,18 @@ public class VariableSymTabInfo extends SymTabInfo {
 
         return sameSame;
     }
+
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
 
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 }

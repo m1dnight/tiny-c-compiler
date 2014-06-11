@@ -2,6 +2,7 @@ package Main;
 
 import Assembly.BasicBlock;
 import Assembly.Generator;
+import Assembly.x86.BasicBlockToX86Generator;
 import CodeGeneration.ThreeAddressCode;
 import Cup.parser;
 import Expressions.Program;
@@ -92,6 +93,14 @@ public class Main {
             {
                 System.out.println(b.toString());
             }
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
+            System.out.println("*************************************");
+            System.out.println("***Compilation of basic blocks ******");
+            System.out.println("*************************************");
+            BasicBlockToX86Generator compiler = new BasicBlockToX86Generator();
+            compiler.Compile(basicBlocks.get(0));
             //Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {

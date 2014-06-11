@@ -1,9 +1,6 @@
 package SymbolTable;
 
-import Typing.TypeInfo;
 import Utils.StringUtils;
-import com.sun.org.apache.xpath.internal.operations.Variable;
-import sun.awt.Symbol;
 
 import java.util.ArrayList;
 
@@ -72,7 +69,7 @@ public class SymbolTable {
         for (VariableSymTabInfo si : symbolList) {
             //We need to check if the entry is a VariableSymTabInfo!
             //TODO Is this needed?
-            if (si.name.equals(name))
+            if (si.getName().equals(name))
                 return si;
         }
         // If we have a parent, look it up there

@@ -49,6 +49,13 @@ public class ThreeAddressCode {
     public String toString()
     {
         /*****************************************************************************
+         * Parameters
+         *****************************************************************************/
+        if(opCode == OpCodes.GETPARAM)
+        {
+            return String.format("GetParam %s", arg1.IdentifiertoString());
+        }
+        /*****************************************************************************
          * Return Statements
          *****************************************************************************/
         if(opCode == OpCodes.RETURN)
