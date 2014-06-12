@@ -6,12 +6,11 @@ import Assembly.x86.BasicBlockToX86Generator;
 import CodeGeneration.ThreeAddressCode;
 import Cup.parser;
 import Expressions.Program;
-import Optimisations.ConstantPropagation;
 import Optimisations.LocalValueNumbering;
 import Optimisations.RedudantVariablesBasic;
 import SymbolTable.SymbolTable;
 
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -86,7 +85,7 @@ public class Main {
             hash = 0;
             for(BasicBlock b : basicBlocks) {
                 //hash |= DAGraph.GenerateGraph(b).hashCode();
-                b.setTacs(ConstantPropagation.Optimize(b).getTacs());
+                //b.setTacs(ConstantPropagation.Optimize(b).getTacs());
             }
 
             for(BasicBlock b : basicBlocks)
@@ -101,7 +100,9 @@ public class Main {
             System.out.println("*************************************");
             BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks);
 
+
             System.out.println(g);
+            WriteToFile(g.toString(), argv[1]);
             //Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {
@@ -109,5 +110,28 @@ public class Main {
             e.printStackTrace();
         }
 
+    }
+
+    private static void WriteToFile(String s, String path)
+    {		try {
+
+
+        File file = new File(path);
+
+        // if file doesnt exists, then create it
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        FileWriter fw = new FileWriter(file.getAbsoluteFile(), false);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(s + "\n");
+        bw.close();
+
+        System.out.println("File updated");
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
 }
