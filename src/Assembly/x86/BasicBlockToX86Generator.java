@@ -8,6 +8,7 @@ import SymbolTable.SymTabInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 /**
  * Created by christophe on 11.06.14.
@@ -37,6 +38,7 @@ public class BasicBlockToX86Generator {
     }
 
     private void Compile(BasicBlock block) {
+        Stack<String> parameters = new Stack<String>();
 
         // If this block is the beginning of a new function,
         // we possibly need to end the previous one.
@@ -46,8 +48,11 @@ public class BasicBlockToX86Generator {
             if (tac.getOpCode() == OpCodes.LABEL)
                 PrintLabel(tac);
             if (tac.getOpCode() == OpCodes.PARAM) {
-                program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-                program.append("\n\t" + String.format("pushl %%eax"));
+                // Push strings in reverse order on the stack.
+                parameters.push("\n\t" + String.format("pushl %%eax"));
+                parameters.push("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+                //program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+                //program.append("\n\t" + String.format("pushl %%eax"));
             }
             if(tac.getOpCode() == OpCodes.RETURN)
             {
@@ -56,6 +61,8 @@ public class BasicBlockToX86Generator {
             if (tac.getOpCode() == OpCodes.GETPARAM)
                 PutParameterAddress(tac);
             if (tac.getOpCode() == OpCodes.CALL) {
+                while(!parameters.isEmpty())
+                    program.append(parameters.pop());
                 program.append("\n\t" + String.format("call %s", tac.getArg1()));
                 program.append("\n\t" + String.format("addl $%d, %%esp", tac.getParamCount() * 4));
                 if(HasNoAddress(tac.getResult()))

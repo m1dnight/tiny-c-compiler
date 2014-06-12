@@ -1,13 +1,12 @@
-int multiply(int x, int y)
+
+int factorial(int x)
 {
-    return x/y;
+    return x;
 }
 
 int main()
 {
     int x;
     int y;
-    x = 1000;
-    y = 300;
-    y = multiply(x, y);
+    y = factorial(2);
 }
