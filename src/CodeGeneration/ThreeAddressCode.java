@@ -118,41 +118,32 @@ public class ThreeAddressCode {
          * Simple arithmetic expressions
          *****************************************************************************/
         if(opCode == OpCodes.A1MINUS)
-        {
             return String.format("%s = %s %s", result.IdentifiertoString(), " -", arg1.IdentifiertoString());
-        }
+
         if(opCode == OpCodes.A2PLUS)
-        {
             return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " + ", arg2.IdentifiertoString());
-        }
+
         if(opCode == OpCodes.A2MINUS)
-        {
             return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " - ", arg2.IdentifiertoString());
-        }
+
         if(opCode == OpCodes.A2TIMES)
-        {
             return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " * ", arg2.IdentifiertoString());
-        }
+
         if(opCode == OpCodes.A2DIV)
-        {
             return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " / ", arg2.IdentifiertoString());
-        }
+
         if(opCode == OpCodes.A2EQ)
-        {
-            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " == ", arg2.IdentifiertoString());
-        }
+            return String.format("IF %s == %s GOTO %s ", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
+
         if(opCode == OpCodes.A2NEQ)
-        {
             return String.format("IF %s != %s GOTO %s ", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
-        }
+
         if(opCode == OpCodes.A2GT)
-        {
-            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " > ", arg2.IdentifiertoString());
-        }
+            return String.format("IF %s > %s GOTO %s ", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
+
         if(opCode == OpCodes.A2LT)
-        {
-            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " < ", arg2.IdentifiertoString());
-        }
+            return String.format("IF %s < %s GOTO %s ", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
+
 
         // In case we didn't match anything return a string that will show in the output
         return String.format("**ERROR CONVERTING TAC TO STRING**\n\tOpCode: %s", opCode.name());

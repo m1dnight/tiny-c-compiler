@@ -29,9 +29,7 @@ public class BooleanExpression extends ArithmeticExpession {
         this.operand1       = operand1;
         this.operand2       = operand2;
     }
-    /******************************************************************************************************************/
-    /************************************ LOGIC ***********************************************************************/
-    /******************************************************************************************************************/
+d
     @Override
     public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
         // Return value

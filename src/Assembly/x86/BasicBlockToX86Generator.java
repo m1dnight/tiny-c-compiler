@@ -46,96 +46,97 @@ public class BasicBlockToX86Generator {
         for (ThreeAddressCode tac : block.getTacs()) {
             program.append("\n  " + "#" + tac.toString());
             if (tac.getOpCode() == OpCodes.LABEL)
-                PrintLabel(tac);
-            if (tac.getOpCode() == OpCodes.PARAM) {
-                // Push strings in reverse order on the stack.
-                parameters.push("\n\t" + String.format("pushl %%eax"));
-                parameters.push("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-                //program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-                //program.append("\n\t" + String.format("pushl %%eax"));
-            }
+                CompileLabel(tac);
+
+            if (tac.getOpCode() == OpCodes.PARAM)
+                CompileParam(parameters, tac);
+
             if(tac.getOpCode() == OpCodes.RETURN)
-            {
-                program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-            }
+                CompileReturn(tac);
+
             if (tac.getOpCode() == OpCodes.GETPARAM)
                 PutParameterAddress(tac);
-            if (tac.getOpCode() == OpCodes.CALL) {
-                while(!parameters.isEmpty())
-                    program.append(parameters.pop());
-                program.append("\n\t" + String.format("call %s", tac.getArg1()));
-                program.append("\n\t" + String.format("addl $%d, %%esp", tac.getParamCount() * 4));
-                if(HasNoAddress(tac.getResult()))
-                {
-                    program.append("\n\t" + String.format("pushl %%eax"));
-                    PutAndGetAddress(tac.getResult());
-                }
-                else
-                {
-                    program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
-                }
-            }
 
-            if (tac.getOpCode() == OpCodes.A0) {
-                if(HasNoAddress(tac.getResult()))
-                {
-                    PutAndGetAddress(tac.getArg1());
-                    PutAndGetAddress(tac.getResult());
-                    program.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
-                    program.append("\n\t" + String.format("pushl %s", "%eax"));
-                }
-                else
-                {
-                    PutAndGetAddress(tac.getArg1());
-                    PutAndGetAddress(tac.getResult());
-                    program.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
-                    program.append("\n\t" + String.format("movl %s, %s", "%eax", PutAndGetAddress(tac.getResult())));
-                }
-            }
-            if (tac.getOpCode() == OpCodes.A2PLUS || tac.getOpCode() == OpCodes.A2MINUS) {
-                program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-                program.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
-                program.append("\n\t" + String.format("%s %%ebx, %%eax", tac.getOpCode() == OpCodes.A2MINUS ? "subl" : "addl"));
-                program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
-            }
-            if (tac.getOpCode() == OpCodes.A2DIV || tac.getOpCode() == OpCodes.A2TIMES) {
-                program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-                program.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
-                program.append("\n\t" + String.format("%s %%ebx", tac.getOpCode() == OpCodes.A2DIV ? "idivl" : "imull"));
-                program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
-            }
+            if (tac.getOpCode() == OpCodes.CALL)
+                CompileFunctioncall(parameters, tac);
+
+            if (tac.getOpCode() == OpCodes.A0)
+                CompileAssignment(tac);
+
+            if (tac.getOpCode() == OpCodes.A2PLUS || tac.getOpCode() == OpCodes.A2MINUS)
+                CompileSumAndSubstract(tac);
+
+            if (tac.getOpCode() == OpCodes.A2DIV || tac.getOpCode() == OpCodes.A2TIMES)
+                CompileDivisionAndTimes(tac);
+
+            if(tac.getOpCode() == OpCodes.IF)
         }
 
     }
 
-    private boolean HasNoAddress(SymTabInfo result) {
-        return this.variableAddresses.get(result) == null;
+    /******************************************************************************************************************/
+    /************************************ INDIVIDUAL COMPILATION METHOD ***********************************************/
+    /******************************************************************************************************************/
+    private void CompileDivisionAndTimes(ThreeAddressCode tac) {
+        program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        program.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
+        program.append("\n\t" + String.format("%s %%ebx", tac.getOpCode() == OpCodes.A2DIV ? "idivl" : "imull"));
+        program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
     }
 
-    private void CloseLastFunction(BasicBlock block) {
-        ThreeAddressCode firstInBlock = block.getTacs().get(0);
+    private void CompileSumAndSubstract(ThreeAddressCode tac) {
+        program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        program.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
+        program.append("\n\t" + String.format("%s %%ebx, %%eax", tac.getOpCode() == OpCodes.A2MINUS ? "subl" : "addl"));
+        program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+    }
 
-        if(!this.currentFunction.equals("") && firstInBlock.getOpCode() == OpCodes.LABEL)
+    private void CompileAssignment(ThreeAddressCode tac) {
+        if(HasNoAddress(tac.getResult()))
         {
-            String label = firstInBlock.getArg1().IdentifiertoString();
-            if(label.contains("function"))
-            {
-                program.append("\n  " + "#function ending");
-                program.append("\n" + currentFunction.replace("function", "end") + ":");
-                program.append("\n\t" + "leave");
-                program.append("\n\t" + "ret");
-            }
+            PutAndGetAddress(tac.getArg1());
+            PutAndGetAddress(tac.getResult());
+            program.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
+            program.append("\n\t" + String.format("pushl %s", "%eax"));
+        }
+        else
+        {
+            PutAndGetAddress(tac.getArg1());
+            PutAndGetAddress(tac.getResult());
+            program.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
+            program.append("\n\t" + String.format("movl %s, %s", "%eax", PutAndGetAddress(tac.getResult())));
         }
     }
 
-    /**
-     * Function labels need to be printed differently than
-     * regular labels.
-     *
-     * Each function label needs to be printed in the .globl part as well.
-     * @param tac
-     */
-    private void PrintLabel(ThreeAddressCode tac) {
+    private void CompileFunctioncall(Stack<String> parameters, ThreeAddressCode tac) {
+        while(!parameters.isEmpty())
+            program.append(parameters.pop());
+        program.append("\n\t" + String.format("call %s", tac.getArg1()));
+        program.append("\n\t" + String.format("addl $%d, %%esp", tac.getParamCount() * 4));
+        if(HasNoAddress(tac.getResult()))
+        {
+            program.append("\n\t" + String.format("pushl %%eax"));
+            PutAndGetAddress(tac.getResult());
+        }
+        else
+        {
+            program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+        }
+    }
+
+    private void CompileReturn(ThreeAddressCode tac) {
+        program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+    }
+
+    private void CompileParam(Stack<String> parameters, ThreeAddressCode tac) {
+        // Push strings in reverse order on the stack.
+        parameters.push("\n\t" + String.format("pushl %%eax"));
+        parameters.push("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        //program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        //program.append("\n\t" + String.format("pushl %%eax"));
+    }
+
+    private void CompileLabel(ThreeAddressCode tac) {
         // Main is a special case.
         if (tac.getArg1().IdentifiertoString().equals("function_main")) {
             variableAddresses.clear();
@@ -162,6 +163,32 @@ public class BasicBlockToX86Generator {
             program.append("\n" + tac.getArg1().IdentifiertoString() + ":");
     }
 
+    /******************************************************************************************************************/
+    /************************************ ADDRESSES *******************************************************************/
+    /******************************************************************************************************************/
+    private boolean HasNoAddress(SymTabInfo result) {
+        return this.variableAddresses.get(result) == null;
+    }
+
+
+    private void CloseLastFunction(BasicBlock block) {
+        ThreeAddressCode firstInBlock = block.getTacs().get(0);
+
+        if(!this.currentFunction.equals("") && firstInBlock.getOpCode() == OpCodes.LABEL)
+        {
+            String label = firstInBlock.getArg1().IdentifiertoString();
+            if(label.contains("function"))
+            {
+                program.append("\n  " + "#function ending");
+                program.append("\n" + currentFunction.replace("function", "end") + ":");
+                program.append("\n\t" + "leave");
+                program.append("\n\t" + "ret");
+            }
+        }
+    }
+    /******************************************************************************************************************/
+    /************************************ HELPER FUNCTIONS ************************************************************/
+    /******************************************************************************************************************/
     private void PutParameterAddress(ThreeAddressCode param) {
         variableAddresses.put(param.getArg1(), String.format("%d(%%ebp)", parameterOffset));
         parameterOffset += 4;
@@ -178,7 +205,9 @@ public class BasicBlockToX86Generator {
         return variableAddresses.get(variable);
 
     }
-
+    /******************************************************************************************************************/
+    /************************************ LOGIC ***********************************************************************/
+    /******************************************************************************************************************/
     public String toString()
     {
         program = new StringBuilder();
