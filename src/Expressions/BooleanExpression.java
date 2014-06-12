@@ -29,29 +29,43 @@ public class BooleanExpression extends ArithmeticExpession {
         this.operand1       = operand1;
         this.operand2       = operand2;
     }
-d
+
     @Override
     public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
         // Return value
         ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>(2);
+        boolean swap = false;
+        OpCodes emittedOperation = this.operation;
+        if(this.operation == OpCodes.A2NEQ)
+        {
+            emittedOperation = OpCodes.A2EQ;
+            swap = true;
+        }
         if(this.falseCode == null)
         {
-            ThreeAddressCode iff  = new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
+            ThreeAddressCode falseLabelTAC = new ThreeAddressCode(OpCodes.LABEL, this.falseLabel);
+            ThreeAddressCode trueLabelTAC  = new ThreeAddressCode(OpCodes.LABEL, trueLabel);
+
+
+
+            ThreeAddressCode iff  = new ThreeAddressCode(swap ? emittedOperation : this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
             ThreeAddressCode iff2 = new ThreeAddressCode(OpCodes.GOTO, this.falseLabel);
             rv.addAll(operand1.ToThreeAddressCode());
             rv.addAll(operand2.ToThreeAddressCode());
             rv.add(iff);
             rv.add(iff2);
-            rv.add(new ThreeAddressCode(OpCodes.LABEL, trueLabel));
+            rv.add(swap? falseLabelTAC : trueLabelTAC);
+            //rv.add(trueLabelTAC);
             rv.add(new ThreeAddressCode(OpCodes.A0, new IntegerSymTabInfo(1), null, this.identifier));
             rv.add(new ThreeAddressCode(OpCodes.GOTO, this.endLabel));
-            rv.add(new ThreeAddressCode(OpCodes.LABEL, this.falseLabel));
+            //rv.add(falseLabelTAC);
+            rv.add(swap? trueLabelTAC : falseLabelTAC);
             rv.add(new ThreeAddressCode(OpCodes.A0, new IntegerSymTabInfo(0), null, this.identifier));
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.endLabel));
         }
         else
         {
-            ThreeAddressCode iff  = new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
+            ThreeAddressCode iff  = new ThreeAddressCode(swap ? emittedOperation : this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
             ThreeAddressCode iff2 = new ThreeAddressCode(OpCodes.GOTO, this.falseLabel);
 
             rv.add(iff);

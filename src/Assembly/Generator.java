@@ -1,6 +1,5 @@
 package Assembly;
 
-import CodeGeneration.CodeContainer;
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
 
@@ -14,8 +13,6 @@ public class Generator {
     public static  ArrayList<BasicBlock> SplitToBlocks(ArrayList<ThreeAddressCode> cc)
     {
         ArrayList<BasicBlock> blocks = new ArrayList<BasicBlock>();
-        // We loop over all the TAC's in the CodeContainer.
-        // As long as they are leaders we add them to a CodeContainer.
         int counter = 0;
         while(counter < cc.size())
         {
@@ -55,7 +52,7 @@ public class Generator {
             return true;
 
         tac = cc.get(tacIndex - 1);
-        return tac.getOpCode() == OpCodes.IFFALSE || tac.getOpCode() == OpCodes.GOTO;
+        return tac.getOpCode() == OpCodes.IF || tac.getOpCode() == OpCodes.GOTO;
 
     }
 

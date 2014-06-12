@@ -47,6 +47,16 @@ public class Main {
             /**********************************************************************************************************/
             /**********************************************************************************************************/
             System.out.println("*************************************");
+            System.out.println("***Original basic blocks ************");
+            System.out.println("*************************************");
+            for(BasicBlock b : basicBlocks)
+            {
+                System.out.println(b.toString());
+            }
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
+            /**********************************************************************************************************/
+            System.out.println("*************************************");
             System.out.println("***Remove redundant variables********");
             System.out.println("*************************************");
             for(BasicBlock b : basicBlocks) {
@@ -101,8 +111,8 @@ public class Main {
             BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks);
 
 
-            System.out.println(g);
-            WriteToFile(g.toString(), argv[1]);
+            System.out.println(g.getProgram());
+            WriteToFile(g.getProgram(), argv[1]);
             //Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {

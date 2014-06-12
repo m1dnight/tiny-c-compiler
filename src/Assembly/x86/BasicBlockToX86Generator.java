@@ -44,38 +44,56 @@ public class BasicBlockToX86Generator {
         // we possibly need to end the previous one.
         CloseLastFunction(block);
         for (ThreeAddressCode tac : block.getTacs()) {
+            // Print out original TAC as comment.
             program.append("\n  " + "#" + tac.toString());
-            if (tac.getOpCode() == OpCodes.LABEL)
+            OpCodes op = tac.getOpCode();
+            if (op == OpCodes.LABEL)
                 CompileLabel(tac);
 
-            if (tac.getOpCode() == OpCodes.PARAM)
+            if (op == OpCodes.PARAM)
                 CompileParam(parameters, tac);
 
-            if(tac.getOpCode() == OpCodes.RETURN)
+            if(op == OpCodes.RETURN)
                 CompileReturn(tac);
 
-            if (tac.getOpCode() == OpCodes.GETPARAM)
+            if (op == OpCodes.GETPARAM)
                 PutParameterAddress(tac);
 
-            if (tac.getOpCode() == OpCodes.CALL)
+            if (op == OpCodes.CALL)
                 CompileFunctioncall(parameters, tac);
 
-            if (tac.getOpCode() == OpCodes.A0)
+            if (op == OpCodes.A0)
                 CompileAssignment(tac);
 
-            if (tac.getOpCode() == OpCodes.A2PLUS || tac.getOpCode() == OpCodes.A2MINUS)
+            if (op == OpCodes.A2PLUS || op == OpCodes.A2MINUS)
                 CompileSumAndSubstract(tac);
 
-            if (tac.getOpCode() == OpCodes.A2DIV || tac.getOpCode() == OpCodes.A2TIMES)
+            if (op == OpCodes.A2DIV || op == OpCodes.A2TIMES)
                 CompileDivisionAndTimes(tac);
 
-            if(tac.getOpCode() == OpCodes.IF)
+            if(op == OpCodes.A2LT || op == OpCodes.A2GT || op == OpCodes.A2EQ || op == OpCodes.A2NEQ)
+                CompileComparison(tac, op);
+
+            if(op == OpCodes.GOTO)
+            {
+                AddCodeLine(String.format("jmp %s", tac.getArg1().IdentifiertoString()), program);
+            }
         }
 
     }
 
+    private void CompileComparison(ThreeAddressCode tac, OpCodes op) {
+        String jumpOperator = "";
+        jumpOperator = op == OpCodes.A2LT ? "jl" : (op == OpCodes.A2GT ? "jg" : "je");
+
+        AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())), program);
+        AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())), program);
+        AddCodeLine(String.format("cmpl %%eax, %%ebx"), program);
+        AddCodeLine(String.format("%s %s", jumpOperator, tac.getResult().IdentifiertoString()), program);
+    }
+
     /******************************************************************************************************************/
-    /************************************ INDIVIDUAL COMPILATION METHOD ***********************************************/
+    /************************************ INDIVIDUAL COMPILATION METHODS **********************************************/
     /******************************************************************************************************************/
     private void CompileDivisionAndTimes(ThreeAddressCode tac) {
         program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
@@ -160,7 +178,7 @@ public class BasicBlockToX86Generator {
             this.currentFunction = functionLabel;
 
         } else
-            program.append("\n" + tac.getArg1().IdentifiertoString() + ":");
+            program.append("\n\n\t" + tac.getArg1().IdentifiertoString() + ":");
     }
 
     /******************************************************************************************************************/
@@ -205,10 +223,15 @@ public class BasicBlockToX86Generator {
         return variableAddresses.get(variable);
 
     }
+
+    private void AddCodeLine(String code, StringBuilder sb)
+    {
+        sb.append("\n\t" + code);
+    }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public String toString()
+    public String getProgram()
     {
         program = new StringBuilder();
         prologue = new StringBuilder();
