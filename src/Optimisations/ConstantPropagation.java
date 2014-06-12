@@ -71,6 +71,9 @@ public class ConstantPropagation
                     else
                         newTac.setArg2(tac.getArg2());
 
+                    // We have not evaluated the code yet, so we have to put the resulting variable as not constant.
+                    constantMarkers.put(tac.getResult(), false);
+                    variableValues.remove(tac.getResult());
                     newTac.setOpCode(tac.getOpCode());
                     newTac.setResult(tac.getResult());
                     newTacs.add(newTac);
@@ -113,6 +116,8 @@ public class ConstantPropagation
                     if(tac.getOpCode() == OpCodes.A2LT)
                         newTac.setArg1(new IntegerSymTabInfo(op1.value < op2.value  ? 1 : 0));
 
+                    // We have evaluated an expression, so we need to put the constant vlaue
+                    variableValues.put(newTac.getResult(), (IntegerSymTabInfo) newTac.getArg1());
                     newTacs.add(newTac);
                     changed = true;
                     continue;
