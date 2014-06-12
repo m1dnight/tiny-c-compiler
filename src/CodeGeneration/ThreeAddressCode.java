@@ -196,4 +196,14 @@ public class ThreeAddressCode {
     public SymTabInfo getResultSymTabInfo() {
         return result;
     }
+
+    public int getParamCount()
+    {
+        return ParamCount;
+    }
+
+    public void setParamCount(int paramCount)
+    {
+        ParamCount = paramCount;
+    }
 }

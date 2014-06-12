@@ -1,17 +1,16 @@
+int multiply(int x)
+{
+    return x+x;
+}
+
 int main()
 {
-    int a;
-    int b;
-    int c;
-    int d;
-    int e;
-    int f;
-    int g;
-
-    a = 1;
-    b = 2;
-    c = 3;
-    b = f;
-    d = g;
-
+    int x;
+    int y;
+    x = 10;
+    y = 4;
+    x = y + x;
+    y = 12;
+    x = y + x;
+    x = multiply(x);
 }

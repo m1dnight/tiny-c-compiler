@@ -78,7 +78,7 @@ public class ConstantPropagation
                     continue;
                 }
                 // If we have a param TAC we can see if we can replace it with a variable
-                if(IsOptimizableParam(tac, constantMarkers))
+/*                if(IsOptimizableParam(tac, constantMarkers))
                 {
                     ThreeAddressCode newTac = new ThreeAddressCode();
                     newTac.setOpCode(OpCodes.PARAM);
@@ -86,7 +86,7 @@ public class ConstantPropagation
                     changed = true;
                     newTacs.add(newTac);
                     continue;
-                }
+                }*/
                 if(OptimizableArithmeticOperation(tac))
                 {
                     IntegerSymTabInfo op1 = (IntegerSymTabInfo) tac.getArg1();
@@ -112,6 +112,7 @@ public class ConstantPropagation
                         newTac.setArg1(new IntegerSymTabInfo(op1.value > op2.value  ? 1 : 0));
                     if(tac.getOpCode() == OpCodes.A2LT)
                         newTac.setArg1(new IntegerSymTabInfo(op1.value < op2.value  ? 1 : 0));
+
                     newTacs.add(newTac);
                     changed = true;
                     continue;

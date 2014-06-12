@@ -99,8 +99,9 @@ public class Main {
             System.out.println("*************************************");
             System.out.println("***Compilation of basic blocks ******");
             System.out.println("*************************************");
-            BasicBlockToX86Generator compiler = new BasicBlockToX86Generator();
-            compiler.Compile(basicBlocks.get(0));
+            BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks);
+
+            System.out.println(g);
             //Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {
