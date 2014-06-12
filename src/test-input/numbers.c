@@ -1,12 +1,15 @@
 
-int factorial(int x)
+int f(int x)
 {
-    return x;
+    int y;
+    y = -2;
+    return x * y;
 }
 
 int main()
 {
     int x;
     int y;
-    y = factorial(2);
+    y = 1 != 3;
+    y = f(2);
 }

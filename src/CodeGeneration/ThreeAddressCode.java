@@ -143,7 +143,7 @@ public class ThreeAddressCode {
         }
         if(opCode == OpCodes.A2NEQ)
         {
-            return String.format("%s = %s %s %s", result.IdentifiertoString(), arg1.IdentifiertoString(), " != ", arg2.IdentifiertoString());
+            return String.format("IF %s != %s GOTO %s ", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
         }
         if(opCode == OpCodes.A2GT)
         {

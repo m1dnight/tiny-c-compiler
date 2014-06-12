@@ -301,14 +301,6 @@ statements                  ::= statement:st SEMICOLON statements:sts    {:
 							  ;
 
 statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
-
-                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("False");
-                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("True");
-                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("End");
-
-                                                                             cond.setTrueLabel(trueLabel);
-                                                                             cond.setFalseLabel(falseLabel);
-                                                                             cond.setEndLabel(endLabel);
                                                                              cond.setTrueCode(cons);
 
                                                                              IfStatement iex = new IfStatement();
@@ -317,14 +309,6 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
                                                                          :}
 								%prec LOW
                               | IF LPAR bexp:cond RPAR block:cons ELSE block:alt  {:
-
-                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("False");
-                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("True");
-                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("End");
-
-                                                                             cond.setTrueLabel(trueLabel);
-                                                                             cond.setFalseLabel(falseLabel);
-                                                                             cond.setEndLabel(endLabel);
                                                                              cond.setTrueCode(cons);
                                                                              cond.setFalseCode(alt);
 
@@ -369,6 +353,13 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                                                                            OpCodes.A2GT, 
                                                                                                                            e1, e2,
                                                                                                                            tempVariable);
+                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("False");
+                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("True");
+                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("End");
+
+                                                                             exp.setTrueLabel(trueLabel);
+                                                                             exp.setFalseLabel(falseLabel);
+                                                                             exp.setEndLabel(endLabel);
                                                                              // program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :}                                                                                
@@ -382,6 +373,13 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                                                                            OpCodes.A2LT, 
                                                                                                                            e1, e2,
                                                                                                                            tempVariable);
+                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("False");
+                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("True");
+                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("End");
+
+                                                                             exp.setTrueLabel(trueLabel);
+                                                                             exp.setFalseLabel(falseLabel);
+                                                                             exp.setEndLabel(endLabel);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :}   
@@ -395,6 +393,13 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                                                                            OpCodes.A2EQ, 
                                                                                                                            e1, e2,
                                                                                                                            tempVariable);
+                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("False");
+                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("True");
+                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("End");
+
+                                                                             exp.setTrueLabel(trueLabel);
+                                                                             exp.setFalseLabel(falseLabel);
+                                                                             exp.setEndLabel(endLabel);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :}    
@@ -408,6 +413,13 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                                                                            OpCodes.A2NEQ, 
                                                                                                                            e1, e2,
                                                                                                                            tempVariable);
+                                                                             StringSymTabInfo falseLabel = parser.CreateLabel("False");
+                                                                             StringSymTabInfo trueLabel  = parser.CreateLabel("True");
+                                                                             StringSymTabInfo endLabel   = parser.CreateLabel("End");
+
+                                                                             exp.setTrueLabel(trueLabel);
+                                                                             exp.setFalseLabel(falseLabel);
+                                                                             exp.setEndLabel(endLabel);
                                                                              //program.add(exp.ToThreeAddressCode());
                                                                              RESULT = exp;
                                                                          :} 

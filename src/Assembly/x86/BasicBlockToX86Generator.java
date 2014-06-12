@@ -98,10 +98,10 @@ public class BasicBlockToX86Generator {
                 program.append("\n\t" + String.format("%s %%ebx, %%eax", tac.getOpCode() == OpCodes.A2MINUS ? "subl" : "addl"));
                 program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
             }
-            if (tac.getOpCode() == OpCodes.A2DIV) {
+            if (tac.getOpCode() == OpCodes.A2DIV || tac.getOpCode() == OpCodes.A2TIMES) {
                 program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
                 program.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
-                program.append("\n\t" + String.format("idivl %%ebx"));
+                program.append("\n\t" + String.format("%s %%ebx", tac.getOpCode() == OpCodes.A2DIV ? "idivl" : "imull"));
                 program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
             }
         }
