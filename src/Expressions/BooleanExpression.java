@@ -105,6 +105,7 @@ public class BooleanExpression extends ArithmeticExpession {
             rv.add(iff2);
             rv.add(new ThreeAddressCode(OpCodes.LABEL, trueLabel));
             rv.addAll(trueCode.toThreeAddressCode());
+            rv.add(new ThreeAddressCode(OpCodes.LABEL, falseLabel));
         }
         else
         {

@@ -62,6 +62,7 @@ public class FunctionTypeInfo extends TypeInfo {
 
     public int NumberOfParams()
     {
+        if(this.parameters == null || this.parameters.size() < 1) return 0;
         return parameters.size();
     }
 }

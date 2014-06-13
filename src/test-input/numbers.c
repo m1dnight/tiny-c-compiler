@@ -1,15 +1,18 @@
-
-int func(int x)
+int returnOne()
 {
-    int y;
-    y = 1;
-    return x * y;
+  return 12;
 }
 
+int factorial(int x)
+{
+    int result;		
+    if(x == 1)
+	return 1;
+    return x * factorial(x - 1);
+}
 int main()
 {
     int x;
     int y;
-    y = 1 != 3;
-    y = func(y);
+    x = factorial(3);
 }

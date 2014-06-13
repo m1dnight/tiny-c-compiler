@@ -14,9 +14,10 @@ import java.util.Stack;
  * Created by christophe on 11.06.14.
  */
 public class BasicBlockToX86Generator {
-    private StringBuilder prologue = new StringBuilder();
-    private StringBuilder globl    = new StringBuilder();
-    private StringBuilder program  = new StringBuilder();
+    private StringBuilder prologue     = new StringBuilder();
+    private StringBuilder globl        = new StringBuilder();
+    private StringBuilder program      = new StringBuilder();
+    private StringBuilder funcPrologue = new StringBuilder();
     private ArrayList<BasicBlock> blocks;
 
     //Variables per block
@@ -24,6 +25,7 @@ public class BasicBlockToX86Generator {
     private int                         localVariableOffset = -4; // first offset for local variables is -4.
     private HashMap<SymTabInfo, String> variableAddresses   = new HashMap<SymTabInfo, String>();
     private String currentFunction = "";
+    private int localVariableCount = 0;
 
 
     public BasicBlockToX86Generator(ArrayList<BasicBlock> program)
@@ -71,15 +73,17 @@ public class BasicBlockToX86Generator {
             if (op == OpCodes.A2DIV || op == OpCodes.A2TIMES)
                 CompileDivisionAndTimes(tac);
 
-            if(op == OpCodes.A2LT || op == OpCodes.A2GT || op == OpCodes.A2EQ || op == OpCodes.A2NEQ)
+            if(op == OpCodes.A2LT || op == OpCodes.A2GT || op == OpCodes.A2EQ || op == OpCodes.A2NEQ || op == OpCodes.A2EQIF)
                 CompileComparison(tac, op);
 
             if(op == OpCodes.GOTO)
-            {
-                AddCodeLine(String.format("jmp %s", tac.getArg1().IdentifiertoString()), program);
-            }
+                CompileJump(tac);
         }
 
+    }
+
+    private void CompileJump(ThreeAddressCode tac) {
+        AddCodeLine(String.format("jmp %s", tac.getArg1().IdentifiertoString()), program);
     }
 
     private void CompileComparison(ThreeAddressCode tac, OpCodes op) {
@@ -110,20 +114,10 @@ public class BasicBlockToX86Generator {
     }
 
     private void CompileAssignment(ThreeAddressCode tac) {
-        if(HasNoAddress(tac.getResult()))
-        {
-            PutAndGetAddress(tac.getArg1());
-            PutAndGetAddress(tac.getResult());
-            program.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
-            program.append("\n\t" + String.format("pushl %s", "%eax"));
-        }
-        else
-        {
             PutAndGetAddress(tac.getArg1());
             PutAndGetAddress(tac.getResult());
             program.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
             program.append("\n\t" + String.format("movl %s, %s", "%eax", PutAndGetAddress(tac.getResult())));
-        }
     }
 
     private void CompileFunctioncall(Stack<String> parameters, ThreeAddressCode tac) {
@@ -131,19 +125,13 @@ public class BasicBlockToX86Generator {
             program.append(parameters.pop());
         program.append("\n\t" + String.format("call %s", tac.getArg1()));
         program.append("\n\t" + String.format("addl $%d, %%esp", tac.getParamCount() * 4));
-        if(HasNoAddress(tac.getResult()))
-        {
-            program.append("\n\t" + String.format("pushl %%eax"));
-            PutAndGetAddress(tac.getResult());
-        }
-        else
-        {
-            program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
-        }
+        program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
     }
 
     private void CompileReturn(ThreeAddressCode tac) {
         program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        // Jump to the ending of the function
+        program.append("\n\t" + String.format("jmp end_%s", currentFunction.replace("function_", "")));
     }
 
     private void CompileParam(Stack<String> parameters, ThreeAddressCode tac) {
@@ -157,6 +145,7 @@ public class BasicBlockToX86Generator {
     private void CompileLabel(ThreeAddressCode tac) {
         // Main is a special case.
         if (tac.getArg1().IdentifiertoString().equals("function_main")) {
+            currentFunction = tac.getArg1().IdentifiertoString();
             variableAddresses.clear();
             localVariableOffset = -4;
             parameterOffset = 8;
@@ -217,6 +206,7 @@ public class BasicBlockToX86Generator {
             return String.format("$%d", ((IntegerSymTabInfo) variable).value);
 
         if (variableAddresses.get(variable) == null) {
+            localVariableCount++;
             variableAddresses.put(variable, String.format("%d(%%ebp)", localVariableOffset));
             localVariableOffset -= 4;
         }

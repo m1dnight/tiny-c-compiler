@@ -30,7 +30,7 @@ public class FunctionCallExpression extends Expression {
     /******************************************************************************************************************/
     public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
-
+        if(this.parameterList != null)
         output.addAll(this.parameterList.ToThreeAddressCode());
         output.add(
                 new ThreeAddressCode(OpCodes.CALL, this.function,
