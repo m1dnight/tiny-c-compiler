@@ -16,20 +16,20 @@ import java.util.Stack;
 public class BasicBlockToX86Generator {
     private StringBuilder prologue     = new StringBuilder();
     private StringBuilder globl        = new StringBuilder();
-    private StringBuilder program      = new StringBuilder();
+    private StringBuilder curCode      = new StringBuilder();
     private StringBuilder funcPrologue = new StringBuilder();
+    private StringBuilder program      = new StringBuilder();
     private ArrayList<BasicBlock> blocks;
 
     //Variables per block
     private int                         parameterOffset     = 8;  // first offset for parameter is 4.
     private int                         localVariableOffset = -4; // first offset for local variables is -4.
     private HashMap<SymTabInfo, String> variableAddresses   = new HashMap<SymTabInfo, String>();
-    private String currentFunction = "";
-    private int localVariableCount = 0;
+    private String                      currentFunction     = "";
+    private int                         localVariableCount  = 0;
 
 
-    public BasicBlockToX86Generator(ArrayList<BasicBlock> program)
-    {
+    public BasicBlockToX86Generator(ArrayList<BasicBlock> program) {
         this.blocks = program;
     }
 
@@ -47,7 +47,7 @@ public class BasicBlockToX86Generator {
         CloseLastFunction(block);
         for (ThreeAddressCode tac : block.getTacs()) {
             // Print out original TAC as comment.
-            program.append("\n  " + "#" + tac.toString());
+            curCode.append("\n  " + "#" + tac.toString());
             OpCodes op = tac.getOpCode();
             if (op == OpCodes.LABEL)
                 CompileLabel(tac);
@@ -83,92 +83,101 @@ public class BasicBlockToX86Generator {
     }
 
     private void CompileJump(ThreeAddressCode tac) {
-        AddCodeLine(String.format("jmp %s", tac.getArg1().IdentifiertoString()), program);
+        AddCodeLine(String.format("jmp %s", tac.getArg1().IdentifiertoString()), curCode);
     }
 
     private void CompileComparison(ThreeAddressCode tac, OpCodes op) {
         String jumpOperator = "";
         jumpOperator = op == OpCodes.A2LT ? "jl" : (op == OpCodes.A2GT ? "jg" : "je");
 
-        AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())), program);
-        AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())), program);
-        AddCodeLine(String.format("cmpl %%eax, %%ebx"), program);
-        AddCodeLine(String.format("%s %s", jumpOperator, tac.getResult().IdentifiertoString()), program);
+        AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())), curCode);
+        AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())), curCode);
+        AddCodeLine(String.format("cmpl %%eax, %%ebx"), curCode);
+        AddCodeLine(String.format("%s %s", jumpOperator, tac.getResult().IdentifiertoString()), curCode);
     }
 
     /******************************************************************************************************************/
     /************************************ INDIVIDUAL COMPILATION METHODS **********************************************/
     /******************************************************************************************************************/
     private void CompileDivisionAndTimes(ThreeAddressCode tac) {
-        program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-        program.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
-        program.append("\n\t" + String.format("%s %%ebx", tac.getOpCode() == OpCodes.A2DIV ? "idivl" : "imull"));
-        program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+        curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        curCode.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
+        curCode.append("\n\t" + String.format("%s %%ebx", tac.getOpCode() == OpCodes.A2DIV ? "idivl" : "imull"));
+        curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
     }
 
     private void CompileSumAndSubstract(ThreeAddressCode tac) {
-        program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-        program.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
-        program.append("\n\t" + String.format("%s %%ebx, %%eax", tac.getOpCode() == OpCodes.A2MINUS ? "subl" : "addl"));
-        program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+        curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        curCode.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())));
+        curCode.append("\n\t" + String.format("%s %%ebx, %%eax", tac.getOpCode() == OpCodes.A2MINUS ? "subl" : "addl"));
+        curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
     }
 
     private void CompileAssignment(ThreeAddressCode tac) {
             PutAndGetAddress(tac.getArg1());
             PutAndGetAddress(tac.getResult());
-            program.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
-            program.append("\n\t" + String.format("movl %s, %s", "%eax", PutAndGetAddress(tac.getResult())));
+            curCode.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
+            curCode.append("\n\t" + String.format("movl %s, %s", "%eax", PutAndGetAddress(tac.getResult())));
     }
 
     private void CompileFunctioncall(Stack<String> parameters, ThreeAddressCode tac) {
         while(!parameters.isEmpty())
-            program.append(parameters.pop());
-        program.append("\n\t" + String.format("call %s", tac.getArg1()));
-        program.append("\n\t" + String.format("addl $%d, %%esp", tac.getParamCount() * 4));
-        program.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+            curCode.append(parameters.pop());
+        curCode.append("\n\t" + String.format("call %s", tac.getArg1()));
+        curCode.append("\n\t" + String.format("addl $%d, %%esp", tac.getParamCount() * 4));
+        curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
     }
 
     private void CompileReturn(ThreeAddressCode tac) {
-        program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
         // Jump to the ending of the function
-        program.append("\n\t" + String.format("jmp end_%s", currentFunction.replace("function_", "")));
+        curCode.append("\n\t" + String.format("jmp end_%s", currentFunction.replace("function_", "")));
     }
 
     private void CompileParam(Stack<String> parameters, ThreeAddressCode tac) {
         // Push strings in reverse order on the stack.
         parameters.push("\n\t" + String.format("pushl %%eax"));
         parameters.push("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-        //program.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-        //program.append("\n\t" + String.format("pushl %%eax"));
+        //curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        //curCode.append("\n\t" + String.format("pushl %%eax"));
     }
 
     private void CompileLabel(ThreeAddressCode tac) {
         // Main is a special case.
         if (tac.getArg1().IdentifiertoString().equals("function_main")) {
+            program.append("\n" + curCode.toString());
+            curCode = new StringBuilder();
+
             currentFunction = tac.getArg1().IdentifiertoString();
             variableAddresses.clear();
             localVariableOffset = -4;
             parameterOffset = 8;
-            program.append("\n" + "_start:");
-            program.append("\n\t" + "movl %esp, %ebp");
+
+            curCode.append("\n" + "_start:");
+            curCode.append("\n\t" + "movl %esp, %ebp");
             this.currentFunction = "";
         }
         else if (tac.getArg1().IdentifiertoString().contains("function")) {
+            // Push previous code to program
+            program.append("\n" + curCode.toString());
+            curCode = new StringBuilder();
+
             variableAddresses.clear();
             localVariableOffset = -4;
             parameterOffset = 8;
             String functionLabel = tac.getArg1().IdentifiertoString();
-            program.append("\n" + String.format(".type %s, @function", functionLabel.replace("function_", "")));
-            program.append("\n" + String.format(functionLabel.replace("function_", "") + ":"));
+            funcPrologue.append("\n" + String.format(".type %s, @function", functionLabel.replace("function_", "")));
+            funcPrologue.append("\n" + String.format(functionLabel.replace("function_", "") + ":"));
             globl.append("\n"   + String.format(".globl %s", functionLabel.replace("function_", "")));
-            program.append("\t  # Function init");
-            program.append("\n\tpushl %ebp");
-            program.append("\n\tmovl %esp, %ebp");
+            funcPrologue.append("\n  # Function init");
+            funcPrologue.append("\n\tpushl %ebp");
+            funcPrologue.append("\n\tmovl %esp, %ebp");
             this.currentFunction = functionLabel;
 
         } else
-            program.append("\n\n\t" + tac.getArg1().IdentifiertoString() + ":");
+            curCode.append("\n\n\t" + tac.getArg1().IdentifiertoString() + ":");
     }
+
 
     /******************************************************************************************************************/
     /************************************ ADDRESSES *******************************************************************/
@@ -177,22 +186,6 @@ public class BasicBlockToX86Generator {
         return this.variableAddresses.get(result) == null;
     }
 
-
-    private void CloseLastFunction(BasicBlock block) {
-        ThreeAddressCode firstInBlock = block.getTacs().get(0);
-
-        if(!this.currentFunction.equals("") && firstInBlock.getOpCode() == OpCodes.LABEL)
-        {
-            String label = firstInBlock.getArg1().IdentifiertoString();
-            if(label.contains("function"))
-            {
-                program.append("\n  " + "#function ending");
-                program.append("\n" + currentFunction.replace("function", "end") + ":");
-                program.append("\n\t" + "leave");
-                program.append("\n\t" + "ret");
-            }
-        }
-    }
     /******************************************************************************************************************/
     /************************************ HELPER FUNCTIONS ************************************************************/
     /******************************************************************************************************************/
@@ -218,18 +211,42 @@ public class BasicBlockToX86Generator {
     {
         sb.append("\n\t" + code);
     }
+
+    private void CloseLastFunction(BasicBlock block) {
+        ThreeAddressCode firstInBlock = block.getTacs().get(0);
+
+        if(!this.currentFunction.equals("") && firstInBlock.getOpCode() == OpCodes.LABEL)
+        {
+            String label = firstInBlock.getArg1().IdentifiertoString();
+            if(label.contains("function"))
+            {
+                curCode.append("\n  " + "#function ending");
+                curCode.append("\n" + currentFunction.replace("function", "end") + ":");
+                curCode.append("\n\t" + "leave");
+                curCode.append("\n\t" + "ret");
+                funcPrologue.append(String.format("\n\t" + "subl $%d, %%esp", localVariableCount * 4));
+                funcPrologue.append(curCode.toString());
+                curCode = funcPrologue;
+                funcPrologue = new StringBuilder();
+                //TODO CLEAR?
+            }
+
+        }
+    }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public String getProgram()
+    public String getCurCode()
     {
-        program = new StringBuilder();
+        curCode = new StringBuilder();
         prologue = new StringBuilder();
         globl = new StringBuilder();
+        program = new StringBuilder();
 
         Prologue();
         for(BasicBlock b : this.blocks) Compile(b);
         // Append epiloggue
+        program.append("\n" + curCode.toString());
         program.append("\n\t" + "movl %eax, %ebx");
         program.append("\n  # End of _start");
         program.append("\n\t" + "movl $1, %eax");

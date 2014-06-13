@@ -111,8 +111,8 @@ public class Main {
             BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks);
 
 
-            System.out.println(g.getProgram());
-            WriteToFile(g.getProgram(), argv[1]);
+            System.out.println(g.getCurCode());
+            WriteToFile(g.getCurCode(), argv[1]);
             //Generator.PrintBlocks(basicBlocks);
 
         } catch (Exception e) {
