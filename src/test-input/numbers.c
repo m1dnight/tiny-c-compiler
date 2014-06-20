@@ -21,5 +21,5 @@ int main()
 {
     int x;
     int y;
-    x = fib(6);
+    x = factorial(3);
 }
