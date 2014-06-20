@@ -1,25 +1,20 @@
-int factorial(int x)
-{
-    int result;
-    if(x == 1)
-	return 1;
-    return x * factorial(x - 1);
-}
-int fib(int x)
-{
-  int result;
-  if(x == 0)
-    return 1;
-  if(x == 1)
-    return 1;
-  if(x == 2)
-    return 1;
-  result = fib(x - 1) + fib(x - 2);
-  return result;
-}
 int main()
 {
     int x;
     int y;
-    x = factorial(3);
+    int z[10];
+
+    z[2] = 2;
+    x = z[1 + 2 + 3 + 5 + 5 + 5 + 5 + 5 + 5];
+    x = 3;
+    if(z[1] == 3)
+    {
+        int a;
+        a = x;
+        y = a;
+    }
+    else
+    {
+        y = 2;
+    };
 }

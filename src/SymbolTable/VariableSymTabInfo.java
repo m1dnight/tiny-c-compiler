@@ -38,10 +38,15 @@ public class VariableSymTabInfo extends SymTabInfo {
         {
             VariableSymTabInfo obj = (VariableSymTabInfo) object;
             sameSame = this.name ==  obj.name &&
-                       this.typeInfo.equals(obj.typeInfo);
+                    this.typeInfo.equals(obj.typeInfo);
         }
 
         return sameSame;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 
     /******************************************************************************************************************/

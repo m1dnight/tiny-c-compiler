@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * Created by christophe on 06.06.14.
  */
 public class BooleanExpression extends ArithmeticExpession {
-    protected Expression operand1;
-    protected Expression operand2;
-    private SymTabInfo trueLabel;
-    private SymTabInfo    falseLabel;
-    private SymTabInfo    endLabel;
-    private StatementList trueCode;
-    private StatementList falseCode;
+    protected Expression    operand1;
+    protected Expression    operand2;
+    private   SymTabInfo    trueLabel;
+    private   SymTabInfo    falseLabel;
+    private   SymTabInfo    endLabel;
+    private   StatementList trueCode;
+    private   StatementList falseCode;
 
 
     /******************************************************************************************************************/
@@ -111,7 +111,8 @@ public class BooleanExpression extends ArithmeticExpession {
         {
             ThreeAddressCode iff  = new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
             ThreeAddressCode iff2 = new ThreeAddressCode(OpCodes.GOTO, this.falseLabel);
-
+            rv.addAll(this.operand1.ToThreeAddressCode());
+            rv.addAll(this.operand2.ToThreeAddressCode());
             rv.add(iff);
             rv.add(iff2);
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.trueLabel));

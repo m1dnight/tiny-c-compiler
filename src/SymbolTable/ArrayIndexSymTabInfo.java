@@ -1,44 +1,28 @@
 package SymbolTable;
 
-import Typing.ConstantTypeInfo;
-import Typing.Types;
+import Expressions.Expression;
+import Typing.TypeInfo;
 
-public class IntegerSymTabInfo extends SymTabInfo {
-    public int value;
+/**
+ * Created by christophe on 20.06.14.
+ */
+public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
+
+    private final Expression position;
+
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public IntegerSymTabInfo(int value) {
-        super(new ConstantTypeInfo(Types.INTEGER));
-        this.value = value;
+
+    public ArrayIndexSymTabInfo(TypeInfo typeInfo, String name, Expression position) {
+        super(typeInfo, name);
+        this.position = position;
     }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-
-    @Override
-    public int hashCode() {
-        return value;
-    }
-    @Override
-    public boolean equals(Object object)
-    {
-        boolean sameSame = false;
-
-        if (object != null && object instanceof IntegerSymTabInfo)
-        {
-            sameSame = this.value ==  ((IntegerSymTabInfo) object).value;
-        }
-
-        return sameSame;
-    }
     @Override
     public String IdentifiertoString() {
-        return Integer.toString(value);
-    }
-
-    public String toString()
-    {
-        return this.value + "";
+        return this.getName();
     }
 }

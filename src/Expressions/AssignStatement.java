@@ -2,7 +2,9 @@ package Expressions;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
+import SymbolTable.ArraySymTabInfo;
 import SymbolTable.SymTabInfo;
+import SymbolTable.VariableSymTabInfo;
 
 import java.util.ArrayList;
 
@@ -27,11 +29,22 @@ public class AssignStatement extends Statement {
     public ArrayList<ThreeAddressCode> toThreeAddressCode()
     {
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
-        if(valueExpressions != null) // It could be a single integer!
-            output.addAll(valueExpressions.ToThreeAddressCode());
-        ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, this.valueExpressions.getIdentifier(), null, this.target);
-        output.add(tac);
-        return output;
+        if(this.target instanceof ArraySymTabInfo)
+        {
+            if (valueExpressions != null) // It could be a single integer!
+                output.addAll(valueExpressions.ToThreeAddressCode());
+            ThreeAddressCode tac = new ThreeAddressCode(OpCodes.AAS, this.valueExpressions.getIdentifier(), null, this.target);
+            output.add(tac);
+            return output;
+        }
+        if(this.target instanceof VariableSymTabInfo) {
+            if (valueExpressions != null) // It could be a single integer!
+                output.addAll(valueExpressions.ToThreeAddressCode());
+            ThreeAddressCode tac = new ThreeAddressCode(OpCodes.A0, this.valueExpressions.getIdentifier(), null, this.target);
+            output.add(tac);
+            return output;
+        }
+        throw new Error("Unknown target type in AssignmentStatement");
     }
 
     /******************************************************************************************************************/
@@ -53,4 +66,3 @@ public class AssignStatement extends Statement {
         this.target = target;
     }
 }
-

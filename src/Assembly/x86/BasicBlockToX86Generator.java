@@ -131,6 +131,7 @@ public class BasicBlockToX86Generator {
     private void CompileReturn(ThreeAddressCode tac) {
         curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
         // Jump to the ending of the function
+        if(!currentFunction.equals(""))
         curCode.append("\n\t" + String.format("jmp end_%s", currentFunction.replace("function_", "")));
     }
 

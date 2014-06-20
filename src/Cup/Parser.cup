@@ -8,6 +8,8 @@ import SymbolTable.SymbolTable;
 import SymbolTable.IntegerSymTabInfo;
 import SymbolTable.VariableSymTabInfo;
 import SymbolTable.StringSymTabInfo;
+import SymbolTable.ArraySymTabInfo;
+import SymbolTable.ArrayIndexSymTabInfo;
 import Typing.Types;
 import Typing.VariableTypeInfo;
 import CodeGeneration.CodeContainer;
@@ -271,6 +273,10 @@ var_declaration         ::= type:t NAME:n SEMICOLON                      {:
                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(t), n);
                                                                             scope.Insert(vsti); 
                                                                          :}
+                          | type:t NAME:n LBRACK exp:size RBRACK SEMICOLON {:
+                                                                            ArraySymTabInfo asti = new ArraySymTabInfo(new VariableTypeInfo(t), n, size);
+                                                                            scope.Insert(asti);
+                                                                           :}
 						  ;
 
 var_declarations        ::= var_declaration var_declarations
@@ -319,17 +325,12 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 							  | WHILE LPAR exp RPAR statement
 							  | lexp:tar ASSIGN exp:ex                   {:
                                                                             AssignStatement as = new AssignStatement(tar, ex);
-									    //cc.AppendCode(tac);
-									    //cc.symTabInfo = tar;
-                                                                            //program.add(aex.ToThreeAddressCode());
-
                                                                             RESULT = as;
                                                                          :}
 							  | RETURN exp:e                             {:
                                                                             // The variable that holds the result of the expression is
                                                                             // is held inside e.symTabInfo. So we pass that to the TAC constructor.
                                                                             ReturnStatement rs = new ReturnStatement(e);
-                                                                            //program.add(re.ToThreeAddressCode());
                                                                             RESULT = rs;
                                                                          :}
 							  | WRITE exp
@@ -339,9 +340,21 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 lexp                    ::= NAME:n                                       {:
                                                                              // We should have already declared this name
                                                                              // so we simply look it up in the symbol table
-                                                                             RESULT = scope.Lookup(n);
+                                                                             
+                                                                             VariableSymTabInfo var = 
+                                                                                new VariableSymTabInfo(scope.Lookup(n).typeInfo, scope.Lookup(n).IdentifiertoString());
+                                                                             RESULT = var;
                                                                          :}
-						  | lexp LBRACK exp RBRACK  // array access
+						  | lexp:n LBRACK exp:idx RBRACK                 {:
+                                                                             // Arrays
+                                                                             ArrayIndexSymTabInfo arr = 
+                                                                             new ArrayIndexSymTabInfo(n.typeInfo,
+                                                                                                 n.IdentifiertoString(),
+                                                                                                 idx);
+                                                                             RESULT = arr;
+                                                                             
+                                                                             
+                                                                         :}
 						  ;
 bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              // For now we take the type of the first expression (no typecheck)
@@ -480,10 +493,6 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 						  | LPAR exp:e RPAR                              {:
                                                                              RESULT = e;
                                                                          :}
-						  | exp LBRACK exp RBRACK                        {:
-                                                                            // Arrays
-
-                                                                         :}
 						  | MINUS exp:e                                  {:
 
                                                                              // For now we take the type of the first expression (no typecheck)
@@ -510,6 +519,23 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             ConstantExpression ce = new ConstantExpression(csti, Types.INTEGER);
                                                                             RESULT = ce;
                                                                          :}
+						  | NAME:n LBRACK exp:idx RBRACK                {:
+                                                                            // Arrays
+                                                                            // Array Access
+
+                                                                            // Get the SymTabInfo from the scope
+                                                                            ArraySymTabInfo array = (ArraySymTabInfo)scope.Lookup(n);
+                                                                            
+                                                                            // Get Type of array here
+                                                                            
+                                                                            VariableSymTabInfo tempVariable = parser.GenerateVariable(array.typeInfo.ActualType());
+                                                                            //scope.Insert(tempVariable);
+                                                                            ArrayAccessExpression arrAcc = 
+                                                                                new ArrayAccessExpression(tempVariable, array.typeInfo.ActualType(),  array, idx);
+                                                                            
+                                                                            RESULT = arrAcc;                                                                           
+                                                                            
+                                                                         :}                                                                         
 						  | NAME:n LPAR pars:ps RPAR                     {:
                                                                             // Function Call
                                                                             // Add each TAC for each parameter to the result.

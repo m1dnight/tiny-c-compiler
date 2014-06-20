@@ -23,6 +23,11 @@ public abstract class SymTabInfo {
     {
         throw new Error("equals() should be implemented in subclasses!");
     }
+
+    public int hashCode()
+    {
+        throw new Error("hashCode() should be implemented in subclasses!");
+    }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/

@@ -49,6 +49,13 @@ public class ThreeAddressCode {
     public String toString()
     {
         /*****************************************************************************
+         * Arrays
+         *****************************************************************************/
+        if(opCode == OpCodes.AAC)
+        {
+            return String.format("%s = %s[%s]", result.IdentifiertoString(), arg1.IdentifiertoString(), arg2.IdentifiertoString());
+        }
+        /*****************************************************************************
          * Parameters
          *****************************************************************************/
         if(opCode == OpCodes.GETPARAM)

@@ -1,52 +1,41 @@
-package SymbolTable;
+package Expressions;
 
-import Typing.TypeInfo;
+import CodeGeneration.OpCodes;
+import CodeGeneration.ThreeAddressCode;
+import SymbolTable.ArraySymTabInfo;
+import SymbolTable.SymTabInfo;
+import Typing.Types;
 
-public class StringSymTabInfo extends SymTabInfo {
-    public String name;
+import java.util.ArrayList;
+
+/**
+ * Created by christophe on 20.06.14.
+ */
+public class ArrayAccessExpression extends Expression {
+    private final Expression index;
+    private final ArraySymTabInfo array;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public StringSymTabInfo(TypeInfo typeInfo, String value) {
-        super(typeInfo);
-        this.name = value;
+    public ArrayAccessExpression(SymTabInfo identifier, Types type, ArraySymTabInfo array, Expression idx) {
+        super(identifier, type);
+        this.index = idx;
+        this.array = array;
     }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    @Override
-    public String IdentifiertoString() {
-        return name;
-    }
-
-    public boolean equals(Object object)
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode()
     {
-        boolean sameSame = false;
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        output.addAll(this.index.ToThreeAddressCode());
+        output.add(new ThreeAddressCode(OpCodes.AAC, this.array, this.index.getIdentifier(), this.identifier));
 
-        if (object != null && object instanceof StringSymTabInfo)
-        {
-            StringSymTabInfo obj = (StringSymTabInfo) object;
-            sameSame = this.typeInfo.equals(obj.typeInfo);
-        }
-        return sameSame;
+        return output;
     }
 
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
 }
