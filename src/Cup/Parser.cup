@@ -253,6 +253,16 @@ formal_par              ::= type:t NAME:n
                                                                             scope.Insert(vsti);
                                                                             RESULT = vsti;
                                                                          :}
+                          | type:t NAME:n LBRACK NUMBER:size RBRACK      {:
+                                                                            // Create expression that indicates the size of this array.    
+                                                                            ConstantTypeInfo ti    = new ConstantTypeInfo(Types.INTEGER);
+                                                                            IntegerSymTabInfo csti = new IntegerSymTabInfo(size.intValue());
+                                                                            ConstantExpression ce  = new ConstantExpression(csti, Types.INTEGER);
+                                                                            // Inser the array in the symbol table.
+                                                                            ArraySymTabInfo asti   = new ArraySymTabInfo(new VariableTypeInfo(t), n, ce);
+                                                                            scope.Insert(asti);    
+                                                                            RESULT = asti;                  
+                                                                         :}
 						  ;
 
 block                   ::= LBRACE                                       {:
@@ -347,7 +357,8 @@ lexp                    ::= NAME:n                                       {:
                                                                          :}
 						  | lexp:n LBRACK exp:idx RBRACK                 {:
                                                                              // Arrays
-                                                                             ArraySymTabInfo array = (ArraySymTabInfo) n;
+                                                                             // Array assignment
+                                                                             ArraySymTabInfo array = (ArraySymTabInfo) scope.Lookup(n.IdentifiertoString());
                                                                              ArrayIndexSymTabInfo arr = 
                                                                              new ArrayIndexSymTabInfo(n.typeInfo,
                                                                                                  n.IdentifiertoString(),
@@ -526,6 +537,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             // Array Access
 
                                                                             // Get the SymTabInfo from the scope
+                                                                            VariableSymTabInfo temp = scope.Lookup(n);
                                                                             ArraySymTabInfo array = (ArraySymTabInfo)scope.Lookup(n);
                                                                             
                                                                             // Get Type of array here
@@ -564,6 +576,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 						  ;
 
 pars                    ::= exp:p                                        {:
+                                                                            System.out.println("Getting params");
                                                                             RESULT = new ParameterList(p);
                                                                          :}
 						  | exp:p COMMA pars:ps                          {:

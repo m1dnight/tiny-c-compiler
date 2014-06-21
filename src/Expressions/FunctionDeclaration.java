@@ -38,6 +38,7 @@ public class FunctionDeclaration extends Declaration {
         if(parameters != null && parameters.size() > 0)
             for(SymTabInfo parameter : parameters)
                 output.add(new ThreeAddressCode(OpCodes.GETPARAM, parameter));
+        if(body != null)
         output.addAll(body.toThreeAddressCode());
         return output;
     }

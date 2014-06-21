@@ -5,6 +5,8 @@ import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.IntegerSymTabInfo;
 import SymbolTable.SymTabInfo;
+import SymbolTable.SymbolTable;
+import SymbolTable.ArraySymTabInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +16,7 @@ import java.util.Stack;
  * Created by christophe on 11.06.14.
  */
 public class BasicBlockToX86Generator {
+    private final SymbolTable scope;
     private StringBuilder prologue     = new StringBuilder();
     private StringBuilder globl        = new StringBuilder();
     private StringBuilder curCode      = new StringBuilder();
@@ -29,12 +32,16 @@ public class BasicBlockToX86Generator {
     private int                         localVariableCount  = 0;
 
 
-    public BasicBlockToX86Generator(ArrayList<BasicBlock> program) {
+    public BasicBlockToX86Generator(ArrayList<BasicBlock> program, SymbolTable scope) {
         this.blocks = program;
+        this.scope = scope;
     }
 
     public void Prologue() {
         prologue.append("\n" + ".section .data");
+
+        prologue.append("\n" + "# Used for printing");
+        prologue.append("\n" + "inpf: .string \"%d \\n\"");
         prologue.append("\n" + ".section .text");
         prologue.append("\n" + ".globl _start");
     }
@@ -51,6 +58,27 @@ public class BasicBlockToX86Generator {
             OpCodes op = tac.getOpCode();
             if (op == OpCodes.LABEL)
                 CompileLabel(tac);
+
+            // value = arr[x]
+            if(op == OpCodes.AAC)
+            {
+                // Determine the address for the array
+                // If we are dealing with a parameter array, GetPutAddress wil give us the base
+                String base = PutAndGetAddress(tac.getArg1());
+                curCode.append("\n\t" + String.format("# Calculate offset"));
+                curCode.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg2()), "%eax")); // Move offset in register
+                curCode.append("\n\t" + String.format("movl $4, %%ebx"));
+                curCode.append("\n\t" + String.format("imull %%ebx")); // Offset is in %eax
+
+                curCode.append("\n\t" + String.format("# Calculate address"));
+                curCode.append("\n\t" + String.format("movl %s, %%ebx", base)); // Move base address in register
+                curCode.append("\n\t" + String.format("subl %%eax, %%ebx")); // Calculate address on offset to %eax
+
+
+                curCode.append("\n\t" + String.format("# Get value from address"));
+                curCode.append("\n\t" + String.format("movl (%%ebx), %%eax")); // Move actual value to %eax
+                curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+            }
 
             if (op == OpCodes.PARAM)
                 CompileParam(parameters, tac);
@@ -78,11 +106,6 @@ public class BasicBlockToX86Generator {
 
             if(op == OpCodes.GOTO)
                 CompileJump(tac);
-
-            if(op == OpCodes.AAS)
-            {
-
-            }
         }
 
     }
@@ -126,6 +149,7 @@ public class BasicBlockToX86Generator {
     }
 
     private void CompileFunctioncall(Stack<String> parameters, ThreeAddressCode tac) {
+        curCode.append("\n\t# Parameters for function call");
         while(!parameters.isEmpty())
             curCode.append(parameters.pop());
         curCode.append("\n\t" + String.format("call %s", tac.getArg1()));
@@ -196,6 +220,7 @@ public class BasicBlockToX86Generator {
     /************************************ HELPER FUNCTIONS ************************************************************/
     /******************************************************************************************************************/
     private void PutParameterAddress(ThreeAddressCode param) {
+        if(param.getArg1() instanceof ArraySymTabInfo)
         variableAddresses.put(param.getArg1(), String.format("%d(%%ebp)", parameterOffset));
         parameterOffset += 4;
     }

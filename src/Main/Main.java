@@ -108,7 +108,7 @@ public class Main {
             System.out.println("*************************************");
             System.out.println("***Compilation of basic blocks ******");
             System.out.println("*************************************");
-            BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks);
+            BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks, scope);
 
 
             System.out.println(g.getCurCode());

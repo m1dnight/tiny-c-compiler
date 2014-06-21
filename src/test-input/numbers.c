@@ -1,16 +1,16 @@
-int func(int x[10])
+int sum(int param[2])
 {
-    int y;
-    y = x;
-    x = 2;
-    return x;
-}
+    int sum;
+    sum = 0;
+    sum = sum + param[0];
+    sum = sum + param[1];
 
+    return sum;
+}
 int main()
 {
-    int x[10];
+    int x[2];
+    int y;
 
-    x[0] = 0;
-    x[1] = 1;
-    x[2] = funct(x);
+    y = sum(x);
 }
