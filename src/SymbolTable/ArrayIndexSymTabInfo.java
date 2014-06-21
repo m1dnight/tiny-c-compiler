@@ -8,7 +8,7 @@ import Typing.TypeInfo;
  */
 public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
 
-    private final Expression position;
+    private final Expression index;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
@@ -16,7 +16,7 @@ public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
 
     public ArrayIndexSymTabInfo(TypeInfo typeInfo, String name, Expression position) {
         super(typeInfo, name);
-        this.position = position;
+        this.index = position;
     }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
@@ -24,5 +24,12 @@ public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
     @Override
     public String IdentifiertoString() {
         return this.getName();
+    }
+
+    /******************************************************************************************************************/
+    /************************************ GETTERS AND SETTERS *********************************************************/
+    /******************************************************************************************************************/
+    public Expression getIndex() {
+        return index;
     }
 }

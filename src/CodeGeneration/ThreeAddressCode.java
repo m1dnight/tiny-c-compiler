@@ -55,6 +55,10 @@ public class ThreeAddressCode {
         {
             return String.format("%s = %s[%s]", result.IdentifiertoString(), arg1.IdentifiertoString(), arg2.IdentifiertoString());
         }
+        if(opCode == OpCodes.AAS)
+        {
+            return String.format("%s[%s] = %s", result.IdentifiertoString(), arg1.IdentifiertoString(), arg2.IdentifiertoString());
+        }
         /*****************************************************************************
          * Parameters
          *****************************************************************************/
