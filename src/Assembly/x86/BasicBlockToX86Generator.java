@@ -78,6 +78,11 @@ public class BasicBlockToX86Generator {
 
             if(op == OpCodes.GOTO)
                 CompileJump(tac);
+
+            if(op == OpCodes.AAS)
+            {
+
+            }
         }
 
     }
@@ -218,17 +223,22 @@ public class BasicBlockToX86Generator {
 
         if(!this.currentFunction.equals("") && firstInBlock.getOpCode() == OpCodes.LABEL)
         {
+            // If the new basic block is the beginning of a new function.
             String label = firstInBlock.getArg1().IdentifiertoString();
             if(label.contains("function"))
             {
+                // Cur code contains the code for our previous functions' body.
                 curCode.append("\n  " + "#function ending");
                 curCode.append("\n" + currentFunction.replace("function", "end") + ":");
                 curCode.append("\n\t" + "leave");
                 curCode.append("\n\t" + "ret");
+                funcPrologue.append("\n  # " + localVariableCount + " local variables required. Ergo, " + localVariableCount * 4 + " space on the stack.");
                 funcPrologue.append(String.format("\n\t" + "subl $%d, %%esp", localVariableCount * 4));
+                // Prepend the prologue to the body.
                 funcPrologue.append(curCode.toString());
                 curCode = funcPrologue;
                 funcPrologue = new StringBuilder();
+                localVariableCount = 0;
                 //TODO CLEAR?
             }
 
@@ -239,19 +249,31 @@ public class BasicBlockToX86Generator {
     /******************************************************************************************************************/
     public String getCurCode()
     {
-        curCode = new StringBuilder();
+        // Clear previous compilation.
+        curCode  = new StringBuilder();
         prologue = new StringBuilder();
-        globl = new StringBuilder();
-        program = new StringBuilder();
+        globl    = new StringBuilder();
+        program  = new StringBuilder();
+        parameterOffset     = 8;  // first offset for parameter is 4.
+        localVariableOffset = -4; // first offset for local variables is -4.
+        variableAddresses   = new HashMap<SymTabInfo, String>();
+        currentFunction     = "";
+        localVariableCount  = 0;
 
+        // Generate the prologue of the program.
         Prologue();
+
+        // Compile each basic block.
         for(BasicBlock b : this.blocks) Compile(b);
-        // Append epiloggue
+
+        // Append epilogue.
         program.append("\n" + curCode.toString());
         program.append("\n\t" + "movl %eax, %ebx");
         program.append("\n  # End of _start");
         program.append("\n\t" + "movl $1, %eax");
         program.append("\n\t" + "int $0x80");
+
+        // Return the code.
         return prologue.toString() + globl.toString() + program.toString();
     }
 

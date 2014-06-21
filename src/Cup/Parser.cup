@@ -347,10 +347,12 @@ lexp                    ::= NAME:n                                       {:
                                                                          :}
 						  | lexp:n LBRACK exp:idx RBRACK                 {:
                                                                              // Arrays
+                                                                             ArraySymTabInfo array = (ArraySymTabInfo) n;
                                                                              ArrayIndexSymTabInfo arr = 
                                                                              new ArrayIndexSymTabInfo(n.typeInfo,
                                                                                                  n.IdentifiertoString(),
-                                                                                                 idx);
+                                                                                                 idx,
+                                                                                                 array);
                                                                              RESULT = arr;
                                                                              
                                                                              

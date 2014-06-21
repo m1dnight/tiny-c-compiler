@@ -9,14 +9,16 @@ import Typing.TypeInfo;
 public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
 
     private final Expression index;
+    private final ArraySymTabInfo array;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
 
-    public ArrayIndexSymTabInfo(TypeInfo typeInfo, String name, Expression position) {
+    public ArrayIndexSymTabInfo(TypeInfo typeInfo, String name, Expression position, ArraySymTabInfo array) {
         super(typeInfo, name);
         this.index = position;
+        this.array = array;
     }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/

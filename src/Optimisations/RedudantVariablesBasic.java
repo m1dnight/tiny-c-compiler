@@ -27,6 +27,7 @@ public class RedudantVariablesBasic
                 workingCopy.remove(nextRecord);
                 currentSize--;
             }
+
         }
         return new BasicBlock().setTacs(workingCopy);
     }

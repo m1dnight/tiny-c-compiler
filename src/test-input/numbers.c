@@ -1,20 +1,16 @@
+int func(int x[10])
+{
+    int y;
+    y = x;
+    x = 2;
+    return x;
+}
+
 int main()
 {
-    int x;
-    int y;
-    int z[10];
+    int x[10];
 
-    z[4 + 5] = 2;
-    x = z[1 + 2];
-    x = 3;
-    if(z[1] == 3)
-    {
-        int a;
-        a = x;
-        y = a;
-    }
-    else
-    {
-        y = 2;
-    };
+    x[0] = 0;
+    x[1] = 1;
+    x[2] = funct(x);
 }
