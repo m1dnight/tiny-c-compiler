@@ -64,7 +64,7 @@ public class BasicBlockToX86Generator {
                 curCode.append("\n\t" + String.format("movl %s, %eax", PutAndGetAddress(tac.getArg1())));
                 curCode.append("\n\t" + String.format("movl $4, %ebx"));
                 curCode.append("\n\t" + String.format("imull %ebx"));
-                
+
 
             }
             // value = arr[x]
