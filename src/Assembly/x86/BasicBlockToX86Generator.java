@@ -225,8 +225,6 @@ public class BasicBlockToX86Generator {
             // Push strings in *reverse* order on the stack.
             parameters.push("\n\t" + String.format("pushl %%eax"));
             parameters.push("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-            //curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-            //curCode.append("\n\t" + String.format("pushl %%eax"));
         }
     }
 
