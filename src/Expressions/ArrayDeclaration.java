@@ -1,44 +1,40 @@
 package Expressions;
 
+import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
-import SymbolTable.SymTabInfo;
-import SymbolTable.VariableSymTabInfo;
+import SymbolTable.ArraySymTabInfo;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 06.06.14.
+ * Created by christophe on 22.06.14.
  */
-public class Declaration {
-    protected SymTabInfo variable;
+public class ArrayDeclaration extends VariableDeclaration {
+    private ArraySymTabInfo variable;
+
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public String toString()
-    {
-        throw new Error("toString() should be declared in subclasses of Declaration");
-    }
-
     public ArrayList<ThreeAddressCode> toThreeAddressCode()
     {
-        throw new Error("toThreeAddressCode() should be declared in subclasses of Declaration");
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        output.addAll(this.variable.getSize().ToThreeAddressCode());
+
+        output.add(new ThreeAddressCode(OpCodes.ALLOC_ARRAY, this.variable.getSize().getIdentifier()));
+        return output;
     }
-
-
-
-
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public void setVariable(VariableSymTabInfo variable) {
+    public void setVariable(ArraySymTabInfo variable) {
         this.variable = variable;
     }
 
-    public SymTabInfo getVariable() {
+    public ArraySymTabInfo getVariable() {
         return variable;
     }
+
 }

@@ -8,7 +8,6 @@ import Cup.parser;
 import Expressions.Program;
 import Optimisations.LocalValueNumbering;
 import Optimisations.RedudantVariablesBasic;
-import SymbolTable.SymbolTable;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,12 +16,14 @@ public class Main {
     static public void main(String argv[]) {
 
 
-        SymbolTable scope = new SymbolTable();
+        //SymbolTable scope = new SymbolTable();
     /* Start the parser */
         try {
             parser p = new parser(new Jflex.Lexer(new FileReader(argv[0])));
             // Parse and lex.
             Program result = (Program) p.parse().value;
+
+
             // Print out the symbol table.
             //System.out.println(result.getSymbolTable());
 
@@ -108,7 +109,7 @@ public class Main {
             System.out.println("*************************************");
             System.out.println("***Compilation of basic blocks ******");
             System.out.println("*************************************");
-            BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks, scope);
+            BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks, result.getSymbolTable());
 
 
             System.out.println(g.getCurCode());

@@ -1,6 +1,7 @@
 int sum(int param[2])
 {
     int sum;
+    int arr[param[0]];
     sum = 0;
     sum = sum + param[0];
     sum = sum + param[1];

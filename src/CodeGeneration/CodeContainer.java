@@ -47,4 +47,8 @@ public class CodeContainer {
         for(int i = 0; i < codeList.size(); i++)
             System.out.println(codeList.get(i).toString());
     }
+
+    public void addDeclarations(CodeContainer vs) {
+
+    }
 }

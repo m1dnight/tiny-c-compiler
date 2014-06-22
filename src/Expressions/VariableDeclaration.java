@@ -1,44 +1,27 @@
 package Expressions;
 
+import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
-import SymbolTable.SymTabInfo;
-import SymbolTable.VariableSymTabInfo;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 06.06.14.
+ * Created by christophe on 22.06.14.
  */
-public class Declaration {
-    protected SymTabInfo variable;
+public class VariableDeclaration extends Declaration {
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public String toString()
-    {
-        throw new Error("toString() should be declared in subclasses of Declaration");
-    }
-
     public ArrayList<ThreeAddressCode> toThreeAddressCode()
     {
-        throw new Error("toThreeAddressCode() should be declared in subclasses of Declaration");
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        return output;
     }
-
-
-
-
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public void setVariable(VariableSymTabInfo variable) {
-        this.variable = variable;
-    }
 
-    public SymTabInfo getVariable() {
-        return variable;
-    }
 }

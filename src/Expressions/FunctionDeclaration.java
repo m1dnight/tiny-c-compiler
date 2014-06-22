@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * Created by christophe on 06.06.14.
  */
 public class FunctionDeclaration extends Declaration {
-    private StatementList    body;
+    private Block    body;
     private StringSymTabInfo beginLabel;
     private LinkedList<SymTabInfo> parameters;
     /******************************************************************************************************************/
@@ -38,18 +38,20 @@ public class FunctionDeclaration extends Declaration {
         if(parameters != null && parameters.size() > 0)
             for(SymTabInfo parameter : parameters)
                 output.add(new ThreeAddressCode(OpCodes.GETPARAM, parameter));
-        if(body != null)
-        output.addAll(body.toThreeAddressCode());
+        if(body != null) {
+            output.addAll(body.getDeclarations().toThreeAddressCode());
+            output.addAll(body.getStatements().toThreeAddressCode());
+        }
         return output;
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public StatementList getBody() {
+    public Block getBody() {
         return body;
     }
 
-    public void setBody(StatementList body) {
+    public void setBody(Block body) {
         this.body = body;
     }
 

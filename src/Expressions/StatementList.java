@@ -3,7 +3,6 @@ package Expressions;
 import CodeGeneration.ThreeAddressCode;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Created by christophe on 06.06.14.
@@ -21,6 +20,10 @@ public class StatementList {
     public StatementList(Statement statement) {
         if(this.statements == null) this.statements = new ArrayList<Statement>();
         this.statements.add(statement);
+    }
+
+    public StatementList() {
+        this.statements = new ArrayList<Statement>();
     }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/

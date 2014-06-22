@@ -1,38 +1,53 @@
-package SymbolTable;
-
-import Expressions.Expression;
-import Typing.TypeInfo;
+package Expressions;
 
 /**
- * Created by christophe on 20.06.14.
+ * Created by christophe on 22.06.14.
  */
-public class ArraySymTabInfo extends VariableSymTabInfo {
+public class Block {
+    private StatementList   statements;
+    private DeclarationList declarations;
 
-    private final Expression size;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    /**
-     * @param typeInfo
-     * @param name
-     */
-    public ArraySymTabInfo(TypeInfo typeInfo, String name, Expression size) {
-        super(typeInfo, name);
-        this.size = size;
+    public Block(DeclarationList vds, StatementList sts) {
+        this.declarations = vds;
+        this.statements = sts;
+
     }
-    /******************************************************************************************************************/
-    /************************************ LOGIC ***********************************************************************/
-    /******************************************************************************************************************/
-    @Override
-    public String IdentifiertoString() {
-        return this.getName();
+
+    public Block(Statement cons) {
+        this.statements = new StatementList(cons);
+    }
+
+    public Block() {
+
     }
 
     /******************************************************************************************************************/
+    /************************************ LOGIC ***********************************************************************/
+    /******************************************************************************************************************/
+    public void addStatement(Statement cons) {
+        if(this.statements == null)
+            this.statements = new StatementList(cons);
+        else
+            this.statements.AddStatement(cons);
+    }
+    /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public Expression getSize() {
-        return size;
+    public StatementList getStatements() {
+        if(this.statements == null) {
+            return new StatementList();
+        }
+        return statements;
     }
+
+    public DeclarationList getDeclarations() {
+        if(this.declarations == null) return new DeclarationList();
+        return declarations;
+    }
+
+
 }

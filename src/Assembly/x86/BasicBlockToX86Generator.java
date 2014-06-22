@@ -58,7 +58,15 @@ public class BasicBlockToX86Generator {
             OpCodes op = tac.getOpCode();
             if (op == OpCodes.LABEL)
                 CompileLabel(tac);
+            if(op == OpCodes.ALLOC_ARRAY)
+            {
+                curCode.append("\n\t" + String.format("# Add offset for size of array to alloc"));
+                curCode.append("\n\t" + String.format("movl %s, %eax", PutAndGetAddress(tac.getArg1())));
+                curCode.append("\n\t" + String.format("movl $4, %ebx"));
+                curCode.append("\n\t" + String.format("imull %ebx"));
+                
 
+            }
             // value = arr[x]
             if(op == OpCodes.AAC)
             {

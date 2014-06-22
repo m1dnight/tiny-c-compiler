@@ -146,14 +146,15 @@ terminal String    NAME;
 
 non terminal Expression                exp;
 non terminal Statement                 statement;
-non terminal StatementList             statements, block;
+non terminal StatementList             statements;
 non terminal FunctionDeclaration       fun_declaration;
 non terminal BooleanExpression         bexp;
-non terminal Declaration               declaration;
-non terminal CodeContainer             var_declarations, var_declaration;
+non terminal Declaration               declaration, var_declaration;
+non terminal DeclarationList           var_declarations;
 non terminal Program                   program, total;
 non terminal ParameterList             pars;
 non terminal Types                     type;
+non terminal Block                     block;
 
 non terminal SymTabInfo                formal_par, lexp;
 non terminal LinkedList<SymTabInfo>    formal_pars, formal_params_non_empty;
@@ -198,7 +199,9 @@ declaration             ::=  fun_declaration:fd                          {:
                                                                              // declaration
                                                                              RESULT = fd;
                                                                          :}
-						  |  var_declaration:vd
+						  |  var_declaration:vd                          {:
+						                                                     RESULT = vd;
+						                                                 :}
 						  ;
 
 fun_declaration         ::=  type:rt NAME:n
@@ -224,6 +227,7 @@ fun_declaration         ::=  type:rt NAME:n
                                                                             f.setBeginLabel(funLabel);
                                                                             f.setBody(b);
                                                                             f.setParameters(ps);
+                                                                            
                                                                             RESULT = f;
 					                                                     :}
 						   ;
@@ -271,10 +275,11 @@ block                   ::= LBRACE                                       {:
                                                                             //We close the scope and put it back as the parent.
                                                                             scope = scope.NewScope();
                                                                          :}
-                            var_declarations statements:sts 
+                            var_declarations:vds statements:sts 
                             RBRACE                                       {:
                                                                             scope = scope.parent;
-                                                                            RESULT = sts;
+                                                                            Block b = new Block(vds, sts);
+                                                                            RESULT = b;
                                                                          :}
 						  ;
 
@@ -282,14 +287,28 @@ var_declaration         ::= type:t NAME:n SEMICOLON                      {:
                                                                             // var_declaration
                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(t), n);
                                                                             scope.Insert(vsti); 
+                                                                            
+                                                                            VariableDeclaration vdec = new VariableDeclaration();
+                                                                            vdec.setVariable(vsti);
+                                                                            RESULT = vdec;
+
+                                                                            
                                                                          :}
                           | type:t NAME:n LBRACK exp:size RBRACK SEMICOLON {:
                                                                             ArraySymTabInfo asti = new ArraySymTabInfo(new VariableTypeInfo(t), n, size);
                                                                             scope.Insert(asti);
+                                                                            
+                                                                            ArrayDeclaration arrDec = new ArrayDeclaration();
+                                                                            arrDec.setVariable(asti);
+                                                                            RESULT = arrDec;                                                                        
                                                                            :}
 						  ;
 
-var_declarations        ::= var_declaration var_declarations
+var_declarations        ::= var_declaration:v var_declarations:vs          {:
+                                                                             RESULT = new DeclarationList(v);
+                                                                             RESULT.addDeclarations(vs);
+                                                                                
+                                                                           :}
 						  | /* Nothing */
 						  ;
 
@@ -317,7 +336,10 @@ statements                  ::= statement:st SEMICOLON statements:sts    {:
 							  ;
 
 statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
-                                                                             cond.setTrueCode(cons);
+                                                                             Block consequent = new Block();
+                                                                             consequent.addStatement(cons);
+                                                                             
+                                                                             cond.setTrueCode(consequent);
 
                                                                              IfStatement iex = new IfStatement();
                                                                              iex.setBexp(cond);

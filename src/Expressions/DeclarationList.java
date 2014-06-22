@@ -1,77 +1,58 @@
 package Expressions;
 
 import CodeGeneration.ThreeAddressCode;
-import SymbolTable.SymbolTable;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 06.06.14.
+ * Created by christophe on 22.06.14.
  */
-public class Program {
+public class DeclarationList {
     private ArrayList<Declaration> declarations;
-    private SymbolTable            symbolTable;
 
+    public DeclarationList(Declaration v) {
+        this.declarations = new ArrayList<Declaration>(1);
+        this.declarations.add(v);
+    }
 
-    public Program() {
+    public DeclarationList() {
+        this.declarations = new ArrayList<Declaration>();
     }
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public Program AddDeclaration(Declaration d)
-    {
-        if(this.declarations == null) this.declarations = new ArrayList<Declaration>();
-        if(d != null)
-            this.declarations.add(d);
-        return this;
-    }
-    public Program AddDeclarations(Program p)
-    {
-        if(this.declarations == null) this.declarations = new ArrayList<Declaration>();
-        if(p != null)
-            this.declarations.addAll(p.getDeclarations());
-        return this;
-    }
-    public String toString()
-    {
-        StringBuilder sb = new StringBuilder();
-        for(Declaration d : declarations)
-        {
-            sb.append(d.toString());
+    public void addDeclarations(DeclarationList vs) {
+        if(vs != null) {
+            if (this.declarations == null)
+                this.declarations = new ArrayList<Declaration>();
+            if (vs.getDeclarations() != null)
+                this.declarations.addAll(vs.getDeclarations());
         }
-        return sb.toString();
+    }
+    public void addDeclaration(Declaration v)
+    {
+        if(this.declarations == null) this.declarations = new ArrayList<Declaration>();
+        this.declarations.add(v);
     }
 
-    public ArrayList<ThreeAddressCode> toThreeAddressCode()
-    {
-        ArrayList<ThreeAddressCode> program = new ArrayList<ThreeAddressCode>();
-        for(Declaration d : this.declarations)
+    public ArrayList<ThreeAddressCode> toThreeAddressCode() {
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        for(Declaration s : this.declarations)
         {
-            program.addAll(d.toThreeAddressCode());
+            output.addAll(s.toThreeAddressCode());
         }
-        return program;
+        return output;
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
     public ArrayList<Declaration> getDeclarations() {
+
         return declarations;
     }
 
-    public void setDeclarations(ArrayList<Declaration> declarations) {
-        this.declarations = declarations;
-    }
 
-
-    public SymbolTable getSymbolTable() {
-        return symbolTable;
-    }
-
-    public void setSymbolTable(SymbolTable symbolTable) {
-        this.symbolTable = symbolTable;
-    }
 }

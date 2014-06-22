@@ -17,8 +17,8 @@ public class BooleanExpression extends ArithmeticExpession {
     private   SymTabInfo    trueLabel;
     private   SymTabInfo    falseLabel;
     private   SymTabInfo    endLabel;
-    private   StatementList trueCode;
-    private   StatementList falseCode;
+    private   Block trueCode;
+    private   Block falseCode;
 
 
     /******************************************************************************************************************/
@@ -71,10 +71,12 @@ public class BooleanExpression extends ArithmeticExpession {
             rv.add(iff);
             rv.add(iff2);
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.trueLabel));
-            rv.addAll(trueCode.toThreeAddressCode());
+            rv.addAll(trueCode.getDeclarations().toThreeAddressCode());
+            rv.addAll(trueCode.getStatements().toThreeAddressCode());
             rv.add(new ThreeAddressCode(OpCodes.GOTO, this.endLabel));
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.falseLabel));
-            rv.addAll(falseCode.toThreeAddressCode());
+            rv.addAll(falseCode.getDeclarations().toThreeAddressCode());
+            rv.addAll(falseCode.getStatements().toThreeAddressCode());
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.endLabel));
         }
 
@@ -104,7 +106,7 @@ public class BooleanExpression extends ArithmeticExpession {
             rv.add(iff);
             rv.add(iff2);
             rv.add(new ThreeAddressCode(OpCodes.LABEL, trueLabel));
-            rv.addAll(trueCode.toThreeAddressCode());
+            rv.addAll(trueCode.getStatements().toThreeAddressCode());
             rv.add(new ThreeAddressCode(OpCodes.LABEL, falseLabel));
         }
         else
@@ -116,10 +118,12 @@ public class BooleanExpression extends ArithmeticExpession {
             rv.add(iff);
             rv.add(iff2);
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.trueLabel));
-            rv.addAll(trueCode.toThreeAddressCode());
+            rv.addAll(trueCode.getDeclarations().toThreeAddressCode());
+            rv.addAll(trueCode.getStatements().toThreeAddressCode());
             rv.add(new ThreeAddressCode(OpCodes.GOTO, this.endLabel));
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.falseLabel));
-            rv.addAll(falseCode.toThreeAddressCode());
+            rv.addAll(falseCode.getDeclarations().toThreeAddressCode());
+            rv.addAll(falseCode.getStatements().toThreeAddressCode());
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.endLabel));
         }
 
@@ -160,27 +164,21 @@ public class BooleanExpression extends ArithmeticExpession {
         this.falseLabel = falseLabel;
     }
 
-    public StatementList getTrueCode() {
+    public Block getTrueCode() {
         return trueCode;
     }
 
-    public void setTrueCode(StatementList trueCode) {
+    public void setTrueCode(Block trueCode) {
         this.trueCode = trueCode;
     }
-    public void setTrueCode(Statement trueCode) {
-        this.trueCode = new StatementList(trueCode);
-    }
 
-    public StatementList getFalseCode() {
+
+    public Block getFalseCode() {
         return falseCode;
     }
 
-    public void setFalseCode(StatementList falseCode) {
+    public void setFalseCode(Block falseCode) {
         this.falseCode = falseCode;
-    }
-
-    public void setFalseCode(Statement falseCode) {
-        this.trueCode = new StatementList(falseCode);
     }
 
     public SymTabInfo getEndLabel() {

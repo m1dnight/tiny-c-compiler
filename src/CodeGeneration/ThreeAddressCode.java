@@ -59,6 +59,10 @@ public class ThreeAddressCode {
         {
             return String.format("%s[%s] = %s", result.IdentifiertoString(), arg1.IdentifiertoString(), arg2.IdentifiertoString());
         }
+        if(opCode == OpCodes.ALLOC_ARRAY)
+        {
+            return String.format("ALLOC_ARRAY %s %s", arg1.typeInfo.ActualType(), arg1.IdentifiertoString());
+        }
         /*****************************************************************************
          * Parameters
          *****************************************************************************/
