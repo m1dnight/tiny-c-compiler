@@ -61,9 +61,14 @@ public class BasicBlockToX86Generator {
             if(op == OpCodes.ALLOC_ARRAY)
             {
                 curCode.append("\n\t" + String.format("# Add offset for size of array to alloc"));
-                curCode.append("\n\t" + String.format("movl %s, %eax", PutAndGetAddress(tac.getArg1())));
-                curCode.append("\n\t" + String.format("movl $4, %ebx"));
-                curCode.append("\n\t" + String.format("imull %ebx"));
+                curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
+                curCode.append("\n\t" + String.format("movl $4, %%ebx"));
+                curCode.append("\n\t" + String.format("imull %%ebx")); // Actual size required on stack is now in %eax
+                curCode.append("\n\t" + String.format("subl %%eax, %%esp"));
+                // Push the address for this array
+                PutAndGetAddress(tac.getArg1());
+                // We have created an array, so we have to increase our local variable counter as well
+                this.localVariableCount += 4 * Integer.parseInt(tac.getArg2().IdentifiertoString());
 
 
             }

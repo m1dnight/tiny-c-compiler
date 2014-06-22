@@ -23,7 +23,7 @@ public class ArrayDeclaration extends VariableDeclaration {
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
         output.addAll(this.variable.getSize().ToThreeAddressCode());
 
-        output.add(new ThreeAddressCode(OpCodes.ALLOC_ARRAY, this.variable.getSize().getIdentifier()));
+        output.add(new ThreeAddressCode(OpCodes.ALLOC_ARRAY, this.variable, this.variable.getSize().getIdentifier(), null));
         return output;
     }
     /******************************************************************************************************************/
