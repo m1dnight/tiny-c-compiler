@@ -34,4 +34,8 @@ public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
     public Expression getIndex() {
         return index;
     }
+
+    public ArraySymTabInfo getArray() {
+        return array;
+    }
 }

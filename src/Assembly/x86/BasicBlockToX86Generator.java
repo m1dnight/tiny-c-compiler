@@ -7,6 +7,7 @@ import SymbolTable.ArraySymTabInfo;
 import SymbolTable.IntegerSymTabInfo;
 import SymbolTable.SymTabInfo;
 import SymbolTable.SymbolTable;
+import SymbolTable.ArrayIndexSymTabInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,7 +70,8 @@ public class BasicBlockToX86Generator {
                 //result = name of array
                 //arg1 = index of array
                 //arg2 = value
-                if(!IsParameter(tac.getArg1()))
+                ArraySymTabInfo array = (ArraySymTabInfo) ((ArrayIndexSymTabInfo) tac.getResult()).getArray();
+                if(!IsParameter(array))
                 {
 
                     // If it is not a parameter, the array offset wrt %ebp should be stored
@@ -78,6 +80,21 @@ public class BasicBlockToX86Generator {
                     // Move the value to assign into %eax
                     curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
                     curCode.append("\n\t" + String.format("movl %%eax, %d(%%ebp)", arrayOffset));
+                }
+                else
+                {
+                    // We are assigning to an array that is a parameter.
+                    // This means the address is located on the stack.
+                    String baseAddress = PutAndGetAddress(array);
+                    curCode.append("\n\t" + String.format("movl %s, %%ebx", baseAddress));
+                    curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+                    curCode.append("\n\t" + String.format("movl $4, %%ebx"));
+                    curCode.append("\n\t" + String.format("imull %%ebx")); // Address offset for address is in %eax
+                    curCode.append("\n\t" + String.format("movl %s, %%eax", baseAddress)); // Load actual address
+                    curCode.append("\n\t" + String.format("subl %%ebx, %%eax")); // Actual address is in %eax
+                    curCode.append("\n\t" + String.format("movl %s, %%ebx", baseAddress));
+
+
 
                 }
             }
