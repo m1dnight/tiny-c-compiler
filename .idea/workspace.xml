@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java" afterPath="$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test-input/numbers.c" afterPath="$PROJECT_DIR$/src/test-input/numbers.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TinyC-Java.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,16 +85,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BasicBlockToX86Generator.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="BasicBlockToX86Generator.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3145" max-vertical-offset="4302">
-              <caret line="408" column="10" selection-start-line="408" selection-start-column="10" selection-end-line="408" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.4758883" vertical-offset="461" max-vertical-offset="2222">
+              <caret line="179" column="2" selection-start-line="179" selection-start-column="0" selection-end-line="183" selection-end-column="70" />
               <folding>
                 <element signature="docComment;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="method#BasicBlockToX86Generator#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="method#Prologue#0;class#BasicBlockToX86Generator#0" expanded="false" />
-                <element signature="e#1937#1945#0" expanded="true" />
+                <element signature="method#Compile#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="e#1958#2010#0" expanded="false" />
                 <element signature="e#2585#2602#0" expanded="false" />
                 <element signature="method#CompileArrayAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
@@ -107,7 +105,7 @@
                 <element signature="e#5599#5682#0" expanded="false" />
                 <element signature="e#5821#5859#0" expanded="false" />
                 <element signature="e#8310#8387#0" expanded="false" />
-                <element signature="e#8965#8999#0" expanded="false" />
+                <element signature="e#8969#9003#0" expanded="false" />
                 <element signature="method#CompileJump#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="method#CompileComparison#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="docComment;method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
@@ -117,21 +115,25 @@
                 <element signature="method#CompileFunctioncall#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="method#CompileReturn#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="method#CompileParam#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileLabel#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="docComment;method#HasNoAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="docComment;method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="method#PutAndGetAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
-                <element signature="e#16798#16877#0" expanded="false" />
+                <element signature="e#16841#16920#0" expanded="false" />
+                <element signature="method#CloseLastFunction#0;class#BasicBlockToX86Generator#0" expanded="false" />
                 <element signature="docComment;method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="e#20403#20422#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="numbers.c" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="numbers.c" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37546012" vertical-offset="0" max-vertical-offset="815">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
               <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
               <folding />
             </state>
@@ -757,7 +759,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.371123" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" x="1582" y="548" width="1920" height="396" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.44467425" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="0" y="25" width="1920" height="1055" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.44467425" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-1" y="25" width="1922" height="1056" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33970276" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20234291" sideWeight="0.29912663" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -768,7 +770,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15938166" sideWeight="0.7008734" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12926577" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="25" width="1920" height="1055" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12926577" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="25" width="1920" height="1055" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -828,21 +830,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java</url>
-          <line>56</line>
+          <line>419</line>
           <properties />
-          <option name="timeStamp" value="158" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java</url>
-          <line>266</line>
-          <properties />
-          <option name="timeStamp" value="159" />
+          <option name="timeStamp" value="161" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="160" />
+      <option name="time" value="162" />
     </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
@@ -1216,15 +1212,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3145" max-vertical-offset="4302">
-          <caret line="408" column="10" selection-start-line="408" selection-start-column="10" selection-end-line="408" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.4758883" vertical-offset="461" max-vertical-offset="2222">
+          <caret line="179" column="2" selection-start-line="179" selection-start-column="0" selection-end-line="183" selection-end-column="70" />
           <folding>
             <element signature="docComment;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="method#BasicBlockToX86Generator#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="method#Prologue#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="e#1937#1945#0" expanded="true" />
+            <element signature="method#Compile#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="e#1958#2010#0" expanded="false" />
             <element signature="e#2585#2602#0" expanded="false" />
             <element signature="method#CompileArrayAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
@@ -1235,7 +1239,7 @@
             <element signature="e#5599#5682#0" expanded="false" />
             <element signature="e#5821#5859#0" expanded="false" />
             <element signature="e#8310#8387#0" expanded="false" />
-            <element signature="e#8965#8999#0" expanded="false" />
+            <element signature="e#8969#9003#0" expanded="false" />
             <element signature="method#CompileJump#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="method#CompileComparison#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="docComment;method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
@@ -1245,21 +1249,17 @@
             <element signature="method#CompileFunctioncall#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="method#CompileReturn#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="method#CompileParam#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileLabel#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="docComment;method#HasNoAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="docComment;method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="method#PutAndGetAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="e#16798#16877#0" expanded="false" />
+            <element signature="e#16841#16920#0" expanded="false" />
+            <element signature="method#CloseLastFunction#0;class#BasicBlockToX86Generator#0" expanded="false" />
             <element signature="docComment;method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="e#20403#20422#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37546012" vertical-offset="0" max-vertical-offset="815">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>

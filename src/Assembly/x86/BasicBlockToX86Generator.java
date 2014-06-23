@@ -177,15 +177,15 @@ public class BasicBlockToX86Generator {
         // The stackpointer is stores in localVariableOffset
         arrayOffset.put(tac.getArg1(), Math.abs(localVariableOffset));
 
-        curCode.append("\n\t" + String.format("# Add offset for size of array to alloc"));
+/*        curCode.append("\n\t" + String.format("# Add offset for size of array to alloc"));
         curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
         curCode.append("\n\t" + String.format("movl $4, %%ebx"));
         curCode.append("\n\t" + String.format("imull %%ebx")); // Actual size required on stack is now in %eax
-        curCode.append("\n\t" + String.format("subl %%eax, %%esp"));
+        curCode.append("\n\t" + String.format("subl %%eax, %%esp"));*/
         // Push the address for this array
         // Address for this array is %ebp minus the
         // We have created an array, so we have to increase our local variable counter as well
-        this.localVariableCount  += 4 * (Integer.parseInt(tac.getArg2().IdentifiertoString()));
+        this.localVariableCount  +=  (Integer.parseInt(tac.getArg2().IdentifiertoString()));
         this.localVariableOffset -= 4 * (Integer.parseInt(tac.getArg2().IdentifiertoString()));
     }
 
@@ -273,9 +273,9 @@ public class BasicBlockToX86Generator {
             localVariableOffset = -4;
             parameterOffset = 8;
 
-            curCode.append("\n" + "_start:");
-            curCode.append("\n\t" + "movl %esp, %ebp");
-            this.currentFunction = "";
+            funcPrologue.append("\n" + "_start:");
+            funcPrologue.append("\n\t" + "movl %esp, %ebp");
+            this.currentFunction = tac.getArg1().IdentifiertoString();
         }
         else if (tac.getArg1().IdentifiertoString().contains("function")) {
             // Push previous code to program
@@ -373,11 +373,16 @@ public class BasicBlockToX86Generator {
                 curCode.append("\n" + currentFunction.replace("function", "end") + ":");
                 curCode.append("\n\t" + "leave");
                 curCode.append("\n\t" + "ret");
+                // Add the stack space free code in the prologue of the previous function
                 funcPrologue.append("\n  # " + localVariableCount + " local variables required. Ergo, " + localVariableCount * 4 + " space on the stack.");
                 funcPrologue.append(String.format("\n\t" + "subl $%d, %%esp", localVariableCount * 4));
-                // Prepend the prologue to the body.
+
+                // Paste the body of the function after the prologue
                 funcPrologue.append(curCode.toString());
+
+                // Put it back as our current code
                 curCode = funcPrologue;
+
                 funcPrologue = new StringBuilder();
                 localVariableCount = 0;
                 //TODO CLEAR?
@@ -395,6 +400,7 @@ public class BasicBlockToX86Generator {
         prologue = new StringBuilder();
         globl    = new StringBuilder();
         program  = new StringBuilder();
+        funcPrologue = new StringBuilder();
         parameterOffset     = 8;  // first offset for parameter is 4.
         localVariableOffset = -4; // first offset for local variables is -4.
         variableAddresses   = new HashMap<SymTabInfo, String>();
@@ -406,15 +412,24 @@ public class BasicBlockToX86Generator {
 
         // Compile each basic block.
         for(BasicBlock b : this.blocks) Compile(b);
-        //CloseLastFunction(this.blocks.get(this.blocks.size() -1));
 
         // Append epilogue.
-        program.append("\n" + curCode.toString());
-        program.append("\n\t" + "movl %eax, %ebx");
-        program.append("\n  # End of _start");
-        program.append("\n\t" + "movl $1, %eax");
-        program.append("\n\t" + "int $0x80");
+        //curCode.append("\n" + curCode.toString());
+        // curCode contains the body of main
+        curCode.append("\n" + "end_main:");
+        curCode.append("\n\t" + "movl %eax, %ebx");
+        curCode.append("\n  # End of _start");
+        curCode.append("\n\t" + "movl $1, %eax");
+        curCode.append("\n\t" + "int $0x80");
+        // funcPrologue contains the prologue of the main function
+        funcPrologue.append("\n  # " + localVariableCount + " local variables required. Ergo, " + localVariableCount * 4 + " space on the stack.");
+        funcPrologue.append(String.format("\n\t" + "subl $%d, %%esp", localVariableCount * 4));
 
+        // Paste the body of the main after it's prologue
+        funcPrologue.append(curCode.toString());
+
+        // Paste the entire mess after the current program
+        program.append("\n" + funcPrologue.toString());
         // Return the code.
         return prologue.toString() + globl.toString() + program.toString();
     }
