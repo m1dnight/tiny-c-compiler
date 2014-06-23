@@ -1,26 +1,15 @@
-int sum(int param[3])
+int sum(int arr[2])
 {
-    int sum;
-
-
-
-    if(param[2] == 10)
-        param[2 + 3] = 3 + 4;
-    sum = 0;
-    sum = sum + param[0];
-    sum = sum + param[1];
-    sum = sum + param[2];
-    return sum;
+    arr[0] = 2;
+    return 123;
 }
 int main()
 {
-    int a;
-    int    x[3];
-    int    y[2];
-    x[0] = 100;
-    x[1] = 20;
-    x[2] = 20;
-    a = 1 * 2;
+    int array[2];
+    array [0] = 10;
 
-    y = sum(x);
+    array[1] = sum(array);
+
+
+    return array[1];
 }
