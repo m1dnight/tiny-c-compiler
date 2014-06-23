@@ -1,15 +1,19 @@
-int sum(int arr[2])
+int sum(int a[3])
 {
-    arr[0] = 2;
-    return 123;
+    return a[0] + a[1] + a[2];
+}
+int multiply(int x, int y)
+{
+    return x * y;
 }
 int main()
 {
-    int array[2];
-    array [0] = 10;
+    int s;
+    int x[3];
+    x[0] = 10;
+    x[1] = 11;
+    x[2] = 12;
 
-    array[1] = sum(array);
-
-
-    return array[1];
+    s = sum(x);
+    return s;
 }
