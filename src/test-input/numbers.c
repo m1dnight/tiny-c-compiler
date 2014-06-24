@@ -15,14 +15,32 @@ int reverseArray(int array[5])
     array[3] = array[1];
     array[1] = intermediate;
 
-    intermediate = array[2];
-    array[2] = array[0];
-    array[0] = intermediate;
+}
+
+int printArray(int array[5])
+{
+    write array[0];
+    write array[1];
+    write array[2];
+    write array[3];
+    write array[4];
 }
 int main()
 {
-    int s;
+    int result;
+    int array[5];
+    array[0] = 1;
+    array[1] = 2;
+    array[2] = 3;
+    array[3] = 4;
+    array[4] = 5;
+        result = printArray(array);
+    result = reverseArray(array);
 
 
-    return s;
+
+    result = printArray(array);
+
+
+    return result;
 }

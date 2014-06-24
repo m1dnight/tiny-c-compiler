@@ -58,6 +58,7 @@ public class BasicBlockToX86Generator {
             OpCodes op = tac.getOpCode();
             if (op == OpCodes.LABEL)
                 CompileLabel(tac);
+
             if(op == OpCodes.ALLOC_ARRAY)
                 CompileArrayDeclaration(tac);
             // arr[x] = value
@@ -96,6 +97,15 @@ public class BasicBlockToX86Generator {
 
             if(op == OpCodes.GOTO)
                 CompileJump(tac);
+
+            if(op == OpCodes.WRITEINT)
+            {
+                curCode.append("\n\t"  + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+                curCode.append("\n\t" + String.format("pushl %%eax"));
+                curCode.append("\n\t" + String.format("pushl $inpf"));
+                curCode.append("\n\t" + String.format("call printf"));
+                curCode.append("\n\t" + String.format("addl $4, %%esp"));
+            }
         }
 
     }
