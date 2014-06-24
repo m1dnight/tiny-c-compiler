@@ -126,10 +126,19 @@ public class ThreeAddressCode {
         {
             return String.format("IF %s > %s GOTO %s", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
         }
+        if(opCode == OpCodes.A2LTIF)
+        {
+            return String.format("IF %s < %s GOTO %s", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
+        }
         if(opCode == OpCodes.A2EQIF)
         {
             return String.format("IF %s == %s GOTO %s", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
         }
+        if(opCode == OpCodes.A2NEQIF)
+        {
+            return String.format("IF %s != %s GOTO %s", arg1.IdentifiertoString(), arg2.IdentifiertoString(), result.IdentifiertoString());
+        }
+
         /******************************************************************************
          * Assignment
          *****************************************************************************/

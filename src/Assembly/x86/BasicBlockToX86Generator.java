@@ -59,174 +59,66 @@ public class BasicBlockToX86Generator {
             OpCodes op = tac.getOpCode();
             if (op == OpCodes.LABEL)
                 CompileLabel(tac);
-
             if(op == OpCodes.ALLOC_ARRAY)
                 CompileArrayDeclaration(tac);
-            // arr[x] = value
             if(op == OpCodes.AAS)
                 CompileArrayAssignment(tac);
-            // value = arr[x]
-            // arg1 = arrayname
-            // arg2 = index of array
-            // result = result variable
             if(op == OpCodes.AAC)
                 CompileArrayAccess(tac);
-
             if (op == OpCodes.PARAM)
                 CompileParam(parameters, tac);
-
             if(op == OpCodes.RETURN)
                 CompileReturn(tac);
-
             if (op == OpCodes.GETPARAM)
                 PutParameterAddress(tac);
-
             if (op == OpCodes.CALL)
                 CompileFunctioncall(parameters, tac);
-
             if (op == OpCodes.A0)
                 CompileAssignment(tac);
-
             if (op == OpCodes.A2PLUS || op == OpCodes.A2MINUS)
                 CompileSumAndSubstract(tac);
-
             if (op == OpCodes.A2DIV || op == OpCodes.A2TIMES)
                 CompileDivisionAndTimes(tac);
-
-            if(op == OpCodes.A2LT || op == OpCodes.A2GT || op == OpCodes.A2EQ || op == OpCodes.A2NEQ || op == OpCodes.A2EQIF)
+            if(op == OpCodes.A2LT  || op == OpCodes.A2GT    || op == OpCodes.A2EQ ||
+               op == OpCodes.A2NEQ)
                 CompileComparison(tac, op);
-
             if(op == OpCodes.GOTO)
                 CompileJump(tac);
-
             if(op == OpCodes.WRITEINT)
-            {
-                curCode.append("\n\t"  + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-                curCode.append("\n\t" + String.format("pushl %%eax"));
-                curCode.append("\n\t" + String.format("pushl $inpf"));
-                curCode.append("\n\t" + String.format("call printf"));
-                curCode.append("\n\t" + String.format("addl $4, %%esp"));
-            }
+                CompileWriteInteger(tac);
             if(op == OpCodes.READINT)
+                CompileReadInteger(tac);
+
+            if(op == OpCodes.A2EQIF  || op == OpCodes.A2GTIF || op == OpCodes.A2LTIF || op == OpCodes.A2NEQIF)
             {
-                curCode.append("\n\t"  + String.format("subl $4, %%esp"));
-                curCode.append("\n\t" + String.format("pushl %%esp"));
-                curCode.append("\n\t" + String.format("pushl $outr"));
-                curCode.append("\n\t" + String.format("call scanf"));
-                curCode.append("\n\t" + String.format("addl $12, %%esp"));
-                curCode.append("\n\t"  + String.format("movl -4(%%esp), %%eax"));
-                curCode.append("\n\t"  + String.format("movl %%eax, %s", PutAndGetAddress(tac.getArg1())));
+                String jumpOperator = "";
+                // Determine the jumb operator to use.
+                jumpOperator = op == OpCodes.A2EQIF ? "je"   :
+                              (op == OpCodes.A2GTIF ? "jg"  :
+                              (op == OpCodes.A2NEQIF ? "jne" : "jl"));
+                AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())), curCode);
+                AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())), curCode);
+                AddCodeLine(String.format("cmpl %%eax, %%ebx"), curCode);
+                AddCodeLine(String.format("%s %s", jumpOperator, tac.getResult().IdentifiertoString()), curCode);
 
             }
         }
 
     }
 
-    private void CompileArrayAssignment(ThreeAddressCode tac) {
-        //result = name of array
-        //arg1 = index of array
-        //arg2 = value
-        ArraySymTabInfo array = (ArraySymTabInfo) ((ArrayIndexSymTabInfo) tac.getResult()).getArray();
-        if(!IsParameter(array))
-        {
-            // If it is not a parameter, the array offset wrt %ebp should be stored
-            int arrayOffset = -1 * this.arrayOffset.get(tac.getResult());
-            arrayOffset -= (4 * Integer.parseInt(tac.getArg1().IdentifiertoString()));
-            // Move the value to assign into %eax
-            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
-            curCode.append("\n\t" + String.format("movl %%eax, %d(%%ebp)", arrayOffset));
-        }
-        else
-        {
-            // We are assigning to an array that is a parameter.
-            // This means the address is located on the stack.
-            String baseAddress = PutAndGetAddress(array);
-            //curCode.append("\n\t" + String.format("movl %s, %%ebx", baseAddress));
-            // Move the base address to %eax and move the size for each cell to %%ebx
-            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
-            curCode.append("\n\t" + String.format("movl $4, %%ebx"));
-            curCode.append("\n\t" + String.format("imull %%ebx")); // Address offset for address is in %eax
-            curCode.append("\n\t" + String.format("movl %s, %%ebx", baseAddress)); // Load actual address
-            curCode.append("\n\t" + String.format("subl %%eax, %%ebx")); // Actual address is in %eax
-            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
-            curCode.append("\n\t" + String.format("movl %%eax, (%%ebx)"));
-        }
-    }
 
-    private void CompileArrayAccess(ThreeAddressCode tac) {
-        // If our array is a parameter the address will be stores in our PutAndGetAddress()
-        // Otherwise it is defined in our scope and we have to calculate it.
-        if(IsParameter(tac.getArg1()))
-        {
-            // Determine the address for the array
-            // If we are dealing with a parameter array, GetPutAddress wil give us the base
-            //int ebpOffset = arrayOffset.get(tac.getArg1());
-            String base = PutAndGetAddress(tac.getArg1());
-            curCode.append("\n\t" + String.format("# Calculate offset"));
-            // We have a parameter, so the base address is our parameter (located at address of getArg2())
-            curCode.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg2()), "%eax")); // Move offset in register
-            curCode.append("\n\t" + String.format("movl $4, %%ebx"));
-            curCode.append("\n\t" + String.format("imull %%ebx")); // Offset is in %eax
 
-            curCode.append("\n\t" + String.format("# Calculate address"));
-            curCode.append("\n\t" + String.format("movl %s, %%ebx", base)); // Move base address in register
-            curCode.append("\n\t" + String.format("subl %%eax, %%ebx")); // Calculate address on offset to %eax
-
-            curCode.append("\n\t" + String.format("# Get value from address"));
-            curCode.append("\n\t" + String.format("movl (%%ebx), %%eax")); // Move actual value to %eax
-            curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
-        }
-        // We are not dealing with a parameter. The address for the array is thus on our stack.
-        else
-        {
-            // Calculate the offset for the address
-            int arrayOffset = this.arrayOffset.get(tac.getArg1());
-
-            // Move the value of the index to %eax
-            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
-            curCode.append("\n\t" + String.format("movl $4,%%ebx"));
-            curCode.append("\n\t" + String.format("imull %%ebx")); // The total offset is now in %eax
-            curCode.append("\n\t" + String.format("movl %%ebp, %%ebx"));
-            curCode.append("\n\t" + String.format("subl $%d, %%ebx", arrayOffset)); // Base address is now in %edx
-            curCode.append("\n\t" + String.format("subl %%eax, %%ebx"));// The actual address is now in %edx
-            curCode.append("\n\t" + String.format("movl (%%ebx), %%eax", PutAndGetAddress(tac.getResult())));
-            curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
-        }
-    }
-
-    private void CompileArrayDeclaration(ThreeAddressCode tac) {
-        // Store the array %ebp offset, which is currently equal to the stackpointer.
-        // The stackpointer is stores in localVariableOffset
-        arrayOffset.put(tac.getArg1(), Math.abs(localVariableOffset));
-
-/*        curCode.append("\n\t" + String.format("# Add offset for size of array to alloc"));
-        curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
-        curCode.append("\n\t" + String.format("movl $4, %%ebx"));
-        curCode.append("\n\t" + String.format("imull %%ebx")); // Actual size required on stack is now in %eax
-        curCode.append("\n\t" + String.format("subl %%eax, %%esp"));*/
-        // Push the address for this array
-        // Address for this array is %ebp minus the
-        // We have created an array, so we have to increase our local variable counter as well
-        this.localVariableCount  +=  (Integer.parseInt(tac.getArg2().IdentifiertoString()));
-        this.localVariableOffset -= 4 * (Integer.parseInt(tac.getArg2().IdentifiertoString()));
-    }
-
-    private void CompileJump(ThreeAddressCode tac) {
-        AddCodeLine(String.format("jmp %s", tac.getArg1().IdentifiertoString()), curCode);
-    }
-
+    /******************************************************************************************************************/
+    /************************************ INDIVIDUAL COMPILATION METHODS **********************************************/
     private void CompileComparison(ThreeAddressCode tac, OpCodes op) {
         String jumpOperator = "";
         jumpOperator = op == OpCodes.A2LT ? "jl" : (op == OpCodes.A2GT ? "jg" : "je");
 
-        AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())), curCode);
-        AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg2())), curCode);
+        AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())), curCode);
+        AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())), curCode);
         AddCodeLine(String.format("cmpl %%eax, %%ebx"), curCode);
         AddCodeLine(String.format("%s %s", jumpOperator, tac.getResult().IdentifiertoString()), curCode);
     }
-
-    /******************************************************************************************************************/
-    /************************************ INDIVIDUAL COMPILATION METHODS **********************************************/
     /******************************************************************************************************************/
     private void CompileDivisionAndTimes(ThreeAddressCode tac) {
         curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
@@ -323,27 +215,125 @@ public class BasicBlockToX86Generator {
             curCode.append("\n\n\t" + tac.getArg1().IdentifiertoString() + ":");
     }
 
+    private void CompileWriteInteger(ThreeAddressCode tac) {
+        curCode.append("\n\t"  + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        curCode.append("\n\t" + String.format("pushl %%eax"));
+        curCode.append("\n\t" + String.format("pushl $inpf"));
+        curCode.append("\n\t" + String.format("call printf"));
+        curCode.append("\n\t" + String.format("addl $4, %%esp"));
+    }
 
-    /******************************************************************************************************************/
-    /************************************ ADDRESSES *******************************************************************/
-    /******************************************************************************************************************/
-    private boolean HasNoAddress(SymTabInfo result) {
-        return this.variableAddresses.get(result) == null;
+    private void CompileReadInteger(ThreeAddressCode tac) {
+        curCode.append("\n\t"  + String.format("subl $4, %%esp"));
+        curCode.append("\n\t" + String.format("pushl %%esp"));
+        curCode.append("\n\t" + String.format("pushl $outr"));
+        curCode.append("\n\t" + String.format("call scanf"));
+        curCode.append("\n\t" + String.format("addl $12, %%esp"));
+        curCode.append("\n\t"  + String.format("movl -4(%%esp), %%eax"));
+        curCode.append("\n\t"  + String.format("movl %%eax, %s", PutAndGetAddress(tac.getArg1())));
+    }
+
+    private void CompileArrayAssignment(ThreeAddressCode tac) {
+        //result = name of array
+        //arg1 = index of array
+        //arg2 = value
+        ArraySymTabInfo array = (ArraySymTabInfo) ((ArrayIndexSymTabInfo) tac.getResult()).getArray();
+        if(!IsParameter(array))
+        {
+            // If it is not a parameter, the array offset wrt %ebp should be stored
+            int arrayOffset = -1 * this.arrayOffset.get(tac.getResult());
+            arrayOffset -= (4 * Integer.parseInt(tac.getArg1().IdentifiertoString()));
+            // Move the value to assign into %eax
+            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
+            curCode.append("\n\t" + String.format("movl %%eax, %d(%%ebp)", arrayOffset));
+        }
+        else
+        {
+            // We are assigning to an array that is a parameter.
+            // This means the address is located on the stack.
+            String baseAddress = PutAndGetAddress(array);
+            //curCode.append("\n\t" + String.format("movl %s, %%ebx", baseAddress));
+            // Move the base address to %eax and move the size for each cell to %%ebx
+            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+            curCode.append("\n\t" + String.format("movl $4, %%ebx"));
+            curCode.append("\n\t" + String.format("imull %%ebx")); // Address offset for address is in %eax
+            curCode.append("\n\t" + String.format("movl %s, %%ebx", baseAddress)); // Load actual address
+            curCode.append("\n\t" + String.format("subl %%eax, %%ebx")); // Actual address is in %eax
+            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
+            curCode.append("\n\t" + String.format("movl %%eax, (%%ebx)"));
+        }
+    }
+
+    private void CompileArrayAccess(ThreeAddressCode tac) {
+        // If our array is a parameter the address will be stores in our PutAndGetAddress()
+        // Otherwise it is defined in our scope and we have to calculate it.
+        if(IsParameter(tac.getArg1()))
+        {
+            // Determine the address for the array
+            // If we are dealing with a parameter array, GetPutAddress wil give us the base
+            //int ebpOffset = arrayOffset.get(tac.getArg1());
+            String base = PutAndGetAddress(tac.getArg1());
+            curCode.append("\n\t" + String.format("# Calculate offset"));
+            // We have a parameter, so the base address is our parameter (located at address of getArg2())
+            curCode.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg2()), "%eax")); // Move offset in register
+            curCode.append("\n\t" + String.format("movl $4, %%ebx"));
+            curCode.append("\n\t" + String.format("imull %%ebx")); // Offset is in %eax
+
+            curCode.append("\n\t" + String.format("# Calculate address"));
+            curCode.append("\n\t" + String.format("movl %s, %%ebx", base)); // Move base address in register
+            curCode.append("\n\t" + String.format("subl %%eax, %%ebx")); // Calculate address on offset to %eax
+
+            curCode.append("\n\t" + String.format("# Get value from address"));
+            curCode.append("\n\t" + String.format("movl (%%ebx), %%eax")); // Move actual value to %eax
+            curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+        }
+        // We are not dealing with a parameter. The address for the array is thus on our stack.
+        else
+        {
+            // Calculate the offset for the address
+            int arrayOffset = this.arrayOffset.get(tac.getArg1());
+
+            // Move the value of the index to %eax
+            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
+            curCode.append("\n\t" + String.format("movl $4,%%ebx"));
+            curCode.append("\n\t" + String.format("imull %%ebx")); // The total offset is now in %eax
+            curCode.append("\n\t" + String.format("movl %%ebp, %%ebx"));
+            curCode.append("\n\t" + String.format("subl $%d, %%ebx", arrayOffset)); // Base address is now in %edx
+            curCode.append("\n\t" + String.format("subl %%eax, %%ebx"));// The actual address is now in %edx
+            curCode.append("\n\t" + String.format("movl (%%ebx), %%eax", PutAndGetAddress(tac.getResult())));
+            curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+        }
+    }
+
+    private void CompileArrayDeclaration(ThreeAddressCode tac) {
+        // Store the array %ebp offset, which is currently equal to the stackpointer.
+        // The stackpointer is stores in localVariableOffset
+        arrayOffset.put(tac.getArg1(), Math.abs(localVariableOffset));
+
+/*        curCode.append("\n\t" + String.format("# Add offset for size of array to alloc"));
+        curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
+        curCode.append("\n\t" + String.format("movl $4, %%ebx"));
+        curCode.append("\n\t" + String.format("imull %%ebx")); // Actual size required on stack is now in %eax
+        curCode.append("\n\t" + String.format("subl %%eax, %%esp"));*/
+        // Push the address for this array
+        // Address for this array is %ebp minus the
+        // We have created an array, so we have to increase our local variable counter as well
+        this.localVariableCount  +=  (Integer.parseInt(tac.getArg2().IdentifiertoString()));
+        this.localVariableOffset -= 4 * (Integer.parseInt(tac.getArg2().IdentifiertoString()));
+    }
+
+    private void CompileJump(ThreeAddressCode tac) {
+        AddCodeLine(String.format("jmp %s", tac.getArg1().IdentifiertoString()), curCode);
     }
 
     /******************************************************************************************************************/
-    /************************************ HELPER FUNCTIONS ************************************************************/
+    /************************************ ADDRESSES *******************************************************************/
     /******************************************************************************************************************/
     private void PutParameterAddress(ThreeAddressCode param) {
         this.parametersCurFunc.add(param.getArg1());
         //if(param.getArg1() instanceof ArraySymTabInfo)
         variableAddresses.put(param.getArg1(), String.format("%d(%%ebp)", parameterOffset));
         parameterOffset += 4;
-    }
-
-    private boolean IsParameter(SymTabInfo var)
-    {
-        return this.parametersCurFunc.contains(var);
     }
 
     private String PutAndGetAddress(SymTabInfo variable) {
@@ -374,6 +364,14 @@ public class BasicBlockToX86Generator {
         }
         return variableAddresses.get(variable);
 
+    }
+
+    /******************************************************************************************************************/
+    /************************************ HELPER FUNCTIONS ************************************************************/
+
+    private boolean IsParameter(SymTabInfo var)
+    {
+        return this.parametersCurFunc.contains(var);
     }
 
     private void AddCodeLine(String code, StringBuilder sb)
