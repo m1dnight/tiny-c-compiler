@@ -1,19 +1,28 @@
-int sum(int a[3])
-{
-    return a[0] + a[1] + a[2];
+int ackermann(int m, int n){
+        if (m == 0) return n + 1;
+        if (n == 0) return ackermann(m - 1, 1);
+        return ackermann(m - 1, ackermann(m, n - 1));
 }
-int multiply(int x, int y)
+
+int reverseArray(int array[5])
 {
-    return x * y;
+    int intermediate;
+    intermediate = array[4];
+    array[4] = array[0];
+    array[0] = intermediate;
+
+    intermediate = array[3];
+    array[3] = array[1];
+    array[1] = intermediate;
+
+    intermediate = array[2];
+    array[2] = array[0];
+    array[0] = intermediate;
 }
 int main()
 {
     int s;
-    int x[3];
-    x[0] = 10;
-    x[1] = 11;
-    x[2] = 12;
 
-    s = sum(x);
+
     return s;
 }

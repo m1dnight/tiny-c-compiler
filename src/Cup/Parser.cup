@@ -204,7 +204,7 @@ declaration             ::=  fun_declaration:fd                          {:
 						                                                 :}
 						  ;
 
-fun_declaration         ::=  type:rt NAME:n
+fun_declaration         ::=  fun_type:rt NAME:n
                                                                          {: // fun_declaration
                                                                             // Create symboltable entry
                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(null, n);
@@ -312,19 +312,27 @@ var_declarations        ::= var_declaration:v var_declarations:vs          {:
 						  | /* Nothing */
 						  ;
 
-type                    ::= INT                                          {: // type
+type                    ::= INT                                            {: // type
                                                                             /* We create a new TypeInfo that holds that the value is an integer
 																			 * We then attach this type to the value of 'type'
 																			 * INT and FLOAT are simple types
 																			 * Arrays and structs are complex types..
 																			 */ 
 																			RESULT = Types.INTEGER;
-																		 :}
+																		   :}
 						  | CHAR
-                                                                         {:
+                                                                           {:
                                                                              RESULT = Types.CHAR;
-                                                                         :}
+                                                                           :}
 						  ;
+fun_type                    ::= type:t                                      {: // type
+                                                                            /* We create a new TypeInfo that holds that the value is an integer
+																			 * We then attach this type to the value of 'type'
+																			 * INT and FLOAT are simple types
+																			 * Arrays and structs are complex types..
+																			 */
+                                                                             RESULT = Types.INTEGER;
+                                                                           :}
 
 statements                  ::= statement:st SEMICOLON statements:sts    {:
                                                                             // statements

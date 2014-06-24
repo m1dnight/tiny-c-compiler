@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="tiny-c-compiler:jar">
+    <output-path>$USER_HOME$/Desktop/asm-tests</output-path>
+    <root id="archive" name="tiny-c-compiler.jar">
+      <element id="module-output" name="tiny-c-compiler" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/collect/com.springsource.com.google.common.collect/0.8.0.20080820/com.springsource.com.google.common.collect-0.8.0.20080820.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/Cup/cup.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
