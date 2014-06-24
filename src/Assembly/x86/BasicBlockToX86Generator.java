@@ -42,6 +42,7 @@ public class BasicBlockToX86Generator {
 
         prologue.append("\n" + "# Used for printing");
         prologue.append("\n" + "inpf: .string \"%d \\n\"");
+        prologue.append("\n" + "outr:    .string \"%d\"");
         prologue.append("\n" + ".section .text");
         prologue.append("\n" + ".globl _start");
     }
@@ -105,6 +106,17 @@ public class BasicBlockToX86Generator {
                 curCode.append("\n\t" + String.format("pushl $inpf"));
                 curCode.append("\n\t" + String.format("call printf"));
                 curCode.append("\n\t" + String.format("addl $4, %%esp"));
+            }
+            if(op == OpCodes.READINT)
+            {
+                curCode.append("\n\t"  + String.format("subl $4, %%esp"));
+                curCode.append("\n\t" + String.format("pushl %%esp"));
+                curCode.append("\n\t" + String.format("pushl $outr"));
+                curCode.append("\n\t" + String.format("call scanf"));
+                curCode.append("\n\t" + String.format("addl $12, %%esp"));
+                curCode.append("\n\t"  + String.format("movl -4(%%esp), %%eax"));
+                curCode.append("\n\t"  + String.format("movl %%eax, %s", PutAndGetAddress(tac.getArg1())));
+
             }
         }
 

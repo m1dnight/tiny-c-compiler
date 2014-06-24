@@ -370,7 +370,10 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 							                                                PrintStatement ps = new PrintStatement(e);
 							                                                RESULT = ps;
 							                                             :}
-							  | READ lexp
+							  | READ lexp:var                            {:
+							                                                ReadStatement rs = new ReadStatement(var);
+							                                                RESULT = rs;
+							                                             :}
 							  ;
 
 lexp                    ::= NAME:n                                       {:

@@ -5,5 +5,5 @@ package Typing;
  * talking about in the TypeInfo class
  */
 public enum Types {
-    INTEGER, FUNCTION, CHAR, CONSTANT, STRING
+    INTEGER, FUNCTION, CHAR, CONSTANT, readType, STRING
 }

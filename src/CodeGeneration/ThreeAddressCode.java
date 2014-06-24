@@ -53,6 +53,8 @@ public class ThreeAddressCode {
          *****************************************************************************/
         if(opCode == OpCodes.WRITEINT)
             return String.format("WRITE %s", arg1.IdentifiertoString());
+        if(opCode == OpCodes.READINT)
+            return String.format("READ %s", arg1.IdentifiertoString());
 
         /*****************************************************************************
          * Arrays
