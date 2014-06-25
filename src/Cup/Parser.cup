@@ -9,6 +9,7 @@ import Typing.FunctionTypeInfo;
 import SymbolTable.SymTabInfo;
 import SymbolTable.SymbolTable;
 import SymbolTable.IntegerSymTabInfo;
+import SymbolTable.CharSymTabInfo;
 import SymbolTable.VariableSymTabInfo;
 import SymbolTable.StringSymTabInfo;
 import SymbolTable.ArraySymTabInfo;
@@ -126,13 +127,11 @@ parser code {:
    Terminals that have no value are listed first and then terminals
    that do have an value, in this case an integer value, are listed on
    the next line down. */
-terminal           CHAR;
 terminal           NEQUAL, EQUAL, GREATER, LESS, NOT;
 terminal           TIMES, MINUS, DIVIDE, PLUS;
 terminal           WRITE, READ;
 terminal           LENGTH;
 terminal           WHILE, DO;
-terminal           QCHAR;
 terminal           EOL;
 terminal           INT;
 terminal           IF, ELSE;
@@ -144,6 +143,7 @@ terminal           LOW, UMINUS;
 
 
 terminal Integer   NUMBER;
+terminal String      CHAR;
 terminal String    NAME;
 
 non terminal Expression                exp;
@@ -361,6 +361,8 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
                                                                          :}
 							  | WHILE LPAR exp RPAR statement
 							  | lexp:tar ASSIGN exp:ex                   {:
+                                                                            // Check to see if we are assigning proper types
+                                                                            
                                                                             AssignStatement as = new AssignStatement(tar, ex);
                                                                             RESULT = as;
                                                                          :}
@@ -380,7 +382,7 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 							                                                RESULT = rs;
 							                                             :}
 						     | NAME:n LPAR pars:ps RPAR                  {:
-                                                                            // Function Call outside of an expression
+                                                                         // Function Call outside of an expression
                                                                             // Add each TAC for each parameter to the result.
                                                                             // Get the SymTabInfo from the scope
                                                                             VariableSymTabInfo func = (VariableSymTabInfo)scope.Lookup(n);
@@ -421,12 +423,17 @@ lexp                    ::= NAME:n                                       {:
                                                                          :}
 						  ;
 bexp                    ::= exp:e1 GREATER exp:e2                        {:
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(Types.INTEGER);
+
+                                                                             Types resultType = Types.CHAR;
+                                                                             if(e1.getExpressionType() == Types.INTEGER || e2.getExpressionType() == Types.INTEGER)
+                                                                                 resultType = Types.INTEGER;
+
+
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(resultType);
                                                                              //scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
+                                                                             BooleanExpression exp = new BooleanExpression(resultType, 
                                                                                                                            OpCodes.A2GT, 
                                                                                                                            e1, e2,
                                                                                                                            tempVariable);
@@ -441,12 +448,17 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              RESULT = exp;
                                                                          :}                                                                                
                           | exp:e1 LESS    exp:e2                        {:
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(Types.INTEGER);
+
+                                                                             Types resultType = Types.CHAR;
+                                                                             if(e1.getExpressionType() == Types.INTEGER || e2.getExpressionType() == Types.INTEGER)
+                                                                                 resultType = Types.INTEGER;
+
+
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(resultType);
                                                                              //scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
+                                                                             BooleanExpression exp = new BooleanExpression(resultType, 
                                                                                                                            OpCodes.A2LT, 
                                                                                                                            e1, e2,
                                                                                                                            tempVariable);
@@ -461,12 +473,17 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              RESULT = exp;
                                                                          :}   
                           | exp:e1 EQUAL   exp:e2                        {:
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(Types.INTEGER);
+
+                                                                             Types resultType = Types.CHAR;
+                                                                             if(e1.getExpressionType() == Types.INTEGER || e2.getExpressionType() == Types.INTEGER)
+                                                                                 resultType = Types.INTEGER;
+
+
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(resultType);
                                                                              //scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
+                                                                             BooleanExpression exp = new BooleanExpression(resultType, 
                                                                                                                            OpCodes.A2EQ, 
                                                                                                                            e1, e2,
                                                                                                                            tempVariable);
@@ -481,12 +498,17 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                                                                              RESULT = exp;
                                                                          :}    
                           | exp:e1 NEQUAL  exp:e2                        {:
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(Types.INTEGER);
+
+                                                                             Types resultType = Types.CHAR;
+                                                                             if(e1.getExpressionType() == Types.INTEGER || e2.getExpressionType() == Types.INTEGER)
+                                                                                 resultType = Types.INTEGER;
+
+
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(resultType);
                                                                              //scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             BooleanExpression exp = new BooleanExpression(e1.getExpressionType(), 
+                                                                             BooleanExpression exp = new BooleanExpression(resultType, 
                                                                                                                            OpCodes.A2NEQ, 
                                                                                                                            e1, e2,
                                                                                                                            tempVariable);
@@ -503,12 +525,16 @@ bexp                    ::= exp:e1 GREATER exp:e2                        {:
                           ;                           
 //As is customary, we assume that || and && are left-associative, and that || has lowest precedence, then &&, then ! .
 exp                     ::= exp:e1 PLUS    exp:e2                        {:
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
+                                                                             // If one of both operands is an Integer, the result is an integer.
+                                                                             Types resultType = Types.CHAR;
+                                                                             if(e1.getExpressionType() == Types.INTEGER || e2.getExpressionType() == Types.INTEGER)
+                                                                                 resultType = Types.INTEGER;
+
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(resultType);
                                                                              //scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
+                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(resultType,
                                                                                                                                  OpCodes.A2PLUS, 
                                                                                                                                  e1, e2,
                                                                                                                                  tempVariable);
@@ -516,25 +542,33 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              RESULT = exp;
                                                                          :}  
 						  | exp:e1 MINUS   exp:e2                        {:
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
+                                                                             // If one of both operands is an Integer, the result is an integer.
+                                                                             Types resultType = Types.CHAR;
+                                                                             if(e1.getExpressionType() == Types.INTEGER || e2.getExpressionType() == Types.INTEGER)
+                                                                                 resultType = Types.INTEGER;
+
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(resultType);
                                                                              //scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
+                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(resultType,
                                                                                                                                  OpCodes.A2MINUS, 
                                                                                                                                  e1, e2,
                                                                                                                                  tempVariable);
                                                                              //program.add(exp.ToThreeAddressCode());
-                                                                             RESULT = exp;
+                                                                             RESULT = exp;;
                                                                          :} 
 						  | exp:e1 TIMES   exp:e2                        {:
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
+                                                                             // If one of both operands is an Integer, the result is an integer.
+                                                                             Types resultType = Types.CHAR;
+                                                                             if(e1.getExpressionType() == Types.INTEGER || e2.getExpressionType() == Types.INTEGER)
+                                                                                 resultType = Types.INTEGER;
+
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(resultType);
                                                                              //scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
+                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(resultType,
                                                                                                                                  OpCodes.A2TIMES, 
                                                                                                                                  e1, e2,
                                                                                                                                  tempVariable);
@@ -542,12 +576,16 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              RESULT = exp;
                                                                          :} 
 						  | exp:e1 DIVIDE  exp:e2                        {:
-                                                                             // For now we take the type of the first expression (no typecheck)
-                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(e1.getExpressionType());
+                                                                             // If one of both operands is an Integer, the result is an integer.
+                                                                             Types resultType = Types.CHAR;
+                                                                             if(e1.getExpressionType() == Types.INTEGER || e2.getExpressionType() == Types.INTEGER)
+                                                                                 resultType = Types.INTEGER;
+
+                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(resultType);
                                                                              //scope.Insert(tempVariable);
 
                                                                              // Create ArithmeticExpression
-                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(e1.getExpressionType(), 
+                                                                             BinaryArithmeticExpression exp = new BinaryArithmeticExpression(resultType,
                                                                                                                                  OpCodes.A2DIV, 
                                                                                                                                  e1, e2,
                                                                                                                                  tempVariable);
@@ -558,13 +596,13 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                              RESULT = e;
                                                                          :}
 						  | MINUS exp:e                                  {:
+                                                                             Types resultType = e.getExpressionType();
+                                                                             if(resultType == Types.CHAR)
+                                                                                 resultType = Types.INTEGER;
 
-                                                                             // For now we take the type of the first expression (no typecheck)
                                                                              VariableSymTabInfo tempVariable = parser.GenerateVariable(e.getExpressionType());
-                                                                             //scope.Insert(tempVariable);
-
                                                                              // Create ArithmeticExpression
-                                                                             UnaryArithmeticExpression exp = new UnaryArithmeticExpression(e.getExpressionType(), 
+                                                                             UnaryArithmeticExpression exp = new UnaryArithmeticExpression(resultType,
                                                                                                                                  OpCodes.A1MINUS, 
                                                                                                                                  e,
                                                                                                                                  tempVariable);
@@ -583,6 +621,14 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             ConstantExpression ce = new ConstantExpression(csti, Types.INTEGER);
                                                                             RESULT = ce;
                                                                          :}
+						  | CHAR:c                                       {:
+						                                                    // Create char
+						                                                    char theChar = c.charAt(0);
+						                                                    ConstantTypeInfo ti = new ConstantTypeInfo(Types.CHAR);
+						                                                    CharSymTabInfo csti = new CharSymTabInfo(theChar);
+						                                                    ConstantExpression ce = new ConstantExpression(csti, Types.CHAR);
+						                                                    RESULT = ce;
+						                                                 :}                                                                         
 						  | NAME:n LBRACK exp:idx RBRACK                {:
                                                                             // Arrays
                                                                             // Array Access
@@ -607,9 +653,6 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 						                                                        throw new Error("LENGTH called on non-array");
 						                                                    ArraySymTabInfo array = (ArraySymTabInfo)scope.Lookup(n);
 						                                                    RESULT = ((ConstantExpression)array.getSize());
-						                                                    
-                                                                                                                                                                                                                                   
-                                                                            
                                                                          :}                                                                                                                                                
 						  | NAME:n LPAR pars:ps RPAR                     {:
                                                                             // Function Call
@@ -629,7 +672,6 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             //program.add(result.ToThreeAddressCode());
                                                                             RESULT = result;
                                                                          :}
-						  | QCHAR
 						  | NAME:n                                       {:
                                                                              VariableExpression var = new VariableExpression(scope.Lookup(n), scope.Lookup(n).typeInfo.ActualType());
                                                                              RESULT = var;

@@ -34,6 +34,7 @@ digit       =  [0-9]
 alpha       =  [a-zA-Z_]
 alphanum    =  [A-Za-z0-9]
 symbol      =  [_]
+char        =  "\'"{alphanum}"\'"
 identifier  =  {alpha}+({alphanum}|{symbol})*
 
 sl_comment  =  "//".*
@@ -75,9 +76,9 @@ commment    =  {sl_comment} | {ml_comment}
 "!"						{ return symbol(sym.NOT); }
 "="						{ return symbol(sym.ASSIGN); }
 
-{identifier}			{ /*System.out.println("NAME: " + yytext());*/ return symbol(sym.NAME, yytext()); 	}
-{digit}+				{ /*System.out.println("NUMBER: " + Integer.parseInt(yytext()));*/ return symbol(sym.NUMBER, new Integer(Integer.parseInt(yytext()))); }
-
+{identifier}			{ return symbol(sym.NAME, yytext()); 	}
+{digit}+				{ return symbol(sym.NUMBER, new Integer(Integer.parseInt(yytext()))); }
+{char}                  { return symbol(sym.CHAR, yytext().substring(1, 2));}
 {commment}				{ /* yyline += countLines(yytext()); */}
 
 [\n]					{ }

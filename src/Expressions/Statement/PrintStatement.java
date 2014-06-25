@@ -24,8 +24,15 @@ public class PrintStatement extends Statement {
     /******************************************************************************************************************/
     public ArrayList<ThreeAddressCode> toThreeAddressCode()
     {
+
         ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>();
 
+        if(printExpression.getExpressionType() == Types.CHAR)
+        {
+            rv.addAll(printExpression.ToThreeAddressCode());
+            rv.add(new ThreeAddressCode(OpCodes.WRITECHAR, printExpression.getIdentifier()));
+        }
+        else
         if(printExpression.getIdentifier().typeInfo.ActualType() == Types.INTEGER)
         {
             rv.addAll(printExpression.ToThreeAddressCode());

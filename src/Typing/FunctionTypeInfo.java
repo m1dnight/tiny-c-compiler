@@ -2,6 +2,7 @@ package Typing;
 
 import SymbolTable.SymTabInfo;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class FunctionTypeInfo extends TypeInfo {
@@ -64,5 +65,13 @@ public class FunctionTypeInfo extends TypeInfo {
     {
         if(this.parameters == null || this.parameters.size() < 1) return 0;
         return parameters.size();
+    }
+
+    public ArrayList<SymTabInfo> getParameters()
+    {
+        ArrayList<SymTabInfo> parameters = new ArrayList<SymTabInfo>();
+        for(SymTabInfo p : this.parameters)
+            parameters.add(p);
+        return parameters;
     }
 }

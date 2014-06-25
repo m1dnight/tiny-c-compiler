@@ -10,15 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c414a362-0a6a-4dc1-9603-395fe0cc2037" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/Declarations/ArrayDeclaration.java" afterPath="$PROJECT_DIR$/src/Expressions/Declarations/ArrayDeclaration.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SymbolTable/CharSymTabInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java" afterPath="$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/Declarations/Declaration.java" afterPath="$PROJECT_DIR$/src/Expressions/Declarations/Declaration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/Statement/FunctionCallStatement.java" afterPath="$PROJECT_DIR$/src/Expressions/Statement/FunctionCallStatement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" afterPath="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/OpCodes.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/OpCodes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Cup/Parser.cup" afterPath="$PROJECT_DIR$/src/Cup/Parser.cup" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/Statement/PrintStatement.java" afterPath="$PROJECT_DIR$/src/Expressions/Statement/PrintStatement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Scratchpad.java" afterPath="$PROJECT_DIR$/src/Scratchpad.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" afterPath="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/Declarations/VariableDeclaration.java" afterPath="$PROJECT_DIR$/src/Expressions/Declarations/VariableDeclaration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Expressions/Expressions/UnaryArithmeticExpression.java" afterPath="$PROJECT_DIR$/src/Expressions/Expressions/UnaryArithmeticExpression.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test-input/numbers.c" afterPath="$PROJECT_DIR$/src/test-input/numbers.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Jflex/tinyc.jflex" afterPath="$PROJECT_DIR$/src/Jflex/tinyc.jflex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TinyC-Java.iws" />
@@ -94,41 +97,55 @@
     <ui_properties converted="true" />
   </component>
   <component name="DockManager">
-    <window id="5">
+    <window id="8">
       <content type="file-editors">
         <state>
           <leaf>
             <file leaf-file-name="BasicBlockToX86Generator.java" pinned="false" current="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.2819203" vertical-offset="3824" max-vertical-offset="8475">
-                    <caret line="269" column="74" selection-start-line="269" selection-start-column="74" selection-end-line="269" selection-end-column="74" />
+                  <state vertical-scroll-proportion="0.27885598" vertical-offset="2827" max-vertical-offset="4325">
+                    <caret line="297" column="5" selection-start-line="297" selection-start-column="5" selection-end-line="297" selection-end-column="5" />
                     <folding>
                       <element signature="docComment;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#BasicBlockToX86Generator#0;class#BasicBlockToX86Generator#0" expanded="false" />
-                      <element signature="e#2194#2246#0" expanded="false" />
+                      <element signature="method#Prologue#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="e#2255#2307#0" expanded="false" />
+                      <element signature="docComment;method#DeclareGlobalArray#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="method#DeclareGlobalArray#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="method#DeclareGlobalVariable#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="method#CompileIfStatement#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="method#CompileComparison#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="docComment;method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="method#CompileSumAndSubstract#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#CompileAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#CompileFunctioncall#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#CompileReturn#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#CompileParam#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#CompileLabel#0;class#BasicBlockToX86Generator#0" expanded="false" />
-                      <element signature="method#CompileWriteInteger#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#CompileReadInteger#0;class#BasicBlockToX86Generator#0" expanded="false" />
-                      <element signature="e#14177#14229#0" expanded="false" />
-                      <element signature="e#14363#14435#0" expanded="false" />
-                      <element signature="e#15575#15613#0" expanded="false" />
+                      <element signature="method#CompileArrayAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="e#15737#15761#0" expanded="false" />
+                      <element signature="e#17009#17061#0" expanded="false" />
+                      <element signature="e#17195#17267#0" expanded="false" />
+                      <element signature="method#CompileArrayAccess#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="e#18106#18121#0" expanded="false" />
+                      <element signature="e#18407#18445#0" expanded="false" />
                       <element signature="method#CompileArrayDeclaration#0;class#BasicBlockToX86Generator#0" expanded="false" />
-                      <element signature="e#18620#18697#0" expanded="false" />
-                      <element signature="e#19279#19313#0" expanded="false" />
+                      <element signature="e#21452#21529#0" expanded="false" />
+                      <element signature="e#22111#22145#0" expanded="false" />
                       <element signature="method#CompileJump#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="docComment;method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
-                      <element signature="e#20998#21077#0" expanded="false" />
+                      <element signature="method#PutAndGetAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="e#23373#23437#0" expanded="false" />
+                      <element signature="e#23830#23909#0" expanded="false" />
+                      <element signature="docComment;method#IsParameter#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="method#CloseLastFunction#0;class#BasicBlockToX86Generator#0" expanded="false" />
                       <element signature="docComment;method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
-                      <element signature="e#24902#24921#0" expanded="false" />
+                      <element signature="method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                      <element signature="e#27887#27906#0" expanded="false" />
                     </folding>
                   </state>
                 </provider>
@@ -138,28 +155,16 @@
         </state>
       </content>
     </window>
-    <window id="4">
+    <window id="7">
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="VariableDeclaration.java" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/Expressions/Declarations/VariableDeclaration.java">
+            <file leaf-file-name="IntegerSymTabInfo.java" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
-                    <caret line="24" column="80" selection-start-line="24" selection-start-column="80" selection-end-line="24" selection-end-column="80" />
+                  <state vertical-scroll-proportion="0.77221656" vertical-offset="0" max-vertical-offset="1242">
+                    <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
                     <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="ThreeAddressCode.java" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.4234801" vertical-offset="3996" max-vertical-offset="4950">
-                    <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-                    <folding>
-                      <element signature="e#9395#9396#0" expanded="true" />
-                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -175,32 +180,152 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+      <file leaf-file-name="parser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="2574">
-              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="22355" max-vertical-offset="34782">
+              <caret line="1059" column="88" selection-start-line="1059" selection-start-column="88" selection-end-line="1059" selection-end-column="88" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#14465#14466#0" expanded="true" />
+                <element signature="e#14520#14521#0" expanded="true" />
+                <element signature="e#18795#18813#0" expanded="true" />
+                <element signature="e#18907#18908#0" expanded="true" />
+                <element signature="e#18937#18938#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Formatter.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///usr/lib/jvm/java-1.7.0-openjdk-amd64/jre/lib/rt.jar!/java/util/Formatter.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6030" max-vertical-offset="6588">
+              <caret line="361" column="0" selection-start-line="361" selection-start-column="0" selection-end-line="361" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ArraySymTabInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SymbolTable/ArraySymTabInfo.java">
+      <file leaf-file-name="BasicBlockToX86Generator.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.80692166" vertical-offset="889" max-vertical-offset="2358">
+              <caret line="246" column="60" selection-start-line="246" selection-start-column="60" selection-end-line="246" selection-end-column="60" />
+              <folding>
+                <element signature="docComment;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#BasicBlockToX86Generator#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#Prologue#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#Compile#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="e#2255#2307#0" expanded="false" />
+                <element signature="method#CompileUnaryMinus#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="docComment;method#DeclareGlobalArray#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#DeclareGlobalArray#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#DeclareGlobalVariable#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileIfStatement#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileComparison#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="docComment;method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileSumAndSubstract#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileFunctioncall#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileReturn#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileLabel#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileWriteInteger#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileReadInteger#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CompileArrayAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="e#15737#15761#0" expanded="false" />
+                <element signature="e#17009#17061#0" expanded="false" />
+                <element signature="e#17195#17267#0" expanded="false" />
+                <element signature="method#CompileArrayAccess#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="e#18106#18121#0" expanded="false" />
+                <element signature="e#18407#18445#0" expanded="false" />
+                <element signature="method#CompileArrayDeclaration#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="e#21452#21529#0" expanded="false" />
+                <element signature="e#22111#22145#0" expanded="false" />
+                <element signature="method#CompileJump#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="docComment;method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#PutAndGetAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="e#23373#23437#0" expanded="false" />
+                <element signature="e#23830#23909#0" expanded="false" />
+                <element signature="docComment;method#IsParameter#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#CloseLastFunction#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="docComment;method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+                <element signature="e#27887#27906#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CharSymTabInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SymbolTable/CharSymTabInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="918">
+              <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocalValueNumbering.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Optimisations/LocalValueNumbering.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1052" max-vertical-offset="1800">
+              <caret line="82" column="63" selection-start-line="82" selection-start-column="63" selection-end-line="82" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="numbers.c" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
+      <file leaf-file-name="ThreeAddressCode.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7724719" vertical-offset="98" max-vertical-offset="918">
-              <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="4230">
+              <caret line="55" column="53" selection-start-line="55" selection-start-column="53" selection-end-line="55" selection-end-column="53" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FunctionCallStatement.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Expressions/Statement/FunctionCallStatement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="601" max-vertical-offset="1470">
+              <caret line="46" column="20" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParameterList.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Expressions/ParameterList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="411" max-vertical-offset="1278">
+              <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FunctionTypeInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="666">
+              <caret line="74" column="26" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
+              <folding>
+                <element signature="docComment;method#FunctionTypeInfo#0;class#FunctionTypeInfo#0" expanded="false" />
+                <element signature="method#FunctionTypeInfo#0;class#FunctionTypeInfo#0" expanded="false" />
+                <element signature="docComment;method#equals#0;class#FunctionTypeInfo#0" expanded="false" />
+                <element signature="method#equals#0;class#FunctionTypeInfo#0" expanded="false" />
+                <element signature="method#NumberOfParams#0;class#FunctionTypeInfo#0" expanded="false" />
+                <element signature="e#2602#2614#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,21 +333,12 @@
       <file leaf-file-name="VariableSymTabInfo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SymbolTable/VariableSymTabInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="637" max-vertical-offset="1134">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1134">
+              <caret line="16" column="70" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
               <folding>
+                <element signature="e#1677#1678#0" expanded="true" />
                 <element signature="e#1734#1735#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArrayDeclaration.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Expressions/Declarations/ArrayDeclaration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1035">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -243,11 +359,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Optimisations/Node.java" />
-        <option value="$PROJECT_DIR$/src/Optimisations/LeafNode.java" />
-        <option value="$PROJECT_DIR$/src/Optimisations/Liveness.java" />
-        <option value="$PROJECT_DIR$/src/Optimisations/DAGraph.java" />
-        <option value="$PROJECT_DIR$/src/Utils/BiMap.java" />
         <option value="$PROJECT_DIR$/src/Optimisations/ConstantFolding.java" />
         <option value="$PROJECT_DIR$/src/Assembly/BasicBlock.java" />
         <option value="$PROJECT_DIR$/src/Utils/MyBiMap.java" />
@@ -256,7 +367,6 @@
         <option value="$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86.java" />
         <option value="$PROJECT_DIR$/src/Assembly/Generator.java" />
         <option value="$PROJECT_DIR$/src/Expressions/FunctionCallExpression.java" />
-        <option value="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable/VariableSymTabInfo.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable/StringSymTabInfo.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable/SymTabInfo.java" />
@@ -266,7 +376,6 @@
         <option value="$PROJECT_DIR$/src/Optimisations/RedudantVariablesBasic.java" />
         <option value="$PROJECT_DIR$/src/Expressions/Program.java" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
-        <option value="$PROJECT_DIR$/src/Scratchpad.java" />
         <option value="$PROJECT_DIR$/src/CodeGeneration/CodeContainer.java" />
         <option value="$PROJECT_DIR$/src/Expressions/BooleanExpression.java" />
         <option value="$PROJECT_DIR$/src/Expressions/FunctionDeclaration.java" />
@@ -281,19 +390,26 @@
         <option value="$PROJECT_DIR$/src/Expressions/PrintStatement.java" />
         <option value="$PROJECT_DIR$/src/Expressions/ReadStatement.java" />
         <option value="$PROJECT_DIR$/src/Expressions/Expression.java" />
-        <option value="$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java" />
         <option value="$PROJECT_DIR$/src/Expressions/Expressions/Expression.java" />
         <option value="$PROJECT_DIR$/src/Typing/Types.java" />
-        <option value="$PROJECT_DIR$/src/Expressions/Statement/FunctionCallStatement.java" />
         <option value="$PROJECT_DIR$/src/Expressions/Declarations/GlobalDeclaration.java" />
         <option value="$PROJECT_DIR$/src/Expressions/Declarations/Declaration.java" />
-        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
         <option value="$PROJECT_DIR$/src/Expressions/Declarations/VariableDeclaration.java" />
         <option value="$PROJECT_DIR$/src/Expressions/Declarations/ArrayDeclaration.java" />
-        <option value="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
         <option value="$PROJECT_DIR$/src/SymbolTable/ArraySymTabInfo.java" />
-        <option value="$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java" />
+        <option value="$PROJECT_DIR$/src/Expressions/Expressions/UnaryArithmeticExpression.java" />
+        <option value="$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java" />
+        <option value="$PROJECT_DIR$/src/Jflex/Lexer.java" />
+        <option value="$PROJECT_DIR$/src/Jflex/tinyc.jflex" />
+        <option value="$PROJECT_DIR$/src/Scratchpad.java" />
         <option value="$PROJECT_DIR$/src/test-input/numbers.c" />
+        <option value="$PROJECT_DIR$/src/Cup/parser.java" />
+        <option value="$PROJECT_DIR$/src/Expressions/Statement/PrintStatement.java" />
+        <option value="$PROJECT_DIR$/src/SymbolTable/CharSymTabInfo.java" />
+        <option value="$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java" />
+        <option value="$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java" />
+        <option value="$PROJECT_DIR$/src/Expressions/Statement/FunctionCallStatement.java" />
+        <option value="$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java" />
       </list>
     </option>
   </component>
@@ -410,24 +526,6 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test-input" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-c-compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tiny-c-compiler" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="SymbolTable" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -443,6 +541,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Expressions" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-c-compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-c-compiler" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Expressions" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Statement" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-c-compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tiny-c-compiler" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Expressions" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -882,23 +1024,23 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.371123" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" x="1582" y="548" width="1920" height="396" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44373673" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-89" y="215" width="1920" height="1031" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33970276" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20234291" sideWeight="0.29912663" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49224406" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22929937" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19595315" sideWeight="0.7008734" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19595315" sideWeight="0.7008734" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19382322" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21549894" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="25" width="1920" height="1055" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36518046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="25" width="1920" height="1055" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39915073" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -911,19 +1053,19 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.371123" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" x="1582" y="548" width="1920" height="396" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44373673" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-89" y="215" width="1920" height="1031" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44373673" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="-89" y="215" width="1920" height="1031" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33970276" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20234291" sideWeight="0.29912663" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32953367" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49224406" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22929937" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19595315" sideWeight="0.7008734" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19595315" sideWeight="0.7008734" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39915073" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21549894" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="25" width="1920" height="1055" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36518046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="25" width="1920" height="1055" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19382322" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
@@ -948,21 +1090,21 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java</url>
-          <line>303</line>
+          <line>61</line>
           <properties />
-          <option name="timeStamp" value="181" />
+          <option name="timeStamp" value="192" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java</url>
-          <line>265</line>
+          <line>442</line>
           <properties />
-          <option name="timeStamp" value="183" />
+          <option name="timeStamp" value="193" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="184" />
+      <option name="time" value="196" />
     </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
@@ -982,48 +1124,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Optimisations/LocalValueNumbering.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1800">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/Expressions/VariableExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24045801" vertical-offset="0" max-vertical-offset="441">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SymbolTable/StringSymTabInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="882">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test-input/test.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="940">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/Expressions/BinaryArithmeticExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37821782" vertical-offset="34" max-vertical-offset="720">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Optimisations/ConstantPropagation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52182955" vertical-offset="1024" max-vertical-offset="2925">
-          <caret line="92" column="49" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/run.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="573">
@@ -1049,21 +1149,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/Statement/AssignStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="454" max-vertical-offset="1440">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Scratchpad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1151,13 +1236,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1656">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cup/Parser.cup">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2322" max-vertical-offset="11196">
@@ -1169,14 +1247,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="576" max-vertical-offset="846">
           <caret line="32" column="78" selection-start-line="32" selection-start-column="78" selection-end-line="32" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/Statement/PrintStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="828">
-          <caret line="34" column="59" selection-start-line="34" selection-start-column="59" selection-end-line="34" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -1202,21 +1272,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="936">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding>
-            <element signature="e#1418#1419#0" expanded="true" />
-            <element signature="e#1464#1465#0" expanded="true" />
-            <element signature="e#1567#1568#0" expanded="true" />
-            <element signature="e#1595#1596#0" expanded="true" />
-            <element signature="e#1634#1635#0" expanded="true" />
-            <element signature="e#1668#1669#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Expressions/Expressions/Expression.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="828">
@@ -1235,14 +1290,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/ParameterList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="1278">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Expressions/Expressions/FunctionCallExpression.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
@@ -1256,16 +1303,6 @@
         <state vertical-scroll-proportion="0.2614108" vertical-offset="0" max-vertical-offset="482">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Expressions/Statement/FunctionCallStatement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5660377" vertical-offset="54" max-vertical-offset="1008">
-          <caret line="33" column="69" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1306,36 +1343,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0447427" vertical-offset="25453" max-vertical-offset="27630">
-          <caret line="1443" column="0" selection-start-line="1443" selection-start-column="0" selection-end-line="1443" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#14430#14431#0" expanded="false" />
-            <element signature="e#14485#14486#0" expanded="false" />
-            <element signature="e#18760#18778#0" expanded="false" />
-            <element signature="e#18872#18873#0" expanded="false" />
-            <element signature="e#18902#18903#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Expressions/Declarations/VariableDeclaration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
           <caret line="24" column="80" selection-start-line="24" selection-start-column="80" selection-end-line="24" selection-end-column="80" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SymbolTable/VariableSymTabInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="637" max-vertical-offset="1134">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="e#1734#1735#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1355,50 +1367,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2819203" vertical-offset="3824" max-vertical-offset="8475">
-          <caret line="269" column="74" selection-start-line="269" selection-start-column="74" selection-end-line="269" selection-end-column="74" />
-          <folding>
-            <element signature="docComment;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#BasicBlockToX86Generator#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="e#2194#2246#0" expanded="false" />
-            <element signature="docComment;method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#CompileAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#CompileFunctioncall#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#CompileReturn#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#CompileParam#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#CompileLabel#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#CompileWriteInteger#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#CompileReadInteger#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="e#14177#14229#0" expanded="false" />
-            <element signature="e#14363#14435#0" expanded="false" />
-            <element signature="e#15575#15613#0" expanded="false" />
-            <element signature="method#CompileArrayDeclaration#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="e#18620#18697#0" expanded="false" />
-            <element signature="e#19279#19313#0" expanded="false" />
-            <element signature="method#CompileJump#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="docComment;method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="e#20998#21077#0" expanded="false" />
-            <element signature="method#CloseLastFunction#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="docComment;method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
-            <element signature="e#24902#24921#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4234801" vertical-offset="3996" max-vertical-offset="4950">
-          <caret line="204" column="0" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-          <folding>
-            <element signature="e#9395#9396#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SymbolTable/ArraySymTabInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
@@ -1407,11 +1375,224 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/Statement/AssignStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="585" max-vertical-offset="1260">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cup/sym.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="936">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Scratchpad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+          <folding>
+            <element signature="e#115#116#0" expanded="true" />
+            <element signature="e#166#167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Jflex/tinyc.jflex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1061" max-vertical-offset="1674">
+          <caret line="76" column="54" selection-start-line="76" selection-start-column="54" selection-end-line="76" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/Expressions/UnaryArithmeticExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="864">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1448#1466#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test-input/numbers.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7724719" vertical-offset="98" max-vertical-offset="918">
-          <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="575" max-vertical-offset="954">
+          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Jflex/Lexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="11646" max-vertical-offset="14418">
+          <caret line="648" column="17" selection-start-line="648" selection-start-column="17" selection-end-line="649" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/Statement/PrintStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="39" max-vertical-offset="954">
+          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.7.0-openjdk-amd64/jre/lib/rt.jar!/java/util/Formatter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6030" max-vertical-offset="6588">
+          <caret line="361" column="0" selection-start-line="361" selection-start-column="0" selection-end-line="361" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Optimisations/LocalValueNumbering.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1052" max-vertical-offset="1800">
+          <caret line="82" column="63" selection-start-line="82" selection-start-column="63" selection-end-line="82" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SymbolTable/VariableSymTabInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1134">
+          <caret line="16" column="70" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
+          <folding>
+            <element signature="e#1677#1678#0" expanded="true" />
+            <element signature="e#1734#1735#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SymbolTable/IntegerSymTabInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77221656" vertical-offset="0" max-vertical-offset="1242">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/ParameterList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="411" max-vertical-offset="1278">
+          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cup/parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="22377" max-vertical-offset="34804">
+          <caret line="1059" column="88" selection-start-line="1059" selection-start-column="88" selection-end-line="1059" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14465#14466#0" expanded="true" />
+            <element signature="e#14520#14521#0" expanded="true" />
+            <element signature="e#18795#18813#0" expanded="true" />
+            <element signature="e#18907#18908#0" expanded="true" />
+            <element signature="e#18937#18938#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CodeGeneration/ThreeAddressCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="4230">
+          <caret line="55" column="53" selection-start-line="55" selection-start-column="53" selection-end-line="55" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SymbolTable/CharSymTabInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="918">
+          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Typing/FunctionTypeInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9" max-vertical-offset="666">
+          <caret line="74" column="26" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
+          <folding>
+            <element signature="docComment;method#FunctionTypeInfo#0;class#FunctionTypeInfo#0" expanded="false" />
+            <element signature="method#FunctionTypeInfo#0;class#FunctionTypeInfo#0" expanded="false" />
+            <element signature="docComment;method#equals#0;class#FunctionTypeInfo#0" expanded="false" />
+            <element signature="method#equals#0;class#FunctionTypeInfo#0" expanded="false" />
+            <element signature="method#NumberOfParams#0;class#FunctionTypeInfo#0" expanded="false" />
+            <element signature="e#2602#2614#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Expressions/Statement/FunctionCallStatement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="601" max-vertical-offset="1470">
+          <caret line="46" column="20" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Assembly/x86/BasicBlockToX86Generator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80692166" vertical-offset="889" max-vertical-offset="2358">
+          <caret line="246" column="60" selection-start-line="246" selection-start-column="60" selection-end-line="246" selection-end-column="60" />
+          <folding>
+            <element signature="docComment;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#BasicBlockToX86Generator#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#Prologue#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#Compile#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="e#2255#2307#0" expanded="false" />
+            <element signature="method#CompileUnaryMinus#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="docComment;method#DeclareGlobalArray#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#DeclareGlobalArray#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#DeclareGlobalVariable#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileIfStatement#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileComparison#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="docComment;method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileDivisionAndTimes#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileSumAndSubstract#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileFunctioncall#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileReturn#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileLabel#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileWriteInteger#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileReadInteger#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CompileArrayAssignment#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="e#15737#15761#0" expanded="false" />
+            <element signature="e#17009#17061#0" expanded="false" />
+            <element signature="e#17195#17267#0" expanded="false" />
+            <element signature="method#CompileArrayAccess#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="e#18106#18121#0" expanded="false" />
+            <element signature="e#18407#18445#0" expanded="false" />
+            <element signature="method#CompileArrayDeclaration#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="e#21452#21529#0" expanded="false" />
+            <element signature="e#22111#22145#0" expanded="false" />
+            <element signature="method#CompileJump#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="docComment;method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#PutParameterAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#PutAndGetAddress#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="e#23373#23437#0" expanded="false" />
+            <element signature="e#23830#23909#0" expanded="false" />
+            <element signature="docComment;method#IsParameter#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#CloseLastFunction#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="docComment;method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="method#getCurCode#0;class#BasicBlockToX86Generator#0" expanded="false" />
+            <element signature="e#27887#27906#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

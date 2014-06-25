@@ -46,6 +46,7 @@ public class BasicBlockToX86Generator {
         prologue.append("\n" + "# Used for printing");
         prologue.append("\n" + "inpf: .string \"%d \\n\"");
         prologue.append("\n" + "outr:    .string \"%d\"");
+        prologue.append("\n" + "inpfc: .string \"%c \\n\"");
         prologue.append("\n" + ".section .text");
         prologue.append("\n" + ".globl _start");
     }
@@ -60,38 +61,21 @@ public class BasicBlockToX86Generator {
             // Print out original TAC as comment.
             curCode.append("\n  " + "#" + tac.toString());
             OpCodes op = tac.getOpCode();
+            if(op == OpCodes.A1MINUS)
+                CompileUnaryMinus(tac);
             if (op == OpCodes.LABEL)
                 CompileLabel(tac);
             if(op == OpCodes.GLOBL)
-            {
-                if(tac.getArg1().typeInfo.ActualType() == Types.INTEGER) {
-                    // This identifies a gobal variable so we have to add it to the prologue.
-                    String varname = "global_" + tac.getArg1().IdentifiertoString();
-                    data.append("\n" + String.format("%s: .long 0", varname));
-                    // Add the address (this can't be done using the function PutAndGetAddress)
-                    this.globalAddresses.put(tac.getArg1(), varname);
-                }
-            }
+                DeclareGlobalVariable(tac);
             if(op == OpCodes.GLOBLARR)
-            {
-                if(tac.getArg1().typeInfo.ActualType() == Types.INTEGER) {
-                    // This identifies a gobal variable so we have to add it to the prologue.
-                    String varname = "global_" + tac.getArg1().IdentifiertoString();
-                    data.append("\n" + String.format("%s: .long 0", varname));
-
-                    for(int i = 1; i < ((IntegerSymTabInfo)tac.getArg2()).getValue(); i++)
-                        data.append(", 0");
-                    // Add the address (this can't be done using the function PutAndGetAddress)
-                    this.globalAddresses.put(tac.getArg1(), varname);
-                }
-            }
+                DeclareGlobalArray(tac);
             if(op == OpCodes.ALLOC_ARRAY)
                 CompileArrayDeclaration(tac);
             if(op == OpCodes.AAS)
                 CompileArrayAssignment(tac);
             if(op == OpCodes.AAC)
                 CompileArrayAccess(tac);
-            if (op == OpCodes.PARAM)
+            if (op == OpCodes.PARAM || op == OpCodes.PARAMTOCHAR)
                 CompileParam(parameters, tac);
             if(op == OpCodes.RETURN)
                 CompileReturn(tac);
@@ -110,8 +94,21 @@ public class BasicBlockToX86Generator {
                 CompileComparison(tac, op);
             if(op == OpCodes.GOTO)
                 CompileJump(tac);
+
             if(op == OpCodes.WRITEINT)
                 CompileWriteInteger(tac);
+
+            if(op == OpCodes.WRITECHAR)
+            {
+                // Get the char from
+                curCode.append("\n\t"  + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())));
+                curCode.append("\n\t"  + String.format("movl $0, %%eax")); // Clear eax
+                curCode.append("\n\t" + String.format("movb %%bl, %%al"));
+                curCode.append("\n\t" + String.format("pushl %%eax"));
+                curCode.append("\n\t" + String.format("pushl $inpfc"));
+                curCode.append("\n\t" + String.format("call printf"));
+                curCode.append("\n\t" + String.format("addl $4, %%esp"));
+            }
             if(op == OpCodes.READINT)
                 CompileReadInteger(tac);
             if(op == OpCodes.A2EQIF  || op == OpCodes.A2GTIF || op == OpCodes.A2LTIF || op == OpCodes.A2NEQIF)
@@ -120,21 +117,50 @@ public class BasicBlockToX86Generator {
 
     }
 
+    private void CompileUnaryMinus(ThreeAddressCode tac) {
+        curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+        curCode.append("\n\t" + String.format("negl %%eax"));
+        curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+    }
+
+
+    /******************************************************************************************************************/
+    /************************************ INDIVIDUAL COMPILATION METHODS **********************************************/
+    private void DeclareGlobalArray(ThreeAddressCode tac) {
+        if(tac.getArg1().typeInfo.ActualType() == Types.INTEGER) {
+            // This identifies a gobal variable so we have to add it to the prologue.
+            String varname = "global_" + tac.getArg1().IdentifiertoString();
+            data.append("\n" + String.format("%s: .long 0", varname));
+
+            for(int i = 1; i < ((IntegerSymTabInfo)tac.getArg2()).getValue(); i++)
+                data.append(", 0");
+            // Add the address (this can't be done using the function PutAndGetAddress)
+            this.globalAddresses.put(tac.getArg1(), varname);
+        }
+    }
+
+    private void DeclareGlobalVariable(ThreeAddressCode tac) {
+        if(tac.getArg1().typeInfo.ActualType() == Types.INTEGER) {
+            // This identifies a gobal variable so we have to add it to the prologue.
+            String varname = "global_" + tac.getArg1().IdentifiertoString();
+            data.append("\n" + String.format("%s: .long 0", varname));
+            // Add the address (this can't be done using the function PutAndGetAddress)
+            this.globalAddresses.put(tac.getArg1(), varname);
+        }
+    }
+
     private void CompileIfStatement(ThreeAddressCode tac, OpCodes op) {
         String jumpOperator = "";
         // Determine the jumb operator to use.
         jumpOperator = op == OpCodes.A2EQIF ? "je"   :
-                      (op == OpCodes.A2GTIF ? "jg"  :
-                      (op == OpCodes.A2NEQIF ? "jne" : "jl"));
+                (op == OpCodes.A2GTIF ? "jg"  :
+                        (op == OpCodes.A2NEQIF ? "jne" : "jl"));
         AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())), curCode);
         AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())), curCode);
         AddCodeLine(String.format("cmpl %%eax, %%ebx"), curCode);
         AddCodeLine(String.format("%s %s", jumpOperator, tac.getResult().IdentifiertoString()), curCode);
     }
 
-
-    /******************************************************************************************************************/
-    /************************************ INDIVIDUAL COMPILATION METHODS **********************************************/
     private void CompileComparison(ThreeAddressCode tac, OpCodes op) {
         String jumpOperator = "";
         jumpOperator = op == OpCodes.A2LT ? "jl" : (op == OpCodes.A2GT ? "jg" : "je");
@@ -160,10 +186,25 @@ public class BasicBlockToX86Generator {
     }
 
     private void CompileAssignment(ThreeAddressCode tac) {
-            PutAndGetAddress(tac.getArg1());
-            PutAndGetAddress(tac.getResult());
-            curCode.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
-            curCode.append("\n\t" + String.format("movl %s, %s", "%eax", PutAndGetAddress(tac.getResult())));
+            // If we are assigning to a char, we have to make sure we trim it.
+            if(tac.getResult().typeInfo.ActualType() == Types.CHAR && tac.getArg1().typeInfo.ActualType() == Types.INTEGER)
+            {
+                PutAndGetAddress(tac.getArg1());
+                PutAndGetAddress(tac.getResult());
+                // First store arg1 in %eax, then copy %al to %ebx, and then %ebx to the location
+                curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+                curCode.append("\n\t" + String.format("movl $0, %%ebx"));
+                curCode.append("\n\t" + String.format("movb %%al, %%bl"));
+                curCode.append("\n\t" + String.format("movl %s, %s", "%ebx", PutAndGetAddress(tac.getResult())));
+            }
+        else
+            {
+                PutAndGetAddress(tac.getArg1());
+                PutAndGetAddress(tac.getResult());
+                curCode.append("\n\t" + String.format("movl %s, %s", PutAndGetAddress(tac.getArg1()), "%eax"));
+                curCode.append("\n\t" + String.format("movl %s, %s", "%eax", PutAndGetAddress(tac.getResult())));
+            }
+
     }
 
     private void CompileFunctioncall(Stack<String> parameters, ThreeAddressCode tac) {
@@ -171,7 +212,9 @@ public class BasicBlockToX86Generator {
         while(!parameters.isEmpty())
             curCode.append(parameters.pop());
         curCode.append("\n\t" + String.format("call %s", tac.getArg1()));
-        curCode.append("\n\t" + String.format("addl $%d, %%esp", tac.getParamCount() * 4));
+        if(tac.getParamCount() != 0) // No parameters == no scrubbing
+            curCode.append("\n\t" + String.format("addl $%d, %%esp", tac.getParamCount() * 4));
+        if(tac.getResult() != null) // No result, no movl
         curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
     }
 
@@ -196,8 +239,22 @@ public class BasicBlockToX86Generator {
         }
         else {
             // Push strings in *reverse* order on the stack.
-            parameters.push("\n\t" + String.format("pushl %%eax"));
-            parameters.push("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+
+            if(tac.getOpCode() == OpCodes.PARAMTOCHAR)
+            {
+                // If we need to coerce, do that first and put the result back in %eax
+                parameters.push("\n\t" + String.format("pushl %%eax"));
+                parameters.push("\n\t" + String.format("movb %%bl, %%al"));
+                parameters.push("\n\t" + String.format("movl $0, %%eax"));
+                parameters.push("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())));
+                parameters.push("\n\t" + String.format("# Coerce the parameter to CHAR"));
+
+            }
+            else
+            {
+                parameters.push("\n\t" + String.format("pushl %%eax"));
+                parameters.push("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+            }
         }
     }
 
@@ -403,6 +460,10 @@ public class BasicBlockToX86Generator {
                 variableAddresses.put(variable, String.format("%d(%%ebp)", localVariableOffset));
                 localVariableOffset -= 4;
             }
+        }
+        if(variable instanceof CharSymTabInfo)
+        {
+            return String.format("$%d", (int)((CharSymTabInfo) variable).getValue());
         }
         if (variableAddresses.get(variable) == null) {
             localVariableCount++;

@@ -27,20 +27,17 @@ int printArray(int array[5])
     write array[4];
 }*/
 
-int increase()
+char increase(char p1, char p2)
 {
-    x[0] = 1;
-    x[1] = 2;
-    x[2] = 3;
+    write p1;
+    write p2;
 }
 int main()
 {
-    write x[0];
-    write x[1];
-    write x[2];
-    increase();
-    write x[0];
-    write x[1];
-    write x[2];
-
+    int a;
+    int b;
+    a = 65;
+    b = 300;
+    increase(a, b);
+    
 }

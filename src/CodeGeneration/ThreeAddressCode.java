@@ -49,6 +49,13 @@ public class ThreeAddressCode {
     public String toString()
     {
         /*****************************************************************************
+         * Coercion
+         *****************************************************************************/
+        if(opCode == OpCodes.PARAMTOCHAR)
+        {
+            return String.format("PARAM2CHAR %s", arg1.IdentifiertoString());
+        }
+        /*****************************************************************************
          * Global variable
          *****************************************************************************/
         if(opCode == OpCodes.GLOBL)
@@ -64,6 +71,8 @@ public class ThreeAddressCode {
             return String.format("WRITE %s", arg1.IdentifiertoString());
         if(opCode == OpCodes.READINT)
             return String.format("READ %s", arg1.IdentifiertoString());
+        if(opCode == OpCodes.WRITECHAR)
+            return String.format("WRITECHAR %s", arg1.IdentifiertoString());
 
         /*****************************************************************************
          * Arrays
@@ -99,6 +108,9 @@ public class ThreeAddressCode {
          *****************************************************************************/
         if(opCode == OpCodes.CALL)
         {
+
+            if(this.result == null)
+                return String.format("call %s, %s", arg1.IdentifiertoString(), this.ParamCount);
             return String.format("%s = call %s, %s", result.IdentifiertoString(), arg1.IdentifiertoString(), this.ParamCount);
         }
         if(opCode == OpCodes.PARAM)
