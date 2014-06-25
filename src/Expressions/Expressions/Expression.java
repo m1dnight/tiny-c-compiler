@@ -1,4 +1,4 @@
-package Expressions;
+package Expressions.Expressions;
 
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
@@ -33,6 +33,7 @@ public class Expression {
     public void setIdentifier(SymTabInfo identifier) {
         this.identifier = identifier;
     }
+
 
     public Types getExpressionType() {
         return expressionType;

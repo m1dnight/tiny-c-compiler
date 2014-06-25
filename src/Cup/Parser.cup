@@ -1,6 +1,9 @@
 package Cup;
 
 import Expressions.*;
+import Expressions.Declarations.*;
+import Expressions.Expressions.*;
+import Expressions.Statement.*;
 import Typing.ConstantTypeInfo;
 import Typing.FunctionTypeInfo;
 import SymbolTable.SymTabInfo;
@@ -12,14 +15,13 @@ import SymbolTable.ArraySymTabInfo;
 import SymbolTable.ArrayIndexSymTabInfo;
 import Typing.Types;
 import Typing.VariableTypeInfo;
-import CodeGeneration.CodeContainer;
 import CodeGeneration.VarnameCreator;
 import CodeGeneration.ThreeAddressCode;
 import CodeGeneration.OpCodes;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Arrays;
+
 
 action code {:
 
@@ -374,6 +376,22 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 							                                                ReadStatement rs = new ReadStatement(var);
 							                                                RESULT = rs;
 							                                             :}
+						     | NAME:n LPAR pars:ps RPAR                  {:
+                                                                            // Function Call outside of an expression
+                                                                            // Add each TAC for each parameter to the result.
+                                                                            // Get the SymTabInfo from the scope
+                                                                            VariableSymTabInfo func = (VariableSymTabInfo)scope.Lookup(n);
+                                                                            // We need the return type, so we get it from the SymTabInfo.
+                                                                            FunctionTypeInfo funcTypeInfo = (FunctionTypeInfo) func.typeInfo;
+
+                                                                            VariableSymTabInfo tempVariable = parser.GenerateVariable(funcTypeInfo.ActualType());
+                                                                            //scope.Insert(tempVariable);
+
+                                                                            FunctionCallExpression result = new FunctionCallExpression(tempVariable, funcTypeInfo.ActualType(), func, ps);
+                                                                            // Create the TAC for the function call.
+                                                                            //program.add(result.ToThreeAddressCode());
+                                                                            RESULT = result;
+                                                                         :}							                                             
 							  ;
 
 lexp                    ::= NAME:n                                       {:
@@ -578,7 +596,17 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             
                                                                             RESULT = arrAcc;                                                                           
                                                                             
-                                                                         :}                                                                         
+                                                                         :}   
+						  | LENGTH NAME:n                                {:
+						                                                    SymTabInfo lookup = scope.Lookup(n);
+						                                                    if(!(lookup instanceof ArraySymTabInfo))
+						                                                        throw new Error("LENGTH called on non-array");
+						                                                    ArraySymTabInfo array = (ArraySymTabInfo)scope.Lookup(n);
+						                                                    RESULT = ((ConstantExpression)array.getSize());
+						                                                    
+                                                                                                                                                                                                                                   
+                                                                            
+                                                                         :}                                                                                                                                                
 						  | NAME:n LPAR pars:ps RPAR                     {:
                                                                             // Function Call
                                                                             // Add each TAC for each parameter to the result.

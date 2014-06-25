@@ -1,42 +1,51 @@
-package Expressions;
+package Expressions.Expressions;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
+import Expressions.ParameterList;
 import SymbolTable.SymTabInfo;
+import SymbolTable.VariableSymTabInfo;
+import Typing.FunctionTypeInfo;
 import Typing.Types;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 06.06.14.
+ * Created by christophe on 05.06.14.
  */
-public class ReturnStatement extends Statement {
-    private Expression returnExpressions;
+public class FunctionCallExpression extends Expression {
+    private VariableSymTabInfo function;
+    private ParameterList      parameterList;
+
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public ReturnStatement(Expression returnExpressions) {
-        this.returnExpressions = returnExpressions;
+    public FunctionCallExpression(SymTabInfo identifier, Types type, VariableSymTabInfo function, ParameterList parameters) {
+        super(identifier, type);
+        this.function = function;
+        this.parameterList = parameters;
     }
 
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public ArrayList<ThreeAddressCode> toThreeAddressCode()
-    {
-        ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>();
-        rv.addAll(returnExpressions.ToThreeAddressCode());
-        rv.add(new ThreeAddressCode(OpCodes.RETURN, returnExpressions.getIdentifier()));
-        return rv;
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        if(this.parameterList != null)
+        output.addAll(this.parameterList.ToThreeAddressCode());
+        output.add(
+                new ThreeAddressCode(OpCodes.CALL, this.function,
+                                     ((FunctionTypeInfo) this.function.typeInfo).NumberOfParams(), this.identifier));
+        return output;
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public Expression getReturnExpressions() {
-        return returnExpressions;
+    public ParameterList getParameterList() {
+        return parameterList;
     }
 
-    public void setReturnExpressions(Expression returnExpressions) {
-        this.returnExpressions = returnExpressions;
+    public void setParameterList(ParameterList parameterList) {
+        this.parameterList = parameterList;
     }
 }

@@ -1,67 +1,54 @@
-package Expressions;
+package Expressions.Statement;
 
+import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
+import Expressions.ParameterList;
+import SymbolTable.SymTabInfo;
+import SymbolTable.VariableSymTabInfo;
+import Typing.FunctionTypeInfo;
+import Typing.Types;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 06.06.14.
+ * Created by christophe on 25.06.14.
  */
-public class StatementList {
-    private ArrayList<Statement> statements;
-
+public class FunctionCallStatement extends Statement {
+    private final SymTabInfo         identifier;
+    private final Types              type;
+    private       VariableSymTabInfo function;
+    private       ParameterList      parameterList;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public StatementList(ArrayList<Statement> statements) {
-        this.statements = statements;
-    }
-    public StatementList(Statement statement) {
-        if(this.statements == null) this.statements = new ArrayList<Statement>();
-        this.statements.add(statement);
+    public FunctionCallStatement(SymTabInfo identifier, Types type, VariableSymTabInfo function, ParameterList parameters) {
+        this.identifier = identifier;
+        this.type = type;
+        this.function = function;
+        this.parameterList = parameters;
     }
 
-    public StatementList() {
-        this.statements = new ArrayList<Statement>();
-    }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public StatementList AddStatements(StatementList ss)
-    {
-        if(this.statements == null) this.statements = new ArrayList<Statement>();
-        if(ss != null)
-            this.statements.addAll(ss.getStatements());
-        return this;
-    }
-    public StatementList AddStatement(Statement s)
-    {
-        if(this.statements == null) this.statements = new ArrayList<Statement>();
-        if(s != null)
-            this.statements.add(s);
-        return this;
-    }
-
     public ArrayList<ThreeAddressCode> toThreeAddressCode() {
-
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
-        for(Statement s : this.statements)
-        {
-           output.addAll(s.toThreeAddressCode());
-        }
+        if(this.parameterList != null)
+            output.addAll(this.parameterList.ToThreeAddressCode());
+        output.add(
+                new ThreeAddressCode(OpCodes.CALL, this.function,
+                        ((FunctionTypeInfo) this.function.typeInfo).NumberOfParams(), this.identifier));
         return output;
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public ArrayList<Statement> getStatements() {
-        if(null == statements) return new ArrayList<Statement>();
-        return statements;
+    public ParameterList getParameterList() {
+        return parameterList;
     }
 
-    public void setStatements(ArrayList<Statement> statements) {
-        this.statements = statements;
+    public void setParameterList(ParameterList parameterList) {
+        this.parameterList = parameterList;
     }
-
 }

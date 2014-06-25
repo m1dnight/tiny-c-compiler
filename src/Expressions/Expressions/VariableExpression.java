@@ -1,4 +1,4 @@
-package Expressions;
+package Expressions.Expressions;
 
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymTabInfo;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 /**
  * Created by christophe on 05.06.14.
  */
-public class ConstantExpression extends Expression {
+public class VariableExpression extends Expression {
 
-    public ConstantExpression(SymTabInfo identifier, Types type) {
+    public VariableExpression(SymTabInfo identifier, Types type) {
         super(identifier, type);
     }
 

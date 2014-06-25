@@ -1,4 +1,4 @@
-package Expressions;
+package Expressions.Expressions;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
@@ -8,42 +8,39 @@ import Typing.Types;
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 24.06.14.
+ * Created by christophe on 05.06.14.
  */
-public class ReadStatement extends Statement{
+public class UnaryArithmeticExpression extends ArithmeticExpession {
 
-    private final Types readType;
-    private SymTabInfo result;
-
-    public ReadStatement(SymTabInfo var) {
-        this.readType = var.typeInfo.ActualType();
-        this.result = var;
-
-    }
+    private Expression operand;
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-
+    public UnaryArithmeticExpression(Types expressionType, OpCodes operation, Expression operand, SymTabInfo result) {
+        super(result, expressionType, operation);
+        this.operand        = operand;
+    }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public ArrayList<ThreeAddressCode> toThreeAddressCode()
-    {
-        ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>();
-
-        if(this.readType == Types.INTEGER)
-        {
-            rv.add(new ThreeAddressCode(OpCodes.READINT, this.result));
-        }
-        else
-        {
-            throw new Error("Printing non-integer value!");
-        }
-
-        return rv;
+    @Override
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
+        //TODO Create subclass for TAC
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        output.addAll(this.operand.ToThreeAddressCode());
+        output.add(new ThreeAddressCode(super.getOperation(), this.operand.getIdentifier(), null,  this.identifier));
+        return output;
     }
+
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
 
+    public Expression getOperand() {
+        return operand;
+    }
+
+    public void setOperand(Expression operand) {
+        this.operand = operand;
+    }
 }

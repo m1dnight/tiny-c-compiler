@@ -1,7 +1,8 @@
-package Expressions;
+package Expressions.Declarations;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
+import Expressions.Block;
 import SymbolTable.StringSymTabInfo;
 import SymbolTable.SymTabInfo;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -13,8 +14,8 @@ import java.util.LinkedList;
  * Created by christophe on 06.06.14.
  */
 public class FunctionDeclaration extends Declaration {
-    private Block    body;
-    private StringSymTabInfo beginLabel;
+    private Block                  body;
+    private StringSymTabInfo       beginLabel;
     private LinkedList<SymTabInfo> parameters;
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/

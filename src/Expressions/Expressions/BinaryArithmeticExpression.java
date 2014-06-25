@@ -1,41 +1,55 @@
-package Expressions;
+package Expressions.Expressions;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
-import SymbolTable.ArraySymTabInfo;
 import SymbolTable.SymTabInfo;
 import Typing.Types;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 20.06.14.
+ * Created by christophe on 05.06.14.
  */
-public class ArrayAccessExpression extends Expression {
-    private final Expression index;
-    private final ArraySymTabInfo array;
+public class BinaryArithmeticExpression extends ArithmeticExpession {
+    private Expression operand1;
+    private Expression operand2;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public ArrayAccessExpression(SymTabInfo identifier, Types type, ArraySymTabInfo array, Expression idx) {
-        super(identifier, type);
-        this.index = idx;
-        this.array = array;
+    public BinaryArithmeticExpression(Types expressionType, OpCodes operation, Expression operand1, Expression operand2, SymTabInfo result) {
+        super(result, expressionType, operation);
+        this.operand1       = operand1;
+        this.operand2       = operand2;
     }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public ArrayList<ThreeAddressCode> ToThreeAddressCode()
-    {
+    @Override
+    public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
-        output.addAll(this.index.ToThreeAddressCode());
-        output.add(new ThreeAddressCode(OpCodes.AAC, this.array, this.index.getIdentifier(), this.identifier));
-
+        output.addAll(this.operand1.ToThreeAddressCode());
+        output.addAll(this.operand2.ToThreeAddressCode());
+        output.add( new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.identifier));
         return output;
     }
-
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
+
+    public void setOperand1(Expression operand1) {
+        this.operand1 = operand1;
+    }
+
+    public void setOperand2(Expression operand2) {
+        this.operand2 = operand2;
+    }
+
+    public Expression getOperand1() {
+        return operand1;
+    }
+
+    public Expression getOperand2() {
+        return operand2;
+    }
 }

@@ -1,6 +1,6 @@
 package SymbolTable;
 
-import Expressions.Expression;
+import Expressions.Expressions.Expression;
 import Typing.TypeInfo;
 
 /**

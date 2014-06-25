@@ -2,6 +2,7 @@ package Expressions;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
+import Expressions.Expressions.Expression;
 import SymbolTable.SymTabInfo;
 
 import java.util.ArrayList;

@@ -1,58 +1,67 @@
-package Expressions;
+package Expressions.Statement;
 
 import CodeGeneration.ThreeAddressCode;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 22.06.14.
+ * Created by christophe on 06.06.14.
  */
-public class DeclarationList {
-    private ArrayList<Declaration> declarations;
+public class StatementList {
+    private ArrayList<Statement> statements;
 
-    public DeclarationList(Declaration v) {
-        this.declarations = new ArrayList<Declaration>(1);
-        this.declarations.add(v);
-    }
 
-    public DeclarationList() {
-        this.declarations = new ArrayList<Declaration>();
-    }
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
+    public StatementList(ArrayList<Statement> statements) {
+        this.statements = statements;
+    }
+    public StatementList(Statement statement) {
+        if(this.statements == null) this.statements = new ArrayList<Statement>();
+        this.statements.add(statement);
+    }
+
+    public StatementList() {
+        this.statements = new ArrayList<Statement>();
+    }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public void addDeclarations(DeclarationList vs) {
-        if(vs != null) {
-            if (this.declarations == null)
-                this.declarations = new ArrayList<Declaration>();
-            if (vs.getDeclarations() != null)
-                this.declarations.addAll(vs.getDeclarations());
-        }
-    }
-    public void addDeclaration(Declaration v)
+    public StatementList AddStatements(StatementList ss)
     {
-        if(this.declarations == null) this.declarations = new ArrayList<Declaration>();
-        this.declarations.add(v);
+        if(this.statements == null) this.statements = new ArrayList<Statement>();
+        if(ss != null)
+            this.statements.addAll(ss.getStatements());
+        return this;
+    }
+    public StatementList AddStatement(Statement s)
+    {
+        if(this.statements == null) this.statements = new ArrayList<Statement>();
+        if(s != null)
+            this.statements.add(s);
+        return this;
     }
 
     public ArrayList<ThreeAddressCode> toThreeAddressCode() {
+
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
-        for(Declaration s : this.declarations)
+        for(Statement s : this.statements)
         {
-            output.addAll(s.toThreeAddressCode());
+           output.addAll(s.toThreeAddressCode());
         }
         return output;
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public ArrayList<Declaration> getDeclarations() {
-
-        return declarations;
+    public ArrayList<Statement> getStatements() {
+        if(null == statements) return new ArrayList<Statement>();
+        return statements;
     }
 
+    public void setStatements(ArrayList<Statement> statements) {
+        this.statements = statements;
+    }
 
 }

@@ -1,46 +1,41 @@
-package Expressions;
+package Expressions.Statement;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
-import SymbolTable.SymTabInfo;
-import Typing.Types;
+import Expressions.Expressions.Expression;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 05.06.14.
+ * Created by christophe on 06.06.14.
  */
-public class UnaryArithmeticExpression extends ArithmeticExpession {
-
-    private Expression operand;
+public class ReturnStatement extends Statement {
+    private Expression returnExpressions;
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public UnaryArithmeticExpression(Types expressionType, OpCodes operation, Expression operand, SymTabInfo result) {
-        super(result, expressionType, operation);
-        this.operand        = operand;
+    public ReturnStatement(Expression returnExpressions) {
+        this.returnExpressions = returnExpressions;
     }
+
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    @Override
-    public ArrayList<ThreeAddressCode> ToThreeAddressCode() {
-        //TODO Create subclass for TAC
-        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
-        output.addAll(this.operand.ToThreeAddressCode());
-        output.add(new ThreeAddressCode(super.getOperation(), this.operand.getIdentifier(), null,  this.identifier));
-        return output;
+    public ArrayList<ThreeAddressCode> toThreeAddressCode()
+    {
+        ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>();
+        rv.addAll(returnExpressions.ToThreeAddressCode());
+        rv.add(new ThreeAddressCode(OpCodes.RETURN, returnExpressions.getIdentifier()));
+        return rv;
     }
-
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-
-    public Expression getOperand() {
-        return operand;
+    public Expression getReturnExpressions() {
+        return returnExpressions;
     }
 
-    public void setOperand(Expression operand) {
-        this.operand = operand;
+    public void setReturnExpressions(Expression returnExpressions) {
+        this.returnExpressions = returnExpressions;
     }
 }

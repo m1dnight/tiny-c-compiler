@@ -1,38 +1,37 @@
-package SymbolTable;
+package Expressions.Statement;
 
-import Expressions.Expressions.Expression;
-import Typing.TypeInfo;
+import CodeGeneration.ThreeAddressCode;
+import Expressions.Expressions.BooleanExpression;
+
+import java.util.ArrayList;
 
 /**
- * Created by christophe on 20.06.14.
+ * Created by christophe on 06.06.14.
  */
-public class ArraySymTabInfo extends VariableSymTabInfo {
-
-    private final Expression size;
+public class IfElseStatement extends Statement {
+    private BooleanExpression bexp;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    /**
-     * @param typeInfo
-     * @param name
-     */
-    public ArraySymTabInfo(TypeInfo typeInfo, String name, Expression size) {
-        super(typeInfo, name);
-        this.size = size;
-    }
+
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    @Override
-    public String IdentifiertoString() {
-        return this.getName();
+    public ArrayList<ThreeAddressCode> toThreeAddressCode()
+    {
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        output.addAll(this.bexp.ToCondition());
+        return output;
     }
-
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public Expression getSize() {
-        return size;
+    public BooleanExpression getBexp() {
+        return bexp;
+    }
+
+    public void setBexp(BooleanExpression bexp) {
+        this.bexp = bexp;
     }
 }

@@ -1,7 +1,8 @@
-package Expressions;
+package Expressions.Expressions;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
+import Expressions.Block;
 import SymbolTable.IntegerSymTabInfo;
 import SymbolTable.SymTabInfo;
 import Typing.Types;
@@ -12,13 +13,13 @@ import java.util.ArrayList;
  * Created by christophe on 06.06.14.
  */
 public class BooleanExpression extends ArithmeticExpession {
-    protected Expression    operand1;
-    protected Expression    operand2;
-    private   SymTabInfo    trueLabel;
-    private   SymTabInfo    falseLabel;
-    private   SymTabInfo    endLabel;
-    private   Block trueCode;
-    private   Block falseCode;
+    protected Expression operand1;
+    protected Expression operand2;
+    private   SymTabInfo trueLabel;
+    private   SymTabInfo falseLabel;
+    private   SymTabInfo endLabel;
+    private   Block      trueCode;
+    private   Block      falseCode;
 
 
     /******************************************************************************************************************/

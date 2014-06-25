@@ -4,7 +4,7 @@ import Typing.ConstantTypeInfo;
 import Typing.Types;
 
 public class IntegerSymTabInfo extends SymTabInfo {
-    public int value;
+    private int value;
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
@@ -40,5 +40,13 @@ public class IntegerSymTabInfo extends SymTabInfo {
     public String toString()
     {
         return this.value + "";
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

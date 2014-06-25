@@ -339,7 +339,7 @@ public class BasicBlockToX86Generator {
     private String PutAndGetAddress(SymTabInfo variable) {
         // If the variable is an integer, the address is simply $<value>
         if (variable instanceof IntegerSymTabInfo)
-            return String.format("$%d", ((IntegerSymTabInfo) variable).value);
+            return String.format("$%d", ((IntegerSymTabInfo) variable).getValue());
         // If we are dealing with a variable we have to store the variable offset (atm)
         // E.g., the address string should be like:
         // movl %ebp, %eax

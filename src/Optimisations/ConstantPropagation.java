@@ -100,21 +100,21 @@ public class ConstantPropagation
 
                     // Calculate new value
                     if(tac.getOpCode() == OpCodes.A2PLUS)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.value + op2.value));
+                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() + op2.getValue()));
                     if(tac.getOpCode() == OpCodes.A2MINUS)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.value - op2.value));
+                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() - op2.getValue()));
                     if(tac.getOpCode() == OpCodes.A2TIMES)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.value * op2.value));
+                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() * op2.getValue()));
                     if(tac.getOpCode() == OpCodes.A2DIV)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.value / op2.value));
+                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() / op2.getValue()));
                     if(tac.getOpCode() == OpCodes.A2EQ)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.value == op2.value ? 1 : 0));
+                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() == op2.getValue() ? 1 : 0));
                     if(tac.getOpCode() == OpCodes.A2NEQ)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.value != op2.value ? 1 : 0));
+                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() != op2.getValue() ? 1 : 0));
                     if(tac.getOpCode() == OpCodes.A2GT)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.value > op2.value  ? 1 : 0));
+                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() > op2.getValue() ? 1 : 0));
                     if(tac.getOpCode() == OpCodes.A2LT)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.value < op2.value  ? 1 : 0));
+                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() < op2.getValue() ? 1 : 0));
 
                     // We have evaluated an expression, so we need to put the constant vlaue
                     variableValues.put(newTac.getResult(), (IntegerSymTabInfo) newTac.getArg1());

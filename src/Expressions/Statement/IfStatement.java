@@ -1,16 +1,16 @@
-package Expressions;
+package Expressions.Statement;
 
 import CodeGeneration.ThreeAddressCode;
-import SymbolTable.SymTabInfo;
-import SymbolTable.VariableSymTabInfo;
+import Expressions.Expressions.BooleanExpression;
 
 import java.util.ArrayList;
 
 /**
  * Created by christophe on 06.06.14.
  */
-public class Declaration {
-    protected SymTabInfo variable;
+public class IfStatement extends Statement {
+    private BooleanExpression bexp;
+
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
@@ -18,27 +18,20 @@ public class Declaration {
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
-    public String toString()
-    {
-        throw new Error("toString() should be declared in subclasses of Declaration");
-    }
-
     public ArrayList<ThreeAddressCode> toThreeAddressCode()
     {
-        throw new Error("toThreeAddressCode() should be declared in subclasses of Declaration");
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        output.addAll(this.bexp.ToCondition());
+        return output;
     }
-
-
-
-
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public void setVariable(VariableSymTabInfo variable) {
-        this.variable = variable;
+    public BooleanExpression getBexp() {
+        return bexp;
     }
 
-    public SymTabInfo getVariable() {
-        return variable;
+    public void setBexp(BooleanExpression bexp) {
+        this.bexp = bexp;
     }
 }

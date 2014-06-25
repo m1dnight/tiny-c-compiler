@@ -1,6 +1,7 @@
 package Expressions;
 
 import CodeGeneration.ThreeAddressCode;
+import Expressions.Declarations.Declaration;
 import SymbolTable.SymbolTable;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package Expressions;
+package Expressions.Statement;
 
 import CodeGeneration.ThreeAddressCode;
 

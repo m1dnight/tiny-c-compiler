@@ -1,50 +1,26 @@
-package Expressions;
+package Expressions.Declarations;
 
-import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
-import Typing.Types;
 
 import java.util.ArrayList;
 
 /**
- * Created by christophe on 24.06.14.
+ * Created by christophe on 22.06.14.
  */
-public class PrintStatement extends Statement {
-    private Expression printExpression;
+public class VariableDeclaration extends Declaration {
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
-    public PrintStatement(Expression printExpression) {
-        this.printExpression = printExpression;
-    }
-
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
     public ArrayList<ThreeAddressCode> toThreeAddressCode()
     {
-        ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>();
-
-        if(printExpression.getIdentifier().typeInfo.ActualType() == Types.INTEGER)
-        {
-            rv.addAll(printExpression.ToThreeAddressCode());
-            rv.add(new ThreeAddressCode(OpCodes.WRITEINT, printExpression.getIdentifier()));
-        }
-        else
-        {
-            throw new Error("Printing non-integer value!");
-        }
-
-        return rv;
+        ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
+        return output;
     }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public Expression getPrintExpression() {
-        return printExpression;
-    }
 
-    public void setPrintExpression(Expression printExpression) {
-        this.printExpression = printExpression;
-    }
 }

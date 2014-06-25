@@ -1,7 +1,8 @@
-package Expressions;
+package Expressions.Statement;
 
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
+import Expressions.Expressions.Expression;
 import SymbolTable.ArrayIndexSymTabInfo;
 import SymbolTable.SymTabInfo;
 import SymbolTable.VariableSymTabInfo;
