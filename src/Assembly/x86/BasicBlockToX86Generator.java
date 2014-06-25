@@ -4,6 +4,7 @@ import Assembly.BasicBlock;
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.*;
+import Typing.Types;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.Stack;
 public class BasicBlockToX86Generator {
     private final SymbolTable scope;
     private StringBuilder prologue     = new StringBuilder();
+    private StringBuilder data         = new StringBuilder();
     private StringBuilder globl        = new StringBuilder();
     private StringBuilder curCode      = new StringBuilder();
     private StringBuilder funcPrologue = new StringBuilder();
@@ -26,6 +28,7 @@ public class BasicBlockToX86Generator {
     private int                          parameterOffset     = 8;  // first offset for parameter is 4.
     private int                          localVariableOffset = -4; // first offset for local variables is -4.
     private HashMap<SymTabInfo, String>  variableAddresses   = new HashMap<SymTabInfo, String>();
+    private HashMap<SymTabInfo, String>  globalAddresses     = new HashMap<SymTabInfo, String>();
     private HashMap<SymTabInfo, Integer> arrayOffset         = new HashMap<SymTabInfo, Integer>();
     private LinkedList<SymTabInfo>       parametersCurFunc   = new LinkedList<SymTabInfo>();
     private String                       currentFunction     = "";
@@ -38,7 +41,7 @@ public class BasicBlockToX86Generator {
     }
 
     public void Prologue() {
-        prologue.append("\n" + ".section .data");
+        data.append("\n" + ".section .data");
 
         prologue.append("\n" + "# Used for printing");
         prologue.append("\n" + "inpf: .string \"%d \\n\"");
@@ -59,6 +62,29 @@ public class BasicBlockToX86Generator {
             OpCodes op = tac.getOpCode();
             if (op == OpCodes.LABEL)
                 CompileLabel(tac);
+            if(op == OpCodes.GLOBL)
+            {
+                if(tac.getArg1().typeInfo.ActualType() == Types.INTEGER) {
+                    // This identifies a gobal variable so we have to add it to the prologue.
+                    String varname = "global_" + tac.getArg1().IdentifiertoString();
+                    data.append("\n" + String.format("%s: .long 0", varname));
+                    // Add the address (this can't be done using the function PutAndGetAddress)
+                    this.globalAddresses.put(tac.getArg1(), varname);
+                }
+            }
+            if(op == OpCodes.GLOBLARR)
+            {
+                if(tac.getArg1().typeInfo.ActualType() == Types.INTEGER) {
+                    // This identifies a gobal variable so we have to add it to the prologue.
+                    String varname = "global_" + tac.getArg1().IdentifiertoString();
+                    data.append("\n" + String.format("%s: .long 0", varname));
+
+                    for(int i = 1; i < ((IntegerSymTabInfo)tac.getArg2()).getValue(); i++)
+                        data.append(", 0");
+                    // Add the address (this can't be done using the function PutAndGetAddress)
+                    this.globalAddresses.put(tac.getArg1(), varname);
+                }
+            }
             if(op == OpCodes.ALLOC_ARRAY)
                 CompileArrayDeclaration(tac);
             if(op == OpCodes.AAS)
@@ -88,24 +114,23 @@ public class BasicBlockToX86Generator {
                 CompileWriteInteger(tac);
             if(op == OpCodes.READINT)
                 CompileReadInteger(tac);
-
             if(op == OpCodes.A2EQIF  || op == OpCodes.A2GTIF || op == OpCodes.A2LTIF || op == OpCodes.A2NEQIF)
-            {
-                String jumpOperator = "";
-                // Determine the jumb operator to use.
-                jumpOperator = op == OpCodes.A2EQIF ? "je"   :
-                              (op == OpCodes.A2GTIF ? "jg"  :
-                              (op == OpCodes.A2NEQIF ? "jne" : "jl"));
-                AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())), curCode);
-                AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())), curCode);
-                AddCodeLine(String.format("cmpl %%eax, %%ebx"), curCode);
-                AddCodeLine(String.format("%s %s", jumpOperator, tac.getResult().IdentifiertoString()), curCode);
-
-            }
+                CompileIfStatement(tac, op);
         }
 
     }
 
+    private void CompileIfStatement(ThreeAddressCode tac, OpCodes op) {
+        String jumpOperator = "";
+        // Determine the jumb operator to use.
+        jumpOperator = op == OpCodes.A2EQIF ? "je"   :
+                      (op == OpCodes.A2GTIF ? "jg"  :
+                      (op == OpCodes.A2NEQIF ? "jne" : "jl"));
+        AddCodeLine(String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())), curCode);
+        AddCodeLine(String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())), curCode);
+        AddCodeLine(String.format("cmpl %%eax, %%ebx"), curCode);
+        AddCodeLine(String.format("%s %s", jumpOperator, tac.getResult().IdentifiertoString()), curCode);
+    }
 
 
     /******************************************************************************************************************/
@@ -238,7 +263,13 @@ public class BasicBlockToX86Generator {
         //arg1 = index of array
         //arg2 = value
         ArraySymTabInfo array = (ArraySymTabInfo) ((ArrayIndexSymTabInfo) tac.getResult()).getArray();
-        if(!IsParameter(array))
+        if(this.globalAddresses.containsKey(tac.getResult()) && tac.getResult().typeInfo.ActualType() == Types.INTEGER)
+        {
+            curCode.append("\n\t" + String.format("movl %s, %%edi", PutAndGetAddress(tac.getArg1()))); // Move index to edi
+            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2()))); // Move value into eax
+            curCode.append("\n\t" + String.format("movl %%eax, %s(,%%edi, 4)", globalAddresses.get(tac.getResult())));
+        }
+        else if(!IsParameter(array))
         {
             // If it is not a parameter, the array offset wrt %ebp should be stored
             int arrayOffset = -1 * this.arrayOffset.get(tac.getResult());
@@ -265,6 +296,9 @@ public class BasicBlockToX86Generator {
     }
 
     private void CompileArrayAccess(ThreeAddressCode tac) {
+        // arg1 = array
+        // arg2 = index
+        // result = variable..
         // If our array is a parameter the address will be stores in our PutAndGetAddress()
         // Otherwise it is defined in our scope and we have to calculate it.
         if(IsParameter(tac.getArg1()))
@@ -287,9 +321,18 @@ public class BasicBlockToX86Generator {
             curCode.append("\n\t" + String.format("movl (%%ebx), %%eax")); // Move actual value to %eax
             curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
         }
+        else if(this.globalAddresses.containsKey(tac.getArg1()) && tac.getResult().typeInfo.ActualType() == Types.INTEGER)
+        {
+            // Create the index in %edi
+            curCode.append("\n\t" + String.format("movl %s,%%edi", PutAndGetAddress(tac.getArg2())));
+            // Move the value to the a register
+            curCode.append("\n\t" + String.format("movl %s(,%%edi, 4), %%eax", globalAddresses.get(tac.getArg1())));
+            curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
+        }
         // We are not dealing with a parameter. The address for the array is thus on our stack.
         else
         {
+
             // Calculate the offset for the address
             int arrayOffset = this.arrayOffset.get(tac.getArg1());
 
@@ -338,6 +381,14 @@ public class BasicBlockToX86Generator {
 
     private String PutAndGetAddress(SymTabInfo variable) {
         // If the variable is an integer, the address is simply $<value>
+
+        // Check to see if it is a global parameter
+        if(globalAddresses.containsKey(variable))
+        {
+            // If we have an array address we have to construct the offset
+
+            return globalAddresses.get(variable);
+        }
         if (variable instanceof IntegerSymTabInfo)
             return String.format("$%d", ((IntegerSymTabInfo) variable).getValue());
         // If we are dealing with a variable we have to store the variable offset (atm)
@@ -352,10 +403,6 @@ public class BasicBlockToX86Generator {
                 variableAddresses.put(variable, String.format("%d(%%ebp)", localVariableOffset));
                 localVariableOffset -= 4;
             }
-        }
-        if(IsParameter(variable))
-        {
-
         }
         if (variableAddresses.get(variable) == null) {
             localVariableCount++;
@@ -420,6 +467,7 @@ public class BasicBlockToX86Generator {
         prologue = new StringBuilder();
         globl    = new StringBuilder();
         program  = new StringBuilder();
+        data     = new StringBuilder();
         funcPrologue = new StringBuilder();
         parameterOffset     = 8;  // first offset for parameter is 4.
         localVariableOffset = -4; // first offset for local variables is -4.
@@ -451,7 +499,7 @@ public class BasicBlockToX86Generator {
         // Paste the entire mess after the current program
         program.append("\n" + funcPrologue.toString());
         // Return the code.
-        return prologue.toString() + globl.toString() + program.toString();
+        return data.toString() + prologue.toString() + globl.toString() + program.toString();
     }
 
 

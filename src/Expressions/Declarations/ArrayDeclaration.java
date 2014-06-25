@@ -21,9 +21,16 @@ public class ArrayDeclaration extends VariableDeclaration {
     public ArrayList<ThreeAddressCode> toThreeAddressCode()
     {
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
-        output.addAll(this.variable.getSize().ToThreeAddressCode());
 
-        output.add(new ThreeAddressCode(OpCodes.ALLOC_ARRAY, this.variable, this.variable.getSize().getIdentifier(), null));
+        if(this.isGlobal())
+        {
+            output.add(new ThreeAddressCode(OpCodes.GLOBLARR, this.getVariable(), this.variable.getSize().getIdentifier(), null));
+        }
+        else {
+            output.addAll(this.variable.getSize().ToThreeAddressCode());
+
+            output.add(new ThreeAddressCode(OpCodes.ALLOC_ARRAY, this.variable, this.variable.getSize().getIdentifier(), null));
+        }
         return output;
     }
     /******************************************************************************************************************/

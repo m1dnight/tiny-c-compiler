@@ -1,4 +1,4 @@
-int x;
+int x[3];
 /*int ackermann(int m, int n){
         if (m == 0) return n + 1;
         if (n == 0) return ackermann(m - 1, 1);
@@ -29,14 +29,18 @@ int printArray(int array[5])
 
 int increase()
 {
-    write 1234;
+    x[0] = 1;
+    x[1] = 2;
+    x[2] = 3;
 }
 int main()
 {
-    int a[123];
-    int b;
-    x = 5;
-    write x;
+    write x[0];
+    write x[1];
+    write x[2];
     increase();
-    write x;
+    write x[0];
+    write x[1];
+    write x[2];
+
 }

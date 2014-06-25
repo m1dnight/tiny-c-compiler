@@ -202,7 +202,10 @@ declaration             ::=  fun_declaration:fd                          {:
                                                                              RESULT = fd;
                                                                          :}
 						  |  var_declaration:vd                          {:
-						                                                     RESULT = vd;
+						                                                     // When this declaration is parsed we 
+                                                                             // are dealing with a global declaration so we treat it differently.
+                                                                             vd.setGlobal(true);
+                                                                             RESULT = vd;
 						                                                 :}
 						  ;
 
@@ -387,7 +390,8 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
                                                                             VariableSymTabInfo tempVariable = parser.GenerateVariable(funcTypeInfo.ActualType());
                                                                             //scope.Insert(tempVariable);
 
-                                                                            FunctionCallExpression result = new FunctionCallExpression(tempVariable, funcTypeInfo.ActualType(), func, ps);
+                                                                            FunctionCallStatement result =
+                                                                                    new FunctionCallStatement(tempVariable, funcTypeInfo.ActualType(), func, ps);
                                                                             // Create the TAC for the function call.
                                                                             //program.add(result.ToThreeAddressCode());
                                                                             RESULT = result;

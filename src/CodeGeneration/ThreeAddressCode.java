@@ -49,6 +49,15 @@ public class ThreeAddressCode {
     public String toString()
     {
         /*****************************************************************************
+         * Global variable
+         *****************************************************************************/
+        if(opCode == OpCodes.GLOBL)
+            return String.format("GLOBALVAR %s", arg1.IdentifiertoString());
+        if(opCode == OpCodes.GLOBLARR)
+        {
+            return String.format("GLOBALARR %s %s", arg1.IdentifiertoString(), arg2.IdentifiertoString());
+        }
+        /*****************************************************************************
          * Writing
          *****************************************************************************/
         if(opCode == OpCodes.WRITEINT)

@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class Declaration {
     protected SymTabInfo variable;
+    private   boolean    global;
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
@@ -40,5 +41,13 @@ public class Declaration {
 
     public SymTabInfo getVariable() {
         return variable;
+    }
+
+    public boolean isGlobal() {
+        return global;
+    }
+
+    public void setGlobal(boolean global) {
+        this.global = global;
     }
 }
