@@ -17,6 +17,7 @@ public class ConstantPropagation
 {
     public static BasicBlock Optimize(BasicBlock block)
     {
+        BasicBlock rv = new BasicBlock();
         ArrayList<ThreeAddressCode>  newTacs         = new ArrayList<ThreeAddressCode>();
         HashMap<SymTabInfo, Boolean> constantMarkers = new HashMap<SymTabInfo, Boolean>();
         HashMap<SymTabInfo, IntegerSymTabInfo> variableValues  = new HashMap<SymTabInfo, IntegerSymTabInfo>();
@@ -24,6 +25,9 @@ public class ConstantPropagation
         do
         {
             changed = false;
+            newTacs = new ArrayList<ThreeAddressCode>();
+            constantMarkers.clear();
+            variableValues.clear();
             for(ThreeAddressCode tac : block.getTacs())
             {
                 // Check to see if we have a constant assignment
@@ -55,6 +59,7 @@ public class ConstantPropagation
                     ThreeAddressCode newTac = new ThreeAddressCode(tac.getOpCode(), constant, null, tac.getResult());
                     // Add the new TAC instead of the old one.
                     newTacs.add(newTac);
+                    changed = true;
                     changed = true;
                     // Mark the resulting variable as constant.
                     constantMarkers.put(tac.getResult(), true);
@@ -101,6 +106,7 @@ public class ConstantPropagation
                     }
                     newTac.setArg1(value);
                     changed = true;
+                    changed = true;
                     newTacs.add(newTac);
                     continue;
                 }
@@ -143,16 +149,12 @@ public class ConstantPropagation
                 }
                 newTacs.add(tac);
             }
-            block.setTacs((ArrayList<ThreeAddressCode>) newTacs.clone());
-            newTacs.clear();
-            constantMarkers.clear();
-            variableValues.clear();
-
+            rv.setTacs((ArrayList<ThreeAddressCode>) newTacs.clone());
+            changed = false;
         }
         while(changed);
 
-
-        return block;
+        return rv;
     }
     /******************************************************************************************************************/
     /************************************ FUNCTIONS TO CHECK IF WE CAN OPTIMIZE ***************************************/

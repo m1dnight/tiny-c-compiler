@@ -45,9 +45,9 @@ public class BasicBlockToX86Generator {
 
         prologue.append("\n" + "# Used for printing");
         prologue.append("\n" + "inpfnl: .string \"%d \\n\"");
-        prologue.append("\n" + "inpf: .string \"%d\"");
+        prologue.append("\n" + "inpf: .string \"%d \\n\"");
         prologue.append("\n" + "outr:    .string \"%d\"");
-        prologue.append("\n" + "inpfc: .string \"%c\"");
+        prologue.append("\n" + "inpfc: .string \"%c\\n\"");
         prologue.append("\n" + "inpfcnl: .string \"%c \\n\"");
         prologue.append("\n" + ".section .text");
         prologue.append("\n" + ".globl _start");
@@ -597,7 +597,11 @@ public class BasicBlockToX86Generator {
         Prologue();
 
         // Compile each basic block.
-        for(BasicBlock b : this.blocks) Compile(b);
+        for(BasicBlock bl : this.blocks)
+        {
+            if(bl.getTacs() != null && bl.getTacs().size() > 0)
+                Compile(bl);
+        }
 
         // Append epilogue.
         //curCode.append("\n" + curCode.toString());

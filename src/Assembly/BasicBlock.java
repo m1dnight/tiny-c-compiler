@@ -22,6 +22,7 @@ public class BasicBlock {
 
     public String toString() {
         StringBuilder output = new StringBuilder();
+        if(getTacs() != null)
         for (ThreeAddressCode tac : getTacs()) {
             output.append("\n" + tac.toString());
         }

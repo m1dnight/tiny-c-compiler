@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Main {
     static public void main(String argv[]) {
-        boolean print = false;
+        boolean print = Boolean.parseBoolean(argv.length > 2 ? argv[2]: "false");
 
 
         //SymbolTable scope = new SymbolTable();
@@ -82,7 +82,7 @@ public class Main {
             int hash = 0;
             for(BasicBlock b : basicBlocks) {
                 //hash |= DAGraph.GenerateGraph(b).hashCode();
-                b = LocalValueNumbering.Optimize(b);
+                b.setTacs(LocalValueNumbering.Optimize(b).getTacs());
             }
             for(BasicBlock b : basicBlocks)
             {
@@ -142,6 +142,7 @@ public class Main {
         bw.write(s + "\n");
         bw.close();
 
+        System.out.println("File updated");
 
     } catch (IOException e) {
         e.printStackTrace();
