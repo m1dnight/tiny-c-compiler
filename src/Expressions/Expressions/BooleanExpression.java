@@ -98,6 +98,8 @@ public class BooleanExpression extends ArithmeticExpession {
             this.operation = OpCodes.A2LTIF;
         // Return value
         ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>(2);
+
+        // If no false code is present we create a simple if.
         if(this.falseCode == null)
         {
             ThreeAddressCode iff  = new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
@@ -128,6 +130,45 @@ public class BooleanExpression extends ArithmeticExpession {
             rv.add(new ThreeAddressCode(OpCodes.LABEL, this.endLabel));
         }
 
+        return rv;
+    }
+
+    public ArrayList<ThreeAddressCode> ToWhile()
+    {
+        //TODO Can we remove this?
+        // Change to the if operation so the ThreeAddressCode knows what to generate.
+        if (this.operation == OpCodes.A2EQ)
+            this.operation = OpCodes.A2EQIF;
+        if (this.operation == OpCodes.A2NEQ)
+            this.operation = OpCodes.A2NEQIF;
+        if (this.operation == OpCodes.A2GT)
+            this.operation = OpCodes.A2GTIF;
+        if (this.operation == OpCodes.A2LT)
+            this.operation = OpCodes.A2LTIF;
+
+        // Return value
+        ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>(2);
+
+
+        ThreeAddressCode iff = new ThreeAddressCode(this.operation, this.operand1.getIdentifier(), this.operand2.getIdentifier(), this.trueLabel);
+        ThreeAddressCode iff2 = new ThreeAddressCode(OpCodes.GOTO, this.falseLabel);
+
+        // We use the end label as the begin label
+        rv.add(new ThreeAddressCode(OpCodes.LABEL, this.endLabel));
+
+
+        rv.addAll(operand1.ToThreeAddressCode());
+        rv.addAll(operand2.ToThreeAddressCode());
+
+        rv.add(iff);
+        rv.add(iff2);
+        rv.add(new ThreeAddressCode(OpCodes.LABEL, trueLabel));
+
+        rv.addAll(trueCode.getDeclarations().toThreeAddressCode());
+        rv.addAll(trueCode.getStatements().toThreeAddressCode());
+
+        rv.add(new ThreeAddressCode(OpCodes.GOTO, this.endLabel));
+        rv.add(new ThreeAddressCode(OpCodes.LABEL, falseLabel));
         return rv;
     }
     /******************************************************************************************************************/

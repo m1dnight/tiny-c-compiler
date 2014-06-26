@@ -394,7 +394,14 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
                                                                              iex.setBexp(cond);
                                                                              RESULT = iex;                                                                       
                                                                          :}
-							  | WHILE LPAR exp RPAR statement
+							  | WHILE LPAR bexp:cond RPAR block:when     {:
+							                                                cond.setTrueCode(when);
+							                                                
+							                                                WhileStatement ws = new WhileStatement();
+							                                                ws.setBexp(cond);
+							                                                RESULT = ws;
+							                                                
+							                                             :}
 							  | lexp:tar ASSIGN exp:ex                   {:
                                                                             // Check to see if we are assigning proper types
                                                                             
