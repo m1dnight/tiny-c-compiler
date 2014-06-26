@@ -70,6 +70,7 @@ public class FunctionTypeInfo extends TypeInfo {
     public ArrayList<SymTabInfo> getParameters()
     {
         ArrayList<SymTabInfo> parameters = new ArrayList<SymTabInfo>();
+        if(this.parameters == null) this.parameters = new LinkedList<SymTabInfo>();
         for(SymTabInfo p : this.parameters)
             parameters.add(p);
         return parameters;

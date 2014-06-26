@@ -749,6 +749,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                                 String error = "Function '" + n + "' was not found.";
                                                                                 parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
                                                                             }
+
                                                                             // Check all the types for the parameters
                                                                             ArrayList<SymTabInfo> expected = ((FunctionTypeInfo) func.typeInfo).getParameters();
                                                                             ArrayList<Expression> actualPm = ps.getParameterList();
@@ -800,7 +801,7 @@ pars                    ::= exp:p                                        {:
                                                                             result.AddParameters(ps);
                                                                             RESULT = result;
                                                                          :}
-						  | /* No parameters */
+						  | /* No parameters */                           {: RESULT = new ParameterList(); :}
 						  ;
 
 

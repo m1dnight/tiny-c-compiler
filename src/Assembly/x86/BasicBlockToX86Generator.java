@@ -127,7 +127,7 @@ public class BasicBlockToX86Generator {
     /******************************************************************************************************************/
     /************************************ INDIVIDUAL COMPILATION METHODS **********************************************/
     private void DeclareGlobalArray(ThreeAddressCode tac) {
-        if(tac.getArg1().getTypeInfo().ActualType() == Types.INTEGER) {
+        if(tac.getArg1().getTypeInfo().ActualType() == Types.INTEGER || tac.getArg1().getTypeInfo().ActualType() == Types.CHAR) {
             // This identifies a gobal variable so we have to add it to the prologue.
             String varname = "global_" + tac.getArg1().IdentifiertoString();
             data.append("\n" + String.format("%s: .long 0", varname));
@@ -140,7 +140,7 @@ public class BasicBlockToX86Generator {
     }
 
     private void DeclareGlobalVariable(ThreeAddressCode tac) {
-        if(tac.getArg1().getTypeInfo().ActualType() == Types.INTEGER) {
+        if(tac.getArg1().getTypeInfo().ActualType() == Types.INTEGER || tac.getArg1().getTypeInfo().ActualType() == Types.CHAR) {
             // This identifies a gobal variable so we have to add it to the prologue.
             String varname = "global_" + tac.getArg1().IdentifiertoString();
             data.append("\n" + String.format("%s: .long 0", varname));
@@ -350,11 +350,21 @@ public class BasicBlockToX86Generator {
         //arg1 = index of array
         //arg2 = value
         ArraySymTabInfo array = (ArraySymTabInfo) ((ArrayIndexSymTabInfo) tac.getResult()).getArray();
-        if(this.globalAddresses.containsKey(tac.getResult()) && tac.getResult().getTypeInfo().ActualType() == Types.INTEGER)
+        if(this.globalAddresses.containsKey(tac.getResult()) && (tac.getResult().getTypeInfo().ActualType() == Types.INTEGER || tac.getResult().getTypeInfo().ActualType() == Types.CHAR))
         {
+            // Again, check if we have to coerce the assignment
             curCode.append("\n\t" + String.format("movl %s, %%edi", PutAndGetAddress(tac.getArg1()))); // Move index to edi
             curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2()))); // Move value into eax
-            curCode.append("\n\t" + String.format("movl %%eax, %s(,%%edi, 4)", globalAddresses.get(tac.getResult())));
+            if(tac.getResult().getTypeInfo().ActualType() == Types.CHAR)
+            {
+                //curCode.append("\n\t" + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())));
+                curCode.append("\n\t" + String.format("movl $0, %%ebx"));
+                curCode.append("\n\t" + String.format("movb %%al, %%bl"));
+                curCode.append("\n\t" + String.format("movl %%ebx, %s(,%%edi, 4)", globalAddresses.get(tac.getResult())));
+            }
+            else {
+                curCode.append("\n\t" + String.format("movl %%eax, %s(,%%edi, 4)", globalAddresses.get(tac.getResult())));
+            }
         }
         else if(!IsParameter(array))
         {
@@ -408,7 +418,7 @@ public class BasicBlockToX86Generator {
             curCode.append("\n\t" + String.format("movl (%%ebx), %%eax")); // Move actual value to %eax
             curCode.append("\n\t" + String.format("movl %%eax, %s", PutAndGetAddress(tac.getResult())));
         }
-        else if(this.globalAddresses.containsKey(tac.getArg1()) && tac.getResult().getTypeInfo().ActualType() == Types.INTEGER)
+        else if(this.globalAddresses.containsKey(tac.getArg1()) && (tac.getResult().getTypeInfo().ActualType() == Types.INTEGER || tac.getResult().getTypeInfo().ActualType() == Types.CHAR))
         {
             // Create the index in %edi
             curCode.append("\n\t" + String.format("movl %s,%%edi", PutAndGetAddress(tac.getArg2())));

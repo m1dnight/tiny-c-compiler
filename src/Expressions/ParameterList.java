@@ -60,6 +60,7 @@ public class ParameterList {
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
     public ArrayList<Expression> getParameterList() {
+        if(this.parameterList == null) this.parameterList = new ArrayList<Expression>();
         return parameterList;
     }
     public ArrayList<SymTabInfo> getIdentifiers()
