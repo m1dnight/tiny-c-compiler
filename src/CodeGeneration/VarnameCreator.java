@@ -1,8 +1,8 @@
 package CodeGeneration;
 
-import SymbolTable.StringSymTabInfo;
-import Typing.ConstantTypeInfo;
+import SymbolTable.VariableSymTabInfo;
 import Typing.Types;
+import Typing.VariableTypeInfo;
 
 /**
  * VarnameCreator is used to generate unique names throughout the parsing process.
@@ -42,5 +42,12 @@ public class VarnameCreator {
     public String CreateFunctionLabel(String labelText)
     {
         return String.format("function_%s", labelText);
+    }
+
+    public static VariableSymTabInfo GenerateVariable(Types type)
+    {
+        String varname = VarnameCreator.getInstance().CreateName();
+        VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(type), varname);
+        return vsti;
     }
 }

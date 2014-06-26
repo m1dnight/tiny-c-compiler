@@ -36,16 +36,33 @@ public class AssignStatement extends Statement {
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
         if(this.target instanceof ArrayIndexSymTabInfo)
         {
-            this.target = ((ArrayIndexSymTabInfo) this.target);
-            if (value != null) // It could be a single integer!
-                output.addAll(value.ToThreeAddressCode());
 
-            ThreeAddressCode tac = new ThreeAddressCode(OpCodes.AAS,
-                                                        ((ArrayIndexSymTabInfo) this.target).getIndex().getIdentifier(),
-                                                        this.value.getIdentifier(),
-                                                        this.target);
-            output.addAll(((ArrayIndexSymTabInfo) this.target).getIndex().ToThreeAddressCode());
-            output.add(tac);
+            ArrayIndexSymTabInfo array = ((ArrayIndexSymTabInfo) this.target);
+            if(array.IsTwoDim())
+            {
+                if(value != null)
+                    output.addAll(value.ToThreeAddressCode());
+                output.addAll(array.getHeigthIndex().ToThreeAddressCode());
+                output.addAll(array.getWidthIndex().ToThreeAddressCode());
+                output.add(new ThreeAddressCode(OpCodes.A2TIMES, array.getWidthIndex().getIdentifier(), array.getArray().getHeigthExpression(), array.getT1()));
+                output.add(new ThreeAddressCode(OpCodes.A2PLUS, array.getT1(), array.getHeigthIndex().getIdentifier(), array.getIdx()));
+                output.add(new ThreeAddressCode(OpCodes.AAS, array.getIdx(), this.value.getIdentifier(), this.target));
+
+            }
+            else
+            {
+                if (value != null) // It could be a single integer!
+                    output.addAll(value.ToThreeAddressCode());
+
+                ThreeAddressCode tac = new ThreeAddressCode(OpCodes.AAS,
+                        ((ArrayIndexSymTabInfo) this.target).getWidthIndex().getIdentifier(),
+                        this.value.getIdentifier(),
+                        this.target);
+                output.addAll(((ArrayIndexSymTabInfo) this.target).getWidthIndex().ToThreeAddressCode());
+                output.add(tac);
+            }
+
+
             return output;
         }
         if(this.target instanceof VariableSymTabInfo) {

@@ -153,7 +153,7 @@ parser code {:
    the next line down. */
 terminal           NEQUAL, EQUAL, GREATER, LESS, NOT;
 terminal           TIMES, MINUS, DIVIDE, PLUS;
-terminal           WRITE, READ;
+terminal           WRITE, READ, WRITELN;
 terminal           LENGTH;
 terminal           WHILE, DO;
 terminal           EOL;
@@ -298,9 +298,23 @@ formal_par              ::= type:t NAME:n
                                                                             ConstantExpression ce  = new ConstantExpression(csti, Types.INTEGER);
                                                                             // Inser the array in the symbol table.
                                                                             ArraySymTabInfo asti   = new ArraySymTabInfo(new VariableTypeInfo(t), n, ce);
+                                                                            asti.setHeight(1);
+                                                                            asti.setWidth(size.intValue());                                                                             
                                                                             scope.Insert(asti);    
                                                                             RESULT = asti;                  
                                                                          :}
+                          | type:t NAME:n LBRACK NUMBER:w COMMA NUMBER:h RBRACK      {:
+                                                                            // Create expression that indicates the size of this array.    
+                                                                            ConstantTypeInfo ti    = new ConstantTypeInfo(Types.INTEGER);
+                                                                            IntegerSymTabInfo csti = new IntegerSymTabInfo(h.intValue() * w.intValue());
+                                                                            ConstantExpression ce  = new ConstantExpression(csti, Types.INTEGER);
+                                                                            // Inser the array in the symbol table.
+                                                                            ArraySymTabInfo asti   = new ArraySymTabInfo(new VariableTypeInfo(t), n, ce);
+                                                                            asti.setHeight(h.intValue());
+                                                                            asti.setWidth(h.intValue());                                                                            
+                                                                            scope.Insert(asti);    
+                                                                            RESULT = asti;                  
+                                                                         :}                                                                         
 						  ;
 
 block                   ::= LBRACE                                       {:
@@ -334,14 +348,37 @@ var_declaration         ::= type:t NAME:n SEMICOLON                      {:
 
                                                                             
                                                                          :}
-                          | type:t NAME:n LBRACK exp:size RBRACK SEMICOLON {:
-                                                                            ArraySymTabInfo asti = new ArraySymTabInfo(new VariableTypeInfo(t), n, size);
+                          | type:t NAME:n LBRACK NUMBER:size RBRACK SEMICOLON {:
+                                                                            // Two dim array declaration
+                                                                            ConstantTypeInfo ti    = new ConstantTypeInfo(Types.INTEGER);
+                                                                            IntegerSymTabInfo csti = new IntegerSymTabInfo(size.intValue());
+                                                                            ConstantExpression ce  = new ConstantExpression(csti, Types.INTEGER);
+
+
+                                                                            ArraySymTabInfo asti = new ArraySymTabInfo(new VariableTypeInfo(t), n, ce);
+                                                                            asti.setHeight(1);
+                                                                            asti.setWidth(size.intValue());                                                                            
                                                                             scope.Insert(asti);
+
                                                                             
                                                                             ArrayDeclaration arrDec = new ArrayDeclaration();
                                                                             arrDec.setVariable(asti);
                                                                             RESULT = arrDec;                                                                        
                                                                            :}
+                          | type:t NAME:n LBRACK NUMBER:w COMMA NUMBER:h RBRACK SEMICOLON {:
+                                                                            ConstantTypeInfo ti    = new ConstantTypeInfo(Types.INTEGER);
+                                                                            IntegerSymTabInfo csti = new IntegerSymTabInfo(h.intValue() * w.intValue());
+                                                                            ConstantExpression ce  = new ConstantExpression(csti, Types.INTEGER);
+
+                                                                            ArraySymTabInfo asti = new ArraySymTabInfo(new VariableTypeInfo(t), n, ce);
+                                                                            asti.setHeight(h.intValue());
+                                                                            asti.setWidth(h.intValue());
+                                                                            scope.Insert(asti);
+                                                                            
+                                                                            ArrayDeclaration arrDec = new ArrayDeclaration();
+                                                                            arrDec.setVariable(asti);
+                                                                            RESULT = arrDec;                                                                        
+                                                                           :}                                                                           
 						  ;
 
 var_declarations        ::= var_declaration:v var_declarations:vs          {:
@@ -404,7 +441,6 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 							                                             :}
 							  | lexp:tar ASSIGN exp:ex                   {:
                                                                             // Check to see if we are assigning proper types
-                                                                            
                                                                             AssignStatement as = new AssignStatement(tar, ex);
                                                                             RESULT = as;
                                                                          :}
@@ -427,6 +463,16 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 							                                                PrintStatement ps = new PrintStatement(e);
 							                                                RESULT = ps;
 							                                             :}
+                              | WRITELN exp:e                            {:
+                                                                            // Print statement
+                                                                            if(e.getExpressionType() != Types.INTEGER && e.getExpressionType() != Types.CHAR)
+                                                                            {   
+                                                                                String error = "Can not write other type than char or int!";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }                              
+                                                                            PrintStatement ps = new PrintStatement(e, true);
+                                                                            RESULT = ps;
+                                                                         :}                                                                         
 							  | READ lexp:var                            {:
 							                                                ReadStatement rs = new ReadStatement(var);
 							                                                RESULT = rs;
@@ -502,9 +548,26 @@ lexp                    ::= NAME:n                                       {:
                                                                                                  idx,
                                                                                                  array);
                                                                              RESULT = arr;
-                                                                             
-                                                                             
                                                                          :}
+                          | lexp:n LBRACK exp:wi COMMA exp:hi RBRACK                 {:
+                                                                             // Arrays
+                                                                             // Two dim array assignment
+
+                                                                             ArraySymTabInfo array = scope.LookupArray(n.IdentifiertoString());
+                                                                            if(array == null)
+                                                                            {
+                                                                                String error = "Array '" + n + "'' is undefined";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }  
+                                                                            VariableSymTabInfo t1 = parser.GenerateVariable(array.typeInfo.ActualType());
+                                                                            VariableSymTabInfo idx = parser.GenerateVariable(array.typeInfo.ActualType());                                                                            
+                                                                             ArrayIndexSymTabInfo arr = 
+                                                                             new ArrayIndexSymTabInfo(n.typeInfo,
+                                                                                                 n.IdentifiertoString(),
+                                                                                                 wi, hi,
+                                                                                                 array, t1, idx);
+                                                                             RESULT = arr;
+                                                                         :}                                                                         
 						  ;
 bexp                    ::= exp:e1 GREATER exp:e2                        {:
 
@@ -735,6 +798,27 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             RESULT = arrAcc;                                                                           
                                                                             
                                                                          :}   
+                          | NAME:n LBRACK exp:wi COMMA exp:hi RBRACK     {:
+                                                                            // Arrays
+                                                                            // Array Access
+                                                                             ArraySymTabInfo array = scope.LookupArray(n);
+                                                                            if(array == null)
+                                                                            {
+                                                                                String error = "Array '" + n + "'' is undefined";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            } 
+                                                                            
+                                                                            // Get Type of array here
+                                                                            VariableSymTabInfo t1 = parser.GenerateVariable(array.typeInfo.ActualType());
+                                                                            VariableSymTabInfo idx = parser.GenerateVariable(array.typeInfo.ActualType());                                                                            
+                                                                            VariableSymTabInfo tempVariable = parser.GenerateVariable(array.typeInfo.ActualType());
+                                                                            //scope.Insert(tempVariable);
+                                                                            ArrayAccessExpression arrAcc = 
+                                                                                new ArrayAccessExpression(tempVariable, array.typeInfo.ActualType(),  array, wi, hi, t1, idx);
+                                                                            
+                                                                            RESULT = arrAcc;                                                                           
+                                                                            
+                                                                         :}                                                                           
 						  | LENGTH NAME:n                                {:
                                                                              ArraySymTabInfo array = scope.LookupArray(n);
                                                                             if(array == null)

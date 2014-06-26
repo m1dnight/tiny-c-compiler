@@ -44,6 +44,32 @@ public class ThreeAddressCode {
     }
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ThreeAddressCode that = (ThreeAddressCode) o;
+
+        if (ParamCount != that.ParamCount) return false;
+        if (!arg1.equals(that.arg1)) return false;
+        if (!arg2.equals(that.arg2)) return false;
+        if (opCode != that.opCode) return false;
+        if (!result.equals(that.result)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result1 = opCode.hashCode();
+        result1 = 31 * result1 + arg1.hashCode();
+        result1 = 31 * result1 + arg2.hashCode();
+        result1 = 31 * result1 + result.hashCode();
+        result1 = 31 * result1 + ParamCount;
+        return result1;
+    }
+
     /******************************************************************************************************************/
     @Override
     public String toString()
@@ -69,10 +95,14 @@ public class ThreeAddressCode {
          *****************************************************************************/
         if(opCode == OpCodes.WRITEINT)
             return String.format("WRITE %s", arg1.IdentifiertoString());
+        if(opCode == OpCodes.WRITEINT)
+            return String.format("WRITELN %s", arg1.IdentifiertoString());
         if(opCode == OpCodes.READINT)
             return String.format("READ %s", arg1.IdentifiertoString());
         if(opCode == OpCodes.WRITECHAR)
             return String.format("WRITECHAR %s", arg1.IdentifiertoString());
+        if(opCode == OpCodes.WRITECHARLN)
+            return String.format("WRITECHARLN %s", arg1.IdentifiertoString());
 
         /*****************************************************************************
          * Arrays

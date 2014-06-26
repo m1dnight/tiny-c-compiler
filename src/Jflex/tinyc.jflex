@@ -34,7 +34,7 @@ digit       =  [0-9]
 alpha       =  [a-zA-Z_]
 alphanum    =  [A-Za-z0-9]
 symbol      =  [_]
-char        =  "\'"{alphanum}"\'"
+char        =  "\'"[\x20-\x7E]"\'"
 identifier  =  {alpha}+({alphanum}|{symbol})*
 
 sl_comment  =  "//".*
@@ -51,6 +51,7 @@ commment    =  {sl_comment} | {ml_comment}
 "do"					{ return symbol(sym.DO); }
 "length"				{ return symbol(sym.LENGTH); }
 "write"				    { return symbol(sym.WRITE); }
+"writeln"				    { return symbol(sym.WRITELN); }
 "read"				    { return symbol(sym.READ); }
 
 ","						{ return symbol(sym.COMMA); }

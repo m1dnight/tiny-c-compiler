@@ -2,8 +2,6 @@ package Assembly;
 
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.SymbolTable;
-import SymbolTable.SymTabInfo;
-import com.sun.org.apache.xpath.internal.operations.Variable;
 
 import java.util.ArrayList;
 

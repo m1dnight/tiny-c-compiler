@@ -44,9 +44,11 @@ public class BasicBlockToX86Generator {
         data.append("\n" + ".section .data");
 
         prologue.append("\n" + "# Used for printing");
-        prologue.append("\n" + "inpf: .string \"%d \\n\"");
+        prologue.append("\n" + "inpfnl: .string \"%d \\n\"");
+        prologue.append("\n" + "inpf: .string \"%d\"");
         prologue.append("\n" + "outr:    .string \"%d\"");
-        prologue.append("\n" + "inpfc: .string \"%c \\n\"");
+        prologue.append("\n" + "inpfc: .string \"%c\"");
+        prologue.append("\n" + "inpfcnl: .string \"%c \\n\"");
         prologue.append("\n" + ".section .text");
         prologue.append("\n" + ".globl _start");
     }
@@ -95,26 +97,29 @@ public class BasicBlockToX86Generator {
             if(op == OpCodes.GOTO)
                 CompileJump(tac);
 
-            if(op == OpCodes.WRITEINT)
+            if(op == OpCodes.WRITEINT || op == OpCodes.WRITEINTLN)
                 CompileWriteInteger(tac);
 
-            if(op == OpCodes.WRITECHAR)
-            {
-                // Get the char from
-                curCode.append("\n\t"  + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())));
-                curCode.append("\n\t"  + String.format("movl $0, %%eax")); // Clear eax
-                curCode.append("\n\t" + String.format("movb %%bl, %%al"));
-                curCode.append("\n\t" + String.format("pushl %%eax"));
-                curCode.append("\n\t" + String.format("pushl $inpfc"));
-                curCode.append("\n\t" + String.format("call printf"));
-                curCode.append("\n\t" + String.format("addl $4, %%esp"));
-            }
+            if(op == OpCodes.WRITECHAR || op == OpCodes.WRITECHARLN)
+                CompileWriteChar(tac);
             if(op == OpCodes.READINT)
                 CompileReadInteger(tac);
             if(op == OpCodes.A2EQIF  || op == OpCodes.A2GTIF || op == OpCodes.A2LTIF || op == OpCodes.A2NEQIF)
                 CompileIfStatement(tac, op);
         }
 
+    }
+
+    private void CompileWriteChar(ThreeAddressCode tac) {
+        // Get the char from
+        String op =  tac.getOpCode() == OpCodes.WRITECHAR ? "$inpfc" : "$inpfcnl";
+        curCode.append("\n\t"  + String.format("movl %s, %%ebx", PutAndGetAddress(tac.getArg1())));
+        curCode.append("\n\t"  + String.format("movl $0, %%eax")); // Clear eax
+        curCode.append("\n\t" + String.format("movb %%bl, %%al"));
+        curCode.append("\n\t" + String.format("pushl %%eax"));
+        curCode.append("\n\t" + String.format("pushl %s", op));
+        curCode.append("\n\t" + String.format("call printf"));
+        curCode.append("\n\t" + String.format("addl $4, %%esp"));
     }
 
     private void CompileUnaryMinus(ThreeAddressCode tac) {
@@ -328,9 +333,10 @@ public class BasicBlockToX86Generator {
     }
 
     private void CompileWriteInteger(ThreeAddressCode tac) {
+        String op =  tac.getOpCode() == OpCodes.WRITEINT ? "$inpf" : "$inpfln";
         curCode.append("\n\t"  + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
         curCode.append("\n\t" + String.format("pushl %%eax"));
-        curCode.append("\n\t" + String.format("pushl $inpf"));
+        curCode.append("\n\t" + String.format("pushl %s", op));
         curCode.append("\n\t" + String.format("call printf"));
         curCode.append("\n\t" + String.format("addl $4, %%esp"));
     }
@@ -370,10 +376,21 @@ public class BasicBlockToX86Generator {
         {
             // If it is not a parameter, the array offset wrt %ebp should be stored
             int arrayOffset = -1 * this.arrayOffset.get(tac.getResult());
-            arrayOffset -= (4 * Integer.parseInt(tac.getArg1().IdentifiertoString()));
-            // Move the value to assign into %eax
+            //arrayOffset -= (4 * Integer.parseInt(tac.getArg1().IdentifiertoString()));
+
+
+            curCode.append("\n\t" + String.format("movl %%ebp, %%ecx"));
+            curCode.append("\n\t" + String.format("movl $%d, %%eax", Math.abs(arrayOffset)));
+            curCode.append("\n\t" + String.format("subl %%eax, %%ecx"));// Array base address is in %ecx
+
+            curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg1())));
+            curCode.append("\n\t" + String.format("movl $4, %%ebx"));
+            curCode.append("\n\t" + String.format("imull %%ebx")); // Offset is in %eax
+
+            curCode.append("\n\t" + String.format("subl %%eax, %%ecx")); // Actual ebp offset is now in %ecx
+
             curCode.append("\n\t" + String.format("movl %s, %%eax", PutAndGetAddress(tac.getArg2())));
-            curCode.append("\n\t" + String.format("movl %%eax, %d(%%ebp)", arrayOffset));
+            curCode.append("\n\t" + String.format("movl %%eax, (%%ecx)"));
         }
         else
         {

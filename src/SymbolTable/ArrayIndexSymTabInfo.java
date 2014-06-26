@@ -8,8 +8,11 @@ import Typing.TypeInfo;
  */
 public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
 
-    private final Expression index;
-    private final ArraySymTabInfo array;
+    private final Expression         widthIndex;
+    private final Expression         heigthIndex;
+    private final ArraySymTabInfo    array;
+    private final VariableSymTabInfo t1;
+    private final VariableSymTabInfo idx;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
@@ -17,9 +20,22 @@ public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
 
     public ArrayIndexSymTabInfo(TypeInfo typeInfo, String name, Expression position, ArraySymTabInfo array) {
         super(typeInfo, name);
-        this.index = position;
+        this.widthIndex = position;
         this.array = array;
+        this.heigthIndex = null;
+        this.t1 = null;
+        this.idx = null;
     }
+
+    public ArrayIndexSymTabInfo(TypeInfo typeInfo, String name, Expression wi, Expression hi, ArraySymTabInfo array, VariableSymTabInfo t1, VariableSymTabInfo idx) {
+        super(typeInfo, name);
+        this.widthIndex = wi;
+        this.heigthIndex = hi;
+        this.array = array;
+        this.t1 = t1;
+        this.idx = idx;
+    }
+
     /******************************************************************************************************************/
     /************************************ LOGIC ***********************************************************************/
     /******************************************************************************************************************/
@@ -28,14 +44,30 @@ public class ArrayIndexSymTabInfo extends VariableSymTabInfo {
         return this.getName();
     }
 
+    public boolean IsTwoDim()
+    {
+        return this.heigthIndex != null;
+    }
     /******************************************************************************************************************/
     /************************************ GETTERS AND SETTERS *********************************************************/
     /******************************************************************************************************************/
-    public Expression getIndex() {
-        return index;
+    public Expression getWidthIndex() {
+        return widthIndex;
     }
 
     public ArraySymTabInfo getArray() {
         return array;
+    }
+
+    public Expression getHeigthIndex() {
+        return heigthIndex;
+    }
+
+    public VariableSymTabInfo getT1() {
+        return t1;
+    }
+
+    public VariableSymTabInfo getIdx() {
+        return idx;
     }
 }
