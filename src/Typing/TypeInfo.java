@@ -1,9 +1,9 @@
 package Typing;
 
 public abstract class TypeInfo {
-    public Types type;
+    private Types type;
 
-    public TypeInfo(Types type){
+    public TypeInfo(Types type) {
         this.type = type;
     }
 
@@ -16,4 +16,11 @@ public abstract class TypeInfo {
      */
     public abstract Types ActualType();
 
+    public Types getType() {
+        return type;
+    }
+
+    public void setType(Types type) {
+        this.type = type;
+    }
 }

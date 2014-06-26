@@ -15,7 +15,7 @@ public class VariableTypeInfo extends TypeInfo {
     /******************************************************************************************************************/
     @Override
     public Types ActualType() {
-        return this.type;
+        return this.getType();
     }
     public boolean equals(Object object)
     {
@@ -24,7 +24,7 @@ public class VariableTypeInfo extends TypeInfo {
         if (object != null && object instanceof VariableTypeInfo)
         {
             VariableTypeInfo obj = (VariableTypeInfo) object;
-            sameSame = this.type == obj.type;
+            sameSame = this.getType() == obj.getType();
         }
 
         return sameSame;

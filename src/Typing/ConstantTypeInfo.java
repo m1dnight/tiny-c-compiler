@@ -17,7 +17,7 @@ public class ConstantTypeInfo extends TypeInfo {
     /******************************************************************************************************************/
     @Override
     public Types ActualType() {
-        return type;
+        return getType();
     }
 
     public boolean equals(Object object)
@@ -27,7 +27,7 @@ public class ConstantTypeInfo extends TypeInfo {
         if (object != null && object instanceof ConstantTypeInfo)
         {
             ConstantTypeInfo obj = (ConstantTypeInfo) object;
-            sameSame = this.type == obj.type;
+            sameSame = this.getType() == obj.getType();
         }
 
         return sameSame;

@@ -1,27 +1,23 @@
 package Cup;
-
-import Expressions.*;
+import CodeGeneration.OpCodes;
+import CodeGeneration.ThreeAddressCode;
+import CodeGeneration.VarnameCreator;
+import Errorhandling.Errors;
+import Expressions.Block;
 import Expressions.Declarations.*;
 import Expressions.Expressions.*;
+import Expressions.ParameterList;
+import Expressions.Program;
 import Expressions.Statement.*;
+import SymbolTable.*;
 import Typing.ConstantTypeInfo;
 import Typing.FunctionTypeInfo;
-import SymbolTable.SymTabInfo;
-import SymbolTable.SymbolTable;
-import SymbolTable.IntegerSymTabInfo;
-import SymbolTable.CharSymTabInfo;
-import SymbolTable.VariableSymTabInfo;
-import SymbolTable.StringSymTabInfo;
-import SymbolTable.ArraySymTabInfo;
-import SymbolTable.ArrayIndexSymTabInfo;
 import Typing.Types;
 import Typing.VariableTypeInfo;
-import CodeGeneration.VarnameCreator;
-import CodeGeneration.ThreeAddressCode;
-import CodeGeneration.OpCodes;
+
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 
 action code {:
@@ -62,10 +58,47 @@ parser code {:
         StringSymTabInfo beginFunLabelSymtabInfo = new StringSymTabInfo(cti, label);
         return beginFunLabelSymtabInfo;
     }
+    public void report_warning(String message, Object info) {
+   
+        /* Create a StringBuffer called 'm' with the string 'Error' in it. */
+        StringBuffer m = new StringBuffer("Warning");
+   
+        /* Check if the information passed to the method is the same
+           type as the type java_cup.runtime.Symbol. */
+        if (info instanceof java_cup.runtime.Symbol) {
+            /* Declare a java_cup.runtime.Symbol object 's' with the
+               information in the object info that is being typecasted
+               as a java_cup.runtime.Symbol object. */
+            java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
+   
+            /* Check if the line number in the input is greater or
+               equal to zero. */
+            if (s.left >= 0) {                
+                /* Add to the end of the StringBuffer error message
+                   the line number of the error in the input. */
+                m.append(" in line "+(s.left+1));
+                /* Check if the column number in the input is greater
+                   or equal to zero. */
+                if (s.right >= 0)                    
+                    /* Add to the end of the StringBuffer error message
+                       the column number of the error in the input. */
+                    m.append(", column "+(s.right+1));
+            }
+        }
+   
+        /* Add to the end of the StringBuffer error message created in
+           this method the message that was passed into this method. */
+        m.append(" : "+message);
+   
+        /* Print the contents of the StringBuffer 'm', which contains
+           an error message, out on a line. */
+        System.err.println(m);
+    }
 	/* Change the method report_error so it will display the line and
 	   column of where the error occurred in the input as well as the
 	   reason for the error which is passed into the method in the
 	   String 'message'. */
+
 	public void report_error(String message, Object info) {
    
 		/* Create a StringBuffer called 'm' with the string 'Error' in it. */
@@ -102,16 +135,7 @@ parser code {:
 		   an error message, out on a line. */
 		System.err.println(m);
 	}
-   
-	/* Change the method report_fatal_error so when it reports a fatal
-	   error it will display the line and column number of where the
-	   fatal error occurred in the input as well as the reason for the
-	   fatal error which is passed into the method in the object
-	   'message' and then exit.*/
-	public void report_fatal_error(String message, Object info) {
-		report_error(message, info);
-		System.exit(1);
-	}
+
 
 
 	
@@ -212,7 +236,12 @@ declaration             ::=  fun_declaration:fd                          {:
 fun_declaration         ::=  type:rt NAME:n
                                                                          {: // fun_declaration
                                                                             // Create symboltable entry
-                                                                            VariableSymTabInfo vsti = new VariableSymTabInfo(null, n);
+                                                                            if(scope.ContainsName(n))
+                                                                            {
+                                                                                String error = "Function with name '" + n + "' already declared in this scope!";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }
+                                                                            FunctionSymTabInfo vsti = new FunctionSymTabInfo(null, n);
                                                                             // We insert it in the current scope but we update values later
                                                                             scope.Insert(vsti);
                                                                             scope = scope.NewScope();
@@ -290,6 +319,12 @@ block                   ::= LBRACE                                       {:
 
 var_declaration         ::= type:t NAME:n SEMICOLON                      {: 
                                                                             // var_declaration
+                                                                            if(scope.ContainsName(n))
+                                                                            {
+                                                                                String error = "Variable with name '" + n + "' already declared in this scope!";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }
+
                                                                             VariableSymTabInfo vsti = new VariableSymTabInfo(new VariableTypeInfo(t), n);
                                                                             scope.Insert(vsti); 
                                                                             
@@ -367,13 +402,21 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
                                                                             RESULT = as;
                                                                          :}
 							  | RETURN exp:e                             {:
+                                                                            //parser.Throw("Can not return other type than char or int!");                                
                                                                             // The variable that holds the result of the expression is
                                                                             // is held inside e.symTabInfo. So we pass that to the TAC constructor.
                                                                             ReturnStatement rs = new ReturnStatement(e);
+                                                                            
+                                                                            rs.setReturnType(scope.function.getTypeInfo().ActualType());
                                                                             RESULT = rs;
                                                                          :}
 							  | WRITE exp:e                              {:
 							                                                // Print statement
+                                                                            if(e.getExpressionType() != Types.INTEGER && e.getExpressionType() != Types.CHAR)
+                                                                            {   
+                                                                                String error = "Can not write other type than char or int!";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }                              
 							                                                PrintStatement ps = new PrintStatement(e);
 							                                                RESULT = ps;
 							                                             :}
@@ -385,7 +428,30 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
                                                                          // Function Call outside of an expression
                                                                             // Add each TAC for each parameter to the result.
                                                                             // Get the SymTabInfo from the scope
-                                                                            VariableSymTabInfo func = (VariableSymTabInfo)scope.Lookup(n);
+
+                                                                            // Get the SymTabInfo from the scope
+                                                                            VariableSymTabInfo func = scope.LookupFunction(n);
+                                                                            if(func == null)
+                                                                            {
+                                                                                String error = "Function '" + n + "' was not found.";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }
+                                                                            // Check all the types for the parameters
+                                                                            ArrayList<SymTabInfo> expected = ((FunctionTypeInfo) func.typeInfo).getParameters();
+                                                                            ArrayList<Expression> actualPm = ps.getParameterList();
+                                                                            if(expected.size() != actualPm.size())
+                                                                            {
+                                                                                String error = "Function '" + n + "' is called with wrong number of arguments.";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }
+                                                                            for(int i = 0; i < expected.size(); i++)
+                                                                                if(!Typing.Typing.EqualOrBroaderType(actualPm.get(i).getExpressionType(), expected.get(i).typeInfo.ActualType()))
+                                                                                {
+                                                                                    String error = "Function '" + n + "' is called with wrong types (" + i + "!";
+                                                                                    parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                                }
+
+
                                                                             // We need the return type, so we get it from the SymTabInfo.
                                                                             FunctionTypeInfo funcTypeInfo = (FunctionTypeInfo) func.typeInfo;
 
@@ -403,15 +469,26 @@ statement                   ::= IF LPAR bexp:cond RPAR statement:cons        {:
 lexp                    ::= NAME:n                                       {:
                                                                              // We should have already declared this name
                                                                              // so we simply look it up in the symbol table
-                                                                             
+                                                                             VariableSymTabInfo lookup = scope.LookupVariable(n);
+                                                                            if(lookup == null)
+                                                                            {
+                                                                                String error = "Variable '" + n + "'' is undefined";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }                                                                             
+
                                                                              VariableSymTabInfo var = 
-                                                                                new VariableSymTabInfo(scope.Lookup(n).typeInfo, scope.Lookup(n).IdentifiertoString());
+                                                                                new VariableSymTabInfo(lookup.typeInfo, lookup.IdentifiertoString());
                                                                              RESULT = var;
                                                                          :}
 						  | lexp:n LBRACK exp:idx RBRACK                 {:
                                                                              // Arrays
                                                                              // Array assignment
-                                                                             ArraySymTabInfo array = (ArraySymTabInfo) scope.Lookup(n.IdentifiertoString());
+                                                                             ArraySymTabInfo array = scope.LookupArray(n.IdentifiertoString());
+                                                                            if(array == null)
+                                                                            {
+                                                                                String error = "Array '" + n + "'' is undefined";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }  
                                                                              ArrayIndexSymTabInfo arr = 
                                                                              new ArrayIndexSymTabInfo(n.typeInfo,
                                                                                                  n.IdentifiertoString(),
@@ -597,6 +674,7 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                          :}
 						  | MINUS exp:e                                  {:
                                                                              Types resultType = e.getExpressionType();
+                                                                             // Change type for coercion
                                                                              if(resultType == Types.CHAR)
                                                                                  resultType = Types.INTEGER;
 
@@ -624,18 +702,21 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
 						  | CHAR:c                                       {:
 						                                                    // Create char
 						                                                    char theChar = c.charAt(0);
+						                                                    int charValue = (int)theChar;
 						                                                    ConstantTypeInfo ti = new ConstantTypeInfo(Types.CHAR);
-						                                                    CharSymTabInfo csti = new CharSymTabInfo(theChar);
+						                                                    IntegerSymTabInfo csti = new IntegerSymTabInfo(charValue);
 						                                                    ConstantExpression ce = new ConstantExpression(csti, Types.CHAR);
 						                                                    RESULT = ce;
 						                                                 :}                                                                         
 						  | NAME:n LBRACK exp:idx RBRACK                {:
                                                                             // Arrays
                                                                             // Array Access
-
-                                                                            // Get the SymTabInfo from the scope
-                                                                            VariableSymTabInfo temp = scope.Lookup(n);
-                                                                            ArraySymTabInfo array = (ArraySymTabInfo)scope.Lookup(n);
+                                                                             ArraySymTabInfo array = scope.LookupArray(n);
+                                                                            if(array == null)
+                                                                            {
+                                                                                String error = "Array '" + n + "'' is undefined";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            } 
                                                                             
                                                                             // Get Type of array here
                                                                             
@@ -648,19 +729,42 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             
                                                                          :}   
 						  | LENGTH NAME:n                                {:
-						                                                    SymTabInfo lookup = scope.Lookup(n);
-						                                                    if(!(lookup instanceof ArraySymTabInfo))
-						                                                        throw new Error("LENGTH called on non-array");
-						                                                    ArraySymTabInfo array = (ArraySymTabInfo)scope.Lookup(n);
+                                                                             ArraySymTabInfo array = scope.LookupArray(n);
+                                                                            if(array == null)
+                                                                            {
+                                                                                String error = "Length can not be called on variable " + n;
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            } 
 						                                                    RESULT = ((ConstantExpression)array.getSize());
                                                                          :}                                                                                                                                                
 						  | NAME:n LPAR pars:ps RPAR                     {:
-                                                                            // Function Call
+                                                                        // Function Call
                                                                             // Add each TAC for each parameter to the result.
                                                                             //CodeContainer temp = new CodeContainer()
 
                                                                             // Get the SymTabInfo from the scope
-                                                                            VariableSymTabInfo func = (VariableSymTabInfo)scope.Lookup(n);
+                                                                            VariableSymTabInfo func = scope.LookupFunction(n);
+                                                                            if(func == null)
+                                                                            {
+                                                                                String error = "Function '" + n + "' was not found.";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }
+                                                                            // Check all the types for the parameters
+                                                                            ArrayList<SymTabInfo> expected = ((FunctionTypeInfo) func.typeInfo).getParameters();
+                                                                            ArrayList<Expression> actualPm = ps.getParameterList();
+                                                                            if(expected.size() != actualPm.size())
+                                                                            {
+                                                                                String error = "Function '" + n + "' is called with wrong number of arguments.";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                            }
+                                                                            for(int i = 0; i < expected.size(); i++)
+                                                                                if(!Typing.Typing.EqualOrBroaderType(actualPm.get(i).getExpressionType(), expected.get(i).typeInfo.ActualType()))
+                                                                                {
+                                                                                    String error = "Function '" + n + "' is called with wrong types (" + i + "!";
+                                                                                    parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+                                                                                }
+
+
                                                                             // We need the return type, so we get it from the SymTabInfo.
                                                                             FunctionTypeInfo funcTypeInfo = (FunctionTypeInfo) func.typeInfo;
 
@@ -673,16 +777,25 @@ exp                     ::= exp:e1 PLUS    exp:e2                        {:
                                                                             RESULT = result;
                                                                          :}
 						  | NAME:n                                       {:
-                                                                             VariableExpression var = new VariableExpression(scope.Lookup(n), scope.Lookup(n).typeInfo.ActualType());
+                                                                             // Force n to be a variable
+                                                                             VariableSymTabInfo v = scope.LookupVariable(n);
+                                                                             if(v == null)
+                                                                             {
+                                                                                String error = "Variable '" + n + "' not found.";
+                                                                                parser.report_fatal_error(error, ((java_cup.runtime.Symbol) CUP$parser$stack.peek()));
+
+                                                                             }
+                                                                             VariableExpression var = new VariableExpression(v, v.typeInfo.ActualType());
                                                                              RESULT = var;
                                                                          :}
 						  ;
 
 pars                    ::= exp:p                                        {:
-                                                                            System.out.println("Getting params");
                                                                             RESULT = new ParameterList(p);
                                                                          :}
 						  | exp:p COMMA pars:ps                          {:
+                                                                            // Force variable
+
                                                                             ParameterList result = new ParameterList(p);
                                                                             result.AddParameters(ps);
                                                                             RESULT = result;

@@ -38,7 +38,7 @@ public class VariableSymTabInfo extends SymTabInfo {
         {
             VariableSymTabInfo obj = (VariableSymTabInfo) object;
             sameSame = this.name ==  obj.name &&
-                    this.typeInfo.equals(obj.typeInfo);
+                    this.getTypeInfo().equals(obj.getTypeInfo());
         }
 
         return sameSame;

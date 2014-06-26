@@ -5,6 +5,7 @@ import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
 import SymbolTable.IntegerSymTabInfo;
 import SymbolTable.SymTabInfo;
+import Typing.Types;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +31,12 @@ public class ConstantPropagation
                 if(IsConstantAssignment(tac))
                 {
                     // We know for sure the operand is a constant, so we can add this variable as true.
+                    // If we are assigning to a char, we can calculate the modulo value.
+                    if(tac.getResult().getTypeInfo().ActualType() == Types.CHAR)
+                    {
+                        IntegerSymTabInfo newVal = (IntegerSymTabInfo) tac.getArg1();
+                        newVal.setValue(newVal.getValue() % 256);
+                    }
                     constantMarkers.put(tac.getResult(), true);
 
                     // Cast is clean because we have checked the type in IsConstantAssignment().
@@ -81,40 +88,52 @@ public class ConstantPropagation
                     continue;
                 }
                 // If we have a param TAC we can see if we can replace it with a variable
-/*                if(IsOptimizableParam(tac, constantMarkers))
+                if(IsOptimizableParam(tac, constantMarkers))
                 {
+
                     ThreeAddressCode newTac = new ThreeAddressCode();
                     newTac.setOpCode(OpCodes.PARAM);
-                    newTac.setArg1(variableValues.get(tac.getArg1()));
+                    IntegerSymTabInfo value = variableValues.get(tac.getArg1());
+
+                    // If we are going to replace it with a constant, we can avoid a coercion.
+                    if(tac.getOpCode() == OpCodes.PARAMTOCHAR) {
+                        value = new IntegerSymTabInfo(value.getValue() % 256);
+                    }
+                    newTac.setArg1(value);
                     changed = true;
                     newTacs.add(newTac);
                     continue;
-                }*/
-                if(OptimizableArithmeticOperation(tac))
+                }
+                if(IsOptimizableArithmeticOperation(tac))
                 {
+                    // We are sure we have two integers
                     IntegerSymTabInfo op1 = (IntegerSymTabInfo) tac.getArg1();
                     IntegerSymTabInfo op2 = (IntegerSymTabInfo) tac.getArg2();
                     ThreeAddressCode newTac = new ThreeAddressCode();
                     newTac.setOpCode(OpCodes.A0);
                     newTac.setResult(tac.getResult());
-
+                    int newVal = -123;
                     // Calculate new value
                     if(tac.getOpCode() == OpCodes.A2PLUS)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() + op2.getValue()));
+                        newVal = op1.getValue() + op2.getValue();
                     if(tac.getOpCode() == OpCodes.A2MINUS)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() - op2.getValue()));
+                        newVal = op1.getValue() - op2.getValue();
                     if(tac.getOpCode() == OpCodes.A2TIMES)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() * op2.getValue()));
+                        newVal = op1.getValue() * op2.getValue();
                     if(tac.getOpCode() == OpCodes.A2DIV)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() / op2.getValue()));
+                        newVal = op1.getValue() / op2.getValue();
                     if(tac.getOpCode() == OpCodes.A2EQ)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() == op2.getValue() ? 1 : 0));
+                        newVal = op1.getValue() == op2.getValue() ? 1 : 0;
                     if(tac.getOpCode() == OpCodes.A2NEQ)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() != op2.getValue() ? 1 : 0));
+                        newVal = op1.getValue() != op2.getValue() ? 1 : 0;
                     if(tac.getOpCode() == OpCodes.A2GT)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() > op2.getValue() ? 1 : 0));
+                        newVal = op1.getValue() > op2.getValue() ? 1 : 0;
                     if(tac.getOpCode() == OpCodes.A2LT)
-                        newTac.setArg1(new IntegerSymTabInfo(op1.getValue() < op2.getValue() ? 1 : 0));
+                        newVal = op1.getValue() < op2.getValue() ? 1 : 0;
+
+                    if(tac.getResult().getTypeInfo().ActualType() == Types.CHAR)
+                        newVal = newVal % 256;
+                    newTac.setArg1(new IntegerSymTabInfo(newVal));
 
                     // We have evaluated an expression, so we need to put the constant vlaue
                     variableValues.put(newTac.getResult(), (IntegerSymTabInfo) newTac.getArg1());
@@ -135,8 +154,9 @@ public class ConstantPropagation
 
         return block;
     }
-
-    private static boolean OptimizableArithmeticOperation(ThreeAddressCode tac)
+    /******************************************************************************************************************/
+    /************************************ FUNCTIONS TO CHECK IF WE CAN OPTIMIZE ***************************************/
+    private static boolean IsOptimizableArithmeticOperation(ThreeAddressCode tac)
     {
         if (tac.getOpCode() == OpCodes.A2PLUS || tac.getOpCode() == OpCodes.A2TIMES ||
                 tac.getOpCode() == OpCodes.A2MINUS || tac.getOpCode() == OpCodes.A2DIV ||
@@ -145,16 +165,14 @@ public class ConstantPropagation
             return tac.getArg1() instanceof IntegerSymTabInfo && tac.getArg2() instanceof IntegerSymTabInfo;
         return false;
     }
-
     private static boolean IsOptimizableParam(ThreeAddressCode tac, HashMap<SymTabInfo, Boolean> constantMarkers)
     {
-        if(tac.getOpCode() == OpCodes.PARAM)
+        if(tac.getOpCode() == OpCodes.PARAM || tac.getOpCode() == OpCodes.PARAMTOCHAR)
         {
             return constantMarkers.get(tac.getArg1()) != null && constantMarkers.get(tac.getArg1());
         }
         return false;
     }
-
     private static boolean IsOptimizableArithmetic(ThreeAddressCode tac, HashMap<SymTabInfo, Boolean> constantMarkers)
     {
         if (tac.getOpCode() == OpCodes.A2PLUS      || tac.getOpCode() == OpCodes.A2TIMES ||
@@ -168,7 +186,6 @@ public class ConstantPropagation
 
         return false;
     }
-
     private static boolean IsConstantAssignment(ThreeAddressCode tac)
     {
         // If it is of the form A = 1 it is obviously true.
@@ -185,12 +202,6 @@ public class ConstantPropagation
         {
             return constantMarkers.get(tac.getArg1()) != null && constantMarkers.get(tac.getArg1());
         }
-        return false;
-    }
-
-    private boolean IsInteger(SymTabInfo sti)
-    {
-        if(sti instanceof IntegerSymTabInfo) return true;
         return false;
     }
 }

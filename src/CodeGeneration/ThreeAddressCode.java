@@ -87,7 +87,7 @@ public class ThreeAddressCode {
         }
         if(opCode == OpCodes.ALLOC_ARRAY)
         {
-            return String.format("ALLOC_ARRAY %s %s", arg1.typeInfo.ActualType(), arg1.IdentifiertoString());
+            return String.format("ALLOC_ARRAY %s %s", arg1.getTypeInfo().ActualType(), arg1.IdentifiertoString());
         }
         /*****************************************************************************
          * Parameters
@@ -100,6 +100,10 @@ public class ThreeAddressCode {
          * Return Statements
          *****************************************************************************/
         if(opCode == OpCodes.RETURN)
+        {
+            return String.format("return %s", arg1.IdentifiertoString());
+        }
+        if(opCode == OpCodes.RETURNTOCHAR)
         {
             return String.format("return %s", arg1.IdentifiertoString());
         }

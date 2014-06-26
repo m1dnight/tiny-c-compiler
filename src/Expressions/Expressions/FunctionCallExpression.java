@@ -35,7 +35,7 @@ public class FunctionCallExpression extends Expression {
         output.addAll(this.parameterList.ToThreeAddressCode());
         output.add(
                 new ThreeAddressCode(OpCodes.CALL, this.function,
-                                     ((FunctionTypeInfo) this.function.typeInfo).NumberOfParams(), this.identifier));
+                                     ((FunctionTypeInfo) this.function.getTypeInfo()).NumberOfParams(), this.identifier));
         return output;
     }
     /******************************************************************************************************************/

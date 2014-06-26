@@ -6,6 +6,7 @@ import Assembly.x86.BasicBlockToX86Generator;
 import CodeGeneration.ThreeAddressCode;
 import Cup.parser;
 import Expressions.Program;
+import Optimisations.ConstantPropagation;
 import Optimisations.LocalValueNumbering;
 import Optimisations.RedudantVariablesBasic;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 public class Main {
     static public void main(String argv[]) {
+        boolean print = false;
 
 
         //SymbolTable scope = new SymbolTable();
@@ -28,13 +30,14 @@ public class Main {
             //System.out.println(result.getSymbolTable());
 
             // Print out all the TACs.
-            System.out.println("*************************************");
+
+            if(print)System.out.println("*************************************");
             for(ThreeAddressCode tac : result.toThreeAddressCode())
             {
 
-                System.out.println(tac.toString());
+                if(print)System.out.println(tac.toString());
             }
-            System.out.println("*************************************");
+            if(print)System.out.println("*************************************");
             // Generate basic blocks.
             ArrayList<BasicBlock> basicBlocks =  Generator.SplitToBlocks(result.toThreeAddressCode());
 
@@ -47,34 +50,34 @@ public class Main {
             /**********************************************************************************************************/
             /**********************************************************************************************************/
             /**********************************************************************************************************/
-            System.out.println("*************************************");
-            System.out.println("***Original basic blocks ************");
-            System.out.println("*************************************");
+            if(print)System.out.println("*************************************");
+            if(print)System.out.println("***Original basic blocks ************");
+            if(print)System.out.println("*************************************");
             for(BasicBlock b : basicBlocks)
             {
-                System.out.println(b.toString());
+                if(print)System.out.println(b.toString());
             }
             /**********************************************************************************************************/
             /**********************************************************************************************************/
             /**********************************************************************************************************/
-            System.out.println("*************************************");
-            System.out.println("***Remove redundant variables********");
-            System.out.println("*************************************");
+            if(print)System.out.println("*************************************");
+            if(print)System.out.println("***Remove redundant variables********");
+            if(print)System.out.println("*************************************");
             for(BasicBlock b : basicBlocks) {
                 //hash |= DAGraph.GenerateGraph(b).hashCode();
                 b.setTacs(RedudantVariablesBasic.Optimize(b).getTacs());
             }
             for(BasicBlock b : basicBlocks)
             {
-                System.out.println(b.toString());
+                if(print)System.out.println(b.toString());
             }
             /**********************************************************************************************************/
             /**********************************************************************************************************/
             /**********************************************************************************************************/
-            System.out.println("*************************************");
-            System.out.println("***Local Value Numbering ************");
-            System.out.println("*************************************");
-            System.out.println("Local Value Numbering");
+            if(print)System.out.println("*************************************");
+            if(print)System.out.println("***Local Value Numbering ************");
+            if(print)System.out.println("*************************************");
+            if(print)System.out.println("Local Value Numbering");
             // Generate a DAG for each basic block.
             int hash = 0;
             for(BasicBlock b : basicBlocks) {
@@ -83,36 +86,36 @@ public class Main {
             }
             for(BasicBlock b : basicBlocks)
             {
-                System.out.println(b.toString());
+                if(print)System.out.println(b.toString());
             }
             /**********************************************************************************************************/
             /**********************************************************************************************************/
             /**********************************************************************************************************/
-            System.out.println("*************************************");
-            System.out.println("***Constant Propagatoin *************");
-            System.out.println("*************************************");
-            System.out.println("Constant Propagation");
+            if(print)System.out.println("*************************************");
+            if(print)System.out.println("***Constant Propagatoin *************");
+            if(print)System.out.println("*************************************");
+            if(print)System.out.println("Constant Propagation");
             // Generate a DAG for each basic block.
             hash = 0;
             for(BasicBlock b : basicBlocks) {
                 //hash |= DAGraph.GenerateGraph(b).hashCode();
-                //b.setTacs(ConstantPropagation.Optimize(b).getTacs());
+                b.setTacs(ConstantPropagation.Optimize(b).getTacs());
             }
 
             for(BasicBlock b : basicBlocks)
             {
-                System.out.println(b.toString());
+                if(print)System.out.println(b.toString());
             }
             /**********************************************************************************************************/
             /**********************************************************************************************************/
             /**********************************************************************************************************/
-            System.out.println("*************************************");
-            System.out.println("***Compilation of basic blocks ******");
-            System.out.println("*************************************");
+            if(print)System.out.println("*************************************");
+            if(print)System.out.println("***Compilation of basic blocks ******");
+            if(print)System.out.println("*************************************");
             BasicBlockToX86Generator g = new BasicBlockToX86Generator(basicBlocks, result.getSymbolTable());
 
 
-            System.out.println(g.getCurCode());
+            if(print)System.out.println(g.getCurCode());
             WriteToFile(g.getCurCode(), argv[1]);
             //Generator.PrintBlocks(basicBlocks);
 
@@ -139,7 +142,6 @@ public class Main {
         bw.write(s + "\n");
         bw.close();
 
-        System.out.println("File updated");
 
     } catch (IOException e) {
         e.printStackTrace();

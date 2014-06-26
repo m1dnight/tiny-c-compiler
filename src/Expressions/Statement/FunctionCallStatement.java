@@ -35,14 +35,14 @@ public class FunctionCallStatement extends Statement {
         ArrayList<ThreeAddressCode> output = new ArrayList<ThreeAddressCode>();
         if(this.parameterList != null)
         {
-            ArrayList<SymTabInfo> expectedPs = ((FunctionTypeInfo) this.function.typeInfo).getParameters();
+            ArrayList<SymTabInfo> expectedPs = ((FunctionTypeInfo) this.function.getTypeInfo()).getParameters();
             ArrayList<Expression> actualPs = this.parameterList.getParameterList();
 
             for (int i = 0; i < this.parameterList.getParameterList().size(); i++) {
                 // If we need to coerce
                 output.addAll(actualPs.get(i).ToThreeAddressCode());
 
-                if (actualPs.get(i).getExpressionType() == Types.INTEGER && expectedPs.get(i).typeInfo.ActualType() == Types.CHAR)
+                if (actualPs.get(i).getExpressionType() == Types.INTEGER && expectedPs.get(i).getTypeInfo().ActualType() == Types.CHAR)
                     output.add(new ThreeAddressCode(OpCodes.PARAMTOCHAR, actualPs.get(i).getIdentifier()));
                 else
                 output.add(new ThreeAddressCode(OpCodes.PARAM, actualPs.get(i).getIdentifier()));
@@ -52,7 +52,7 @@ public class FunctionCallStatement extends Statement {
         }
         output.add(
                 new ThreeAddressCode(OpCodes.CALL, this.function,
-                        ((FunctionTypeInfo) this.function.typeInfo).NumberOfParams(), null));
+                        ((FunctionTypeInfo) this.function.getTypeInfo()).NumberOfParams(), null));
         return output;
     }
     /******************************************************************************************************************/

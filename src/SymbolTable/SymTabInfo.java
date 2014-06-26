@@ -4,8 +4,8 @@ package SymbolTable;
 import Typing.TypeInfo;
 
 public abstract class SymTabInfo {
-    public TypeInfo   typeInfo;
-    protected boolean live     = true;
+    public TypeInfo typeInfo;
+    protected boolean live = true;
 
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
@@ -37,5 +37,13 @@ public abstract class SymTabInfo {
 
     public void setLive(boolean live) {
         this.live = live;
+    }
+
+    public TypeInfo getTypeInfo() {
+        return typeInfo;
+    }
+
+    public void setTypeInfo(TypeInfo typeInfo) {
+        this.typeInfo = typeInfo;
     }
 }

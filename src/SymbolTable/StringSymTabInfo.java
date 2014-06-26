@@ -27,7 +27,7 @@ public class StringSymTabInfo extends SymTabInfo {
         if (object != null && object instanceof StringSymTabInfo)
         {
             StringSymTabInfo obj = (StringSymTabInfo) object;
-            sameSame = this.typeInfo.equals(obj.typeInfo);
+            sameSame = this.getTypeInfo().equals(obj.getTypeInfo());
         }
         return sameSame;
     }

@@ -37,7 +37,7 @@ public class FunctionTypeInfo extends TypeInfo {
 
             sameSame = this.returnType == obj.returnType;
 
-            sameSame = sameSame && this.type == obj.type;
+            sameSame = sameSame && this.getType() == obj.getType();
 
             if(this.parameters.size() == obj.parameters.size())
             {

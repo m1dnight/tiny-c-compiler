@@ -1,5 +1,6 @@
 package SymbolTable;
 
+import Typing.FunctionTypeInfo;
 import Utils.StringUtils;
 
 import java.util.ArrayList;
@@ -63,7 +64,9 @@ public class SymbolTable {
         symbolList.add(sti);
         return sti;
     }
-
+    /******************************************************************************************************************/
+    /************************************ LOOKUP VALUES ***************************************************************/
+    /******************************************************************************************************************/
     public VariableSymTabInfo Lookup(String name) {
         // Check to see if we can find in this current scope
         for (VariableSymTabInfo si : symbolList) {
@@ -75,8 +78,35 @@ public class SymbolTable {
         // If we have a parent, look it up there
         if (this.parent != null)
             return parent.Lookup(name);
-        // It can't be found..
-        System.out.println("*** ERROR ***\nSymbolTable: Did not find " + name);
         return null;
+    }
+    public FunctionSymTabInfo LookupFunction(String name)
+    {
+        VariableSymTabInfo func = Lookup(name);
+        boolean f = func instanceof VariableSymTabInfo;
+        if(func == null || !(func instanceof FunctionSymTabInfo))
+            return null;
+        return (FunctionSymTabInfo) func;
+    }
+    public VariableSymTabInfo LookupVariable(String name)
+    {
+        VariableSymTabInfo var = Lookup(name);
+        if(var == null || var.getTypeInfo() instanceof FunctionTypeInfo)
+            return null;
+        return var;
+    }
+    public ArraySymTabInfo LookupArray(String name)
+    {
+        VariableSymTabInfo array = Lookup(name);
+        if(array == null || !(array instanceof ArraySymTabInfo))
+            return null;
+        return (ArraySymTabInfo) array;
+    }
+
+
+    public boolean ContainsName(String n) {
+        if(Lookup(n) != null)
+            return true;
+        return false;
     }
 }

@@ -21,10 +21,20 @@ public class RedudantVariablesBasic
             ThreeAddressCode nextRecord    = workingCopy.get(idx + 1);
             ThreeAddressCode currentRecord = workingCopy.get(idx);
 
-            if(nextRecord.getOpCode() == OpCodes.A0 && nextRecord.getArg1().equals(currentRecord.getResult()) && currentRecord.getResult().IdentifiertoString().startsWith("_var"))
+            if((nextRecord.getOpCode() == OpCodes.A0)
+                    && nextRecord.getArg1().equals(currentRecord.getResult())
+                    && currentRecord.getResult().IdentifiertoString().startsWith("_var"))
             {
                 currentRecord.setResult(nextRecord.getResult());
                 workingCopy.remove(nextRecord);
+                currentSize--;
+            }
+            if((nextRecord.getOpCode() == OpCodes.WRITEINT || nextRecord.getOpCode() == OpCodes.WRITECHAR)
+                    && currentRecord.getOpCode() == OpCodes.A0
+                    && currentRecord.getResult() == nextRecord.getArg1())
+            {
+                nextRecord.setArg1(currentRecord.getArg1());
+                workingCopy.remove(currentRecord);
                 currentSize--;
             }
 

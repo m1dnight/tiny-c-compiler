@@ -3,6 +3,7 @@ package Expressions.Statement;
 import CodeGeneration.OpCodes;
 import CodeGeneration.ThreeAddressCode;
 import Expressions.Expressions.Expression;
+import Typing.Types;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
  */
 public class ReturnStatement extends Statement {
     private Expression returnExpressions;
+    private Types returnType;
     /******************************************************************************************************************/
     /************************************ CONSTRUCTORS  ***************************************************************/
     /******************************************************************************************************************/
@@ -25,7 +27,12 @@ public class ReturnStatement extends Statement {
     {
         ArrayList<ThreeAddressCode> rv = new ArrayList<ThreeAddressCode>();
         rv.addAll(returnExpressions.ToThreeAddressCode());
-        rv.add(new ThreeAddressCode(OpCodes.RETURN, returnExpressions.getIdentifier()));
+
+        // If we have to coerce to a char, we have to add the TAC
+        if(this.returnExpressions.getExpressionType() != returnType && returnType == Types.CHAR)
+            rv.add(new ThreeAddressCode(OpCodes.RETURNTOCHAR, returnExpressions.getIdentifier()));
+        else
+            rv.add(new ThreeAddressCode(OpCodes.RETURN, returnExpressions.getIdentifier()));
         return rv;
     }
     /******************************************************************************************************************/
@@ -37,5 +44,13 @@ public class ReturnStatement extends Statement {
 
     public void setReturnExpressions(Expression returnExpressions) {
         this.returnExpressions = returnExpressions;
+    }
+
+    public Types getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(Types returnType) {
+        this.returnType = returnType;
     }
 }

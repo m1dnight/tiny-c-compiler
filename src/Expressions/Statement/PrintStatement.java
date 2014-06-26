@@ -33,7 +33,7 @@ public class PrintStatement extends Statement {
             rv.add(new ThreeAddressCode(OpCodes.WRITECHAR, printExpression.getIdentifier()));
         }
         else
-        if(printExpression.getIdentifier().typeInfo.ActualType() == Types.INTEGER)
+        if(printExpression.getIdentifier().getTypeInfo().ActualType() == Types.INTEGER)
         {
             rv.addAll(printExpression.ToThreeAddressCode());
             rv.add(new ThreeAddressCode(OpCodes.WRITEINT, printExpression.getIdentifier()));

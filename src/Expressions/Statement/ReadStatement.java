@@ -16,7 +16,7 @@ public class ReadStatement extends Statement{
     private SymTabInfo result;
 
     public ReadStatement(SymTabInfo var) {
-        this.readType = var.typeInfo.ActualType();
+        this.readType = var.getTypeInfo().ActualType();
         this.result = var;
 
     }
