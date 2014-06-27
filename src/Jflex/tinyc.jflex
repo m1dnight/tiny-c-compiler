@@ -53,6 +53,7 @@ commment    =  {sl_comment} | {ml_comment}
 "write"				    { return symbol(sym.WRITE); }
 "writeln"				    { return symbol(sym.WRITELN); }
 "read"				    { return symbol(sym.READ); }
+"inc"                   { return symbol(sym.PLUSPLUS);}
 
 ","						{ return symbol(sym.COMMA); }
 ";"						{ return symbol(sym.SEMICOLON); }
