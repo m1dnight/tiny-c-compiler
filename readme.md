@@ -20,9 +20,8 @@ Otherwise an IDE is recommended (I used IntelliJ).
 
 Executing
 =========
->java -cp ".:lib/jflex.jar" Main test.txt
+The code can be built into a jar file using an IDE. Otherwise, the program expects 2 parameters. First of all an input file (.c) and an output file. 
 
-However, there is a simple .sh file that contains just this which can
-be called in following way:
-./run <inputfile.c>
-
+Important notice
+================
+This project has an extremely high WTF/minute value. No seriously. So it is far from what I want it to be. Nor am I very proud of the code quality.
